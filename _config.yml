@@ -1,17 +1,17 @@
 # Site settings
-title: A blog about lorem ipsum dolor sit amet
-description: A blog about lorem ipsum dolor sit amet
+title: Zhang Xuanming's homepage
+description: Past achievements, current projects and future plans
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Anon Developer
-user_description: Bicycle rights irony actually neutra typewriter lyft. Man bun taxidermy put a bird on it, umami yr ramps pop-up ugh bushwick chia lo-fi. Occupy bitters pour-over snackwave you probably haven't heard of them small batch. Cornhole mustache man bun letterpress echo park VHS.
-user_title: Software Developer
-email: anon@anon.com
-twitter_username: lorem_ipsum
-github_username:  lorem_ipsum
-gplus_username:  lorem_ipsum
+username: Xuanming Zhang
+user_description: I am a junior undergraduate student majoring in Information Science.CS/AI. My educational experience covers the Elite Institute of Enginnering Program of Peking University & Chongqing University (The Best Engineering Program in China), University of Bergen (European Ivy League), and now UW-Madison (ISci#11, CS#13). My research/internship experience covers Peking University SEKE Lab (mentors are Prof. Jin Zhi and Prof. Li Ge), Tsinghua University CoAI Lab (mentors are Prof. Huang Minlie, Prof. Yuan Yuan and Prof. Wang Hongning), ByteDance (mentors are Wang Xingnan, Chen Lu, etc.), Zhipu (mentors are Peng Libiao, Prof. Chen Zhuang), Zen-AI (mentor is Yan Libing). I am very grateful to the above institutions, mentors and collaborators.
+user_title: Researcher
+email: xzhang2846@wisc.edu
+twitter_username: xuanming zhang
+github_username:  XMZhangAI
+gplus_username:  Xuanming Zhang
 
 # Google-analytics
 google-analytics:
