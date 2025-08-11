@@ -1,0 +1,78 @@
+{
+    "name": "Zhang Xuanming – AI Research Scholar",
+    "short_name": "Xuanming Zhang",
+    "description": "Personal homepage of Zhang Xuanming - AI Research Scholar specializing in Humanoid Intelligence, Multi-Agent Systems, and Trustworthy AI",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "display_override": ["window-controls-overlay", "standalone"],
+    "orientation": "natural",
+    "background_color": "#667eea",
+    "theme_color": "#005bbb",
+    "categories": ["education", "productivity", "academic"],
+    "lang": "en-US",
+    "dir": "ltr",
+    "icons": [
+      {
+        "src": "profile.jpeg",
+        "sizes": "192x192",
+        "type": "image/jpeg",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "profile.jpeg",
+        "sizes": "512x512",
+        "type": "image/jpeg",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "CV-icon.png",
+        "sizes": "96x96",
+        "type": "image/png",
+        "purpose": "monochrome"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "profile.jpeg",
+        "sizes": "1280x720",
+        "type": "image/jpeg",
+        "platform": "wide",
+        "label": "Zhang Xuanming's Research Portfolio"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Publications",
+        "short_name": "Papers",
+        "description": "View latest research publications",
+        "url": "./#publications",
+        "icons": [{ "src": "google-scholar-icon.png", "sizes": "96x96" }]
+      },
+      {
+        "name": "CV",
+        "short_name": "Resume",
+        "description": "Download curriculum vitae",
+        "url": "./CV.pdf",
+        "icons": [{ "src": "CV-icon.png", "sizes": "96x96" }]
+      },
+      {
+        "name": "Contact",
+        "short_name": "Email",
+        "description": "Get in touch",
+        "url": "mailto:zhangxm@stanford.edu",
+        "icons": [{ "src": "email-icon.png", "sizes": "96x96" }]
+      }
+    ],
+    "related_applications": [
+      {
+        "platform": "web",
+        "url": "https://scholar.google.com/citations?user=zP5k9lsAAAAJ"
+      }
+    ],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+      "preferred_width": 400
+    },
+    "handle_links": "preferred"
+}

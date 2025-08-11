@@ -1,0 +1,213 @@
+%%
+%% Optimized Resume - Zhang Xuanming
+%% Based on original resume-en.tex with enhanced formatting
+%%
+
+\documentclass[11pt,letterpaper]{article}
+
+% Package imports
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{etoolbox}
+
+% Color definitions
+\definecolor{primary}{RGB}{37, 99, 235}
+\definecolor{secondary}{RGB}{139, 92, 246}
+\definecolor{accent}{RGB}{99, 102, 241}
+\definecolor{dark}{RGB}{17, 24, 39}
+\definecolor{gray}{RGB}{107, 114, 128}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    citecolor=primary
+}
+
+% Section formatting
+\titleformat{\section}{\Large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{dark}}{}{0em}{}
+\titlespacing*{\section}{0pt}{5pt plus 2pt minus 2pt}{5pt plus 2pt minus 2pt}
+\titlespacing*{\subsection}{0pt}{5pt plus 2pt minus 2pt}{2pt plus 1pt minus 1pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\color{dark}#1} & \textcolor{gray}{#2} \\
+      \textit{\color{secondary}#3} & \textit{\color{gray}#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumePublication}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small#1 & \textcolor{primary}{\small#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProject}[3]{
+  \vspace{-2pt}\item
+    \textbf{\color{dark}#1} \hfill \textcolor{gray}{\small#2} \\
+    \small#3 \vspace{-7pt}
+}
+
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% Document begins
+\begin{document}
+
+% Header
+\begin{center}
+    {\Huge \textbf{\color{primary}Xuanming Zhang}} \\
+    \vspace{5pt}
+    {\large \textit{Researcher in Humanoid Intelligence}} \\
+    \vspace{8pt}
+    \begin{tabular}{c c c c}
+        \faIcon{phone} \href{tel:+16082590539}{+1 (608) 259-0539} & 
+        \faIcon{envelope} \href{mailto:zhangxm@stanford.edu}{zhangxm@stanford.edu} & 
+        \faIcon{globe} \href{http://web.stanford.edu/people/zhangxm}{web.stanford.edu/people/zhangxm} & 
+        \faIcon{github} \href{https://github.com/XMZhangAI}{XMZhangAI}
+    \end{tabular}
+\end{center}
+
+\vspace{-10pt}
+
+% Summary
+\section{Summary}
+Visiting B.S. researcher at Stanford University with SSR Fellowship, focusing on Humanoid Intelligence: Cognitive Learning, World Interaction, and Policy Simulation. Senior undergraduate at UW-Madison (ISci honors, GPA: 3.9/4.0) with research experience at Amazon, Tsinghua, and Peking University. Published 10+ papers at top venues (NeurIPS, ACL, ICML) with 300+ citations and h-index of 7.
+
+% Education
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Stanford University}{May 2025 -- Present}
+    {Visiting Researcher, Computer Science (SSR Fellowship)}{Stanford, CA}
+  \resumeSubheading
+    {University of Wisconsin-Madison}{Aug 2024 -- May 2026}
+    {B.S. in Information Science (Transfer, Honors Program)}{Madison, WI}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+      \small{\item GPA: 3.9/4.0 • CDIS, ISci\#11, CS\#13}
+    \end{itemize}
+  \resumeSubheading
+    {Peking University}{Sep 2022 -- Dec 2024}
+    {B.S. in Artificial Intelligence (EECS/EIE, Withdrawn)}{Beijing, China}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+      \small{\item GPA: 3.8/4.0 • National Elite Institute of Engineering Program}
+    \end{itemize}
+\resumeSubHeadingListEnd
+
+% Research Experience
+\section{Research Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Amazon - Trustworthy AI Research}{May 2025 -- Present}
+    {Research Scholar}{Remote}
+    \begin{itemize}
+      \resumeItem{Working with Dr. Rahul Gupta and Dr. Jwala Dhamala on responsible AI and world interaction}
+      \resumeItem{Developing evaluation frameworks for LLM deceptive behavior in workplace scenarios}
+    \end{itemize}
+    
+  \resumeSubheading
+    {UW-Madison - Deep Learning Lab}{Feb 2025 -- Present}
+    {Research Assistant (Advisor: Prof. Sharon Li)}{Madison, WI}
+    \begin{itemize}
+      \resumeItem{Leading 3 research projects on LLM reasoning vulnerability and cognitive architectures}
+      \resumeItem{Developing novel approaches for reliable AI through cognitive learning frameworks}
+    \end{itemize}
+    
+  \resumeSubheading
+    {Tsinghua University - CoAI Lab}{Apr 2024 -- Feb 2025}
+    {Research Intern (Advisors: Prof. Minlie Huang, Prof. Hongning Wang)}{Beijing, China}
+    \begin{itemize}
+      \resumeItem{Developed MetaMind framework achieving 35.7\% improvement in social reasoning benchmarks}
+      \resumeItem{Led SocialEval project evaluating social intelligence of LLMs (ACL 2025)}
+    \end{itemize}
+\resumeSubHeadingListEnd
+
+% Selected Publications
+\section{Selected Publications}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \resumePublication
+    {\textbf{MetaMind: Modeling Human Social Thoughts with Metacognitive Multi-Agent Systems}}{\textbf{NeurIPS 2025}}
+    \small{\textbf{X. Zhang}, Y. Chen, M. Yeh, S. Li}
+    
+  \resumePublication
+    {Human Decision-making is Susceptible to AI-driven Manipulation}{\textbf{Nature Comm. (Review)}}
+    \small{S. Sabour, J. Liu, ..., \textbf{X. Zhang}, ..., M. Huang}
+    
+  \resumePublication
+    {SocialEval: Evaluating Social Intelligence of Large Language Models}{\textbf{ACL 2025}}
+    \small{J. Zhou*, Y. Chen*, Y. Shi*, \textbf{X. Zhang*}, ..., M. Huang (*Equal contribution)}
+    
+  \resumePublication
+    {Seeker: Exception Safety Code Generation with IL Agents Framework}{\textbf{TOSEM (Review)}}
+    \small{\textbf{X. Zhang}, Y. Chen, Y. Zheng, Y. Yuan, M. Huang}
+    
+  \resumePublication
+    {EvoCodeBench: Evolving Code Generation Benchmark}{\textbf{NeurIPS 2024}}
+    \small{J. Li, G. Li, \textbf{X. Zhang}, Y. Dong, Z. Jin}
+\end{itemize}
+
+% Key Projects
+\section{Key Projects}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \resumeProject{RAG4Code}{PKU 2024}{Achieved SOTA on CrossCodeEval with dependency-chain-retrieval for cross-file code completion}
+  
+  \resumeProject{Common Exception Enumeration (CEE)}{THU 2024}{Curated knowledge base systematizing exception handling patterns across programming languages}
+  
+  \resumeProject{Applet - Mobile UI Agent}{ByteDance 2024}{Lightweight intent-driven framework using Swift/CoreML for real-time multimodal interaction}
+  
+  \resumeProject{H3O - Startup (CTO)}{2022}{Received 500K RMB investment from XbotPark; led architecture and prototype development}
+\end{itemize}
+
+% Skills & Awards
+\begin{multicols}{2}
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{
+    \item \textbf{Languages:} Python, C++, Swift, Java, Shell, MATLAB
+    \item \textbf{ML/AI:} PyTorch, Transformers, PEFT, vLLM, CoreML
+    \item \textbf{Tools:} Git, Docker, LaTeX, AWS, Distributed Systems
+  }
+\end{itemize}
+
+\columnbreak
+
+\section{Selected Awards}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{
+    \item National Innovation \& Entrepreneurship Excellence Award
+    \item Chinese Mathematics Competition First Prize
+    \item Mathematical Contest in Modeling Second Prize
+    \item Outstanding Student Scholarship (Top 1\%)
+  }
+\end{itemize}
+\end{multicols}
+
+% Service
+\section{Service \& Leadership}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{
+    \item \textbf{Academic:} Reviewer for ICLR, NeurIPS, OOPSLA • Student Fellow at CCF, IEEE
+    \item \textbf{Leadership:} Student Union President (BNDS 2020) • Research Assistant at UW-Madison
+    \item \textbf{Certifications:} National Level II Psychological Counselor (PCIA)
+  }
+\end{itemize}
+
+\end{document}

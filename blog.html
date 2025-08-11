@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Blog - Zhang Xuanming</title>
+    <meta name="description" content="Blog posts and articles by Zhang Xuanming on AI, research, and technology.">
+
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #60a5fa;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --dark-bg: #0f0f14;
+            --dark-surface: #1a1a24;
+            --dark-surface-2: #252538;
+            --dark-text: #e5e7eb;
+            --light-bg: #ffffff;
+            --light-surface: #f9fafb;
+            --light-text: #111827;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: rgba(26, 26, 36, 0.9);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--dark-text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-1);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Blog Categories */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--light-surface);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        body.dark-mode .blog-card {
+            background: var(--dark-surface);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--gradient-1);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .blog-date {
+            color: #999;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        body.dark-mode .blog-excerpt {
+            color: #aaa;
+        }
+
+        .blog-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+        }
+
+        /* Blog Post Page */
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .blog-post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .blog-post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-meta {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        body.dark-mode .blog-post-meta {
+            color: #999;
+        }
+
+        .blog-post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        body.dark-mode .blog-post-content {
+            color: #ddd;
+        }
+
+        .blog-post-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .blog-post-content h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--primary);
+        }
+
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-content pre {
+            background: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        body.dark-mode .blog-post-content pre {
+            background: var(--dark-surface-2);
+        }
+
+        .blog-post-content code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .blog-post-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Zhang Xuanming</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#publications">Publications</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Blog & Insights</h1>
+        <p>Thoughts on AI research, technology, and the future of human-machine intelligence</p>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All Posts</button>
+            <button class="category-btn" data-category="research">Research</button>
+            <button class="category-btn" data-category="ai">AI & ML</button>
+            <button class="category-btn" data-category="thoughts">Thoughts</button>
+            <button class="category-btn" data-category="tutorials">Tutorials</button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blog-grid">
+            <article class="blog-card" data-category="research" onclick="openPost('metamind-theory')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">December 15, 2024</p>
+                    <h2 class="blog-title">MetaMind: The Theory Behind Metacognitive Multi-Agent Systems</h2>
+                    <p class="blog-excerpt">Exploring how metacognitive frameworks can enhance LLMs' understanding of human social thoughts and improve their theory of mind capabilities...</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Research</span>
+                        <span class="blog-tag">NeurIPS</span>
+                        <span class="blog-tag">Theory of Mind</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="ai" onclick="openPost('exception-safety')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">November 28, 2024</p>
+                    <h2 class="blog-title">Building Robust Code Generation with Exception Safety</h2>
+                    <p class="blog-excerpt">How the Seeker framework uses intermediate representation to ensure exception safety in LLM-generated code, reducing runtime errors by 38%...</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">AI</span>
+                        <span class="blog-tag">Code Generation</span>
+                        <span class="blog-tag">Software Engineering</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="thoughts" onclick="openPost('ai-manipulation')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">October 10, 2024</p>
+                    <h2 class="blog-title">The Ethics of AI-Driven Decision Making</h2>
+                    <p class="blog-excerpt">Our research reveals concerning patterns in how AI systems can manipulate human decision-making. What does this mean for the future of human autonomy?</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Ethics</span>
+                        <span class="blog-tag">AI Safety</span>
+                        <span class="blog-tag">Research</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tutorials" onclick="openPost('rag-implementation')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">September 5, 2024</p>
+                    <h2 class="blog-title">Implementing RAG for Cross-File Code Completion</h2>
+                    <p class="blog-excerpt">A practical guide to building retrieval-augmented generation systems for code completion with cross-file dependencies...</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Tutorial</span>
+                        <span class="blog-tag">RAG</span>
+                        <span class="blog-tag">Code</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="research" onclick="openPost('social-intelligence')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">August 20, 2024</p>
+                    <h2 class="blog-title">Evaluating Social Intelligence in Large Language Models</h2>
+                    <p class="blog-excerpt">Introducing SocialEval: a comprehensive benchmark for assessing LLMs' ability to navigate complex social interactions and understand human behavior...</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Research</span>
+                        <span class="blog-tag">ACL 2025</span>
+                        <span class="blog-tag">Benchmarks</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="thoughts" onclick="openPost('digital-life')">
+                <div class="blog-image"></div>
+                <div class="blog-content">
+                    <p class="blog-date">July 15, 2024</p>
+                    <h2 class="blog-title">Digital Life Intelligence: The Next Frontier</h2>
+                    <p class="blog-excerpt">Reflections on the intersection of artificial intelligence and digital life, and how quantitative world factors shape the future of AI research...</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Philosophy</span>
+                        <span class="blog-tag">AI</span>
+                        <span class="blog-tag">Future</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Zhang Xuanming. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <svg id="moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('moon-icon').style.display = isDark ? 'block' : 'none';
+            document.getElementById('sun-icon').style.display = isDark ? 'none' : 'block';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load Theme Preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('moon-icon').style.display = 'block';
+            document.getElementById('sun-icon').style.display = 'none';
+        }
+
+        // Category Filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.getAttribute('data-category');
+
+                blogCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Open Blog Post
+        function openPost(postId) {
+            // In a real implementation, this would navigate to individual blog post pages
+            window.location.href = `blog/${postId}.html`;
+        }
+    </script>
+</body>
+</html>

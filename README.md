@@ -1,71 +1,53 @@
-# Particle Jekyll Theme
+# Zhang Xuanming - Personal Academic Website
 
-![](./particle.jpg)
+This is the personal academic website of Zhang Xuanming, featuring research publications, projects, blog posts, and professional information.
 
-This is a simple and minimalist template for Jekyll designed for developers that want to show of their portfolio.
+## Features
 
-The Theme features:
+- **Modern Design**: Stunning visual design with particle effects, glassmorphism, and smooth animations
+- **Dark/Light Mode**: Toggle between dark and light themes with persistent preference storage
+- **Multi-page Blog System**: Full blog functionality with categorization and individual post pages
+- **Publications Management**: Display academic publications with BibTeX export functionality
+- **Projects Showcase**: Highlight research projects and open-source contributions
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Performance Optimized**: Fast loading with lazy loading images and optimized assets
 
-- Gulp
-- SASS
-- Sweet Scroll
-- Particle.js
-- BrowserSync
-- Font Awesome and Devicon icons
-- Google Analytics
-- Info Customization
-
-## Basic Setup
-
-1. [Install Jekyll](http://jekyllrb.com)
-2. Clone the particle theme: `git clone https://github.com/nrandecker/particle.git`
-3. Edit `_config.yml` to personalize your site.
-
-## Site and User Settings
-
-You have to fill some informations on `_config.yml` to customize your site.
+## Structure
 
 ```
-# Site settings
-description: A blog about lorem ipsum dolor sit amet
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://localhost:3000" # the base hostname & protocol for your site
-
-# User settings
-username: Lorem Ipsum
-user_description: Anon Developer at Lorem Ipsum Dolor
-user_title: Anon Developer
-email: anon@anon.com
-twitter_username: lorem_ipsum
-github_username:  lorem_ipsum
-gplus_username:  lorem_ipsum
+MyWeb/
+├── index.html          # Main homepage
+├── blog.html           # Blog listing page
+├── blog/               # Individual blog posts
+├── CV.pdf              # Curriculum Vitae
+├── resume-en.tex       # LaTeX resume source
+├── profile.jpeg        # Profile image
+└── [various icons]     # UI icons and assets
 ```
 
-**Don't forget to change your url before you deploy your site!**
+## Technologies
 
-## Color and Particle Customization
-- Color Customization
-  - Edit the sass variables
-- Particle Customization
-  - Edit the json data in particle function in app.js
-  - Refer to [Particle.js](https://github.com/VincentGarreau/particles.js/) for help
+- HTML5 & CSS3 with modern features (CSS Grid, Flexbox, Custom Properties)
+- Vanilla JavaScript for interactivity
+- Particles.js for animated backgrounds
+- Google Fonts (Inter, Playfair Display, JetBrains Mono)
+- Service Worker for offline functionality
 
-## Running the blog in local
+## Publications
 
-In order to compile the assets and run Jekyll on local you need to follow those steps:
+The site features publications in:
+- Cognitive Learning
+- World Interaction  
+- Policy Simulation
 
-- Install [NodeJS](https://nodejs.org/)
-- Install [Jekyll](https://jekyllrb.com): `sudo gem install bundler jekyll`
-- Install [Yarn](https://yarnpkg.com/): `npm install -g yarn`
-- Install dependencies: `yarn`
-- Run: `gulp`
+With automatic BibTeX export for easy citation.
+
+## Contact
+
+- Email: zhangxm@stanford.edu
+- GitHub: [@XMZhangAI](https://github.com/XMZhangAI)
+- Google Scholar: [Profile](https://scholar.google.com/citations?user=zP5k9lsAAAAJ)
 
 ## License
 
-This theme is free and open source software, distributed under the The MIT License. So feel free to use this Jekyll theme anyway you want.
-
-## Credits
-
-This theme was partially designed with the inspiration from these fine folks
-- [Willian Justen](https://github.com/willianjusten/will-jekyll-template)
-- [Vincent Garreau](https://github.com/VincentGarreau/particles.js/)
+© 2025 Zhang Xuanming. All rights reserved.

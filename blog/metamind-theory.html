@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>MetaMind: The Theory Behind Metacognitive Multi-Agent Systems - Zhang Xuanming</title>
+    <meta name="description" content="Exploring how metacognitive frameworks can enhance LLMs' understanding of human social thoughts and improve their theory of mind capabilities.">
+
+    <link rel="manifest" href="../manifest.webmanifest">
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #60a5fa;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --dark-bg: #0f0f14;
+            --dark-surface: #1a1a24;
+            --dark-surface-2: #252538;
+            --dark-text: #e5e7eb;
+            --light-bg: #ffffff;
+            --light-surface: #f9fafb;
+            --light-text: #111827;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: rgba(26, 26, 36, 0.9);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--dark-text);
+        }
+
+        /* Article */
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        body.dark-mode .article-header {
+            border-color: #333;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 1.1rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        body.dark-mode .article-content {
+            color: #ddd;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--primary);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content blockquote {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--primary);
+            font-style: italic;
+        }
+
+        .article-content pre {
+            background: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        body.dark-mode .article-content pre {
+            background: var(--dark-surface-2);
+        }
+
+        .article-content code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        /* Share Buttons */
+        .share-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        body.dark-mode .share-section {
+            border-color: #333;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .article {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .article-meta {
+                gap: 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Zhang Xuanming</a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../index.html#publications">Publications</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="article">
+        <a href="../blog.html" class="back-btn">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg>
+            Back to Blog
+        </a>
+
+        <header class="article-header">
+            <h1 class="article-title">MetaMind: The Theory Behind Metacognitive Multi-Agent Systems</h1>
+            <div class="article-meta">
+                <span>December 15, 2024</span>
+                <span>•</span>
+                <span>8 min read</span>
+                <span>•</span>
+                <span>Research</span>
+            </div>
+        </header>
+
+        <div class="article-content">
+            <p>Human social interactions depend on the ability to infer others' unspoken intentions, emotions, and beliefs—a cognitive skill grounded in the psychological concept of Theory of Mind (ToM). While large language models (LLMs) excel in semantic understanding tasks, they struggle with the ambiguity and contextual nuance inherent in human communication.</p>
+
+            <h2>The Challenge of Social Intelligence</h2>
+            
+            <p>Current LLMs face significant challenges when attempting to model human social cognition. Despite their impressive performance on various NLP tasks, they often fail to capture the subtle dynamics of human social interactions. This limitation becomes particularly evident in scenarios requiring:</p>
+
+            <ul>
+                <li>Understanding implicit emotional states</li>
+                <li>Inferring unspoken intentions from context</li>
+                <li>Balancing multiple perspectives in social situations</li>
+                <li>Adapting responses based on cultural and ethical considerations</li>
+            </ul>
+
+            <h2>Introducing MetaMind</h2>
+
+            <p>To bridge this gap, we introduce MetaMind, a multi-agent framework inspired by psychological theories of metacognition, designed to emulate human-like social reasoning. Our approach fundamentally reimagines how AI systems process and respond to social situations.</p>
+
+            <blockquote>
+                "MetaMind decomposes social understanding into three collaborative stages, each handled by a specialized agent working in concert to achieve human-like social intelligence."
+            </blockquote>
+
+            <h3>The Three-Agent Architecture</h3>
+
+            <p>MetaMind's architecture consists of three specialized agents:</p>
+
+            <ol>
+                <li><strong>Theory-of-Mind Agent</strong>: Generates hypotheses about users' mental states, including their intentions, emotions, and beliefs based on conversational context.</li>
+                <li><strong>Domain Agent</strong>: Refines these hypotheses using cultural norms, ethical constraints, and domain-specific knowledge to ensure appropriateness.</li>
+                <li><strong>Response Agent</strong>: Generates contextually appropriate responses while validating alignment with the inferred intent and maintaining conversational coherence.</li>
+            </ol>
+
+            <h2>Key Innovations</h2>
+
+            <p>Our framework introduces several key innovations that set it apart from existing approaches:</p>
+
+            <h3>1. Metacognitive Processing</h3>
+            
+            <p>Unlike traditional single-model approaches, MetaMind implements a metacognitive layer that allows agents to reflect on and refine their understanding iteratively. This mirrors human cognitive processes where we continuously update our understanding of others' mental states.</p>
+
+            <pre><code>class MetacognitiveProcessor:
+    def process(self, context):
+        initial_hypothesis = self.tom_agent.infer(context)
+        refined_hypothesis = self.domain_agent.refine(
+            initial_hypothesis, 
+            cultural_context=context.culture,
+            ethical_constraints=context.ethics
+        )
+        response = self.response_agent.generate(
+            refined_hypothesis,
+            validation_mode=True
+        )
+        return response</code></pre>
+
+            <h3>2. Dynamic Hypothesis Refinement</h3>
+
+            <p>The framework employs a dynamic refinement process where hypotheses about mental states are continuously updated based on new information and feedback loops between agents.</p>
+
+            <h2>Experimental Results</h2>
+
+            <p>Our experiments across three challenging benchmarks demonstrate MetaMind's effectiveness:</p>
+
+            <ul>
+                <li><strong>35.7% improvement</strong> in real-world social scenarios compared to baseline models</li>
+                <li><strong>6.2% gain</strong> in Theory of Mind reasoning tasks</li>
+                <li>First AI system to match human-level performance on key ToM benchmarks</li>
+            </ul>
+
+            <h3>Ablation Studies</h3>
+
+            <p>Our ablation studies confirm the necessity of all three components. Removing any single agent results in significant performance degradation:</p>
+
+            <ul>
+                <li>Without ToM Agent: -23.4% performance</li>
+                <li>Without Domain Agent: -18.7% performance</li>
+                <li>Without Response Agent: -15.2% performance</li>
+            </ul>
+
+            <h2>Implications and Future Work</h2>
+
+            <p>MetaMind represents a significant step toward achieving human-like social intelligence in AI systems. The framework's ability to balance contextual plausibility, social appropriateness, and user adaptation opens new possibilities for:</p>
+
+            <ul>
+                <li>Empathetic dialogue systems for mental health support</li>
+                <li>Culturally sensitive AI assistants for global applications</li>
+                <li>Educational systems that adapt to students' emotional states</li>
+                <li>Negotiation and mediation AI systems</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+
+            <p>By incorporating metacognitive principles and multi-agent collaboration, MetaMind advances AI systems toward genuine social intelligence. Our results suggest that decomposing complex social reasoning into specialized components, similar to human cognitive architecture, is a promising direction for future research.</p>
+
+            <p>As we continue to develop AI systems that interact more naturally with humans, frameworks like MetaMind will be crucial in ensuring these interactions are not just technically proficient but also socially and emotionally intelligent.</p>
+        </div>
+
+        <div class="share-section">
+            <h3>Share this article</h3>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=MetaMind:%20The%20Theory%20Behind%20Metacognitive%20Multi-Agent%20Systems&url=" class="share-btn">Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="share-btn">LinkedIn</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Zhang Xuanming. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <svg id="moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('moon-icon').style.display = isDark ? 'block' : 'none';
+            document.getElementById('sun-icon').style.display = isDark ? 'none' : 'block';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load Theme Preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('moon-icon').style.display = 'block';
+            document.getElementById('sun-icon').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
