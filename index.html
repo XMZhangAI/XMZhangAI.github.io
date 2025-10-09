@@ -1163,16 +1163,12 @@
                 
                 <div class="stats">
                     <div class="stat-card">
-                        <div class="stat-number">300+</div>
+                        <div class="stat-number">400+</div>
                         <div class="stat-label">Citations</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">7</div>
+                        <div class="stat-number">9</div>
                         <div class="stat-label">h-index</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Publications</div>
                     </div>
                 </div>
             </div>
@@ -1184,7 +1180,7 @@
 
     <!-- Publications Section -->
     <section id="publications" class="section container">
-        <h2 class="section-title">Selected Publications</h2>
+        <h2 class="section-title">Recent Publications</h2>
         
         <div class="pub-filters">
             <button class="filter-btn active" data-filter="all">All</button>
@@ -1198,14 +1194,50 @@
         <!-- News Ticker -->
         <div class="news-ticker">
             <div class="news-content">
+                <span class="news-item">📝 See full list in my <a href="https://scholar.google.com/citations?user=zP5k9lsAAAAJ">Google Scholar</a> page!</span>
                 <span class="news-item">🎉 Sep 2025: MetaMind received NeurIPS 2025 Spotlight, thanks to all the collaborators!</span>
                 <span class="news-item">📍 June 2025: Invited to AI Startup School by Y Combinator</span>
-                <span class="news-item">📝 Currently writing: 《Revelation》</span>
                 <span class="news-item">🤝 Stay updated on WeChat Moments - feel free to email me!</span>
             </div>
         </div>
 
         <div class="pub-grid">
+            <div class="pub-card" data-year="2025" data-category="cognitive" data-bibtex='@article{zhang2025cognition,
+                title={Cognition-of-Thought Elicits Social-Aligned Reasoning in Large Language Models},
+                author={Zhang, Xuanming and Chen, Yuxuan and Yeh, Min-Hsuan and Li, Yixuan},
+                journal={arXiv preprint arXiv:2509.23441},
+                year={2025}
+              }'>
+                              <h3 class="pub-title">Cognition-of-Thought Elicits Social-Aligned Reasoning in Large Language Models</h3>
+                              <p class="pub-authors">Xuanming Zhang, Yuxuan Chen, Min-Hsuan Yeh, Yixuan Li</p>
+                              <p class="pub-venue">ICLR 2026 under review</p>
+                              <div class="pub-links">
+                                  <a href="https://arxiv.org/pdf/2509.23441" class="pub-link">Paper</a>
+                                  <a href="https://github.com/XMZhangAI/Cognition-of-Thought" class="pub-link">Github</a>
+                                  <!-- <a href="https://mp.weixin.qq.com/s/BzFBGNojzBy43dE8gbf7vA" class="pub-link">News</a>
+                                  <a href="http://117.72.211.180:5000" class="pub-link">Demo</a> -->
+                                  <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
+                              </div>
+                          </div>
+
+                            <div class="pub-card" data-year="2025" data-category="policy" data-bibtex='@article{xu2025simulating,
+                                title={Simulating and Understanding Deceptive Behaviors in Long-Horizon Interactions},
+                                author={Xu, Yang and Zhang, Xuanming and Yeh, Min-Hsuan and Dhamala, Jwala and Dia, Ousmane and Gupta, Rahul and Li, Yixuan},
+                                journal={arXiv preprint arXiv:2510.03999},
+                                year={2025}
+                              }'>
+                                              <h3 class="pub-title">Simulating and Understanding Deceptive Behaviors in Long-Horizon Interactions</h3>
+                                              <p class="pub-authors">Yang Xu*, Xuanming Zhang*, Min-Hsuan Yeh, Jwala Dhamala, Ousmane Dia, Rahul Gupta, Yixuan Li</p>
+                                              <p class="pub-venue">ICLR 2026 under review</p>
+                                              <div class="pub-links">
+                                                  <a href="https://arxiv.org/pdf/2510.03999" class="pub-link">Paper</a>
+                                                  <a href="https://github.com/deeplearning-wisc/LongHorizonDeception" class="pub-link">Github</a>
+                                                  <!-- <a href="https://mp.weixin.qq.com/s/BzFBGNojzBy43dE8gbf7vA" class="pub-link">News</a>
+                                                  <a href="http://117.72.211.180:5000" class="pub-link">Demo</a> -->
+                                                  <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
+                                              </div>
+                                          </div>             
+
             <div class="pub-card" data-year="2025" data-category="cognitive" data-bibtex='@article{zhang2025metamind,
   title={MetaMind: Modeling Human Social Thoughts with Metacognitive Multi-Agent Systems},
   author={Zhang, Xuanming and Chen, Yuxuan and Yeh, Min-Hsuan and Li, Yixuan},
@@ -1218,8 +1250,8 @@
                 <div class="pub-links">
                     <a href="https://arxiv.org/pdf/2505.18943" class="pub-link">Paper</a>
                     <a href="https://github.com/XMZhangAI/MetaMind" class="pub-link">Github</a>
-                    <a href="https://mp.weixin.qq.com/s/BzFBGNojzBy43dE8gbf7vA" class="pub-link">News</a>
-                    <a href="http://117.72.211.180:5000" class="pub-link">Demo</a>
+                    <!-- <a href="https://x.com/SharonYixuanLi/status/1971582681734590963" class="pub-link">News</a>
+                    <a href="http://117.72.211.180:5000" class="pub-link">Demo</a> -->
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
                 </div>
             </div>
@@ -1232,7 +1264,7 @@
 }'>
                 <h3 class="pub-title">Human Decision-making is Susceptible to AI-driven Manipulation</h3>
                 <p class="pub-authors">Sahand Sabour, June M. Liu, Chris Yao, Siyang Liu, Shiyao Cui, Xuanming Zhang, et al.</p>
-                <p class="pub-venue">Nature Communications Minor Revision</p>
+                <p class="pub-venue">Nature under revision</p>
                 <div class="pub-links">
                     <a href="https://arxiv.org/pdf/2502.07663" class="pub-link">Paper</a>
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
@@ -1247,7 +1279,7 @@
 }'>
                 <h3 class="pub-title">SocialEval: Evaluating Social Intelligence of Large Language Models</h3>
                 <p class="pub-authors">Jinfeng Zhou, Yuxuan Chen, Yihan Shi, Xuanming Zhang, et al.</p>
-                <p class="pub-venue">ACL 2025, Invention Patent</p>
+                <p class="pub-venue">ACL 2025</p>
                 <div class="pub-links">
                     <a href="https://aclanthology.org/2025.acl-long.1496/" class="pub-link">Official</a>
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
@@ -1262,17 +1294,17 @@
 }'>
                 <h3 class="pub-title">Towards Exception Safety Code Generation with Intermediate Representation Agents Framework</h3>
                 <p class="pub-authors">Xuanming Zhang, Yuxuan Chen, Yiming Zheng, Yuan Yuan, Minlie Huang</p>
-                <p class="pub-venue">TOSEM Under Review</p>
+                <p class="pub-venue">TOSEM under revision</p>
                 <div class="pub-links">
-                    <a href="Towards_Exception_Safety_Code_Generation_with_Intermediate_Representation_Agents_Framework.pdf" class="pub-link">Journal</a>
-                    <a href="https://arxiv.org/pdf/2412.11713" class="pub-link">Conference</a>
+                    <a href="https://arxiv.org/pdf/2410.06949" class="pub-link">Paper</a>
+                    <!-- <a href="https://arxiv.org/pdf/2412.11713" class="pub-link">Conference</a> -->
                     <a href="https://github.com/XMZhangAI/Seeker" class="pub-link">Github</a>
-                    <a href="https://common-exception-enumeration.github.io/CEE/" class="pub-link">Website</a>
+                    <!-- <a href="https://common-exception-enumeration.github.io/CEE/" class="pub-link">Website</a> -->
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
                 </div>
             </div>
 
-            <div class="pub-card" data-year="2024" data-category="cognitive" data-bibtex='@misc{donggeneralization,
+            <!-- <div class="pub-card" data-year="2024" data-category="cognitive" data-bibtex='@misc{donggeneralization,
   title   = {Generalization or Memorization: Evaluating Data Contamination for Large Language Models},
   author  = {Dong, Yihong and Jiang, Xue and Zhang, Xuanming and Liu, Huanyu and Jin, Zhi and Gu, Bin and Yang, Mengfei and Li, Ge},
   journal = {Stanford Computer Science},
@@ -1282,8 +1314,8 @@
   note    = {\url{https://web.stanford.edu/~zhangxm/Generalization_or_Memorization__Evaluating_Data_Contamination_for_Large_Language_Models.pdf}}
 }'>
                 <h3 class="pub-title">Generalization or Memorization: Evaluating Data Contamination for Large Language Models</h3>
-                <p class="pub-authors">Yihong Dong, Xue Jiang, Xuanming Zhang, et al.</p>
-                <p class="pub-venue">TPAMI Under Review</p>
+                <p class="pub-authors">Yihong Dong, Xue Jiang, Xuanming Zhang, Huanyu Liu, Zhi Jin, Bin Gu, Mengfei Yang, Ge Li</p>
+                <p class="pub-venue">TPAMI under review</p>
                 <div class="pub-links">
                     <a href="Generalization_or_Memorization__Evaluating_Data_Contamination_for_Large_Language_Models.pdf" class="pub-link">Paper</a>
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
@@ -1299,14 +1331,14 @@
   year={2024}
 }'>
                 <h3 class="pub-title">EvoCodeBench: An Evolving Code Generation Benchmark with Domain-Specific Evaluations</h3>
-                <p class="pub-authors">Jia Li, Ge Li, Xuanming Zhang, et al.</p>
+                <p class="pub-authors">Jia Li, Ge Li, Xuanming Zhang, Yunfei Zhao, Yihong Dong, Zhi Jin, Binhua Li, Fei Huang, Yongbin Li</p>
                 <p class="pub-venue">NeurIPS 2024</p>
                 <div class="pub-links">
                     <a href="https://neurips.cc/virtual/2024/poster/97531" class="pub-link">Official</a>
                     <button class="bibtex-btn" onclick="copyBibTeX(this)">BibTeX</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- Experience Section -->
@@ -1317,7 +1349,7 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Amazon Research Scholar</h3>
+                    <h3 class="timeline-title">Amazon Student Researcher</h3>
                     <p class="timeline-company">Trustworthy AI Research</p>
                     <p class="timeline-date">2025 - 2025</p>
                     <p>Research on AI safety, responsible AI deployment, and trustworthy machine learning systems.</p>
