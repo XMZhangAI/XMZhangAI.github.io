@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>The "GPA First" Phenomenon and Mental Health Among Chinese College Students - Zhang Xuanming</title>
+    <meta name="description" content="Exploring the 'GPA First' phenomenon among Chinese college students and its impact on mental health, examining why students become fixated on grades and what we lose in the process.">
+
+    <link rel="manifest" href="../manifest.webmanifest">
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #60a5fa;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --dark-bg: #0f0f14;
+            --dark-surface: #1a1a24;
+            --dark-surface-2: #252538;
+            --dark-text: #e5e7eb;
+            --light-bg: #ffffff;
+            --light-surface: #f9fafb;
+            --light-text: #111827;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: rgba(26, 26, 36, 0.9);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--dark-text);
+        }
+
+        /* Article */
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        body.dark-mode .article-header {
+            border-color: #333;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 1.1rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        body.dark-mode .article-content {
+            color: #ddd;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--primary);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content blockquote {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--primary);
+            font-style: italic;
+        }
+
+        .article-content pre {
+            background: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        body.dark-mode .article-content pre {
+            background: var(--dark-surface-2);
+        }
+
+        .article-content code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        /* Student Quote Box */
+        .student-quote {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .student-quote .student-info {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .student-quote p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* Stats Box */
+        .stats-box {
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stats-box .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+        }
+
+        .stats-box .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Share Buttons */
+        .share-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        body.dark-mode .share-section {
+            border-color: #333;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        /* References */
+        .references {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        body.dark-mode .references {
+            border-color: #333;
+        }
+
+        .references h3 {
+            margin-bottom: 1rem;
+        }
+
+        .references p {
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
+            text-indent: -2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .article {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .article-meta {
+                gap: 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Zhang Xuanming</a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../index.html#publications">Publications</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="article">
+        <a href="../blog.html" class="back-btn">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg>
+            Back to Blog
+        </a>
+
+        <header class="article-header">
+            <h1 class="article-title">The "GPA First" Phenomenon and Its Associated Mental Health Issues Among Chinese College Students</h1>
+            <div class="article-meta">
+                <span>December 2024</span>
+                <span>-</span>
+                <span>12 min read</span>
+                <span>-</span>
+                <span>Education Policy</span>
+            </div>
+        </header>
+
+        <div class="article-content">
+            <p>In China, scenes of students studying late into the night are becoming the norm, from high school to university. In high school, the goal was clear: get into a good university. In university, the goal seems to naturally shift to achieving a high GPA.</p>
+
+            <p>I've observed that at both top domestic universities and prestigious overseas institutions, many Chinese international students see GPA as their most important, sometimes even sole, "KPI." It's common to see friends suffering from constant anxiety or periodic breakdowns because of it.</p>
+
+            <div class="stats-box">
+                <span class="stat-number">69.4%</span>
+                <span class="stat-label">of Chinese students cite academic pressure as a main source of anxiety</span>
+            </div>
+
+            <p>According to the "2024 Report on the Mental Health Status of University Students" (2025), a survey conducted by the National Mental Health Assessment involving 60,782 university students, mental health issues among Chinese university students are becoming increasingly prominent. 32.7% of students reported mild or higher psychological distress, with 4.1% reaching a moderate-to-severe level requiring professional intervention. Academic pressure is a leading cause, cited by 69.4% of students as a main source of anxiety, second only to job-hunting stress.</p>
+
+            <p>This trend is also visible online. Communities like the Douban group "Mutual Aid Society for the 'Useless' Elite Graduates" (2025) have formed, where high-achievers share stories of exhaustion and self-doubt after years of chasing grades. Moreover, research supports this observation. Li (2023) points out that the intense focus on academic performance is a major environmental stressor for young people in educational systems.</p>
+
+            <blockquote>
+                Why, in the freer, more diverse environment of university, do we become even more fixated on this single number - GPA? What psychological cost does this chase come with? And ultimately, what is the true purpose of university?
+            </blockquote>
+
+            <h2>Understanding the "GPA First" Phenomenon</h2>
+
+            <p>The reasons behind this fixation can be divided into external and internal factors.</p>
+
+            <h3>External Reasons</h3>
+
+            <ul>
+                <li><strong>Systemic Gatekeeping:</strong> Whether applying for graduate school, jobs, or study abroad programs, a high GPA is often the first filter. Xu and Guo (2020) note that at China's top universities, "performance is king" - grades become the primary currency for future opportunities.</li>
+                <li><strong>Peer Competition:</strong> When everyone talks about "easy-A" classes and compares GPAs, a competitive atmosphere takes over. Learning shifts from gaining knowledge to winning a race.</li>
+                <li><strong>Family Expectations:</strong> Many parents continue to focus on grades and rankings, just as they did in high school. Though well-intentioned, their questions can make students feel they are studying for their family's approval, not for themselves.</li>
+            </ul>
+
+            <h3>Internal Reasons</h3>
+
+            <ul>
+                <li><strong>Familiar Paths:</strong> From elementary through high school, success meant getting high scores. At university, it's easy to fall back on that familiar way of thinking.</li>
+                <li><strong>Seeking Control:</strong> The future is uncertain - job markets change, personal goals shift. GPA feels like something you can control and improve in the short term, offering a sense of security.</li>
+                <li><strong>Self-Worth Tied to Grades:</strong> Many of us have learned to equate grades with personal value. A low grade doesn't just feel like a setback - it can trigger deep self-doubt.</li>
+            </ul>
+
+            <h2>Student Voices</h2>
+
+            <p>To better understand the real impact of this pressure, I spoke with several high-achieving students about their experiences.</p>
+
+            <div class="student-quote">
+                <div class="student-info">Miranda - Economics & Math, UW-Madison, GPA 4.0</div>
+                <p>"I have to make every homework assignment perfect, even if it takes much more time than necessary. I know it's a bit compulsive, but maintaining a 4.0 gives me a sense of 'order.' I'm afraid that if I slack off, cracks will appear in this perfect record."</p>
+            </div>
+
+            <div class="student-quote">
+                <div class="student-info">Adam - Computer Science, UW-Madison, GPA 3.9</div>
+                <p>"My parents always talk about how much they've sacrificed and how much money they've spent on my education, so subconsciously I feel I must repay them with my grades. They don't really understand my major, but they ask about my scores every semester. I feel like I'm not just taking exams; I'm fulfilling their expectations."</p>
+            </div>
+
+            <div class="student-quote">
+                <div class="student-info">Anny - Humanities & Social Sciences (Domestic University)</div>
+                <p>"During exam weeks, I get extremely anxious, even to the point of heart palpitations. Even though I've studied, I'm still afraid others know more than I do. Seeing the library packed makes me even more panicked. Insomnia is routine. Sometimes the pressure gets so overwhelming I just want to run away."</p>
+            </div>
+
+            <div class="student-quote">
+                <div class="student-info">Michael - Computer Science (Domestic University)</div>
+                <p>"To get a high GPA, I always choose those supposedly 'easy-A' courses instead of the ones I'm genuinely interested in. My GPA looks good now, but I feel lost. I don't know what I like or what I can do in the future."</p>
+            </div>
+
+            <h2>The Added Pressure for International Students</h2>
+
+            <p>For international students, the pressure is even greater. They must navigate not only academic demands but also language barriers, social adjustments, and a completely new educational system (Koo et al., 2021). This intense focus on grades is not an isolated issue; it is part of a larger cultural pattern.</p>
+
+            <p>As Kipnis (2011) explains, in China, educational desire is often "governed" by powerful social and institutional forces that channel the aspirations of students and families toward a narrow definition of measurable success. This environment shapes the choices and pressures students face, often without them even realizing it.</p>
+
+            <h2>What Are We Really Losing?</h2>
+
+            <p>Asking what we lose in this process forces us to look beyond the numbers.</p>
+
+            <ol>
+                <li><strong>We lose perspective on what constitutes a normal university experience.</strong> When everyone is stressed about grades, anxiety and sleepless nights become accepted as "just part of the journey." We rarely stop to question whether such widespread suffering is truly necessary for learning and growth.</li>
+
+                <li><strong>The very nature of learning becomes distorted.</strong> It transforms from a journey of intellectual discovery into a transactional calculation. The focus shifts from "What am I learning?" to "How do I get an A?" The intrinsic joy of exploring a subject is sacrificed on the altar of strategic grade optimization.</li>
+
+                <li><strong>Perhaps most critically, we risk losing ourselves.</strong> In the exhausting rush to meet external standards - grades, rankings, and resumes - we silence our inner voice. We stop asking fundamental questions: Who am I? What do I care about? What kind of life do I want to build? Student D's profound sense of being lost is a direct result of this silencing.</li>
+            </ol>
+
+            <p>This connects to the educational philosophy known as transformative SEL, which argues that true education should cultivate critical self-awareness and the agency to shape one's own world, not just train students to follow rules and meet external benchmarks (Jagers et al., 2019).</p>
+
+            <h2>Rethinking the Purpose of University</h2>
+
+            <p>In my view, the true purpose of university is to cultivate a deeper kind of learning:</p>
+
+            <ul>
+                <li><strong>A place to explore</strong> - to take courses outside your major, engage with unfamiliar ideas, and discover what genuinely interests you, even if it doesn't directly boost your GPA.</li>
+                <li><strong>A critical period for self-discovery</strong> - where through academic challenges, mentorship, and honest reflection, you can better understand your strengths, limitations, and values.</li>
+                <li><strong>Where you develop durable skills</strong> - how to think critically, communicate clearly, and solve problems independently. These capacities outlast any exam score and define your ability to contribute meaningfully in any field.</li>
+            </ul>
+
+            <blockquote>
+                A GPA may reflect how well you perform within an academic system, but it should never become the sole measure of your education - or your worth.
+            </blockquote>
+
+            <p>The library lights will go out each night, but the curiosity and self-awareness you nurture should not. Sometimes, growth begins not by chasing a higher grade, but by stepping back: reading beyond the syllabus, joining a club without resume value, or simply reflecting on what you truly want to learn.</p>
+
+            <p>That is how university becomes more than a transcript - it becomes a foundation for a thoughtful and purposeful life.</p>
+
+            <div class="references">
+                <h3>References</h3>
+                <p>Institute of Psychology, Chinese Academy of Sciences. (2025). <em>2024 National Report on the Mental Health Status of Chinese College Students.</em></p>
+                <p>Jagers, R. J., Rivas-Drake, D., & Williams, B. (2019). Transformative social and emotional learning (SEL): Toward SEL in service of educational equity and excellence. <em>Educational Psychologist, 54</em>(3), 162-184.</p>
+                <p>Kipnis, A. B. (2011). <em>Governing educational desire: Culture, politics, and schooling in China.</em> University of Chicago Press.</p>
+                <p>Koo, K., Baker, I., & Yoon, J. (2021). The first year acculturation: A longitudinal study on acculturative stress and adjustment among the first year international college students. <em>Journal of International Students, 11</em>(2), 278-298.</p>
+                <p>Li, H. (2023). Overview and improvement path of adolescent mental health literacy. <em>Advances in Social Sciences, 12</em>(11), 6175-6182.</p>
+                <p>Mutual aid society for the "useless" elite graduates. (2025). Douban.com. https://www.douban.com/group/692739/members</p>
+                <p>Xu, J., & Guo, Z. (2020, September 20). Performance is king: The dilemmas of China's top universities. <em>Www.sohu.com.</em> https://www.sohu.com/a/419676894_105067</p>
+            </div>
+        </div>
+
+        <div class="share-section">
+            <h3>Share this article</h3>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=The%20GPA%20First%20Phenomenon%20and%20Mental%20Health%20Among%20Chinese%20College%20Students&url=" class="share-btn">Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="share-btn">LinkedIn</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Zhang Xuanming. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <svg id="moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('moon-icon').style.display = isDark ? 'block' : 'none';
+            document.getElementById('sun-icon').style.display = isDark ? 'none' : 'block';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load Theme Preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('moon-icon').style.display = 'block';
+            document.getElementById('sun-icon').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
