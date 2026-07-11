@@ -1,0 +1,12 @@
+name = "xmz-research-analytics"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "xmz-analytics"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Set these with `wrangler secret put` rather than committing values:
+# IP_SALT
+# ALLOWED_ORIGIN

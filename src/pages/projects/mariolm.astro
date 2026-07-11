@@ -1,0 +1,37 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<SiteLayout
+  title="MarioLM — Experiential World Modeling"
+  description="MarioLM unifies long-horizon evaluation, optimization, latent user-state modeling, and persistent experiential worlds."
+  active="systems"
+>
+  <main id="main">
+    <section class="project-page-hero">
+      <div data-reveal>
+        <p class="index-label">Flagship system / 2026</p>
+        <h1>Evaluation becomes<br />an experiential world.</h1>
+        <p>MarioLM models not only what an AI says, but what its response changes: latent user state, future events, trust, and agency across a temporally continuous interaction.</p>
+        <div class="hero-links"><a class="action action-light" href="#architecture">Inspect the architecture</a><a class="action action-outline" href="mailto:xuanmingdi.zxm@alibaba-inc.com?subject=MarioLM%20research">Discuss the research ↗</a></div>
+      </div>
+      <dl class="project-facts" data-reveal>
+        <div><dt>Research support</dt><dd>Thinking Machines Lab</dd></div>
+        <div><dt>Annotated turns</dt><dd>500+</dd></div>
+        <div><dt>Human agreement</dt><dd>92.3–98.8%</dd></div>
+        <div><dt>Rubric depth</dt><dd>L1–L6</dd></div>
+      </dl>
+    </section>
+
+    <section class="project-sequence" id="architecture" aria-labelledby="architecture-title">
+      <header data-reveal><p class="index-label">Architecture / Evaluation → optimization → world</p><h2 id="architecture-title">One trajectory.<br />Three jobs.</h2></header>
+      <ol class="sequence-list" data-reveal>
+        <li><span>01</span><h3>MarioEval reads the whole interaction.</h3><p>Scene, latent state, and event-chain signals are evaluated through L1–L6 cascaded rubrics and user-interest-aware halting. The result separates style, persona, drift, and agency rather than collapsing the trajectory into one score.</p></li>
+        <li><span>02</span><h3>MarioOpt converts failure into learning signal.</h3><p>Hierarchical Reward Decomposition constructs curriculum-shaped rewards; Experience-Focused Policy Optimization returns to the moment where a trajectory starts to fail and repairs it using faithful user simulators.</p></li>
+        <li><span>03</span><h3>The world preserves consequences.</h3><p>Actions update latent states, future events, trust, and available choices. Evaluation, simulation, and optimization become one persistent environment rather than three disconnected pipelines.</p></li>
+      </ol>
+    </section>
+    <SiteFooter />
+  </main>
+</SiteLayout>

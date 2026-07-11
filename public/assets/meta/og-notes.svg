@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#165dff"/>
+  <path d="M56 540h1088M755 0v630" stroke="#fff" stroke-opacity=".25"/>
+  <rect x="56" y="52" width="48" height="48" fill="#07141e"/>
+  <text x="80" y="83" text-anchor="middle" fill="#50d7c8" font-family="Arial, sans-serif" font-size="15" font-weight="800">XZ</text>
+  <text x="124" y="82" fill="#fff" font-family="Arial, sans-serif" font-size="19" font-weight="700">Field Notes · Xuanming Zhang</text>
+  <text x="56" y="190" fill="#d7e5ff" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">METAMIND DOSSIER</text>
+  <text x="56" y="282" fill="#fff" font-family="Georgia, serif" font-size="70">Ideas after</text>
+  <text x="56" y="360" fill="#fff" font-family="Georgia, serif" font-size="70">the paper ends.</text>
+  <text x="56" y="450" fill="#d7e5ff" font-family="Arial, sans-serif" font-size="19">From social reasoning to Cognitive AI · Two essays</text>
+  <g transform="translate(850 170)" fill="none" stroke="#50d7c8" stroke-width="3">
+    <circle cx="120" cy="120" r="95"/><circle cx="120" cy="120" r="40" fill="#50d7c8"/>
+    <path d="M120 25V-25M202 72l52-30M202 168l52 30M120 215v55M38 168l-52 30M38 72l-52-30"/>
+  </g>
+  <text x="56" y="584" fill="#d7e5ff" font-family="Arial, sans-serif" font-size="17">Technical contribution · Cognitive agenda · Two essays</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#07141e"/>
+  <path d="M0 540h1200M755 0v630" stroke="#f1eee5" stroke-opacity=".15"/>
+  <rect x="56" y="52" width="48" height="48" fill="#50d7c8"/>
+  <text x="80" y="83" text-anchor="middle" fill="#07141e" font-family="Arial, sans-serif" font-size="15" font-weight="800">XZ</text>
+  <text x="124" y="82" fill="#f1eee5" font-family="Arial, sans-serif" font-size="19" font-weight="700">Xuanming Zhang</text>
+  <text x="56" y="183" fill="#50d7c8" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">AI RESEARCH SCIENTIST · QWEN</text>
+  <text x="56" y="260" fill="#f1eee5" font-family="Georgia, serif" font-size="61">Intelligence is what</text>
+  <text x="56" y="329" fill="#f1eee5" font-family="Georgia, serif" font-size="61">survives <tspan fill="#50d7c8">after</tspan></text>
+  <text x="56" y="398" fill="#50d7c8" font-family="Georgia, serif" font-size="61">the next token.</text>
+  <text x="56" y="472" fill="#a9b5ba" font-family="Arial, sans-serif" font-size="19">Test-time computation · Interactive cognition · Experiential worlds</text>
+  <text x="56" y="584" fill="#a9b5ba" font-family="Arial, sans-serif" font-size="17">Qwen · Stanford NLP · Amazon AGI</text>
+  <g transform="translate(810 115)">
+    <text x="0" y="-28" fill="#a9b5ba" font-family="Arial, sans-serif" font-size="12" letter-spacing="1">MODEL DEPTH / REASONING SIGNAL</text>
+    <g fill="#1d3542">
+      <rect x="0" y="250" width="16" height="70"/><rect x="25" y="230" width="16" height="90"/><rect x="50" y="215" width="16" height="105"/><rect x="75" y="190" width="16" height="130"/><rect x="100" y="165" width="16" height="155"/><rect x="125" y="128" width="16" height="192"/><rect x="150" y="92" width="16" height="228"/><rect x="175" y="60" width="16" height="260"/><rect x="200" y="42" width="16" height="278"/><rect x="225" y="24" width="16" height="296"/><rect x="250" y="52" width="16" height="268"/><rect x="275" y="93" width="16" height="227"/><rect x="300" y="137" width="16" height="183"/>
+    </g>
+    <rect x="225" y="24" width="16" height="296" fill="#50d7c8"/>
+    <path d="M0 320h330" stroke="#f1eee5" stroke-opacity=".3"/>
+    <text x="225" y="350" text-anchor="middle" fill="#50d7c8" font-family="Arial, sans-serif" font-size="12" font-weight="700">REFINEMENT PEAK</text>
+  </g>
+</svg>

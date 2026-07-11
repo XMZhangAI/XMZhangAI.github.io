@@ -1,0 +1,36 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<SiteLayout
+  title="Field Notes — Xuanming Zhang"
+  description="Field notes on frontier AI mechanisms, cognitive systems, and experiential worlds."
+  image="/assets/meta/og-notes.png"
+  active="notes"
+>
+  <main id="main">
+    <section class="page-hero">
+      <p class="index-label">Field notes / 研究札记</p>
+      <h1>Ideas after<br />the paper ends.</h1>
+      <p>The mechanisms, failed intuitions, and larger research consequences that do not fit into a conference manuscript.</p>
+    </section>
+
+    <section class="notes-list" aria-label="Published field notes">
+      <article class="note-feature" data-reveal>
+        <figure><img src="/assets/images/metamind-field-note.webp" width="1664" height="928" alt="MetaMind cognitive system visualization" /></figure>
+        <div>
+          <p class="index-label">Dossier 01 · 2 essays · 中文</p>
+          <h2>What comes after “more reasoning”?</h2>
+          <p>MetaMind treats social intelligence as structured cognition rather than a larger prompt: latent mental states, explicit metacognition, interaction, and cognitive processes that can eventually be internalized.</p>
+          <div class="note-actions">
+            <a class="action action-dark" href="/blog/MetaMind/">Open dossier →</a>
+            <a class="action action-outline" href="/blog/MetaMind/贡献稿_MetaMind.html">技术贡献稿</a>
+            <a class="action action-outline" href="/blog/MetaMind/认知稿_MetaMind.html">认知研究稿</a>
+          </div>
+        </div>
+      </article>
+    </section>
+    <SiteFooter />
+  </main>
+</SiteLayout>

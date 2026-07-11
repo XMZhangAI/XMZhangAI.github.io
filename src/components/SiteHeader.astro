@@ -1,0 +1,23 @@
+---
+const { active = '' } = Astro.props;
+---
+
+<div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
+<header class="site-header" data-site-header>
+  <a class="brand" href="/" aria-label="Xuanming Zhang — home">
+    <span class="brand-mark" aria-hidden="true">XZ</span>
+    <span class="brand-type"><strong>Xuanming Zhang</strong><small>AI Research Scientist</small></span>
+  </a>
+
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-button>
+    <span class="sr-only">Open menu</span><i></i><i></i>
+  </button>
+
+  <nav id="site-menu" class="site-menu" aria-label="Primary navigation" data-site-menu>
+    <a class:list={[active === 'research' && 'is-active']} href="/#research">Research</a>
+    <a class:list={[active === 'systems' && 'is-active']} href="/#systems">Systems</a>
+    <a class:list={[active === 'publications' && 'is-active']} href="/#publications">Publications</a>
+    <a class:list={[active === 'notes' && 'is-active']} href="/notes/">Field notes</a>
+    <a class="menu-cv" href="/CV.pdf">CV <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>

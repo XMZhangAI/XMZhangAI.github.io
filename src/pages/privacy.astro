@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<SiteLayout title="Privacy — Xuanming Zhang" description="Privacy information for Xuanming Zhang's research website.">
+  <main id="main">
+    <section class="page-hero"><p class="index-label">Trust / Privacy</p><h1>A small data footprint<br />by design.</h1><p>The site is designed to learn which research is useful without constructing a profile of the person reading it.</p></section>
+    <article class="privacy-body">
+      <p><strong>Last updated:</strong> July 11, 2026.</p>
+      <h2>Current configuration</h2>
+      <p>Custom analytics is disabled in this release. The site sets no advertising cookies, sells no data, and loads no advertising trackers. Infrastructure providers may process standard request metadata to deliver and secure the site.</p>
+      <h2>Optional aggregate analytics</h2>
+      <p>If analytics is enabled later, the preferred configuration records page paths, coarse referrer domains, broad device dimensions, and deliberate interactions such as opening a paper or project. It should respect Do Not Track and use a daily rotating salted hash rather than retain raw IP addresses.</p>
+      <h2>Contact</h2>
+      <p>Questions can be sent to <a href="mailto:xuanmingdi.zxm@alibaba-inc.com">xuanmingdi.zxm@alibaba-inc.com</a>.</p>
+    </article>
+    <SiteFooter />
+  </main>
+</SiteLayout>

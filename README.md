@@ -1,53 +1,49 @@
-# Zhang Xuanming - Personal Academic Website
+# Xuanming Zhang — AI Research Website
 
-This is the personal academic website of Zhang Xuanming, featuring research publications, projects, blog posts, and professional information.
+A clean, production-built research website centered on three questions: where reasoning happens, what a model must understand, and what changes across time.
 
-## Features
+## Quick review
 
-- **Modern Design**: Stunning visual design with particle effects, glassmorphism, and smooth animations
-- **Dark/Light Mode**: Toggle between dark and light themes with persistent preference storage
-- **Multi-page Blog System**: Full blog functionality with categorization and individual post pages
-- **Publications Management**: Display academic publications with BibTeX export functionality
-- **Projects Showcase**: Highlight research projects and open-source contributions
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Performance Optimized**: Fast loading with lazy loading images and optimized assets
+- Windows: double-click `CHECK_WEBSITE_WINDOWS.bat`
+- macOS/Linux: run `./CHECK_WEBSITE_MAC_LINUX.command`
+- Manual: `npm run preview:dist`
 
-## Structure
+Read [START_HERE_中文.md](START_HERE_中文.md) for step-by-step instructions.
 
-```
-MyWeb/
-├── index.html          # Main homepage
-├── blog.html           # Blog listing page
-├── blog/               # Individual blog posts
-├── CV.pdf              # Curriculum Vitae
-├── resume-en.tex       # LaTeX resume source
-├── profile.jpeg        # Profile image
-└── [various icons]     # UI icons and assets
+## Development
+
+```bash
+npm install
+npm run dev
 ```
 
-## Technologies
+Production verification:
 
-- HTML5 & CSS3 with modern features (CSS Grid, Flexbox, Custom Properties)
-- Vanilla JavaScript for interactivity
-- Particles.js for animated backgrounds
-- Google Fonts (Inter, Playfair Display, JetBrains Mono)
-- Service Worker for offline functionality
+```bash
+npm run check
+npm run build
+npm run preview:dist
+```
 
-## Publications
+## Architecture
 
-The site features publications in:
-- Cognitive Learning
-- World Interaction  
-- Policy Simulation
+- Astro 7 static output
+- Local variable fonts; no runtime font/CDN dependency
+- Semantic HTML and progressive vanilla TypeScript interaction
+- No service worker and no cache-first runtime
+- GitHub Actions deployment to Pages
+- Analytics disabled by default
 
-With automatic BibTeX export for easy citation.
+## Content routes
 
-## Contact
+- `/` — research thesis, interactive instrument, systems, publications, trajectory
+- `/projects/mariolm/` — MarioLM system dossier
+- `/notes/` — field-note index
+- `/blog/MetaMind/` — MetaMind dossier and two Chinese essays
+- `/privacy/` — privacy configuration
 
-- Email: zhangxm@stanford.edu
-- GitHub: [@XMZhangAI](https://github.com/XMZhangAI)
-- Google Scholar: [Profile](https://scholar.google.com/citations?user=zP5k9lsAAAAJ)
+## Production output
 
-## License
+`dist/` is included in the review ZIP and is reproducible with `npm run build`.
 
-© 2025 Zhang Xuanming. All rights reserved.
+© 2026 Xuanming Zhang.
