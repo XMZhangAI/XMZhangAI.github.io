@@ -3,13 +3,14 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import ResearchInstrument from '../components/ResearchInstrument.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
+const site = Astro.site!;
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Xuanming Zhang',
   alternateName: '张轩铭',
-  url: 'https://xmzhangai.github.io/',
-  image: 'https://xmzhangai.github.io/assets/images/xuanming-zhang.webp',
+  url: new URL('/', site).href,
+  image: new URL('/assets/images/xuanming-zhang.webp', site).href,
   jobTitle: 'AI Research Scientist',
   worksFor: { '@type': 'Organization', name: 'Qwen, Alibaba Group' },
   knowsAbout: ['Test-time computation', 'Interactive AI', 'Theory of Mind', 'AI evaluation', 'Long-horizon world modeling'],
@@ -36,7 +37,7 @@ const personSchema = {
         <p class="hero-thesis">I build AI systems that expose hidden computation, reason about other minds, and remain coherent when actions accumulate into consequences.</p>
         <div class="hero-links">
           <a class="action action-light" href="#research">Enter the research</a>
-          <a class="action action-outline" href="/CV.pdf">Curriculum vitae ↗</a>
+          <a class="action action-outline" href="/connect/" data-analytics="cv_request">CV / Opportunities ↗</a>
         </div>
       </div>
 
@@ -150,7 +151,7 @@ const personSchema = {
 
     <section class="field-note" aria-labelledby="field-note-title">
       <div class="field-note-image"><img src="/assets/images/metamind-field-note.webp" width="1664" height="928" alt="MetaMind cognitive system visualization" loading="lazy" /></div>
-      <div class="field-note-copy" data-reveal><p class="index-label">04 / Field notes</p><h2 id="field-note-title">The paper reports the result.<br />The field note reveals the thinking.</h2><p>Two Chinese essays reconstruct MetaMind as both a working technical system and the beginning of a broader Cognitive AI agenda.</p><a class="action action-dark" href="/notes/">Open the MetaMind dossier →</a></div>
+      <div class="field-note-copy" data-reveal><p class="index-label">04 / Field notes</p><h2 id="field-note-title">The paper reports the result.<br />The field note reveals the thinking.</h2><p>An evidence-led technical account and a clearly marked research agenda trace MetaMind from metacognitive social reasoning toward Cognitive AI.</p><a class="action action-dark" href="/notes/">Open the MetaMind dossier →</a></div>
     </section>
 
     <section class="trajectory" aria-labelledby="trajectory-title">

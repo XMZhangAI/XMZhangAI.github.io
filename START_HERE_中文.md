@@ -1,6 +1,6 @@
 # 从这里开始：一键检查新版个人主页
 
-这个压缩包已经包含：完整源码、生产构建 `dist/`、本地预览脚本、GitHub Pages 自动部署流程、CV、Blog 和全部本地图片/字体。运行网页时不依赖任何外部 CDN。
+这个压缩包已经包含：完整源码、生产构建 `dist/`、本地预览脚本、GitHub Pages 自动部署流程、英文 Blog、分享卡、可选分析后台和全部本地图片/字体。运行网页时不依赖任何外部 CDN。CV 当前不在公开文件中，`CV / Connect` 会进入私密建联页。
 
 ## 最快方法：检查已经构建好的网页
 
@@ -132,7 +132,7 @@ npm run preview:dist
 
 - `astro check` 显示 0 errors、0 warnings。
 - `dist/` 被重新生成。
-- 首页、MarioLM、Field Notes、MetaMind 两篇长文和 CV 都能打开。
+- 首页、MarioLM、Field Notes、MetaMind 两篇英文长文、Connect 和 Privacy 都能打开。
 
 ## 常见问题
 
@@ -160,10 +160,10 @@ PORT=4174 npm run preview:dist
 
 通常是直接双击 HTML、没有完整解压、旧 Service Worker，或 `_assets` 目录被遗漏。重新完整解压并通过 HTTP 服务器运行。
 
-### 中文 Blog 图片缺失
+### Blog 图片缺失或被拉长
 
-确认 `dist/blog/MetaMind/assets/` 中存在 `.webp` 文件。不要单独移动 HTML。
+确认 `dist/blog/MetaMind/assets/` 中存在 `.webp` 文件。不要单独移动 HTML。新版文章统一使用图片原始宽高、`height:auto` 和明确的 `object-fit`，不会把横图或方图压进固定高度。
 
 ## 下一步
 
-确认视觉与内容后，再按照 [DEPLOYMENT_中文.md](DEPLOYMENT_中文.md) 发布。发布前不需要购买域名，也不需要配置分析服务。
+确认视觉与内容后，再按照 [DEPLOYMENT_中文.md](DEPLOYMENT_中文.md) 发布。域名与 Stanford 定向见 [DOMAIN_AND_SHARING_中文.md](DOMAIN_AND_SHARING_中文.md)，分析后台见 [ANALYTICS_BACKEND_中文.md](ANALYTICS_BACKEND_中文.md)。两项都可在主页确认后再启用。

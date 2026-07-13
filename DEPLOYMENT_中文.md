@@ -79,38 +79,16 @@ https://xmzhangai.github.io/reset-cache.html
 
 ## B. 自定义域名
 
-建议顺序：
+首选 `xuanming.ai`，次选 `xmzhang.ai`。不要使用已被另一位同名研究者占用的 `xuanmingzhang.com`。
 
-1. `xuanming.ai`
-2. `xmzhang.ai`
-3. `xuanmingzhang.ai`
+本版已把域名改为构建变量：购买后无需逐文件替换 canonical、sitemap 或 Blog 链接。完整 DNS、GitHub Pages、HTTPS、Stanford 定向和外部分享卡刷新步骤见：
 
-购买前必须在域名注册商确认实际可用性。
-
-购买并在 GitHub 验证域名后：
-
-1. 将 `public/CNAME.example` 重命名为 `public/CNAME`。
-2. 文件内容改为实际域名，例如 `xuanming.ai`。
-3. 将 `astro.config.mjs` 的 `site` 改为 `https://xuanming.ai`。
-4. 将 `public/sitemap.xml`、`public/robots.txt` 和长文 canonical 中的旧域名替换为新域名。
-5. 提交并推送。
-6. Settings → Pages → Custom domain，输入域名。
-7. DNS 生效后启用 Enforce HTTPS。
+[DOMAIN_AND_SHARING_中文.md](DOMAIN_AND_SHARING_中文.md)
 
 ## C. 流量分析与 IP
 
-默认版本没有启用任何分析，不发送访问数据。
+默认没有填写采集地址，因此不会发送访问数据。仓库已包含 Cloudflare Worker + D1 的完整后台、密码保护仪表盘、CSV 导出、访客/会话/阅读行为记录、粗网段与可选完整 IP。
 
-最低维护方案：Cloudflare Web Analytics。它适合页面访问量、来源与性能指标。
+严格按以下文档操作：
 
-需要论文、项目、CV 点击和近似独立访问量时，使用 `optional/analytics-worker/`：
-
-1. 创建 Cloudflare 账号。
-2. 安装 Wrangler：`npm install -g wrangler`。
-3. 进入 `optional/analytics-worker/`。
-4. 创建 D1 数据库并执行 `schema.sql`。
-5. 设置 `IP_SALT` 与 `ALLOWED_ORIGIN` secret。
-6. 部署 Worker。
-7. 将 Worker URL 写入 `src/layouts/SiteLayout.astro` 的 `analytics-endpoint` meta。
-
-参考 Worker 不保存原始 IP；仅生成每日轮换的加盐哈希。不要在没有明确隐私政策与保留期限的情况下启用原始 IP 存储。
+[ANALYTICS_BACKEND_中文.md](ANALYTICS_BACKEND_中文.md)

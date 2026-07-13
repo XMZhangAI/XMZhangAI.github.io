@@ -39,11 +39,21 @@ npm run preview:dist
 - `/` — research thesis, interactive instrument, systems, publications, trajectory
 - `/projects/mariolm/` — MarioLM system dossier
 - `/notes/` — field-note index
-- `/blog/MetaMind/` — MetaMind dossier and two Chinese essays
+- `/blog/MetaMind/` — MetaMind dossier
+- `/blog/MetaMind/technical-contribution/` — evidence-led technical account
+- `/blog/MetaMind/cognitive-frontier/` — interpretive Cognitive AI agenda
+- `/connect/` — private CV and opportunity contact route
 - `/privacy/` — privacy configuration
 
 ## Production output
 
 `dist/` is included in the review ZIP and is reproducible with `npm run build`.
+
+## Operations
+
+- Domain, Stanford redirect, and social cards: [DOMAIN_AND_SHARING_中文.md](DOMAIN_AND_SHARING_中文.md)
+- First-party analytics dashboard: [ANALYTICS_BACKEND_中文.md](ANALYTICS_BACKEND_中文.md)
+- What changed in this release: [RELEASE_NOTES_v3_中文.md](RELEASE_NOTES_v3_中文.md)
+- CV is intentionally absent from the public build; the interface routes requests to `/connect/`.
 
 © 2026 Xuanming Zhang.

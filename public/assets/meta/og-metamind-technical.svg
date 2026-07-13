@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#071f27"/>
+  <path d="M0 525h1200M755 0v630" stroke="#f4f1e9" stroke-opacity=".16"/>
+  
+  <rect x="56" y="46" width="46" height="46" rx="23" fill="none" stroke="#f4f1e9" stroke-opacity=".72"/>
+  <text x="79" y="75" text-anchor="middle" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="800">XZ</text>
+  <text x="119" y="76" fill="#f4f1e9" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700">Xuanming Zhang</text>
+  <text x="56" y="158" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.1">METAMIND / TECHNICAL CONTRIBUTION</text>
+  <text x="56" y="242" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="61">Social intelligence</text>
+  <text x="56" y="311" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="61">begins <tspan fill="#50d7c8">before</tspan></text>
+  <text x="56" y="380" fill="#50d7c8" font-family="DejaVu Serif, Georgia, serif" font-size="61">the answer.</text>
+  <text x="56" y="447" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="17">Latent mental states · Norm-aware refinement · Reflective validation</text>
+  <g transform="translate(825 120)" font-family="DejaVu Sans, Arial, sans-serif"><text x="0" y="0" fill="#aebbc1" font-size="12" letter-spacing="1.2">STAGED METACOGNITION</text><path d="M15 115H295" stroke="#f4f1e9" stroke-opacity=".32"/><circle cx="35" cy="115" r="31" fill="#50d7c8"/><circle cx="155" cy="115" r="31" fill="#173a44" stroke="#50d7c8"/><circle cx="275" cy="115" r="31" fill="#173a44" stroke="#50d7c8"/><text x="35" y="119" text-anchor="middle" fill="#07141e" font-size="10" font-weight="800">INFER</text><text x="155" y="119" text-anchor="middle" fill="#f4f1e9" font-size="9" font-weight="800">CONSTRAIN</text><text x="275" y="119" text-anchor="middle" fill="#f4f1e9" font-size="9" font-weight="800">VALIDATE</text><text x="0" y="240" fill="#50d7c8" font-family="DejaVu Serif, Georgia, serif" font-size="29">NeurIPS 2025 Spotlight</text><text x="0" y="285" fill="#aebbc1" font-size="13">16+ models · 4 benchmarks · full ablations</text></g>
+  <text x="56" y="575" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="15">Evidence-led field note · Xuanming Zhang</text></svg>

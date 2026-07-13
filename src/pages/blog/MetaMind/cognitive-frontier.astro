@@ -1,0 +1,173 @@
+---
+import FieldNoteLayout from '../../../layouts/FieldNoteLayout.astro';
+
+const sections = [
+  { id: 'boundary', label: 'Evidence and interpretation' },
+  { id: 'thesis', label: 'From scale to structure' },
+  { id: 'principles', label: 'Three design principles' },
+  { id: 'frontier', label: 'Four research transitions' },
+  { id: 'worlds', label: 'From minds to worlds' },
+  { id: 'tests', label: 'What would falsify it' }
+];
+
+const site = Astro.site!;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Beyond MetaMind: From Cognitive Scaffolds to Native Capability',
+  description: 'A research agenda for structured cognition, process-level learning, self-involving interaction, and experiential worlds in frontier AI.',
+  image: new URL('/assets/meta/og-metamind-cognitive.png', site).href,
+  datePublished: '2026-07-13',
+  dateModified: '2026-07-13',
+  author: { '@type': 'Person', name: 'Xuanming Zhang', url: new URL('/', site).href },
+  isBasedOn: 'https://arxiv.org/abs/2505.18943'
+};
+---
+
+<FieldNoteLayout
+  title="MetaMind Cognitive Frontier — Xuanming Zhang"
+  description="A clearly marked research agenda extending MetaMind toward structured cognition, process supervision, self-involving interaction, and experiential worlds."
+  kicker="Cognitive frontier / Interpretive research agenda"
+  headline="From cognitive scaffolds to native capability."
+  dek="MetaMind is evidence that organizing inference can unlock capability without changing model weights. The larger question is whether that organization can become learned, adaptive, and world-aware."
+  image="/assets/meta/og-metamind-cognitive.png"
+  imageAlt="MetaMind cognitive frontier — from structured reasoning to interactive worlds"
+  tone="frontier"
+  issue="Field note 02 / 02"
+  readingTime="16 minute read"
+  published="2026-07-13"
+  updated="2026-07-13"
+  {sections}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)}></script>
+
+  <p class="standfirst">MetaMind demonstrates a narrow but consequential fact: even frontier models can improve when inference is organized around <strong>latent states, revision, memory, and validation</strong>. This essay asks what follows if that scaffold becomes a trainable cognitive system.</p>
+
+  <div class="margin-note">
+    <strong>Epistemic boundary</strong>
+    <p>The reported MetaMind results are empirical. The agenda below is an interpretation and a set of testable research hypotheses — not an additional claim established by the NeurIPS paper. Evidence, inference, and speculation are labeled separately throughout.</p>
+  </div>
+
+  <p class="section-kicker">01 / Boundary</p>
+  <h2 id="boundary">What the paper proves.<br />What it only suggests.</h2>
+
+  <p>The evidence is specific. A staged, model-agnostic architecture improves Theory-of-Mind reasoning, social cognition, and interactive social performance across diverse backbones. The gains persist on advanced reasoning models; every stage contributes; and expert raters find the revised hypotheses coherent.</p>
+
+  <p>That does <em>not</em> prove that parameter scaling has ended, that language models possess human cognition, or that one architecture generalizes to every cognitive domain. It does support a more disciplined proposition: <strong>how inference is organized remains a meaningful axis of capability, even after pretraining.</strong></p>
+
+  <section class="evidence-ribbon" aria-label="Evidence to agenda boundary">
+    <div><strong>Observed</strong><span>external cognitive structure improves social reasoning</span></div>
+    <div><strong>Inferred</strong><span>latent capability may be under-elicited by direct decoding</span></div>
+    <div><strong>Hypothesized</strong><span>the useful process can be trained and internalized</span></div>
+    <div><strong>Tested next</strong><span>interaction, worlds, and long-horizon consequence</span></div>
+  </section>
+
+  <figure class="essay-figure">
+    <div class="aspect-media"><img src="/blog/MetaMind/assets/c_hero.webp" width="1664" height="928" alt="A luminous cognitive structure emerging above a field, representing organized inference beyond raw scale" loading="eager" /></div>
+    <figcaption><strong>The research wager.</strong> Capability is shaped not only by what a model stores, but by the computational structure through which that knowledge is elicited, revised, and turned into action.</figcaption>
+  </figure>
+
+  <p class="section-kicker">02 / Thesis</p>
+  <h2 id="thesis">The next curve is not<br />only a scaling curve.</h2>
+
+  <p>Pretraining compresses vast regularities about language, behavior, and the world into a model. Direct decoding asks that model to retrieve, interpret, deliberate, align, and act inside one undifferentiated pass. MetaMind instead inserts a control structure: first form hypotheses, then apply constraints, then validate the action.</p>
+
+  <p>The fact that o3 still improves from 90.3 to 92.2 under that structure matters. It suggests that stronger models can remain <em>procedurally under-specified</em>: they may know more than the default inference path reliably uses. Scaling remains essential, but scale and cognitive organization are not substitutes. They are orthogonal levers.</p>
+
+  <section class="research-line" aria-label="Research program from scaffold to world">
+    <ol>
+      <li><span>Externalize</span><strong>Scaffold</strong><p>Make the hidden cognitive loop explicit and inspectable.</p></li>
+      <li><span>Measure</span><strong>Instrument</strong><p>Evaluate process quality, not only final-answer correctness.</p></li>
+      <li><span>Internalize</span><strong>Learn</strong><p>Distill the successful process into a lower-cost policy or latent state.</p></li>
+      <li><span>Ground</span><strong>World</strong><p>Test whether cognition survives interaction and consequence over time.</p></li>
+    </ol>
+  </section>
+
+  <p>This sequence connects a visible line of work: MetaMind externalizes social cognition; Cognition-of-Thought makes the process auditable during decoding; the next step is to internalize that process through reinforcement learning; MarioLM and long-horizon evaluation then ask whether the learned cognition changes trajectories rather than isolated answers.</p>
+
+  <p class="section-kicker">03 / Principles</p>
+  <h2 id="principles">Three principles for<br />cognitive system design.</h2>
+
+  <div class="agenda-grid">
+    <article><b>01</b><span>Cognition as scaffold</span><h3>Constrain the shape, not the conclusion.</h3><p>A useful scaffold specifies which latent variables to consider and when to revise them, while leaving the model free to generate the actual hypotheses. Structure supplies an inductive bias without hard-coding the answer.</p></article>
+    <article><b>02</b><span>Cognition as protocol</span><h3>Separate generation, critique, and action.</h3><p>The infer → constrain → validate loop is a reusable protocol for partially observed problems. Its value lies in distinct interfaces where a system can expose uncertainty and accept correction.</p></article>
+    <article><b>03</b><span>Cognition as learned policy</span><h3>Use the scaffold, then earn the right to remove it.</h3><p>External multi-agent computation is expensive. The long-term goal is to supervise, distill, or reinforce its successful internal transitions until the capability becomes native and efficient.</p></article>
+    <article><b>04</b><span>Cognition as state</span><h3>Remember what changed, not only what was said.</h3><p>Interaction requires persistent beliefs about goals, trust, and constraints. Memory should track revisable latent state rather than accumulate unstructured transcripts.</p></article>
+  </div>
+
+  <div class="media-pair">
+    <figure><img src="/blog/MetaMind/assets/c_scaffold.webp" width="1328" height="1328" alt="A branching structure supported by scaffolding, representing structured reasoning" loading="lazy" /><figcaption><strong>Scaffold.</strong> Explicit structure can stabilize inference before it is internalized.</figcaption></figure>
+    <figure><img src="/blog/MetaMind/assets/c_process_reward.webp" width="1328" height="1328" alt="A luminous branching trajectory, representing process-level reward" loading="lazy" /><figcaption><strong>Process.</strong> In ambiguous domains, learning must evaluate trajectories of thought and action, not only terminal labels.</figcaption></figure>
+  </div>
+
+  <h3>Self-play becomes self-involvement</h3>
+  <p>Multi-agent debate is often treated as a coordination trick. Social cognition makes a deeper version possible: an agent models another agent who is simultaneously modeling it. That recursive loop can generate interaction data, expose strategic blind spots, and turn the model from a spectator into a participant.</p>
+
+  <p>The opportunity is also a risk. Self-generated social experience can amplify shared assumptions, simulate people badly, or optimize persuasion without genuine understanding. A credible program therefore needs external human calibration, uncertainty-aware mental-state models, and explicit limits on how inferred states are used.</p>
+
+  <p class="section-kicker">04 / Transitions</p>
+  <h2 id="frontier">Four transitions beyond<br />today's default pipeline.</h2>
+
+  <div class="result-grid">
+    <article class="result-card"><span>Transition 01 / Scale → structure</span><strong>Organize</strong><h3>Beyond undifferentiated inference</h3><p>Ask which cognitive operation should occur at each stage, which state it changes, and how the system knows when to revise.</p></article>
+    <article class="result-card"><span>Transition 02 / Tokens → latent state</span><strong>Infer</strong><h3>Beyond language as the full input</h3><p>Language is a partial observation. Beliefs, goals, emotion, trust, and role become uncertain state variables that must be updated over time.</p></article>
+    <article class="result-card"><span>Transition 03 / Labels → process</span><strong>Evaluate</strong><h3>Beyond verifiable terminal reward</h3><p>Many human outcomes have no single correct answer. Reward must address calibration, empathy, coherence, reversibility, and downstream effect.</p></article>
+    <article class="result-card"><span>Transition 04 / Benchmarks → worlds</span><strong>Experience</strong><h3>Beyond static question answering</h3><p>A system's intelligence should be measured by the world its actions produce across turns, people, counterfactuals, and delayed consequences.</p></article>
+  </div>
+
+  <div class="media-pair">
+    <figure><img src="/blog/MetaMind/assets/c_scaling.webp" width="1328" height="1328" alt="A path rising beyond a curve, representing cognitive structure as an additional capability axis" loading="lazy" /><figcaption><strong>Structure is an additional axis.</strong> It complements rather than negates data, compute, and model scale.</figcaption></figure>
+    <figure><img src="/blog/MetaMind/assets/c_iceberg.webp" width="1328" height="1328" alt="A brain beneath the surface of an iceberg, representing latent state beneath language" loading="lazy" /><figcaption><strong>Tokens are observations.</strong> The state that explains them remains partly submerged and uncertain.</figcaption></figure>
+  </div>
+
+  <h3>Process reward in domains without a single answer</h3>
+  <p>Reinforcement learning with verifiable reward is powerful where correctness can be checked. Social intelligence, education, negotiation, and care do not usually offer that luxury. A response may be locally empathetic yet globally manipulative; immediately helpful yet destructive to autonomy; coherent now yet inconsistent five turns later.</p>
+
+  <p>MetaMind's empathy-and-coherence audit is only a first approximation, but it points toward a richer unit of optimization: the quality of a cognitive and interaction trajectory. Future rewards should combine uncertainty calibration, norm sensitivity, user agency, causal consequence, and the ability to recover after a mistaken inference.</p>
+
+  <p class="section-kicker">05 / Worlds</p>
+  <h2 id="worlds">A mind model becomes useful<br />when the world pushes back.</h2>
+
+  <p>Once intent and belief are modeled as latent state, an interaction can be treated as a causal process. The system chooses an action, observes how the person and environment respond, updates its state estimate, and plans again. Social reasoning then becomes a form of partially observed world modeling.</p>
+
+  <figure class="essay-figure">
+    <div class="aspect-media"><img src="/blog/MetaMind/assets/c_simulation.webp" width="1664" height="928" alt="A central cognitive model branching into multiple interactive scenes" loading="lazy" /></div>
+    <figcaption><strong>From interpretation to simulation.</strong> Candidate mental states induce candidate futures; interaction provides evidence that can confirm or overturn the model.</figcaption>
+  </figure>
+
+  <h3>Toward causal interaction worlds</h3>
+  <p>The immediate step is not a grand simulated civilization. It is a controlled environment where actions produce persistent, measurable effects on latent variables such as trust, agency, cooperation, and goal satisfaction. This is the logic behind experiential evaluation: an answer is judged by the trajectory it creates.</p>
+
+  <h3>Toward future simulation</h3>
+  <p>A model that can represent another mind can roll forward several plausible responses before acting. Counterfactual branches — “If I push here, does trust decay later?” — create a bridge between Theory of Mind and planning. MarioLM extends this idea by making causal scenes, event chains, and long-horizon rubrics part of the evaluation world.</p>
+
+  <h3>Toward super-world games</h3>
+  <p>The farthest hypothesis is a cognitive world populated by agents that develop social knowledge through play, conflict, cooperation, and mutual modeling. Such worlds could become data engines and scientific instruments for studying emergent behavior. They could also become closed feedback loops that mistake simulation for humanity. The proposal is valuable only if its outputs are continuously tested against real people and real consequences.</p>
+
+  <figure class="essay-figure">
+    <div class="aspect-media"><img src="/blog/MetaMind/assets/c_superworld.webp" width="1664" height="928" alt="A figure looking across nested translucent worlds, representing layered cognitive simulation" loading="lazy" /></div>
+    <figcaption><strong>Speculative frontier.</strong> Nested cognitive worlds are a research instrument, not a claim that simulation alone can recover human values.</figcaption>
+  </figure>
+
+  <div class="margin-note">
+    <strong>Intellectual lineage</strong>
+    <p>This agenda sits near computational Theory of Mind and inverse planning associated with Joshua Tenenbaum; probabilistic cognition and pragmatic inference associated with Noah Goodman; and developmental accounts of social learning through interaction associated with Michael C. Frank. The goal is not to borrow names as decoration, but to make AI system design answer to cognitive theories that can be tested.</p>
+  </div>
+
+  <p class="section-kicker">06 / Tests</p>
+  <h2 id="tests">A frontier becomes science<br />when it can fail.</h2>
+
+  <p>The Cognitive AI agenda should not be protected by its ambition. Each transition needs a result that could force us to abandon or revise it.</p>
+
+  <ul class="question-list">
+    <li><span>01</span><strong>If structured scaffolds stop helping under leakage-controlled, cross-cultural, multimodal tests, the claimed generality is false.</strong></li>
+    <li><span>02</span><strong>If the external process cannot be distilled without losing calibration and safety, native cognition may not follow from visible cognition.</strong></li>
+    <li><span>03</span><strong>If simulated mental states fail to predict real human responses, the world model is a narrative engine rather than a causal model.</strong></li>
+    <li><span>04</span><strong>If personalization improves benchmark utility while reducing autonomy, privacy, or contestability, the alignment objective is wrong.</strong></li>
+    <li><span>05</span><strong>If long-horizon evaluation does not change model selection or training outcomes, experiential worlds add spectacle rather than information.</strong></li>
+  </ul>
+
+  <p>The immediate program is therefore concrete: reproduce the scaffold across domains; expose and score its intermediate states; learn lower-cost latent policies from successful traces; and test those policies inside interaction worlds with delayed, human-grounded consequences.</p>
+
+  <p>MetaMind is not the destination. It is a useful first instrument — one that makes a hidden process visible enough to study, criticize, train, and eventually replace with something more capable.</p>
+</FieldNoteLayout>

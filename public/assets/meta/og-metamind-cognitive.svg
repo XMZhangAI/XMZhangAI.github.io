@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#11102a"/>
+  <path d="M0 525h1200M750 0v630" stroke="#f4f1e9" stroke-opacity=".15"/>
+  
+  <rect x="56" y="46" width="46" height="46" rx="23" fill="none" stroke="#f4f1e9" stroke-opacity=".72"/>
+  <text x="79" y="75" text-anchor="middle" fill="#ffbe5c" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="800">XZ</text>
+  <text x="119" y="76" fill="#f4f1e9" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700">Xuanming Zhang</text>
+  <text x="56" y="158" fill="#ffbe5c" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.1">METAMIND / COGNITIVE FRONTIER</text>
+  <text x="56" y="241" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="60">From cognitive</text>
+  <text x="56" y="309" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="60">scaffolds to</text>
+  <text x="56" y="377" fill="#ffbe5c" font-family="DejaVu Serif, Georgia, serif" font-size="60">native capability.</text>
+  <text x="56" y="445" fill="#b8b3cc" font-family="DejaVu Sans, Arial, sans-serif" font-size="17">Structure · Process supervision · Interaction · Experiential worlds</text>
+  <g transform="translate(835 100)" fill="none"><circle cx="125" cy="145" r="42" fill="#ffbe5c"/><circle cx="125" cy="145" r="84" stroke="#ffbe5c" stroke-opacity=".7"/><circle cx="125" cy="145" r="126" stroke="#f4f1e9" stroke-opacity=".35"/><circle cx="125" cy="145" r="168" stroke="#f4f1e9" stroke-opacity=".18"/><path d="M125 -23v336M-43 145h336" stroke="#f4f1e9" stroke-opacity=".13"/></g>
+  <g transform="translate(785 445)" fill="#b8b3cc" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" letter-spacing="1"><text x="0" y="0">SCAFFOLD</text><text x="101" y="0">LEARN</text><text x="172" y="0">INTERACT</text><text x="276" y="0">WORLD</text></g>
+  <text x="56" y="575" fill="#b8b3cc" font-family="DejaVu Sans, Arial, sans-serif" font-size="15">Interpretive research agenda · Evidence boundary explicit</text></svg>

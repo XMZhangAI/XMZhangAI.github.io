@@ -8,6 +8,7 @@
     "build": "node scripts/clean-dist.mjs && cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "social": "node scripts/generate-social-cards.mjs",
     "verify": "npm run build && node scripts/check-dist.mjs",
     "start:local": "node scripts/start-local.mjs",
     "preview:dist": "node scripts/preview-dist.mjs"
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.9",
     "cross-env": "10.1.0",
+    "sharp": "0.35.3",
     "typescript": "5.9.3"
   },
   "engines": {

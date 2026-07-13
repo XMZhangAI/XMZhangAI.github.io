@@ -29,10 +29,31 @@ for (const file of htmlFiles) {
 }
 
 if (existsSync(resolve(root, 'sw.js'))) failures.push('dist/sw.js exists; this release must not register a service worker.');
+if (existsSync(resolve(root, 'CV.pdf'))) failures.push('dist/CV.pdf exists; the CV must remain private in this release.');
+
+const primaryPages = [
+  'index.html',
+  'notes/index.html',
+  'blog/MetaMind/index.html',
+  'blog/MetaMind/technical-contribution/index.html',
+  'blog/MetaMind/cognitive-frontier/index.html',
+  'connect/index.html'
+];
+for (const page of primaryPages) {
+  const file = resolve(root, page);
+  if (!existsSync(file)) { failures.push(`${page} is missing.`); continue; }
+  const html = readFileSync(file, 'utf8');
+  if (!/property="og:image" content="https:\/\//.test(html)) failures.push(`${page} has no absolute Open Graph image.`);
+}
+
+for (const page of ['notes/index.html', 'blog/MetaMind/index.html', 'blog/MetaMind/technical-contribution/index.html', 'blog/MetaMind/cognitive-frontier/index.html']) {
+  const html = readFileSync(resolve(root, page), 'utf8');
+  if (/\p{Script=Han}/u.test(html)) failures.push(`${page} contains non-English Han-script content.`);
+}
 
 if (failures.length) {
   console.error(`\nVerification failed (${failures.length} issue(s)):\n${failures.map((item) => `- ${item}`).join('\n')}\n`);
   process.exit(1);
 }
 
-console.log(`Verified ${htmlFiles.length} HTML pages and ${references} local references; 0 missing. No service worker present.`);
+console.log(`Verified ${htmlFiles.length} HTML pages and ${references} local references; 0 missing. Social metadata present; CV private; no service worker.`);

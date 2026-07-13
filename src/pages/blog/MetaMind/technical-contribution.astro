@@ -1,0 +1,202 @@
+---
+import FieldNoteLayout from '../../../layouts/FieldNoteLayout.astro';
+
+const sections = [
+  { id: 'problem', label: 'The missing variable' },
+  { id: 'architecture', label: 'A metacognitive architecture' },
+  { id: 'evidence', label: 'What the evidence says' },
+  { id: 'ablation', label: 'Why every stage matters' },
+  { id: 'significance', label: 'Technical significance' },
+  { id: 'limits', label: 'Limits and next tests' }
+];
+
+const site = Astro.site!;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: 'MetaMind: Social Intelligence Begins Before the Answer',
+  description: 'An evidence-led account of the NeurIPS 2025 Spotlight framework for explicit, revisable social reasoning in language models.',
+  image: new URL('/assets/meta/og-metamind-technical.png', site).href,
+  datePublished: '2026-07-13',
+  dateModified: '2026-07-13',
+  author: { '@type': 'Person', name: 'Xuanming Zhang', url: new URL('/', site).href },
+  isBasedOn: 'https://arxiv.org/abs/2505.18943'
+};
+---
+
+<FieldNoteLayout
+  title="MetaMind Technical Contribution — Xuanming Zhang"
+  description="An evidence-led account of MetaMind, the NeurIPS 2025 Spotlight framework that makes latent mental-state inference, norm-aware refinement, and response validation explicit."
+  kicker="Technical contribution / NeurIPS 2025 Spotlight"
+  headline="Social intelligence begins before the answer."
+  dek="MetaMind reframes socially intelligent language modeling as an explicit, revisable computation over latent mental states — not a single pass from words to response."
+  image="/assets/meta/og-metamind-technical.png"
+  imageAlt="MetaMind technical contribution — NeurIPS 2025 Spotlight and verified results"
+  tone="technical"
+  issue="Field note 01 / 02"
+  readingTime="14 minute read"
+  published="2026-07-13"
+  updated="2026-07-13"
+  {sections}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)}></script>
+
+  <p class="standfirst">Language exposes what a person said. It does not directly expose what they <strong>believe, want, feel, or intend</strong>. MetaMind makes that hidden layer the object of computation.</p>
+
+  <section class="evidence-ribbon" aria-label="Headline evidence">
+    <div><strong>Spotlight</strong><span>NeurIPS 2025 recognition</span></div>
+    <div><strong>16+</strong><span>open and proprietary model backbones</span></div>
+    <div><strong>+35.7%</strong><span>average improvement in real social scenarios</span></div>
+    <div><strong>74.8 → 81.0</strong><span>GPT-4 on ToMBench</span></div>
+  </section>
+
+  <p class="section-kicker">01 / The missing variable</p>
+  <h2 id="problem">The utterance is observed.<br />The mind is latent.</h2>
+
+  <p>“It is cold in here” may be an observation, a request to close the window, or a bid for care. The words remain constant; the intended social action changes. Humans resolve this underdetermination through Theory of Mind: we infer beliefs, desires, emotions, intentions, and thoughts that cannot be read directly from the sentence.</p>
+
+  <p>Most language-model pipelines collapse this problem into one prediction: context in, response out. Static role prompts, instruction tuning, and preference optimization can improve social style, yet they do not necessarily expose the intermediate interpretation that produced it. When that interpretation is wrong, there is no explicit object to inspect, constrain, or revise.</p>
+
+  <figure class="essay-figure">
+    <div class="aspect-media"><img src="/blog/MetaMind/assets/t_hero.webp" width="1664" height="928" alt="A human profile with a visible mind above a submerged layer, representing latent mental states beneath language" loading="eager" /></div>
+    <figcaption><strong>The central modeling move.</strong> Treat mental state as a latent variable to be inferred and revised before generating a response.</figcaption>
+  </figure>
+
+  <div class="margin-note">
+    <strong>MetaMind's core claim</strong>
+    <p>Social reasoning is not merely response generation. It is structured hypothesis formation under partial observability, revision under social constraints, and action after reflective validation.</p>
+  </div>
+
+  <p class="section-kicker">02 / Architecture</p>
+  <h2 id="architecture">A staged loop for<br />metacognitive control.</h2>
+
+  <p>MetaMind decomposes social understanding into three specialized agents coordinated by a dynamic social memory. Each stage operates on a distinct failure mode: missing latent intent, implausible or inappropriate interpretation, and a response that does not remain faithful to the selected interpretation.</p>
+
+  <figure class="essay-figure paper full-bleed">
+    <img src="/blog/MetaMind/assets/fig1_architecture.webp" width="1298" height="546" alt="MetaMind architecture with Theory-of-Mind, Moral, and Response agents connected by social memory" loading="lazy" />
+    <figcaption><strong>Figure 1 from the paper.</strong> Candidate mental states are generated, refined with cultural and ethical constraints, and converted into a response that is checked for empathy and coherence.</figcaption>
+  </figure>
+
+  <div class="architecture-grid">
+    <article>
+      <b>01</b><span>Theory-of-Mind agent</span>
+      <h3>Infer before answering.</h3>
+      <p>Given the utterance, conversation context, and social memory, generate multiple typed hypotheses over belief, desire, intention, emotion, and thought.</p>
+    </article>
+    <article>
+      <b>02</b><span>Moral agent</span>
+      <h3>Refine under norms.</h3>
+      <p>Introduce situational, cultural, and ethical constraints; revise the candidates; then select an interpretation that is both plausible and informative.</p>
+    </article>
+    <article>
+      <b>03</b><span>Response agent</span>
+      <h3>Generate, audit, revise.</h3>
+      <p>Condition on the selected hypothesis and memory, score empathy and coherence, and regenerate when the response fails the validation threshold.</p>
+    </article>
+  </div>
+
+  <div class="memory-band">
+    <strong>Social memory</strong>
+    <p>A structured state that is grounded in role and context, updated from validated long-term hypotheses, and corrected after low-utility responses or explicit user feedback. It turns isolated interpretation into adaptation across turns.</p>
+  </div>
+
+  <h3>Stage 1: mental-state hypothesis generation</h3>
+  <p>For a user utterance <em>u<sub>t</sub></em>, social context <em>C<sub>t</sub></em>, and memory <em>M<sub>t</sub></em>, the first agent constructs a set of candidate interpretations <em>H<sub>t</sub> = {`{h₁, …, hₖ}`}</em>. Each hypothesis carries a type and an explanation. The system therefore represents ambiguity rather than prematurely erasing it.</p>
+
+  <h3>Stage 2: norm-aware refinement and selection</h3>
+  <p>The second agent asks whether each candidate remains credible under the role, culture, ethics, and situation. It can reinterpret a superficially plausible mental state when the surrounding norms make it unlikely — for example, distinguishing collegial admiration from romantic intent in a professional exchange.</p>
+
+  <div class="equation" role="img" aria-label="MetaMind hypothesis selection objective">
+    <code>h* = argmax_i [ λ · P(h_i | u, C, M) + (1 − λ) · log(P(h_i | u, C, M) / P(h_i)) ]</code>
+    <p>The first term rewards contextual plausibility; the second rewards information gained from the actual context rather than a generic prior.</p>
+  </div>
+
+  <h3>Stage 3: response synthesis and reflective validation</h3>
+  <p>The final agent generates from the refined hypothesis, then audits the result. Its utility combines affective alignment with contextual and inferential coherence. A low score triggers another pass rather than exposing the first fluent answer.</p>
+
+  <div class="equation" role="img" aria-label="MetaMind response validation objective">
+    <code>U(o) = β · Empathy(o, u, M) + (1 − β) · Coherence(o, C, h*)</code>
+    <p>The released configuration uses six candidate hypotheses, λ = 0.60, and β = 0.80 — a lower-overhead point close to the grid-search optimum.</p>
+  </div>
+
+  <p class="section-kicker">03 / Evidence</p>
+  <h2 id="evidence">The gains survive<br />changes in model and task.</h2>
+
+  <p>The evaluation spans multiple-choice Theory-of-Mind reasoning, eight social-cognition tasks, open-ended sandbox interaction, SocialIQA, and SOTOPIA. This matters because the three stages should not only improve one narrow benchmark: they should transfer from hidden-state inference to norm-sensitive interpretation and then to action.</p>
+
+  <div class="result-grid">
+    <article class="result-card"><span>ToMBench / GPT-4</span><strong>74.8 → 81.0</strong><h3>Six dimensions of mental-state inference</h3><p>MetaMind raises average accuracy by 6.2 points and leads prior prompting, symbolic, and agentic baselines in the reported comparison.</p></article>
+    <article class="result-card"><span>Social cognition / GPT-4</span><strong>71.5 → 80.5</strong><h3>Context and norm sensitivity</h3><p>The 9.0-point average gain includes strong improvements on ambiguous stories, scalar implicature, and faux-pas recognition.</p></article>
+    <article class="result-card"><span>STSS / GPT-4</span><strong>39.4 → 73.9</strong><h3>Goal-oriented social interaction</h3><p>Large gains appear in appointments and invitations, where unstated constraints such as time and budget must persist through interaction.</p></article>
+    <article class="result-card"><span>Human blind ranking</span><strong>67.5%</strong><h3>Preferred over stronger baselines</h3><p>Across 120 anonymized cases, domain experts ranked MetaMind first 81 times, versus 15 for GPT-4.5 and 24 for DeepSeek-R1.</p></article>
+  </div>
+
+  <figure class="essay-figure paper full-bleed">
+    <img src="/blog/MetaMind/assets/fig2_tom_bars.webp" width="1274" height="637" alt="Bar chart showing MetaMind improving Theory-of-Mind accuracy across open and proprietary language models" loading="lazy" />
+    <figcaption><strong>Cross-model portability.</strong> The same external reasoning architecture improves models from ChatGLM3-6B and Mistral to Qwen, GPT-3.5, and GPT-4 in the reported ToMBench evaluation.</figcaption>
+  </figure>
+
+  <section class="table-scroll" aria-label="Selected MetaMind results" tabindex="0">
+    <table class="data-table">
+      <thead><tr><th>Evaluation</th><th>Base</th><th>+ MetaMind</th><th>Change</th><th>What is tested</th></tr></thead>
+      <tbody>
+        <tr><td>ToMBench</td><td>74.8</td><td class="is-best">81.0</td><td>+6.2 pts</td><td>Emotion, desire, intention, knowledge, belief, communication</td></tr>
+        <tr><td>Social cognition</td><td>71.5</td><td class="is-best">80.5</td><td>+9.0 pts</td><td>Eight context- and norm-sensitive tasks</td></tr>
+        <tr><td>STSS</td><td>39.4</td><td class="is-best">73.9</td><td>+34.5 pts</td><td>Six open-ended social action domains</td></tr>
+        <tr><td>SOTOPIA</td><td>3.31</td><td class="is-best">4.10</td><td>+0.79</td><td>Seven dimensions of interactive social performance</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p>The effect is not limited to older models. The paper reports gains for advanced reasoning systems as well: OpenAI o1 moves from 88.6 to 90.3 and o3 from 90.3 to 92.2 on its six-dimension ToM average. This is a particularly useful result: stronger pretraining does not make explicit cognitive organization redundant.</p>
+
+  <figure class="essay-figure paper full-bleed">
+    <img src="/blog/MetaMind/assets/fig3_radar.webp" width="1313" height="528" alt="Radar plots comparing baseline and MetaMind-enhanced language models with human Theory-of-Mind performance" loading="lazy" />
+    <figcaption><strong>Capability shape, not only average score.</strong> MetaMind expands the model profile across mental-state categories; several enhanced models exceed the human reference on belief, desire, or natural-language communication while other dimensions remain open.</figcaption>
+  </figure>
+
+  <p class="section-kicker">04 / Ablation</p>
+  <h2 id="ablation">Every stage removes<br />a different failure mode.</h2>
+
+  <p>The ablations are more informative than the headline score. Removing Stage 1 lowers average social-cognition performance by 2.6 points. Removing norm-aware Stage 2 costs 3.8 points and produces the sharpest losses on pragmatic and norm-violation tasks. Removing Stage 3 validation costs 16.1 points on open-ended STSS, including a 22.1-point loss in conversation.</p>
+
+  <div class="result-grid">
+    <article class="result-card"><span>Without mental-state reasoning</span><strong>−2.6</strong><h3>Ambiguity returns.</h3><p>The system loses structured alternatives for the user's unspoken intent, especially in unexpected-outcome cases.</p></article>
+    <article class="result-card"><span>Without norm refinement</span><strong>−3.8</strong><h3>Plausible becomes inappropriate.</h3><p>Unfiltered interpretations degrade most where pragmatic meaning and social conventions carry the task.</p></article>
+    <article class="result-card"><span>Without response validation / STSS</span><strong>−16.1</strong><h3>Reasoning fails at action.</h3><p>A good interpretation is insufficient if the response is not checked against intent, memory, and context.</p></article>
+    <article class="result-card"><span>Without social memory / STSS</span><strong>−10.0</strong><h3>The interaction forgets.</h3><p>Cross-turn adaptation is a functional part of the architecture, not a decorative retrieval module.</p></article>
+  </div>
+
+  <p>The human study probes the intermediate object itself. Among 120 revised hypotheses evaluated double-blind by experts, the paper reports 95% accuracy with near-perfect agreement on rationality. The result supports the intended interpretation of Stage 2: it is not only producing higher benchmark scores; its revisions are inspectable and broadly judged coherent.</p>
+
+  <p class="section-kicker">05 / Significance</p>
+  <h2 id="significance">The contribution is<br />a controllable cognitive interface.</h2>
+
+  <p>MetaMind's value is not that three prompts happen in sequence. The architecture creates explicit interfaces around otherwise hidden decisions: what the system thinks the user means, which social constraints changed that interpretation, why one hypothesis survived, and whether the final action remained aligned with it.</p>
+
+  <div class="agenda-grid">
+    <article><b>01</b><span>Representation</span><h3>Make ambiguity first-class.</h3><p>Generate a distribution of typed mental-state explanations instead of collapsing immediately to a fluent response.</p></article>
+    <article><b>02</b><span>Control</span><h3>Separate plausibility from appropriateness.</h3><p>Social and ethical constraints become a distinct revision operation that can be inspected or replaced by domain knowledge.</p></article>
+    <article><b>03</b><span>Auditability</span><h3>Validate action against interpretation.</h3><p>The final response is evaluated with respect to the inferred state and memory, exposing a tractable point for correction.</p></article>
+    <article><b>04</b><span>Portability</span><h3>Improve the system without retraining it.</h3><p>Because the scaffold is model-agnostic, it can be attached to both open and proprietary backbones and later distilled into learned capability.</p></article>
+  </div>
+
+  <div class="margin-note">
+    <strong>Why the Spotlight matters</strong>
+    <p>NeurIPS 2025 Spotlight recognition is not used here as a substitute for evidence. It is a signal that the combination of cognitive motivation, system design, cross-model evaluation, and ablation was judged unusually notable within the accepted program.</p>
+  </div>
+
+  <p class="section-kicker">06 / Limits</p>
+  <h2 id="limits">A strong result —<br />and a map of what remains.</h2>
+
+  <p>The paper is explicit about its boundary conditions. Performance depends on the quality of domain knowledge, the coverage and correctness of social memory, and the backbone model. The evaluations are principally textual and constrained relative to real social life, where tone, expression, group dynamics, culture, and long relationships interact.</p>
+
+  <ul class="question-list">
+    <li><span>01</span><strong>Can the gains survive multimodal, cross-cultural, and longitudinal interaction?</strong></li>
+    <li><span>02</span><strong>Can norm refinement remain adaptive without hardening cultural assumptions into the system?</strong></li>
+    <li><span>03</span><strong>Can explicit cognitive traces be distilled into lower-cost, native model behavior?</strong></li>
+    <li><span>04</span><strong>Can memory remain useful while protecting autonomy, privacy, and the right to be misread less often?</strong></li>
+  </ul>
+
+  <p>Those questions lead beyond the paper. The next field note treats MetaMind as the first visible scaffold in a larger research program: externalize cognition, evaluate it, train it, and finally place it inside worlds where actions have durable consequences.</p>
+</FieldNoteLayout>
