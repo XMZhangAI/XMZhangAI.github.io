@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#07141e"/>
+  <defs>
+    <linearGradient id="mario-glow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#50d7c8" stop-opacity=".18"/><stop offset="1" stop-color="#07141e" stop-opacity="0"/></linearGradient>
+    <filter id="soft-glow"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <circle cx="956" cy="306" r="236" fill="#50d7c8" fill-opacity=".06" filter="url(#soft-glow)"/>
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#f4f1e9" stroke-opacity=".15"/>
+  <path d="M0 525h1200M730 0v630" stroke="#f4f1e9" stroke-opacity=".13"/>
+  
+  <rect x="56" y="46" width="46" height="46" rx="23" fill="none" stroke="#f4f1e9" stroke-opacity=".72"/>
+  <text x="79" y="75" text-anchor="middle" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="800">XZ</text>
+  <text x="119" y="76" fill="#f4f1e9" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700">Xuanming Zhang</text>
+  <text x="56" y="158" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.1">MARIOLM / INTERACTIVE WORLD MODELING</text>
+  <text x="56" y="246" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="63">From answers</text>
+  <text x="56" y="318" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="63">to <tspan fill="#50d7c8">trajectories.</tspan></text>
+  <text x="56" y="390" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="17">Evaluate what an AI action changes across time.</text>
+  <g transform="translate(56 430)" font-family="DejaVu Sans, Arial, sans-serif">
+    <rect width="159" height="38" rx="19" fill="#50d7c8"/><text x="79.5" y="25" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">500+ ANNOTATED TURNS</text>
+    <rect x="171" width="172" height="38" rx="19" fill="none" stroke="#f4f1e9" stroke-opacity=".28"/><text x="257" y="25" text-anchor="middle" fill="#f4f1e9" font-size="11" font-weight="700">92.3–98.8% AGREEMENT</text>
+  </g>
+  <g transform="translate(786 120)" font-family="DejaVu Sans, Arial, sans-serif">
+    <path d="M32 57v82M32 185v82M32 313v82" stroke="#50d7c8" stroke-width="2" stroke-dasharray="4 7"/>
+    <g transform="translate(0 0)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".55"/><circle cx="32" cy="47" r="17" fill="#50d7c8"/><text x="32" y="52" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">S</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">SCENE</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Structure the world.</text></g>
+    <g transform="translate(0 128)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".42"/><circle cx="32" cy="47" r="17" fill="#183c44"/><text x="32" y="52" text-anchor="middle" fill="#50d7c8" font-size="11" font-weight="800">ψ</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">LATENT STATE</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Infer what changed inside.</text></g>
+    <g transform="translate(0 256)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".32"/><circle cx="32" cy="47" r="17" fill="#183c44"/><text x="32" y="52" text-anchor="middle" fill="#50d7c8" font-size="11" font-weight="800">E</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">EVENT CHAIN</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Attribute cause and future.</text></g>
+    <g transform="translate(0 384)"><rect width="350" height="94" rx="8" fill="#50d7c8" fill-opacity=".1" stroke="#50d7c8"/><circle cx="32" cy="47" r="17" fill="#50d7c8"/><text x="32" y="52" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">J</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">RUBRIC + HALT</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Judge, diagnose, decide.</text></g>
+  </g>
+  <text x="56" y="575" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="15">MarioEval → MarioOpt · Long-horizon interactive intelligence</text></svg>

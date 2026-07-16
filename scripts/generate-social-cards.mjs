@@ -89,7 +89,7 @@ await saveArtCard('og-metamind', metaMindArt, `
   <text x="56" y="275" fill="#fff" font-family="${serif}" font-size="91">Model minds.</text>
   <text x="56" y="365" fill="#50d7c8" font-family="${serif}" font-size="91">Then worlds.</text>
   <text x="56" y="435" fill="#d7e5ff" font-family="${sans}" font-size="18">Technical contribution + cognitive frontier</text>
-  <g transform="translate(56 468)" font-family="${sans}"><text fill="#50d7c8" font-size="14" font-weight="800">16+ BACKBONES</text><circle cx="142" cy="-5" r="3" fill="#fff" fill-opacity=".45"/><text x="158" fill="#fff" font-size="14" font-weight="800">+35.7% SOCIAL SCENARIOS</text></g>
+  <g transform="translate(56 468)" font-family="${sans}"><text fill="#50d7c8" font-size="14" font-weight="800">16+ MODELS EVALUATED</text><circle cx="198" cy="-5" r="3" fill="#fff" fill-opacity=".45"/><text x="214" fill="#fff" font-size="14" font-weight="800">14 PAIRED COMPARISONS</text></g>
   <text x="56" y="575" fill="#d7e5ff" font-family="${sans}" font-size="15">Xuanming Zhang · Yuxuan Chen · Samuel Yeh · Sharon Li</text>`);
 
 await saveArtCard('og-metamind-technical', technicalArt, `
@@ -114,9 +114,36 @@ await save('og-metamind-cognitive', `
   <text x="56" y="241" fill="#f4f1e9" font-family="${serif}" font-size="60">From cognitive</text>
   <text x="56" y="309" fill="#f4f1e9" font-family="${serif}" font-size="60">scaffolds to</text>
   <text x="56" y="377" fill="#ffbe5c" font-family="${serif}" font-size="57">evolvable capability.</text>
-  <text x="56" y="445" fill="#b8b3cc" font-family="${sans}" font-size="17">Architecture · Self-evolvement · Cognitive worlds · Super-world games</text>
+  <text x="56" y="445" fill="#b8b3cc" font-family="${sans}" font-size="17">Architecture · Self-evolution · Cognitive worlds · Super-world games</text>
   <g transform="translate(835 100)" fill="none"><circle cx="125" cy="145" r="42" fill="#ffbe5c"/><circle cx="125" cy="145" r="84" stroke="#ffbe5c" stroke-opacity=".7"/><circle cx="125" cy="145" r="126" stroke="#f4f1e9" stroke-opacity=".35"/><circle cx="125" cy="145" r="168" stroke="#f4f1e9" stroke-opacity=".18"/><path d="M125 -23v336M-43 145h336" stroke="#f4f1e9" stroke-opacity=".13"/></g>
   <g transform="translate(785 445)" fill="#b8b3cc" font-family="${sans}" font-size="11" letter-spacing="1"><text x="0" y="0">SCAFFOLD</text><text x="101" y="0">LEARN</text><text x="172" y="0">INTERACT</text><text x="276" y="0">WORLD</text></g>
   <text x="56" y="575" fill="#b8b3cc" font-family="${sans}" font-size="15">A testable Cognitive AI research agenda · Xuanming Zhang</text>`);
 
-console.log('Generated 6 social cards at 1200×630.');
+await save('og-mariolm', `
+  ${base('#07141e')}
+  <defs>
+    <linearGradient id="mario-glow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#50d7c8" stop-opacity=".18"/><stop offset="1" stop-color="#07141e" stop-opacity="0"/></linearGradient>
+    <filter id="soft-glow"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <circle cx="956" cy="306" r="236" fill="#50d7c8" fill-opacity=".06" filter="url(#soft-glow)"/>
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#f4f1e9" stroke-opacity=".15"/>
+  <path d="M0 525h1200M730 0v630" stroke="#f4f1e9" stroke-opacity=".13"/>
+  ${mark()}
+  <text x="56" y="158" fill="#50d7c8" font-family="${sans}" font-size="15" font-weight="700" letter-spacing="2.1">MARIOLM / INTERACTIVE WORLD MODELING</text>
+  <text x="56" y="246" fill="#f4f1e9" font-family="${serif}" font-size="63">From answers</text>
+  <text x="56" y="318" fill="#f4f1e9" font-family="${serif}" font-size="63">to <tspan fill="#50d7c8">trajectories.</tspan></text>
+  <text x="56" y="390" fill="#aebbc1" font-family="${sans}" font-size="17">Evaluate what an AI action changes across time.</text>
+  <g transform="translate(56 430)" font-family="${sans}">
+    <rect width="159" height="38" rx="19" fill="#50d7c8"/><text x="79.5" y="25" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">500+ ANNOTATED TURNS</text>
+    <rect x="171" width="172" height="38" rx="19" fill="none" stroke="#f4f1e9" stroke-opacity=".28"/><text x="257" y="25" text-anchor="middle" fill="#f4f1e9" font-size="11" font-weight="700">92.3–98.8% AGREEMENT</text>
+  </g>
+  <g transform="translate(786 120)" font-family="${sans}">
+    <path d="M32 57v82M32 185v82M32 313v82" stroke="#50d7c8" stroke-width="2" stroke-dasharray="4 7"/>
+    <g transform="translate(0 0)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".55"/><circle cx="32" cy="47" r="17" fill="#50d7c8"/><text x="32" y="52" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">S</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">SCENE</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Structure the world.</text></g>
+    <g transform="translate(0 128)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".42"/><circle cx="32" cy="47" r="17" fill="#183c44"/><text x="32" y="52" text-anchor="middle" fill="#50d7c8" font-size="11" font-weight="800">ψ</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">LATENT STATE</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Infer what changed inside.</text></g>
+    <g transform="translate(0 256)"><rect width="350" height="94" rx="8" fill="#102631" stroke="#50d7c8" stroke-opacity=".32"/><circle cx="32" cy="47" r="17" fill="#183c44"/><text x="32" y="52" text-anchor="middle" fill="#50d7c8" font-size="11" font-weight="800">E</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">EVENT CHAIN</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Attribute cause and future.</text></g>
+    <g transform="translate(0 384)"><rect width="350" height="94" rx="8" fill="#50d7c8" fill-opacity=".1" stroke="#50d7c8"/><circle cx="32" cy="47" r="17" fill="#50d7c8"/><text x="32" y="52" text-anchor="middle" fill="#07141e" font-size="11" font-weight="800">J</text><text x="64" y="36" fill="#50d7c8" font-size="11" font-weight="800" letter-spacing="1.2">RUBRIC + HALT</text><text x="64" y="61" fill="#f4f1e9" font-size="16" font-weight="700">Judge, diagnose, decide.</text></g>
+  </g>
+  <text x="56" y="575" fill="#aebbc1" font-family="${sans}" font-size="15">MarioEval → MarioOpt · Long-horizon interactive intelligence</text>`);
+
+console.log('Generated 7 social cards at 1200×630.');

@@ -1,37 +1,493 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+
+const projectDocument = 'https://my.feishu.cn/docx/EvhMd9PWdoMlyqxKbtfcapttnEc';
 ---
 
 <SiteLayout
-  title="MarioLM — Experiential World Modeling"
-  description="MarioLM unifies long-horizon evaluation, optimization, latent user-state modeling, and persistent experiential worlds."
+  title="MarioLM — Interactive World Modeling"
+  description="MarioLM is a four-layer interactive-world architecture that unifies long-horizon evaluation, structured optimization, user simulation, and persistent experiential worlds."
+  image="/assets/meta/og-mariolm.png"
+  imageAlt="MarioLM project dossier: a four-layer interactive world model connecting scene, latent state, event chain, and trajectory judgment"
   active="systems"
 >
-  <main id="main">
-    <section class="project-page-hero">
-      <div data-reveal>
-        <p class="index-label">Flagship system / 2026</p>
-        <h1>Evaluation becomes<br />an experiential world.</h1>
-        <p>MarioLM models not only what an AI says, but what its response changes: latent user state, future events, trust, and agency across a temporally continuous interaction.</p>
-        <div class="hero-links"><a class="action action-light" href="#architecture">Inspect the architecture</a><a class="action action-outline" href="mailto:xuanmingdi.zxm@alibaba-inc.com?subject=MarioLM%20research">Discuss the research ↗</a></div>
+  <main id="main" class="mario-dossier">
+    <section class="project-page-hero mario-hero">
+      <div class="mario-hero-copy" data-reveal>
+        <p class="index-label">Flagship research system / 2026</p>
+        <h1>From judging answers<br />to modeling worlds.</h1>
+        <p class="hero-dek">MarioLM evaluates not only what an AI says, but what its action changes across time: a user’s latent state, the causal event chain, the future interaction path, and the capabilities required to recover.</p>
+        <div class="hero-links">
+          <a class="action action-light" href="#system">Inspect the system</a>
+          <a class="action action-outline" href={projectDocument}>Technical memorandum ↗</a>
+        </div>
       </div>
-      <dl class="project-facts" data-reveal>
-        <div><dt>Research support</dt><dd>Thinking Machines Lab</dd></div>
-        <div><dt>Annotated turns</dt><dd>500+</dd></div>
-        <div><dt>Human agreement</dt><dd>92.3–98.8%</dd></div>
-        <div><dt>Rubric depth</dt><dd>L1–L6</dd></div>
-      </dl>
+
+      <div class="mario-hero-instrument" data-reveal aria-label="MarioLM four-layer interactive world model">
+        <div class="instrument-meta"><span>Interactive state / t</span><strong>WORLD TRACE 04:17</strong></div>
+        <ol>
+          <li><b>01</b><div><span>Scene</span><strong>Structure the world.</strong><small>rules · personas · constraints · objectives</small></div><i>S</i></li>
+          <li><b>02</b><div><span>Latent state</span><strong>Infer what changed inside.</strong><small>belief · emotion · goal · trust · agency</small></div><i>ψ<sub>t</sub></i></li>
+          <li><b>03</b><div><span>Event chain</span><strong>Attribute cause and future path.</strong><small>past · conflict · consequence · goal shift</small></div><i>E<sub>t</sub></i></li>
+          <li><b>04</b><div><span>Rubric + halt</span><strong>Judge, diagnose, decide.</strong><small>L1–L6 · evidence · user-interest gate</small></div><i>J<sub>t</sub></i></li>
+        </ol>
+        <div class="instrument-output"><span>trajectory state</span><strong>DEGRADE → RECOVERY CANDIDATE</strong><i></i></div>
+      </div>
     </section>
 
-    <section class="project-sequence" id="architecture" aria-labelledby="architecture-title">
-      <header data-reveal><p class="index-label">Architecture / Evaluation → optimization → world</p><h2 id="architecture-title">One trajectory.<br />Three jobs.</h2></header>
-      <ol class="sequence-list" data-reveal>
-        <li><span>01</span><h3>MarioEval reads the whole interaction.</h3><p>Scene, latent state, and event-chain signals are evaluated through L1–L6 cascaded rubrics and user-interest-aware halting. The result separates style, persona, drift, and agency rather than collapsing the trajectory into one score.</p></li>
-        <li><span>02</span><h3>MarioOpt converts failure into learning signal.</h3><p>Hierarchical Reward Decomposition constructs curriculum-shaped rewards; Experience-Focused Policy Optimization returns to the moment where a trajectory starts to fail and repairs it using faithful user simulators.</p></li>
-        <li><span>03</span><h3>The world preserves consequences.</h3><p>Actions update latent states, future events, trust, and available choices. Evaluation, simulation, and optimization become one persistent environment rather than three disconnected pipelines.</p></li>
-      </ol>
+    <dl class="mario-fact-band" data-reveal>
+      <div><dt>Research support</dt><dd>Thinking Machines Lab</dd></div>
+      <div><dt>Evaluation set</dt><dd>500+ annotated turns</dd></div>
+      <div><dt>Model coverage</dt><dd>Four frontier models</dd></div>
+      <div><dt>Human agreement</dt><dd>92.3–98.8% on L1–L4</dd></div>
+    </dl>
+
+    <section class="mario-thesis dossier-section" aria-labelledby="thesis-title">
+      <header class="section-lead" data-reveal>
+        <p class="index-label">00 / Research thesis</p>
+        <h2 id="thesis-title">Interactive quality is<br />a property of trajectories.</h2>
+        <p>A response can be fluent, in character, and immediately pleasing while quietly weakening trust, abandoning the user’s goal, or closing every productive future path. A single-turn score cannot see that failure because the failure exists in what happens next.</p>
+      </header>
+
+      <div class="deficit-grid" data-reveal>
+        <article><span>01</span><h3>Temporal blindness</h3><p>Static benchmarks discard the state transitions that define a sustained interaction. MarioLM evaluates both the turn and the trajectory it creates.</p></article>
+        <article><span>02</span><h3>Subjective opacity</h3><p>A holistic preference score cannot reveal whether the system failed through persona drift, weak information absorption, state incoherence, or missing agency.</p></article>
+        <article><span>03</span><h3>Evaluation–optimization disconnect</h3><p>A “7/10” is technically a reward but not an actionable learning signal. Optimization needs decomposed, causal, and temporally located evidence.</p></article>
+      </div>
+
+      <blockquote data-reveal>
+        <span>Design condition</span>
+        <p>Evaluation becomes optimization only when its signal is <strong>hierarchically decomposed, causally grounded, and temporally continuous.</strong></p>
+      </blockquote>
     </section>
+
+    <section class="mario-system dossier-section" id="system" aria-labelledby="system-title">
+      <header class="section-lead section-lead-light" data-reveal>
+        <p class="index-label">01 / Four-layer world model</p>
+        <h2 id="system-title">Description first.<br />Judgment second.</h2>
+        <p>The first three layers model what is happening; the fourth decides how good it is and whether the interaction should continue. Keeping description separate from judgment makes the world state reusable under different safety, creative, or domain-specific policies.</p>
+      </header>
+
+      <div class="dependency-chain" data-reveal aria-label="MarioLM layer dependency chain">
+        <article><span>WORLD</span><b>S</b><h3>Scene harness</h3><p>World rules, identities, relationships, objectives, and hard constraints establish what an utterance can mean.</p><small>structured output / static context</small></article>
+        <i aria-hidden="true">→</i>
+        <article><span>MIND</span><b>ψ<sub>t</sub></b><h3>Latent-state harness</h3><p>Turn evidence updates beliefs, emotions, goals, trust, engagement, and other unobserved participant states.</p><small>structured output / dynamic state</small></article>
+        <i aria-hidden="true">→</i>
+        <article><span>CAUSE</span><b>E<sub>t</sub></b><h3>Event-chain harness</h3><p>Past premise, present conflict, and future path connect observable action to psychological motivation and delayed consequence.</p><small>structured output / causal trajectory</small></article>
+        <i aria-hidden="true">→</i>
+        <article><span>VALUE</span><b>J<sub>t</sub></b><h3>Rubric + halt</h3><p>A cascading capability judgment identifies the first broken prerequisite and a value-driven gate protects user interest.</p><small>actionable output / score + decision</small></article>
+      </div>
+
+      <div class="system-notes" data-reveal>
+        <article><span>Why the order is necessary</span><p><strong>State without scene is underdetermined.</strong> “I’m leaving” can signal threat, grief, relief, or strategy depending on the world and relationship.</p></article>
+        <article><span>Why state and events stay separate</span><p><strong>Hidden motivation is not an observed event.</strong> Separation keeps the record auditable while still allowing causal interpretation.</p></article>
+        <article><span>Why the full trajectory matters</span><p><strong>Local quality can create global damage.</strong> Judgment needs the event chain to detect delayed contradiction, drift, and foreclosed futures.</p></article>
+      </div>
+    </section>
+
+    <section class="mario-diagnostics dossier-section" aria-labelledby="diagnostics-title">
+      <header class="section-lead" data-reveal>
+        <p class="index-label">02 / Hierarchical diagnosis</p>
+        <h2 id="diagnostics-title">Six capabilities.<br />One dependency order.</h2>
+        <p>The L1–L6 ladder is not a flat scorecard. It crosses three processing depths—receptive, responsive, generative—with two temporal scopes—local and extended—then evaluates them in prerequisite order.</p>
+      </header>
+
+      <div class="capability-matrix" data-reveal role="table" aria-label="MarioEval L1 to L6 capability matrix">
+        <div class="matrix-corner"><span>Temporal scope ↓</span><span>Processing depth →</span></div>
+        <div class="matrix-head">Receptive / input</div>
+        <div class="matrix-head">Responsive / internal</div>
+        <div class="matrix-head">Generative / output</div>
+        <div class="matrix-side">Local<br /><small>current turn</small></div>
+        <article><b>L1</b><h3>Persona maintenance</h3><p>Does the system remain the right participant?</p></article>
+        <article><b>L2</b><h3>Information absorption</h3><p>Did it actually incorporate the new evidence?</p></article>
+        <article><b>L4</b><h3>Style adaptation</h3><p>Does expression reflect the updated state and context?</p></article>
+        <div class="matrix-side">Extended<br /><small>multiple turns</small></div>
+        <article><b>L3</b><h3>State progression</h3><p>Do internal states evolve plausibly rather than reset?</p></article>
+        <article><b>L5</b><h3>Proactive agency</h3><p>Does the system act on what it has learned?</p></article>
+        <article><b>L6</b><h3>Long-horizon consistency</h3><p>Do identity, goals, and consequences remain coherent?</p></article>
+      </div>
+
+      <div class="cascade-rule" data-reveal>
+        <span>Cascade semantics</span>
+        <div><b>L1</b><i></i><b>L2</b><i></i><b>L3</b><i></i><b>L4</b><i></i><b>L5</b><i></i><b>L6</b></div>
+        <p>A higher-order flourish cannot compensate for a broken prerequisite. The system reports the first meaningful failure boundary, preserving diagnostic value for optimization.</p>
+      </div>
+
+      <div class="diagnostic-console" data-mario-console data-reveal>
+        <header><div><span>Illustrative trace / not an empirical case</span><strong>See how one trajectory becomes a structured diagnosis.</strong></div><small>Select a turn</small></header>
+        <div class="console-body">
+          <nav aria-label="Select illustrative interaction turn">
+            <button type="button" data-turn="0" aria-pressed="true"><span>01</span><strong>New evidence</strong><small>information enters</small></button>
+            <button type="button" data-turn="1" aria-pressed="false"><span>02</span><strong>Local success</strong><small>future path weakens</small></button>
+            <button type="button" data-turn="2" aria-pressed="false"><span>03</span><strong>Recovery</strong><small>trajectory repaired</small></button>
+          </nav>
+          <section aria-live="polite">
+            <div class="console-status"><span id="trace-label">TURN 01 / OBSERVATION</span><strong id="trace-title">The user introduces a constraint the model did not anticipate.</strong></div>
+            <dl>
+              <div><dt>Latent-state update</dt><dd id="trace-state">Goal becomes more specific; uncertainty rises; trust remains stable.</dd></div>
+              <div><dt>Event-chain interpretation</dt><dd id="trace-event">New evidence changes the feasible plan but does not yet create conflict.</dd></div>
+              <div><dt>Future path</dt><dd><span class="path-pill is-maintain" id="trace-path">MAINTAIN</span></dd></div>
+              <div><dt>Capability boundary</dt><dd id="trace-gate">L1 pass · L2 now under test</dd></div>
+            </dl>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="mario-loop dossier-section" aria-labelledby="loop-title">
+      <header class="section-lead section-lead-light" data-reveal>
+        <p class="index-label">03 / MarioEval → MarioOpt</p>
+        <h2 id="loop-title">The trace is both<br />diagnosis and curriculum.</h2>
+        <p>MarioEval emits the structured evidence that MarioOpt needs: which capability failed, at which turn, under which state transition, and toward which future path. Optimization no longer has to infer a learning target from one opaque scalar.</p>
+      </header>
+
+      <div class="optimization-map" data-reveal>
+        <article class="eval-node"><span>01 / Instrument</span><h3>MarioEval</h3><p>Scene, latent state, event chain, L1–L6 rubric, and user-interest halting produce an auditable trajectory trace.</p><ul><li>per-turn capability vector</li><li>evidence-grounded state delta</li><li>future path + first failure boundary</li></ul></article>
+        <div class="signal-bridge"><span>structured trace</span><i>→</i><small>credit assignment</small></div>
+        <article><span>02 / Continuous learning</span><h3>HRD</h3><p><strong>Hierarchical Reward Decomposition with Evidence-Grounded State Reward</strong> converts the cascade into curriculum-shaped, per-turn objectives while protecting prerequisite capabilities.</p><ul><li>decomposed reward channels</li><li>dependency-aware curriculum</li><li>state evidence instead of impression</li></ul></article>
+        <div class="signal-bridge"><span>failure segment</span><i>→</i><small>trajectory recovery</small></div>
+        <article><span>03 / Counterfactual repair</span><h3>EFPO</h3><p><strong>Event-Chain Future Path Optimization</strong> returns to the earliest degrading branch, tests alternative actions, and trains recovery toward advance or maintain paths.</p><ul><li>degrade / collapse mining</li><li>counterfactual branch replay</li><li>long-horizon consequence reward</li></ul></article>
+      </div>
+
+      <div class="simulator-band" data-reveal>
+        <div><span>Inverse-MetaMind duality</span><h3>A faithful user simulator closes the loop.</h3></div>
+        <p>MetaMind infers a person’s latent state from behavior. MarioLM’s user simulator runs the complementary direction: profile and current state condition the next response. This creates controllable counterfactual partners for recovery training while preserving a clear boundary between static profile, revisable state, and momentary activation.</p>
+        <div class="simulator-flow" aria-label="User simulator state flow"><b>profile</b><i>+</i><b>state<sub>t</sub></b><i>+</i><b>activation</b><i>→</i><strong>response<sub>t+1</sub></strong></div>
+      </div>
+    </section>
+
+    <section class="mario-evidence dossier-section" aria-labelledby="evidence-title">
+      <header class="section-lead" data-reveal>
+        <p class="index-label">04 / Preliminary evidence</p>
+        <h2 id="evidence-title">The instrument reveals<br />failures a score conceals.</h2>
+        <p>Across more than 500 annotated turns from four frontier models, the system recovered distinct fingerprints for persona, information uptake, state drift, style, and agency. Human agreement on the more directly observable L1–L4 judgments ranged from 92.3% to 98.8%.</p>
+      </header>
+
+      <div class="evidence-ledger" data-reveal>
+        <article><span>Coverage</span><strong>500+</strong><p>annotated interaction turns</p></article>
+        <article><span>Model sample</span><strong>4</strong><p>frontier systems compared</p></article>
+        <article><span>Agreement</span><strong>92.3–98.8%</strong><p>human agreement on L1–L4</p></article>
+        <article><span>Resolution</span><strong>6 levels</strong><p>local-to-long-horizon capability ladder</p></article>
+      </div>
+
+      <div class="finding-pair" data-reveal>
+        <article>
+          <span>Finding 01 / LCGD</span>
+          <h3>Locally coherent.<br />Globally degenerative.</h3>
+          <p>A model can make a plausible move at every turn while the accumulated trajectory loses goals, agency, trust, or viable futures. LCGD explains why sampling “good responses” is not equivalent to producing a good interactive world.</p>
+          <div class="mini-trajectory" aria-label="Illustration of locally coherent but globally degrading interaction"><b>plausible</b><i></i><b>pleasant</b><i></i><b>drift</b><i></i><b>deadlock</b><i></i><strong>collapse</strong></div>
+        </article>
+        <article>
+          <span>Finding 02 / Hedonic bias</span>
+          <h3>Immediate pleasure can<br />hide future cost.</h3>
+          <p>Human judgment can overweight an enjoyable local response and underweight the path it creates. Separating turn quality from future-path quality makes that bias measurable rather than treating preference as an unquestioned ground truth.</p>
+          <div class="bias-scale"><div><span>local appeal</span><i style="--w:88%"></i></div><div><span>future viability</span><i style="--w:34%"></i></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mario-worlds dossier-section" aria-labelledby="worlds-title">
+      <header class="section-lead section-lead-light" data-reveal>
+        <p class="index-label">05 / Research trajectory</p>
+        <h2 id="worlds-title">Evaluation is the seed<br />of an experiential world.</h2>
+        <p>Interactive role-play is a model problem, not the endpoint. The same architecture transfers wherever an agent must remember a person, update hidden state, act under changing constraints, and remain accountable for delayed consequences.</p>
+      </header>
+
+      <div class="world-horizons" data-reveal>
+        <article><b>NOW</b><span>Evaluation</span><h3>Instrument long-horizon behavior.</h3><p>Diagnose identity, perception, state change, expression, agency, and consistency without compressing them into one preference score.</p></article>
+        <article><b>NEXT</b><span>Optimization</span><h3>Learn from causal traces.</h3><p>Use HRD, EFPO, user simulation, ToM-RL, and multi-turn reinforcement learning to repair the process that created failure.</p></article>
+        <article><b>HORIZON</b><span>Experiential worlds</span><h3>Let consequences persist.</h3><p>Build autonomous environments where relationships, institutions, memories, goals, and physical events co-evolve with every participant’s action.</p></article>
+      </div>
+
+      <div class="application-index" data-reveal>
+        <span>Portability targets</span>
+        <ul><li>digital companions</li><li>game characters</li><li>therapeutic agents</li><li>educational tutors</li><li>negotiation systems</li><li>social simulation</li></ul>
+      </div>
+    </section>
+
+    <section class="mario-boundary dossier-section" aria-labelledby="boundary-title">
+      <div data-reveal>
+        <p class="index-label">06 / Status and boundary</p>
+        <h2 id="boundary-title">A research system<br />under active development.</h2>
+      </div>
+      <div data-reveal>
+        <p>This dossier distinguishes reported preliminary evidence from the extended optimization and world-modeling agenda. The architecture is designed to make future claims falsifiable: each state update needs evidence; each reward needs a capability target; each claimed improvement must survive held-out trajectories and human calibration.</p>
+        <div class="boundary-links"><a class="action action-light" href={projectDocument}>Read the technical memorandum ↗</a><a class="action action-outline" href="mailto:xuanmingdi.zxm@alibaba-inc.com?subject=MarioLM%20research">Discuss MarioLM ↗</a></div>
+      </div>
+    </section>
+
     <SiteFooter />
   </main>
+
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-mario-console]');
+      if (!root) return;
+      const traces = [
+        {
+          label: 'TURN 01 / OBSERVATION',
+          title: 'The user introduces a constraint the model did not anticipate.',
+          state: 'Goal becomes more specific; uncertainty rises; trust remains stable.',
+          event: 'New evidence changes the feasible plan but does not yet create conflict.',
+          path: 'MAINTAIN',
+          pathClass: 'is-maintain',
+          gate: 'L1 pass · L2 now under test'
+        },
+        {
+          label: 'TURN 02 / DIAGNOSIS',
+          title: 'The answer is fluent and pleasant, but it ignores the new constraint.',
+          state: 'The user’s goal is under-modeled; frustration begins to rise beneath a polite surface.',
+          event: 'A locally coherent response preserves style while moving the plan toward deadlock.',
+          path: 'DEGRADE',
+          pathClass: 'is-degrade',
+          gate: 'L1 pass · L2 fail → higher levels gated'
+        },
+        {
+          label: 'TURN 03 / COUNTERFACTUAL',
+          title: 'The system acknowledges the constraint, revises the plan, and restores agency.',
+          state: 'Uncertainty falls; user control and trust recover; the shared objective is explicit.',
+          event: 'A repaired branch reopens viable actions and advances the long-term goal.',
+          path: 'ADVANCE',
+          pathClass: 'is-advance',
+          gate: 'L1–L5 pass · L6 remains longitudinal'
+        }
+      ];
+      const buttons = [...root.querySelectorAll('[data-turn]')];
+      const fields = {
+        label: root.querySelector('#trace-label'),
+        title: root.querySelector('#trace-title'),
+        state: root.querySelector('#trace-state'),
+        event: root.querySelector('#trace-event'),
+        path: root.querySelector('#trace-path'),
+        gate: root.querySelector('#trace-gate')
+      };
+      const select = (index) => {
+        const trace = traces[index];
+        if (!trace) return;
+        buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+        fields.label.textContent = trace.label;
+        fields.title.textContent = trace.title;
+        fields.state.textContent = trace.state;
+        fields.event.textContent = trace.event;
+        fields.path.textContent = trace.path;
+        fields.path.className = `path-pill ${trace.pathClass}`;
+        fields.gate.textContent = trace.gate;
+      };
+      buttons.forEach((button) => button.addEventListener('click', () => select(Number(button.dataset.turn))));
+    })();
+  </script>
 </SiteLayout>
+
+<style>
+  .mario-dossier { background: var(--paper); }
+  .mario-hero { min-height: 100svh; grid-template-columns: minmax(0,1.02fr) minmax(440px,.98fr); gap: clamp(50px,6vw,100px); overflow: hidden; }
+  .mario-hero-copy h1 { max-width: 820px; font-size: clamp(4.25rem,7vw,8.3rem); }
+  .hero-dek { font-size: clamp(.98rem,1.35vw,1.15rem); line-height: 1.72; }
+  .mario-hero-instrument { position: relative; padding: 28px; background: #0b202c; border: 1px solid rgba(255,255,255,.2); box-shadow: 0 38px 90px rgba(0,0,0,.24); }
+  .mario-hero-instrument::before { content: ''; position: absolute; inset: -80px -120px; z-index: -1; background: radial-gradient(circle at 55% 45%,rgba(80,215,200,.16),transparent 54%); }
+  .instrument-meta { padding-bottom: 18px; display: flex; justify-content: space-between; gap: 20px; color: rgba(255,255,255,.42); border-bottom: 1px solid rgba(255,255,255,.14); font-size: .52rem; letter-spacing: .09em; text-transform: uppercase; }
+  .instrument-meta strong { color: var(--signal); font-weight: 760; }
+  .mario-hero-instrument ol { margin: 0; padding: 0; list-style: none; }
+  .mario-hero-instrument li { position: relative; min-height: 112px; padding: 21px 0; display: grid; grid-template-columns: 38px 1fr 54px; gap: 14px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .mario-hero-instrument li:not(:last-child)::after { content: '↓'; position: absolute; z-index: 2; right: 19px; bottom: -8px; color: var(--signal); font-size: .65rem; }
+  .mario-hero-instrument li > b { color: rgba(255,255,255,.3); font: 450 1.15rem/1 var(--serif); }
+  .mario-hero-instrument li div { display: grid; gap: 3px; }
+  .mario-hero-instrument li span { color: var(--signal); font-size: .49rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+  .mario-hero-instrument li strong { font: 440 1.15rem/1.15 var(--serif); }
+  .mario-hero-instrument li small { color: rgba(255,255,255,.38); font-size: .49rem; }
+  .mario-hero-instrument li > i { width: 44px; height: 44px; display: grid; place-items: center; color: var(--night); background: var(--signal); border-radius: 50%; font: 650 .75rem/1 var(--serif); }
+  .instrument-output { margin-top: 22px; padding: 16px 18px; display: grid; grid-template-columns: 1fr auto; gap: 4px 18px; background: var(--signal); color: var(--night); }
+  .instrument-output span { font-size: .46rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+  .instrument-output strong { font-size: .62rem; letter-spacing: .06em; }
+  .instrument-output i { grid-row: 1 / 3; grid-column: 2; width: 10px; height: 10px; align-self: center; background: var(--red); border-radius: 50%; box-shadow: 0 0 0 6px rgba(239,102,95,.2); }
+  .mario-fact-band { margin: 0; padding: 0 max(32px,calc((100vw - 1320px)/2)); display: grid; grid-template-columns: repeat(4,1fr); color: var(--white); background: #0d2231; border-top: 1px solid rgba(255,255,255,.14); }
+  .mario-fact-band div { min-height: 152px; padding: 34px clamp(20px,2.5vw,38px); display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(255,255,255,.14); }
+  .mario-fact-band div:first-child { border-left: 1px solid rgba(255,255,255,.14); }
+  .mario-fact-band dt { color: rgba(255,255,255,.4); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
+  .mario-fact-band dd { margin: 24px 0 0; font: 430 clamp(1.1rem,1.7vw,1.55rem)/1.15 var(--serif); }
+  .dossier-section { padding: clamp(105px,13vw,185px) max(32px,calc((100vw - 1320px)/2)); }
+  .section-lead { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(300px,.55fr); gap: 35px clamp(45px,7vw,105px); align-items: end; }
+  .section-lead .index-label { grid-column: 1 / -1; }
+  .section-lead h2 { max-width: 980px; margin: 0; font: 390 clamp(3.35rem,6vw,6.7rem)/.94 var(--serif); letter-spacing: -.045em; }
+  .section-lead > p:last-child { margin: 0 0 7px; color: var(--muted); }
+  .section-lead-light h2 { color: var(--white); }
+  .section-lead-light > p:last-child { color: rgba(255,255,255,.58); }
+  .section-lead-light .index-label { color: var(--signal); }
+  .deficit-grid { margin-top: 85px; display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--ink); }
+  .deficit-grid article { min-height: 390px; padding: clamp(30px,4vw,55px); display: flex; flex-direction: column; }
+  .deficit-grid article + article { border-left: 1px solid var(--ink); }
+  .deficit-grid span { color: var(--blue); font: 460 1.4rem/1 var(--serif); }
+  .deficit-grid h3 { margin: auto 0 18px; font: 430 clamp(1.7rem,2.7vw,2.7rem)/1 var(--serif); }
+  .deficit-grid p { margin: 0; color: var(--muted); }
+  .mario-thesis blockquote { margin: 0; padding: clamp(42px,6vw,80px); color: var(--white); background: var(--blue); }
+  .mario-thesis blockquote span { font-size: .58rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+  .mario-thesis blockquote p { max-width: 1050px; margin: 48px 0 0; font: 390 clamp(2.4rem,4.7vw,5rem)/1 var(--serif); letter-spacing: -.035em; }
+  .mario-system, .mario-loop, .mario-worlds { color: var(--white); background: var(--night); }
+  .dependency-chain { margin-top: 90px; display: grid; grid-template-columns: repeat(3,minmax(10px,28px) minmax(0,1fr)) minmax(0,1fr); align-items: stretch; }
+  .dependency-chain > i { align-self: center; color: var(--signal); font: 500 1.5rem/1 var(--serif); text-align: center; }
+  .dependency-chain article { min-height: 380px; padding: 28px; display: flex; flex-direction: column; background: #0c2431; border: 1px solid rgba(255,255,255,.15); }
+  .dependency-chain article > span { color: var(--signal); font-size: .5rem; font-weight: 780; letter-spacing: .1em; }
+  .dependency-chain article > b { margin: 34px 0 auto; color: rgba(255,255,255,.16); font: 420 4.4rem/1 var(--serif); }
+  .dependency-chain h3 { margin: 30px 0 14px; font: 430 1.7rem/1 var(--serif); }
+  .dependency-chain p { margin: 0; color: rgba(255,255,255,.52); font-size: .72rem; }
+  .dependency-chain small { margin-top: 24px; padding-top: 15px; color: rgba(255,255,255,.32); border-top: 1px solid rgba(255,255,255,.12); font-size: .47rem; letter-spacing: .05em; text-transform: uppercase; }
+  .system-notes { margin-top: 55px; display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid rgba(255,255,255,.2); }
+  .system-notes article { padding: 32px 30px 0 0; }
+  .system-notes article + article { padding-left: 30px; border-left: 1px solid rgba(255,255,255,.15); }
+  .system-notes span { color: var(--signal); font-size: .52rem; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; }
+  .system-notes p { color: rgba(255,255,255,.5); }
+  .system-notes strong { color: var(--white); }
+  .capability-matrix { margin-top: 90px; display: grid; grid-template-columns: 150px repeat(3,1fr); border: 1px solid var(--ink); }
+  .matrix-corner, .matrix-head, .matrix-side, .capability-matrix article { min-width: 0; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .matrix-corner { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 38px; color: var(--muted); font-size: .45rem; letter-spacing: .06em; text-transform: uppercase; }
+  .matrix-corner span:last-child { text-align: right; }
+  .matrix-head { padding: 22px; display: grid; place-items: center; font-size: .57rem; font-weight: 760; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+  .matrix-side { padding: 28px 20px; display: grid; place-content: center; font: 440 1.25rem/1.1 var(--serif); text-align: center; }
+  .matrix-side small { margin-top: 6px; color: var(--muted); font: 700 .45rem/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; }
+  .capability-matrix article { min-height: 230px; padding: 27px; background: rgba(255,255,255,.22); }
+  .capability-matrix article:nth-last-child(-n+4), .matrix-side:nth-last-child(4) { border-bottom: 0; }
+  .capability-matrix > *:nth-child(4n) { border-right: 0; }
+  .capability-matrix article b { color: var(--blue); font: 470 2rem/1 var(--serif); }
+  .capability-matrix article h3 { margin: 50px 0 10px; font: 430 1.55rem/1 var(--serif); }
+  .capability-matrix article p { margin: 0; color: var(--muted); font-size: .65rem; }
+  .cascade-rule { padding: 44px; color: var(--white); background: var(--blue); }
+  .cascade-rule > span { font-size: .52rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .cascade-rule > div { margin: 36px 0 30px; display: grid; grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto; align-items: center; gap: 10px; }
+  .cascade-rule b { width: 42px; height: 42px; display: grid; place-items: center; color: var(--blue); background: #fff; border-radius: 50%; font: 700 .65rem/1 var(--sans); }
+  .cascade-rule i { height: 1px; background: rgba(255,255,255,.45); }
+  .cascade-rule p { max-width: 820px; margin: 0; color: rgba(255,255,255,.7); }
+  .diagnostic-console { margin-top: 70px; color: var(--white); background: #071c24; border: 1px solid #173e48; box-shadow: 0 35px 80px rgba(7,20,30,.13); }
+  .diagnostic-console > header { padding: 28px 32px; display: flex; align-items: end; justify-content: space-between; gap: 30px; border-bottom: 1px solid rgba(255,255,255,.15); }
+  .diagnostic-console header div { display: grid; gap: 7px; }
+  .diagnostic-console header span, .diagnostic-console header small { color: #78949a; font-size: .5rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+  .diagnostic-console header strong { font: 430 clamp(1.5rem,2.5vw,2.3rem)/1 var(--serif); }
+  .console-body { display: grid; grid-template-columns: 280px 1fr; }
+  .console-body nav { display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,.15); }
+  .console-body button { flex: 1; min-height: 128px; padding: 24px; display: grid; grid-template-columns: 36px 1fr; gap: 4px 10px; text-align: left; color: rgba(255,255,255,.5); background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.12); cursor: pointer; }
+  .console-body button:last-child { border-bottom: 0; }
+  .console-body button span { grid-row: 1 / 3; color: var(--signal); font: 450 1.3rem/1 var(--serif); }
+  .console-body button strong { font-size: .67rem; }
+  .console-body button small { color: inherit; font-size: .47rem; letter-spacing: .05em; text-transform: uppercase; }
+  .console-body button[aria-pressed="true"] { color: var(--white); background: rgba(80,215,200,.08); box-shadow: inset 3px 0 var(--signal); }
+  .console-body > section { padding: clamp(30px,5vw,64px); }
+  .console-status span { color: var(--signal); font-size: .49rem; font-weight: 780; letter-spacing: .09em; }
+  .console-status strong { max-width: 750px; margin-top: 18px; display: block; font: 430 clamp(1.8rem,3.5vw,3.4rem)/1 var(--serif); }
+  .console-body dl { margin: 48px 0 0; border-top: 1px solid rgba(255,255,255,.17); }
+  .console-body dl div { padding: 17px 0; display: grid; grid-template-columns: 180px 1fr; gap: 25px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .console-body dt { color: #78949a; font-size: .52rem; text-transform: uppercase; }
+  .console-body dd { margin: 0; color: rgba(255,255,255,.7); font-size: .66rem; }
+  .path-pill { width: fit-content; padding: 4px 9px; color: var(--night); background: var(--amber); font-size: .48rem; font-weight: 820; letter-spacing: .08em; }
+  .path-pill.is-degrade { color: #fff; background: var(--red); }
+  .path-pill.is-advance { background: var(--signal); }
+  .optimization-map { margin-top: 90px; display: grid; grid-template-columns: 1fr 90px 1fr 90px 1fr; }
+  .optimization-map article { min-height: 510px; padding: clamp(28px,3vw,42px); display: flex; flex-direction: column; background: #0c2431; border: 1px solid rgba(255,255,255,.16); }
+  .optimization-map article > span { color: var(--signal); font-size: .5rem; font-weight: 780; letter-spacing: .08em; }
+  .optimization-map h3 { margin: 60px 0 20px; font: 420 clamp(2.6rem,4vw,4.4rem)/.9 var(--serif); }
+  .optimization-map p { color: rgba(255,255,255,.55); }
+  .optimization-map p strong { color: var(--white); font-weight: 680; }
+  .optimization-map ul { margin: auto 0 0; padding: 20px 0 0; list-style: none; border-top: 1px solid rgba(255,255,255,.14); }
+  .optimization-map li { padding: 5px 0; color: rgba(255,255,255,.38); font-size: .52rem; letter-spacing: .04em; text-transform: uppercase; }
+  .signal-bridge { align-self: center; display: grid; justify-items: center; gap: 12px; color: rgba(255,255,255,.34); font-size: .45rem; letter-spacing: .06em; text-align: center; text-transform: uppercase; }
+  .signal-bridge i { color: var(--signal); font: 500 2rem/1 var(--serif); }
+  .signal-bridge small { color: rgba(255,255,255,.3); }
+  .simulator-band { margin-top: 45px; padding: clamp(35px,5vw,65px); display: grid; grid-template-columns: .85fr 1.3fr; gap: 40px 70px; color: var(--night); background: var(--signal); }
+  .simulator-band span { font-size: .52rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .simulator-band h3 { margin: 45px 0 0; font: 420 clamp(2rem,3.6vw,3.8rem)/.98 var(--serif); }
+  .simulator-band > p { margin: 0; color: rgba(7,20,30,.67); }
+  .simulator-flow { grid-column: 1 / -1; padding-top: 28px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(7,20,30,.25); }
+  .simulator-flow b, .simulator-flow strong { padding: 9px 13px; border: 1px solid rgba(7,20,30,.4); font-size: .58rem; letter-spacing: .04em; text-transform: uppercase; }
+  .simulator-flow strong { color: var(--white); background: var(--night); border-color: var(--night); }
+  .simulator-flow i { font-style: normal; }
+  .evidence-ledger { margin-top: 80px; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .evidence-ledger article { min-height: 240px; padding: 35px 28px; display: flex; flex-direction: column; }
+  .evidence-ledger article + article { border-left: 1px solid var(--line); }
+  .evidence-ledger span { color: var(--blue); font-size: .51rem; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
+  .evidence-ledger strong { margin: auto 0 10px; font: 430 clamp(2rem,3.5vw,3.5rem)/1 var(--serif); }
+  .evidence-ledger p { margin: 0; color: var(--muted); font-size: .6rem; }
+  .finding-pair { margin-top: 65px; display: grid; grid-template-columns: 1fr 1fr; }
+  .finding-pair > article { min-height: 650px; padding: clamp(38px,6vw,78px); display: flex; flex-direction: column; color: var(--white); background: var(--night); }
+  .finding-pair > article + article { color: var(--night); background: var(--signal); }
+  .finding-pair > article > span { color: var(--signal); font-size: .53rem; font-weight: 780; letter-spacing: .09em; text-transform: uppercase; }
+  .finding-pair > article + article > span { color: var(--night); }
+  .finding-pair h3 { margin: 75px 0 25px; font: 410 clamp(2.4rem,4.2vw,4.6rem)/.95 var(--serif); }
+  .finding-pair p { color: rgba(255,255,255,.56); }
+  .finding-pair > article + article p { color: rgba(7,20,30,.65); }
+  .mini-trajectory { margin-top: auto; padding-top: 35px; display: grid; grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto; gap: 8px; align-items: center; border-top: 1px solid rgba(255,255,255,.18); }
+  .mini-trajectory b, .mini-trajectory strong { font-size: .43rem; letter-spacing: .05em; text-transform: uppercase; }
+  .mini-trajectory i { height: 1px; background: rgba(255,255,255,.25); }
+  .mini-trajectory strong { color: var(--red); }
+  .bias-scale { margin-top: auto; padding-top: 34px; display: grid; gap: 18px; border-top: 1px solid rgba(7,20,30,.22); }
+  .bias-scale div { display: grid; grid-template-columns: 110px 1fr; gap: 15px; align-items: center; }
+  .bias-scale span { font-size: .48rem; font-weight: 760; text-transform: uppercase; }
+  .bias-scale i { height: 10px; display: block; background: linear-gradient(to right,var(--night) var(--w),rgba(7,20,30,.15) var(--w)); }
+  .world-horizons { margin-top: 90px; display: grid; grid-template-columns: repeat(3,1fr); }
+  .world-horizons article { min-height: 520px; padding: clamp(32px,4vw,52px); display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.18); }
+  .world-horizons article + article { border-left: 0; }
+  .world-horizons b { color: var(--signal); font: 430 2.2rem/1 var(--serif); }
+  .world-horizons span { margin-top: 14px; color: rgba(255,255,255,.4); font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+  .world-horizons h3 { margin: auto 0 22px; font: 420 clamp(2rem,3vw,3.2rem)/.98 var(--serif); }
+  .world-horizons p { margin: 0; color: rgba(255,255,255,.52); }
+  .application-index { padding: 33px; display: grid; grid-template-columns: 180px 1fr; gap: 30px; align-items: center; color: var(--night); background: var(--signal); }
+  .application-index > span { font-size: .53rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  .application-index ul { margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+  .application-index li { padding: 7px 11px; border: 1px solid rgba(7,20,30,.35); font-size: .52rem; font-weight: 720; text-transform: uppercase; }
+  .mario-boundary { display: grid; grid-template-columns: 1fr .82fr; gap: clamp(55px,9vw,140px); color: var(--white); background: var(--blue); }
+  .mario-boundary .index-label { color: var(--white); opacity: .65; }
+  .mario-boundary h2 { margin: 35px 0 0; font: 390 clamp(3.2rem,5.8vw,6.2rem)/.93 var(--serif); letter-spacing: -.045em; }
+  .mario-boundary > div:last-child { align-self: end; }
+  .mario-boundary > div:last-child > p { margin: 0; color: rgba(255,255,255,.68); }
+  .boundary-links { margin-top: 35px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+  @media (max-width: 1080px) {
+    .mario-hero { grid-template-columns: 1fr; }
+    .mario-hero-instrument { max-width: 760px; }
+    .dependency-chain { grid-template-columns: 1fr; gap: 0; }
+    .dependency-chain > i { padding: 8px 0; transform: rotate(90deg); }
+    .dependency-chain article { min-height: 320px; }
+    .optimization-map { grid-template-columns: 1fr; }
+    .signal-bridge { padding: 16px; }
+    .signal-bridge i { transform: rotate(90deg); }
+    .optimization-map article { min-height: 430px; }
+  }
+  @media (max-width: 820px) {
+    .mario-fact-band { padding: 0 18px; grid-template-columns: 1fr 1fr; }
+    .mario-fact-band div:nth-child(3) { border-left: 1px solid rgba(255,255,255,.14); }
+    .dossier-section { padding-right: 18px; padding-left: 18px; }
+    .section-lead { grid-template-columns: 1fr; }
+    .deficit-grid, .system-notes, .evidence-ledger, .finding-pair, .world-horizons, .mario-boundary { grid-template-columns: 1fr; }
+    .deficit-grid article + article, .world-horizons article + article { border-top: 1px solid var(--ink); border-left: 0; }
+    .world-horizons article + article { border-top-color: rgba(255,255,255,.18); border-left: 1px solid rgba(255,255,255,.18); }
+    .system-notes article + article { padding-left: 0; border-left: 0; }
+    .capability-matrix { grid-template-columns: 95px repeat(3,minmax(170px,1fr)); overflow-x: auto; }
+    .capability-matrix article { min-height: 245px; padding: 20px; }
+    .console-body { grid-template-columns: 1fr; }
+    .console-body nav { display: grid; grid-template-columns: repeat(3,1fr); border-right: 0; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .console-body button { min-height: 120px; grid-template-columns: 1fr; border-right: 1px solid rgba(255,255,255,.12); border-bottom: 0; }
+    .console-body button span { grid-row: auto; }
+    .console-body button[aria-pressed="true"] { box-shadow: inset 0 -3px var(--signal); }
+    .simulator-band { grid-template-columns: 1fr; }
+    .simulator-flow { grid-column: 1; }
+    .evidence-ledger article + article { border-top: 1px solid var(--line); border-left: 0; }
+    .finding-pair > article { min-height: 560px; }
+    .application-index { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .mario-hero-instrument { padding: 19px; }
+    .mario-hero-instrument li { grid-template-columns: 30px 1fr 40px; }
+    .mario-hero-instrument li > i { width: 38px; height: 38px; }
+    .mario-fact-band { grid-template-columns: 1fr; }
+    .mario-fact-band div { min-height: 125px; border-left: 1px solid rgba(255,255,255,.14); }
+    .deficit-grid article { min-height: 330px; }
+    .cascade-rule { padding: 32px 22px; overflow-x: auto; }
+    .cascade-rule > div { min-width: 590px; }
+    .diagnostic-console > header { align-items: start; flex-direction: column; }
+    .console-body nav { grid-template-columns: 1fr; }
+    .console-body button { min-height: 92px; grid-template-columns: 34px 1fr; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .console-body button span { grid-row: 1 / 3; }
+    .console-body dl div { grid-template-columns: 1fr; gap: 6px; }
+    .mini-trajectory { grid-template-columns: 1fr; }
+    .mini-trajectory i { width: 1px; height: 18px; }
+    .mario-boundary { gap: 60px; }
+  }
+</style>

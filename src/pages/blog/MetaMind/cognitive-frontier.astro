@@ -18,7 +18,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'Beyond MetaMind: From Cognitive Scaffolds to Evolvable Capability',
-  description: 'A testable research agenda for cognitive architecture, agent harnesses, self-evolvement, cognitive world models, and super-world games.',
+  description: 'A testable research agenda for cognitive architecture, agent harnesses, self-evolution, cognitive world models, and super-world games.',
   image: new URL('/assets/meta/og-metamind-cognitive.png', site).href,
   datePublished: '2026-07-13',
   dateModified: '2026-07-16',
@@ -89,7 +89,7 @@ const articleSchema = {
 
   <h3>Patterns may become the next token</h3>
 
-  <p>A token is a local prediction unit: what symbol should follow? A cognitive pattern is an operational prediction unit: <em>what way of thinking should be invoked now?</em> MetaMind's infer → constrain → validate pattern can create a from-zero capability in real social tasks without changing the backbone. Frontier laboratories likewise train reasoning models to learn productive chains of thought and multi-step trajectories; OpenAI describes both <a href="https://openai.com/index/learning-to-reason-with-llms/">reinforcement-learned reasoning</a> and end-to-end training for <a href="https://openai.com/index/introducing-deep-research/">planning, backtracking, and tool use</a>.</p>
+  <p>A token is a local prediction unit: what symbol should follow? A cognitive pattern is an operational prediction unit: <em>what way of thinking should be invoked now?</em> MetaMind's infer → constrain → validate pattern can create a from-zero capability in real social tasks without changing the backbone. Frontier laboratories likewise train systems around productive reasoning and multi-step trajectories: OpenAI's 2025 <a href="https://openai.com/index/introducing-o3-and-o4-mini/">o3 and o4-mini</a> combine advanced reasoning with agentic tool use, while <a href="https://openai.com/index/introducing-deep-research/">deep research</a> is trained end to end for planning, backtracking, and information seeking.</p>
 
   <p>My hypothesis is that patterns could become the token of the next AI era. Instead of predicting only the next local symbol, a model would maintain a distribution over candidate methodologies—retrieve, decompose, simulate, falsify, negotiate, reflect—and select or compose the pattern most likely to transform the current state productively. Tokens express an answer; patterns organize the process that makes a new answer possible.</p>
 
@@ -116,11 +116,13 @@ const articleSchema = {
 
   <p>For me, this makes human alignment a cognitive design problem. AI learns from human-generated worlds and can learn to reason about human minds; <a href="https://arxiv.org/abs/2505.18943">MetaMind</a> provides evidence that this inference can be structured and improved. An aligned general intelligence should internalize human cognitive architecture, infer real intent rather than surface preference, form stable memory and dynamic adaptation across long interaction, navigate relationships and value conflict, respect ethical boundaries, make trustworthy decisions under uncertainty, and monitor, correct, and constrain its own reasoning. The system ultimately returns to human society and human decision—not merely to the next benchmark.</p>
 
-  <h3>Self-play becomes self-evolvement</h3>
+  <h3>When self-play becomes self-evolution</h3>
 
-  <p>“An agent models another agent who is simultaneously modeling it” does not require an infinite hall of mirrors. It means reciprocal belief updating. Agent A predicts how B will interpret an action; B responds from its own model of A; A compares the observed response with its prediction and revises its state. The scientific value comes from that prediction error, not from role-play itself.</p>
+  <p>Self-play is an experience generator, not an evolution mechanism. Two agents can produce an unlimited transcript while leaving every model weight, skill, memory rule, and policy unchanged. The threshold is crossed only when interaction exposes a failure, a learning operator changes a persistent component, and controlled retesting shows that the change improves later behavior.</p>
 
-  <p>Self-evolvement therefore needs more than agents talking to copies of themselves. It needs an environment with consequences, multiple interaction modes, persistent state, an explicit learning operator, and controlled evidence that the update changed future behavior. Recent work on <a href="https://arxiv.org/abs/2507.21046">self-evolving agents</a> organizes the field around what, when, and how an agent evolves; experience-driven approaches add exploration, long-term memory, and skill abstraction. The framework below turns those ingredients into a causal program for cognitive and social evolution.</p>
+  <p>Social interaction supplies a distinctive source of error for that loop. An agent must predict not only an outcome, but how another participant will interpret its action and respond. This is where the phrase <strong>“an agent models another agent who is simultaneously modeling it”</strong> becomes useful. It does not imply infinite regress. Agent A predicts B’s interpretation; B acts from its own model of A; the mismatch between prediction and response reveals a blind spot in A’s belief, policy, or relational state. Reciprocal modeling is therefore a candidate mechanism for turning self-play into structured social learning—not a synonym for self-evolution itself.</p>
+
+  <p>A credible self-evolution loop still needs an environment with consequences, persistent state, an explicit update operator, and an evidence gate. In verifiable domains, 2025 systems such as <a href="https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/">AlphaEvolve</a> and the <a href="https://arxiv.org/abs/2505.22954">Darwin Gödel Machine</a> demonstrate evaluator-gated evolutionary search; 2026 <a href="https://arxiv.org/abs/2603.19461">Hyperagents</a> makes the task agent and self-modifying meta-agent jointly editable. Social cognition is harder because there is no deterministic compiler for trust, care, norm conflict, or autonomy. Its evaluator must combine causal outcome, human calibration, uncertainty, and long-horizon consequence. The framework below turns those requirements into a testable program.</p>
 
   <CognitiveEvolutionLoop />
 
@@ -150,7 +152,7 @@ const articleSchema = {
   <p class="section-kicker">05 / Worlds</p>
   <h2 id="worlds">A world model must predict<br />minds as well as matter.</h2>
 
-  <p>World-model research has made physical consistency a central objective: geometry, motion, contact, action-conditioned video, and the future state of an environment. Programs such as <a href="https://arxiv.org/abs/2501.03575">Cosmos world foundation models for Physical AI</a> make that emphasis explicit. This is indispensable—but incomplete. Humans do not act from physics alone. We act from beliefs about what is possible, desires about what is valuable, norms about what is acceptable, and predictions about how other minds will respond.</p>
+  <p>World-model research has made physical consistency a central objective: geometry, motion, contact, action-conditioned video, and the future state of an environment. Google DeepMind's 2025 <a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">Genie 3</a> can generate interactive worlds in real time and sustain visual consistency for minutes, while explicitly identifying complex multi-agent interaction as an open challenge. This progress is indispensable—but incomplete. Humans do not act from physics alone. We act from beliefs about what is possible, desires about what is valuable, norms about what is acceptable, and predictions about how other minds will respond.</p>
 
   <p>A physically faithful simulator can predict where a chair moves when pushed. A cognitive causal world model must also predict why a person refuses to sit, how trust changes after pressure, whether a promise alters future cooperation, and which action becomes available when a belief changes. The missing state is not another pixel. It is the latent cognitive cause of action.</p>
 
@@ -175,7 +177,7 @@ const articleSchema = {
 
   <SuperWorldContinuum />
 
-  <p>The concept has three horizons. In the past, agent worlds became data engines and scientific tools for studying emergent behavior—work such as <a href="https://arxiv.org/abs/2304.03442">Generative Agents</a> and <a href="https://arxiv.org/abs/2502.08691">AgentSociety</a> makes that possibility concrete. In the present, closed feedback systems can compare simulated people with real interaction and improve the causal model of humanity. In the future, evolving worlds may search for social knowledge outside current human cognition: new institutions, cooperation mechanisms, educational forms, collective memories, and civilizations that can be examined before they are attempted.</p>
+  <p>The concept has three horizons. In the past, agent worlds became data engines and scientific instruments for emergent behavior: 2025 <a href="https://arxiv.org/abs/2502.08691">AgentSociety</a> simulates more than 10,000 agents and five million interactions, while a 2025 <a href="https://www.science.org/doi/10.1126/sciadv.adu9368">Science Advances study</a> shows decentralized LLM populations forming shared conventions and collective bias. In the present, closed feedback systems can compare simulated people with real interaction and improve the causal model of humanity. In the future, evolving worlds may search for social knowledge outside current human cognition: new institutions, cooperation mechanisms, educational forms, collective memories, and civilizations that can be examined before they are attempted.</p>
 
   <div class="margin-note">
     <strong>Intellectual lineage</strong>
@@ -191,7 +193,7 @@ const articleSchema = {
     <li><span>01</span><strong>If structured scaffolds stop helping under leakage-controlled, cross-cultural, multimodal tests, their claimed generality is false.</strong></li>
     <li><span>02</span><strong>If pattern selection cannot outperform equivalent extra test-time compute, “patterns as the next token” adds vocabulary rather than capability.</strong></li>
     <li><span>03</span><strong>If an external cognitive process cannot be distilled without losing calibration and safety, native cognition does not follow from visible cognition.</strong></li>
-    <li><span>04</span><strong>If reciprocal modeling adds no held-out trajectory diversity or blind-spot discovery under ablation, it is theatrical self-play rather than self-evolvement.</strong></li>
+    <li><span>04</span><strong>If reciprocal modeling adds no held-out trajectory diversity or blind-spot discovery under ablation, it is theatrical self-play rather than self-evolution.</strong></li>
     <li><span>05</span><strong>If simulated mental states fail to predict real human responses under intervention, the cognitive world model is a narrative engine rather than a causal model.</strong></li>
     <li><span>06</span><strong>If personalization improves benchmark utility while reducing autonomy, privacy, or contestability, the alignment objective is wrong.</strong></li>
     <li><span>07</span><strong>If super-world discoveries do not transfer to measurable human knowledge or experience, the universe is spectacle—not a research or product platform.</strong></li>

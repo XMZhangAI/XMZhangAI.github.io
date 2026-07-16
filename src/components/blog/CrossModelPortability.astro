@@ -16,7 +16,7 @@ const x = (value: number) => `${Math.max(0, Math.min(100, ((value - 30) / 65) * 
 <figure class="essay-figure native-figure full-bleed portability-visual">
   <div class="chart-shell">
     <header class="visual-head">
-      <div><span>ToMBench / average accuracy</span><strong>One architecture. Fourteen different backbones.</strong></div>
+      <div><span>14 paired comparisons / 16+ models evaluated overall</span><strong>One architecture. Fourteen directly comparable backbones.</strong></div>
       <div class="legend"><i class="base"></i>Base <i class="meta"></i>+ MetaMind</div>
     </header>
 
@@ -55,9 +55,9 @@ const x = (value: number) => `${Math.max(0, Math.min(100, ((value - 30) / 65) * 
       </div>
     </section>
 
-    <footer><span>Scale begins at 30 to reveal within-model change.</span><strong>14 / 14 reported comparisons improve</strong></footer>
+    <footer><span>Figure 2 + Table 6 · scale begins at 30 to reveal within-model change.</span><strong>14 / 14 paired comparisons improve</strong></footer>
   </div>
-  <figcaption><strong>Cross-model portability.</strong> MetaMind improves all 14 reported backbone comparisons. Gains narrow as the unassisted model approaches the benchmark ceiling—yet remain positive for o1 (+1.7) and o3 (+1.9)—which separates a persistent systems effect from a result tied to one model family.</figcaption>
+  <figcaption><strong>Cross-model portability.</strong> The complete study evaluates more than 16 models; this figure shows the 14 with directly paired ToMBench values. Every paired comparison improves. Gains narrow as the unassisted model approaches the benchmark ceiling—yet remain positive for o1 (+1.7) and o3 (+1.9)—which separates a persistent systems effect from a result tied to one model family.</figcaption>
 </figure>
 
 <style>

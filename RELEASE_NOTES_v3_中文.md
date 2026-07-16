@@ -16,7 +16,7 @@
 
 - 重制主页分享卡：加入本人肖像、研究主轴、Qwen 身份及 NeurIPS/ACL/ICLR 证据。
 - 重制 MetaMind 专题卡：删除 “two essays”，改为 `Technical contribution + cognitive frontier`。
-- 明确展示 `NeurIPS 2025 Spotlight`、`16+ model backbones`、`+35.7% real social scenarios` 与三阶段系统。
+- 明确展示 `NeurIPS 2025 Spotlight`、`16+ models evaluated / 14 paired comparisons`、`+35.7% real social scenarios` 与三阶段系统。
 - 为技术稿和认知稿分别制作独立分享卡。
 - 补齐 Open Graph、Twitter/X、图片尺寸/格式/alt、article time 与 Schema.org。
 

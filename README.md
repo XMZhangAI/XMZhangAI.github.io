@@ -32,7 +32,7 @@ npm run preview:dist
 - Semantic HTML and progressive vanilla TypeScript interaction
 - No service worker and no cache-first runtime
 - GitHub Actions deployment to Pages
-- Analytics disabled by default
+- Analytics optional in local development; production workflow requires a healthy collector
 
 ## Content routes
 
@@ -41,7 +41,7 @@ npm run preview:dist
 - `/notes/` — field-note index
 - `/blog/MetaMind/` — MetaMind dossier
 - `/blog/MetaMind/technical-contribution/` — evidence-led technical account
-- `/blog/MetaMind/cognitive-frontier/` — cognitive architecture, self-evolvement, cognitive worlds, and super-world games
+- `/blog/MetaMind/cognitive-frontier/` — cognitive architecture, self-evolution, cognitive worlds, and super-world games
 - `/connect/` — private CV and opportunity contact route
 - `/privacy/` — privacy configuration
 
@@ -53,6 +53,8 @@ npm run preview:dist
 
 - Domain, Stanford redirect, and social cards: [DOMAIN_AND_SHARING_中文.md](DOMAIN_AND_SHARING_中文.md)
 - First-party analytics dashboard: [ANALYTICS_BACKEND_中文.md](ANALYTICS_BACKEND_中文.md)
+- GitHub Desktop recovery and Pages deployment: [DEPLOYMENT_中文.md](DEPLOYMENT_中文.md)
+- Final factual, visual, and infrastructure update: [FINAL_UPDATE_2026-07-16_中文.md](FINAL_UPDATE_2026-07-16_中文.md)
 - What changed in this release: [RELEASE_NOTES_v3_中文.md](RELEASE_NOTES_v3_中文.md)
 - CV is intentionally absent from the public build; the interface routes requests to `/connect/`.
 

@@ -1,92 +1,146 @@
-# 域名、Stanford 定向与外部缩略图：完整设置指南
+# 从零购买域名、接入 GitHub Pages、保留 Stanford 导航与分享预览
 
-## 1. 域名结论
+## 0. 当前假设：你还没有购买任何域名
 
-域名有明显优化空间。`xmzhangai.github.io` 适合作为稳定的 GitHub Pages 基础地址，但不应长期承担主要品牌入口。
+下面从注册商账号、查询、付款开始，不预设你已经持有域名。购买前不需要改代码，也不要先把一个尚未属于你的域名填入 GitHub。
 
 推荐优先级：
 
-1. **`xuanming.ai`**：首选。最短、最易记，适合研究品牌、演讲、论文署名和长期对外传播。
-2. **`xmzhang.ai`**：次选。与 GitHub 用户名 `XMZhangAI`、Stanford 路径 `zhangxm` 的识别连续性最好，但口头传播略弱。
-3. **`xuanmingzhang.ai`**：最明确但偏长，可作为防御性域名或首选不可用时的备选。
-4. **`zhangxm.ai`**：适合防御性注册并跳转，不建议作为公众主域名。
+1. `xuanming.ai`：最短、最自然，适合研究品牌、演讲与长期传播。
+2. `xmzhang.ai`：与 GitHub 用户名及 Stanford 路径的识别连续性最好。
+3. `xuanmingzhang.ai`：身份最明确，但偏长。
+4. `zhangxm.ai`：适合防御性注册并跳转，不建议作为主入口。
 
-不要使用 `xuanmingzhang.com`：截至本次核查，它已经由另一位同名研究者使用，容易造成身份混淆。
+域名库存与价格实时变化。文档中的名称是品牌建议，不代表当前一定可购买；必须以付款前的实时搜索结果为准。
 
-域名是否可购买会实时变化。最终购买前必须在 Cloudflare Registrar、Namecheap、Porkbun 等注册商页面再次确认。
+## 1. 购买域名：逐屏操作
 
-## 2. 推荐的最终入口结构
+推荐使用 Cloudflare Registrar：它已经支持 `.ai`，按注册局与 ICANN 成本定价，不额外加价，并直接整合 DNS、DNSSEC 与 SSL。若你更习惯 Namecheap 或 Porkbun，也可以购买后把 DNS 托管到 Cloudflare。
+
+### 第 1 步：创建并保护 Cloudflare 账号
+
+1. 打开 <https://dash.cloudflare.com/sign-up>。
+2. 使用长期可控的个人邮箱注册，不要使用将来可能失效的学校或公司邮箱。
+3. 验证邮箱。
+4. 右上角头像 → **My Profile → Authentication**。
+5. 开启双因素认证；优先使用验证器或安全密钥。
+6. 保存恢复代码到密码管理器。
+
+### 第 2 步：搜索候选域名
+
+1. Cloudflare Dashboard → **Domain Registration → Register Domains**。
+2. 依次搜索：
+
+   ```text
+   xuanming.ai
+   xmzhang.ai
+   xuanmingzhang.ai
+   zhangxm.ai
+   ```
+
+3. 记录每个可购域名的首次注册总价、注册年限、续费价。
+4. `.ai` 的付款年限可能由注册局规则决定；以结算页为准。
+5. 不要为了“看起来接近”购买带连字符、数字或难以口述的替代品。
+
+### 第 3 步：购买
+
+1. 若 `xuanming.ai` 可用且续费成本可接受，优先选择它。
+2. 添加到购物车。
+3. 开启 **Auto-renew**。
+4. 确认注册联系人信息准确。
+5. 完成付款。
+6. 在 **Manage Domains** 中确认状态为 Active。
+7. 立即启用 DNSSEC（若控制台未自动启用）。
+
+购买后先记下最终域名。下文用 `xuanming.ai` 举例；如果你购买的是其他域名，将所有 `xuanming.ai` 替换为实际域名。
+
+## 2. 购买后先在 GitHub 验证域名
+
+GitHub 官方建议先验证所有权，再配置 Pages 与 DNS，以降低域名接管风险。
+
+1. GitHub 右上角头像 → **Settings**。
+2. 左侧 **Pages**。
+3. **Add a domain**，输入 `xuanming.ai`。
+4. GitHub 会给出一个 TXT 记录名称和值。
+5. Cloudflare → 选择 `xuanming.ai` → **DNS → Records → Add record**。
+6. Type 选 `TXT`，Name 与 Content 精确粘贴 GitHub 提供的值。
+7. 保存，回到 GitHub 点击 **Verify**。
+8. 验证通过后不要删除该 TXT 记录。
+
+## 3. 把 GitHub Pages 设为自定义域名
+
+1. 打开 <https://github.com/XMZhangAI/XMZhangAI.github.io/settings/pages>。
+2. `Build and deployment → Source` 选择 **GitHub Actions**。
+3. `Custom domain` 输入 `xuanming.ai`，点击 **Save**。
+4. 此时 HTTPS 可能暂时不可选，先继续配置 DNS。
+
+注意：本项目使用自定义 GitHub Actions 工作流发布。GitHub 官方说明这种方式不需要仓库里的 `CNAME` 文件；Pages 设置与 DNS 才是有效配置。
+
+## 4. 在 Cloudflare 添加 DNS
+
+第一次接入先全部使用 **DNS only（灰云）**，不要开代理，等 GitHub 签发证书后再评估是否需要代理。
+
+删除 Cloudflare 自动生成、但与你网站无关的根域停车记录，然后添加：
+
+| Type | Name | Content | Proxy |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | DNS only |
+| A | `@` | `185.199.109.153` | DNS only |
+| A | `@` | `185.199.110.153` | DNS only |
+| A | `@` | `185.199.111.153` | DNS only |
+| CNAME | `www` | `xmzhangai.github.io` | DNS only |
+
+这些是 GitHub Pages 当前官方记录。不要添加 `*` 通配符记录；GitHub 明确警告它会增加域名接管风险。
+
+可选 IPv6 记录：
 
 ```text
-xuanming.ai                         主站与唯一 canonical
-www.xuanming.ai                     跳转至主站
-xmzhangai.github.io                 GitHub Pages 自动兼容入口
-web.stanford.edu/people/zhangxm     Stanford 机构入口，定向到主站
-analytics.xuanming.ai/admin         私有分析后台（购买域名后可配置）
+2606:50c0:8000::153
+2606:50c0:8001::153
+2606:50c0:8002::153
+2606:50c0:8003::153
 ```
 
-搜索引擎和分享卡统一把 `xuanming.ai` 作为 canonical；Stanford URL 保留机构背书和历史可达性，但不产生一份重复内容。
+DNS 最多可能需要 24 小时传播，通常会更快。
 
-## 3. 购买域名后的 GitHub Pages 设置
+## 5. 设置网站的 canonical 域名
 
-以下以 `xuanming.ai` 为例。
+1. 仓库 → **Settings → Secrets and variables → Actions → Variables**。
+2. 新建或更新：
 
-### 第 1 步：设置仓库文件
+   ```text
+   Name:  PUBLIC_SITE_URL
+   Value: https://xuanming.ai
+   ```
 
-1. 把 `public/CNAME.example` 重命名为 `public/CNAME`。
-2. 删除文件内的说明行，只保留：
+3. Actions → **Deploy research website → Run workflow**。
+4. 等 `build` 与 `deploy` 变绿。
 
-```text
-xuanming.ai
-```
+该变量会统一 canonical、Open Graph、Twitter Card、Schema.org、sitemap 与 robots 中的绝对 URL。
 
-3. GitHub 仓库 → **Settings → Secrets and variables → Actions → Variables**。
-4. 新建变量：
+## 6. 开启 HTTPS 并验收跳转
 
-```text
-Name:  PUBLIC_SITE_URL
-Value: https://xuanming.ai
-```
+1. 回到仓库 **Settings → Pages**。
+2. 等待 DNS check 通过与证书签发。
+3. 勾选 **Enforce HTTPS**。
+4. 依次打开：
 
-本仓库的 `astro.config.mjs`、canonical、sitemap、robots 和分享图绝对地址都会在构建时自动使用这个域名，不再需要逐文件替换。
+   ```text
+   https://xuanming.ai/
+   https://www.xuanming.ai/
+   https://xmzhangai.github.io/
+   ```
 
-### 第 2 步：设置 DNS
+5. 最终地址栏应统一显示 `https://xuanming.ai/`，且没有证书警告。
+6. 查看页面源代码，搜索 `canonical` 与 `og:image`，都应使用新域名。
 
-如果使用 Cloudflare DNS：
+如果证书 24 小时后仍未签发：确认 Cloudflare 为 DNS only、没有冲突的 A/AAAA/CNAME 记录，并重新在 Pages 保存一次 Custom domain。
 
-1. 添加根域记录，使 `xuanming.ai` 指向 `XMZhangAI.github.io`。Cloudflare 支持根域 CNAME flattening。
-2. 添加 `www` 的 CNAME，目标同样为 `XMZhangAI.github.io`。
-3. 第一次配置时先选择 **DNS only**，等 GitHub 证书签发并确认无误后再决定是否启用代理。
-4. 不要设置通配符 DNS（`*`），以免产生域名接管风险。
+## 7. 保留 Stanford 机构入口
 
-若注册商不支持根域 CNAME flattening，请严格按照 GitHub Pages 当前官方文档为 apex domain 设置其最新 A/AAAA 记录，不要从旧教程复制可能过期的 IP。
+不要删除 `https://web.stanford.edu/people/zhangxm`。它保留为可信的机构导航，只把目标改成新的主域名。
 
-### 第 3 步：在 GitHub 开启域名
-
-1. 仓库 → **Settings → Pages**。
-2. **Custom domain** 填入 `xuanming.ai`。
-3. 等待 DNS check 通过。
-4. 等待 TLS 证书签发；可能需要数分钟到数小时。
-5. 勾选 **Enforce HTTPS**。
-6. 重新运行一次 `Deploy research website` Action。
-
-### 第 4 步：确认跳转
-
-依次检查：
-
-```text
-https://xuanming.ai/
-https://www.xuanming.ai/
-https://xmzhangai.github.io/
-```
-
-三者最终都应到达主域名，地址栏显示 HTTPS，页面样式与图片完整。
-
-## 4. 保留 Stanford 定向导航
-
-不要删除 `web.stanford.edu/people/zhangxm`。它继续作为机构身份入口，只需要把目标从 GitHub Pages 地址改成新主域名。
-
-如果该 Stanford 目录使用静态 `index.html`，替换为：
+如果该目录由静态 `index.html` 控制，使用：
 
 ```html
 <!doctype html>
@@ -105,11 +159,27 @@ https://xmzhangai.github.io/
 </html>
 ```
 
-这样 Stanford 地址仍然可点击、可引用，同时不会留下过时的第二套主页。
+上传后测试 Stanford 地址，确认 query 与 hash 也会保留。Stanford URL 是入口，不是第二份网站；主站内容只维护一份。
 
-## 5. 本版分享缩略图
+## 8. 同步分析后台允许域名
 
-本仓库已提供独立的 1200×630 PNG：
+打开 `optional/analytics-worker/wrangler.toml`，把新域名加入：
+
+```toml
+ALLOWED_ORIGINS = "https://xmzhangai.github.io,https://xuanming.ai,https://www.xuanming.ai,http://127.0.0.1:4173,http://localhost:4321"
+```
+
+然后在 `optional/analytics-worker/` 目录重新执行：
+
+```bash
+npm run deploy
+```
+
+如果漏掉这一步，新域名上的 `/collect` 会被 CORS 拒绝，统计再次显示为 0。
+
+## 9. 本版分享预览图
+
+所有卡片都是 1200×630 PNG，并配有 Open Graph 与 Twitter/X metadata：
 
 ```text
 Homepage                 public/assets/meta/og-home-2026.png
@@ -117,45 +187,32 @@ Field Notes              public/assets/meta/og-notes.png
 MetaMind dossier         public/assets/meta/og-metamind.png
 Technical contribution  public/assets/meta/og-metamind-technical.png
 Cognitive frontier       public/assets/meta/og-metamind-cognitive.png
+MarioLM dossier          public/assets/meta/og-mariolm.png
 ```
 
-每个页面均包含：
+发布后先直接打开每张图片 URL，确认 HTTP 200。外部平台可能缓存旧图，可使用：
 
-- Open Graph 标题、描述、图片、图片类型、尺寸和 alt；
-- Twitter/X large image card；
-- 绝对 canonical 和绝对图片 URL；
-- 文章发布日期、修改日期和作者信息；
-- Schema.org Person / Article 数据。
+1. LinkedIn Post Inspector；
+2. Facebook Sharing Debugger 的 **Scrape Again**；
+3. Slack/Discord/即时通讯中使用一次带版本参数的测试链接，例如 `?preview=20260716`。
 
-MetaMind 卡片不再使用 “two essays” 这类模糊标签，而是直接表达：
+## 10. 最终检查清单
 
-- `NeurIPS 2025 Spotlight`；
-- `Technical contribution + cognitive frontier`；
-- `16+ model backbones`；
-- `+35.7% real social scenarios`；
-- `infer → refine → validate` 的技术结构。
+- [ ] 域名确实已购买并开启自动续费；
+- [ ] GitHub 账号 Pages 中域名已验证；
+- [ ] 仓库 Pages Source 为 GitHub Actions；
+- [ ] Custom domain 保存成功；
+- [ ] 四条 A 与 `www` CNAME 正确且先为 DNS only；
+- [ ] `PUBLIC_SITE_URL` 已改为新域名；
+- [ ] `PUBLIC_ANALYTICS_ENDPOINT` 已设置；
+- [ ] Worker `ALLOWED_ORIGINS` 已加入新域名；
+- [ ] Enforce HTTPS 已开启；
+- [ ] GitHub、`www` 与 Stanford 入口都到达主域名；
+- [ ] canonical、sitemap 与分享图 URL 都使用主域名；
+- [ ] LinkedIn 等平台能抓取新版卡片。
 
-## 6. 发布后让外部平台重新抓取
+## 11. 官方参考
 
-外部平台会缓存旧卡片。部署成功后：
-
-1. 先在浏览器直接打开分享图 URL，确认 HTTP 200 和图片可见。
-2. 使用 LinkedIn Post Inspector 重新抓取主页与两篇文章。
-3. 使用 Facebook Sharing Debugger 点击 **Scrape Again**。
-4. 在 Slack、Discord 或即时通讯工具中，可先用带版本参数的链接测试，例如：
-
-```text
-https://xuanming.ai/?preview=20260713
-```
-
-5. 不要频繁改回旧图片文件名；本版主页使用新的 `og-home-2026.png` 路径用于主动刷新缓存。
-
-## 7. 最终检查清单
-
-- [ ] 主域名 HTTPS 正常；
-- [ ] `www`、GitHub Pages 和 Stanford 地址均定向到主域名；
-- [ ] 页面源代码中的 `og:image` 是完整 HTTPS URL；
-- [ ] 分享图为 1200×630、PNG、文件小于 5 MB；
-- [ ] LinkedIn / Facebook 调试器能看到新卡；
-- [ ] 分析后台的 `ALLOWED_ORIGINS` 已加入新域名；
-- [ ] GitHub Actions 变量 `PUBLIC_SITE_URL` 已设置。
+- Cloudflare `.ai` 注册支持：<https://developers.cloudflare.com/changelog/post/2025-03-27-ai-domains-available/>
+- GitHub Pages 自定义域名：<https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site>
+- Cloudflare DNS 记录：<https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/>

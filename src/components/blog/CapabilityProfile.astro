@@ -55,10 +55,10 @@ const position = (value: number) => `${Math.max(0, Math.min(100, (value - 50) * 
   header span, footer span { color: #78949a; font-size: .56rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
   header strong { font: 410 clamp(1.5rem,3vw,2.7rem)/1.05 var(--serif); letter-spacing: -.025em; }
   .profile-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 13px; color: #9db1b5; font-size: .54rem; }
-  .profile-legend i { width: 18px; height: 3px; align-self: center; }
+  .profile-legend i { width: 10px; height: 10px; align-self: center; border: 2px solid #071c24; border-radius: 50%; }
   .profile-legend .base { background: #718b93; }
   .profile-legend .meta { background: #50d7c8; }
-  .profile-legend .human { height: 0; border-top: 2px dashed #eef4f3; }
+  .profile-legend .human { background: #071c24; border-color: #eef4f3; }
   .scale { margin: 27px 72px 8px min(270px,27%); display: grid; grid-template-columns: repeat(6,1fr); color: #5e7c83; font-size: .5rem; }
   .scale span:last-child { text-align: right; }
   .dimension-list { border-top: 1px solid #23444d; }

@@ -54,7 +54,7 @@ const articleSchema = {
 
   <section class="evidence-ribbon" aria-label="Headline evidence">
     <div><strong>Spotlight</strong><span>NeurIPS 2025 recognition</span></div>
-    <div><strong>16+</strong><span>open and proprietary model backbones</span></div>
+    <div><strong>16+</strong><span>models evaluated · 14 paired ToM comparisons shown</span></div>
     <div><strong>+35.7%</strong><span>average improvement in real social scenarios</span></div>
     <div><strong>74.8 → 81.0</strong><span>GPT-4 on ToMBench</span></div>
   </section>
@@ -130,7 +130,7 @@ const articleSchema = {
   <p class="section-kicker">03 / Evidence</p>
   <h2 id="evidence">The gains survive<br />changes in model and task.</h2>
 
-  <p>The evaluation spans multiple-choice Theory-of-Mind reasoning, eight social-cognition tasks, open-ended sandbox interaction, SocialIQA, and SOTOPIA. This matters because the three stages should not only improve one narrow benchmark: they should transfer from hidden-state inference to norm-sensitive interpretation and then to action.</p>
+  <p>The evaluation spans multiple-choice Theory-of-Mind reasoning, eight social-cognition tasks, <a href="https://aclanthology.org/2024.findings-acl.526/">Social Tasks in Sandbox Simulation (STSS)</a>, SocialIQA, and SOTOPIA. This matters because the three stages should not only improve one narrow benchmark: they should transfer from hidden-state inference to norm-sensitive interpretation and then to action. The full study covers more than 16 models; the portability figure below restricts itself to the 14 backbones with directly paired ToMBench base-versus-MetaMind values reported in Figure 2 and Table 6.</p>
 
   <CrossModelPortability />
 
@@ -140,7 +140,7 @@ const articleSchema = {
       <tbody>
         <tr><td><strong>ToMBench</strong><small>Six mental-state dimensions</small></td><td>74.8</td><td class="is-best">81.0</td><td>+6.2 pts</td><td>Improvement spans emotion, desire, knowledge, belief, and communication rather than one task type.</td></tr>
         <tr><td><strong>Social cognition</strong><small>Eight norm-sensitive tasks</small></td><td>71.5</td><td class="is-best">80.5</td><td>+9.0 pts</td><td>Ambiguous stories, scalar implicature, and faux-pas recognition benefit from explicit contextual revision.</td></tr>
-        <tr><td><strong>STSS</strong><small>Six open-ended domains</small></td><td>39.4</td><td class="is-best">73.9</td><td>+34.5 pts</td><td>The largest change appears when unstated constraints must survive through goal-oriented interaction.</td></tr>
+        <tr><td><strong>Social Tasks in Sandbox Simulation</strong><small>STSS · six open-ended domains</small></td><td>39.4</td><td class="is-best">73.9</td><td>+34.5 pts</td><td>The largest change appears when unstated constraints must survive through goal-oriented interaction.</td></tr>
         <tr><td><strong>SOTOPIA</strong><small>Seven social-performance dimensions</small></td><td>3.31</td><td class="is-best">4.10</td><td>+0.79</td><td>Structured mental-state inference transfers beyond question answering into interactive social action.</td></tr>
         <tr><td><strong>Expert blind ranking</strong><small>120 anonymized cases</small></td><td>GPT-4.5: 12.5%<br />DeepSeek-R1: 20.0%</td><td class="is-best">67.5%</td><td>81 / 120 first</td><td>Experts preferred the complete system over stronger standalone backbones, not merely over its own base model.</td></tr>
       </tbody>
