@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import ResearchInstrument from '../components/ResearchInstrument.astro';
+import LongHorizonTrace from '../components/LongHorizonTrace.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const site = Astro.site!;
@@ -93,7 +94,7 @@ const personSchema = {
         <div class="case-body">
           <div class="case-copy">
             <p class="eyebrow">MetaMind → CooT → Latent-RL</p>
-            <h3>Move cognition from scaffold to native capability.</h3>
+            <h3>Move cognition from scaffold to evolvable capability.</h3>
             <p>A continuous research lineage: make mental states explicit, make alignment auditable at decoding time, then internalize the process through reinforcement learning.</p>
             <ul class="case-metrics"><li><strong>+35.7%</strong> social scenarios</li><li><strong>16+</strong> model backbones</li><li><strong>0.80</strong> AIR-Bench</li></ul>
             <div class="case-links"><a href="https://arxiv.org/abs/2505.18943">MetaMind ↗</a><a href="https://arxiv.org/abs/2509.23441">Cognition-of-Thought ↗</a></div>
@@ -118,19 +119,13 @@ const personSchema = {
             <ul class="case-metrics"><li><strong>500+</strong> annotated turns</li><li><strong>92.3–98.8%</strong> human agreement</li><li><strong>L1–L6</strong> cascaded rubrics</li></ul>
             <div class="case-links"><a href="/projects/mariolm/">Project dossier →</a></div>
           </div>
-          <div class="mechanism mechanism-world" role="img" aria-label="Long-horizon interaction trace">
-            <div class="trajectory-line"><span>T1</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span></div>
-            <div class="trajectory-row"><b>Intent</b><i style="--v:92%"></i><i style="--v:88%"></i><i style="--v:83%"></i><i style="--v:74%"></i><i style="--v:62%"></i><i style="--v:51%"></i></div>
-            <div class="trajectory-row"><b>Trust</b><i style="--v:90%"></i><i style="--v:85%"></i><i style="--v:78%"></i><i style="--v:59%"></i><i style="--v:42%"></i><i style="--v:26%"></i></div>
-            <div class="trajectory-row"><b>Agency</b><i style="--v:95%"></i><i style="--v:90%"></i><i style="--v:81%"></i><i style="--v:65%"></i><i style="--v:48%"></i><i style="--v:30%"></i></div>
-            <p>Locally plausible. Globally degenerative.</p>
-          </div>
+          <LongHorizonTrace />
         </div>
       </article>
 
       <div class="secondary-systems" data-reveal>
         <article><p class="eyebrow">LH-Deception · ICLR 2026</p><h3>Audit the chain, not the confession.</h3><p>Controlled performer–supervisor–auditor worlds reveal concealment and fabrication that do not exist in single-turn tests.</p><a href="https://arxiv.org/abs/2510.03999">Paper ↗</a></article>
-        <article><p class="eyebrow">Trustworthy code intelligence</p><h3>Keep evaluation fresh, realistic, and difficult to game.</h3><p>DevEval, EvoCodeBench, CDD/TED, and Seeker connect repository realism, contamination control, and robust code generation.</p><a href="https://aclanthology.org/2024.findings-acl.214/">DevEval ↗</a></article>
+        <article><p class="eyebrow">Trustworthy code intelligence</p><h3>Keep evaluation fresh, realistic, and difficult to game.</h3><p>DevEval, EvoCodeBench, CDD/TED, and Seeker connect repository realism, benchmark freshness, black-box contamination control, and exception-safe generation.</p><nav class="research-index" aria-label="Trustworthy code intelligence papers"><a href="https://aclanthology.org/2024.findings-acl.214/">DevEval ↗</a><a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/6a059625a6027aca18302803743abaa2-Abstract-Datasets_and_Benchmarks_Track.html">EvoCodeBench ↗</a><a href="https://aclanthology.org/2024.findings-acl.716/">CDD / TED ↗</a><a href="https://arxiv.org/abs/2410.06949">Seeker ↗</a></nav></article>
       </div>
     </section>
 
@@ -150,7 +145,7 @@ const personSchema = {
     </section>
 
     <section class="field-note" aria-labelledby="field-note-title">
-      <div class="field-note-image"><img src="/assets/images/metamind-field-note.webp" width="1664" height="928" alt="MetaMind cognitive system visualization" loading="lazy" /></div>
+      <div class="field-note-image"><img src="/assets/images/field-notes-atlas-v2.webp" width="1920" height="1080" alt="A computational research atlas connecting model mechanisms, social cognition, and long-horizon worlds" loading="lazy" /><div class="field-note-coordinate" aria-hidden="true"><span>Research atlas / 01</span><strong>Mechanism → Mind → World</strong></div></div>
       <div class="field-note-copy" data-reveal><p class="index-label">04 / Field notes</p><h2 id="field-note-title">The paper reports the result.<br />The field note reveals the thinking.</h2><p>An evidence-led technical account and a clearly marked research agenda trace MetaMind from metacognitive social reasoning toward Cognitive AI.</p><a class="action action-dark" href="/notes/">Open the MetaMind dossier →</a></div>
     </section>
 

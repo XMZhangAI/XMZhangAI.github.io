@@ -1,6 +1,12 @@
 const endpoint = document.querySelector<HTMLMetaElement>('meta[name="analytics-endpoint"]')?.content.trim() || '';
 const privacySignal = navigator.doNotTrack === '1' || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
 
+document.documentElement.dataset.analytics = !endpoint ? 'unconfigured' : privacySignal ? 'privacy-disabled' : 'active';
+
+if (!endpoint && location.protocol === 'https:') {
+  console.warn('[XMZ analytics] Collector endpoint is missing from this build.');
+}
+
 if (endpoint && !privacySignal) {
   const sessionKey = 'xmz-visit-session';
   let sessionId = sessionStorage.getItem(sessionKey);
@@ -25,10 +31,19 @@ if (endpoint && !privacySignal) {
 
   const send = (name: string, properties: Record<string, string | number | boolean> = {}) => {
     const payload = JSON.stringify({ name, timestamp: new Date().toISOString(), ...common, properties });
-    const blob = new Blob([payload], { type: 'application/json' });
-    if (!navigator.sendBeacon?.(endpoint, blob)) {
-      void fetch(endpoint, { method: 'POST', body: payload, headers: { 'content-type': 'application/json' }, keepalive: true, mode: 'cors' }).catch(() => {});
-    }
+    void fetch(endpoint, {
+      method: 'POST',
+      body: payload,
+      headers: { 'content-type': 'text/plain;charset=UTF-8' },
+      keepalive: true,
+      mode: 'cors',
+      credentials: 'omit'
+    }).then((response) => {
+      if (!response.ok) throw new Error(`collector returned ${response.status}`);
+    }).catch(() => {
+      const blob = new Blob([payload], { type: 'text/plain;charset=UTF-8' });
+      navigator.sendBeacon?.(endpoint, blob);
+    });
   };
 
   send('page_view');

@@ -71,18 +71,23 @@ const layers = [42, 48, 55, 63, 58, 67, 72, 78, 84, 89, 94, 91, 97, 100, 96, 81,
           <a href="/projects/mariolm/">Open the MarioLM dossier →</a>
         </div>
         <div class="world-lab">
+          <header class="world-readout">
+            <span>Illustrative scheduling trace</span>
+            <strong data-world-event>Assistant confirms the user’s stated goal.</strong>
+            <p data-world-diagnosis>Local and trajectory-level judgments agree.</p>
+          </header>
           <div class="world-track" aria-hidden="true">
             {[1,2,3,4,5].map((step) => <span data-world-step={step}><b>T{step}</b></span>)}
           </div>
-          <div class="world-signals">
-            <div><span>Task utility</span><i class="signal-utility"></i></div>
-            <div><span>Relational trust</span><i class="signal-trust"></i></div>
-            <div><span>User agency</span><i class="signal-agency"></i></div>
+          <div class="world-ledger" aria-label="Trajectory state at the selected turn">
+            <div><span>Local quality</span><strong data-world-value="utility">94</strong><i><b data-world-meter="utility" style="width:94%"></b></i><small>single-turn judge</small></div>
+            <div><span>Relational trust</span><strong data-world-value="trust">92</strong><i><b data-world-meter="trust" style="width:92%"></b></i><small>latent user state</small></div>
+            <div><span>User agency</span><strong data-world-value="agency">91</strong><i><b data-world-meter="agency" style="width:91%"></b></i><small>choice preserved</small></div>
           </div>
           <div class="scrubber">
             <label class="sr-only" for="world-range">Select an interaction step</label>
             <input id="world-range" type="range" min="1" max="5" value="1" data-world-range />
-            <output for="world-range" data-world-output>T1 · Initial intent is stable</output>
+            <output for="world-range" data-world-output>T1 · aligned</output>
           </div>
         </div>
       </article>

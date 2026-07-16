@@ -93,7 +93,7 @@ async function collect(request: Request, env: Env) {
   if (length > 12288) return new Response('{"ok":false}', { status: 413, headers: access.headers });
 
   let body: Record<string, unknown>;
-  try { body = await request.json(); }
+  try { body = JSON.parse(await request.text()) as Record<string, unknown>; }
   catch { return new Response('{"ok":false}', { status: 400, headers: access.headers }); }
 
   const eventName = text(body.name, 40);
@@ -140,6 +140,15 @@ async function collect(request: Request, env: Env) {
   ).run();
 
   return new Response('{"ok":true}', { status: 202, headers: access.headers });
+}
+
+async function health(env: Env) {
+  try {
+    const probe = await env.DB.prepare('SELECT 1 AS ok').first<{ ok: number }>();
+    return json({ ok: probe?.ok === 1, service: 'xmz-research-analytics', database: probe?.ok === 1 ? 'ready' : 'unavailable' }, probe?.ok === 1 ? 200 : 503);
+  } catch {
+    return json({ ok: false, service: 'xmz-research-analytics', database: 'unavailable' }, 503);
+  }
 }
 
 function range(request: Request) {
@@ -215,7 +224,7 @@ export default {
       return new Response(null, { status: access.allowed ? 204 : 403, headers: access.headers });
     }
     if (request.method === 'POST' && url.pathname === '/collect') return collect(request, env);
-    if (request.method === 'GET' && url.pathname === '/health') return json({ ok: true, service: 'xmz-research-analytics' });
+    if (request.method === 'GET' && url.pathname === '/health') return health(env);
 
     if (url.pathname === '/admin' || url.pathname.startsWith('/api/')) {
       if (!isAdmin(request, env)) return unauthorized();

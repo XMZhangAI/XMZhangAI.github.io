@@ -1,0 +1,67 @@
+<figure class="essay-figure native-figure full-bleed evolution-visual">
+  <div class="loop-shell">
+    <header>
+      <div><span>Self-evolvement / causal program</span><strong>Experience becomes capability only through a closed, tested update loop.</strong></div>
+      <small>Interaction alone is data. Evolution requires measured change.</small>
+    </header>
+
+    <div class="loop-grid">
+      <article class="node environment"><b>01 / Environment</b><h3>Make consequences real.</h3><p>People, agents, tools, institutions, and simulated worlds expose the system to goals it did not author and feedback it cannot fully predict.</p><span>intervention · uncertainty · delayed effect</span></article>
+      <article class="node interaction"><b>02 / Interaction</b><h3>Generate reciprocal trajectories.</h3><p>The agent acts from a model of another mind; the other participant responds to that action; the response becomes evidence about both models.</p><span>cooperation · conflict · negotiation · care</span></article>
+      <article class="node state"><b>03 / State</b><h3>Preserve two kinds of memory.</h3><p><em>Explicit memory</em> keeps event-level facts. <em>Implicit memory</em> tracks revisable latent state: trust, goals, role, uncertainty, and relation.</p><span>episodes + latent relational state</span></article>
+      <article class="node learning"><b>04 / Learning operator</b><h3>Convert surprise into an update.</h3><p>Prediction error, process reward, counterfactual replay, and human correction identify which skill, policy, or world-model assumption failed.</p><span>credit assignment · reflection · RL</span></article>
+      <article class="node gate"><b>05 / Evidence gate</b><h3>Prove that the update caused improvement.</h3><p>Retest on held-out people, roles, and worlds. Promote an update only if it persists across future trajectories without reducing autonomy or calibration.</p><span>ablation · generalization · safety · persistence</span></article>
+      <article class="node evolved"><b>06 / Evolved capability</b><h3>Change what happens next.</h3><p>A genuine evolution step alters future behavior, not merely the transcript: better prediction, planning, recovery, transfer, and relationship stewardship.</p><span>policy · memory · skills · cognitive pattern</span></article>
+      <div class="return-arrow"><span>new policy enters a changed world</span><i>↺</i></div>
+    </div>
+
+    <div class="causal-test">
+      <strong>The causal claim</strong>
+      <p>Reciprocal modeling matters only if removing it reduces useful trajectory diversity or blind-spot discovery, and restoring it recovers those gains under human-grounded evaluation. Without that intervention, “recursive social learning” remains a story—not evidence.</p>
+    </div>
+  </div>
+  <figcaption><strong>A testable framework for self-evolvement.</strong> “An agent models another agent who is modeling it” means reciprocal belief updating, not infinite regress. The loop becomes scientifically valuable when prediction error changes a learned component and controlled retesting shows that the change—not extra tokens—improved later interaction.</figcaption>
+</figure>
+
+<style>
+  .evolution-visual { padding: 0 !important; background: transparent !important; border: 0 !important; }
+  .loop-shell { padding: clamp(22px,3.2vw,42px); color: #f5f0e8; background: #11102a; border: 1px solid #34304d; box-shadow: 0 28px 70px rgba(17,16,42,.17); font-family: var(--sans); }
+  header { padding-bottom: 25px; display: flex; align-items: end; justify-content: space-between; gap: 30px; border-bottom: 1px solid rgba(255,255,255,.17); }
+  header > div { display: grid; gap: 8px; }
+  header span, header small { color: #948da8; font-size: .56rem; font-weight: 780; letter-spacing: .11em; line-height: 1.5; text-transform: uppercase; }
+  header strong { max-width: 760px; font-family: var(--serif); font-size: clamp(1.45rem,3vw,2.65rem); font-weight: 410; line-height: 1.06; letter-spacing: -.025em; }
+  header small { max-width: 245px; text-align: right; }
+  .loop-grid { position: relative; margin-top: 28px; display: grid; grid-template-columns: repeat(3,1fr); grid-template-areas: "environment interaction state" "evolved gate learning" "return return return"; gap: 9px; }
+  .environment { grid-area: environment; }
+  .interaction { grid-area: interaction; }
+  .state { grid-area: state; }
+  .learning { grid-area: learning; }
+  .gate { grid-area: gate; }
+  .evolved { grid-area: evolved; }
+  .node { position: relative; min-height: 300px; padding: 25px; display: flex; flex-direction: column; background: #191735; border: 1px solid #393551; }
+  .node::after { content: '→'; position: absolute; z-index: 2; top: 50%; right: -14px; color: #ffbe5c; font: 800 12px/1 var(--sans); transform: translateY(-50%); }
+  .node:nth-child(3)::after { content: '↓'; top: auto; right: 50%; bottom: -14px; transform: translateX(50%); }
+  .node:nth-child(4)::after, .node:nth-child(5)::after { content: '←'; right: auto; left: -14px; }
+  .node:nth-child(6)::after { display: none; }
+  .node b { color: #ffbe5c; font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
+  .node h3 { margin: auto 0 13px; color: #f5f0e8; font-family: var(--serif); font-size: clamp(1.35rem,2.2vw,1.9rem); font-weight: 430; line-height: 1.08; }
+  .node p { margin: 0; color: #a19aae; font-size: .62rem; line-height: 1.63; }
+  .node p em { color: #f1d39b; font-style: normal; }
+  .node > span { margin-top: 20px; padding-top: 14px; color: #756f8c; border-top: 1px solid rgba(255,255,255,.12); font-size: .51rem; letter-spacing: .05em; text-transform: uppercase; }
+  .environment, .evolved { background: #211d39; }
+  .gate { background: #25203b; border-color: #625470; }
+  .return-arrow { grid-area: return; padding: 16px 20px; display: flex; align-items: center; justify-content: center; gap: 18px; color: #8f88a3; border: 1px dashed #554e68; }
+  .return-arrow span { font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
+  .return-arrow i { color: #ffbe5c; font: 500 1.5rem/1 var(--serif); font-style: normal; }
+  .causal-test { margin-top: 18px; padding: 21px 24px; display: grid; grid-template-columns: 150px 1fr; gap: 20px; background: #ffbe5c; color: #181328; }
+  .causal-test strong { font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; }
+  .causal-test p { margin: 0; font-size: .62rem; line-height: 1.58; }
+  @media (max-width: 780px) {
+    header { align-items: start; flex-direction: column; }
+    header small { text-align: left; }
+    .loop-grid { grid-template-columns: 1fr; grid-template-areas: "environment" "interaction" "state" "learning" "gate" "evolved" "return"; }
+    .node { min-height: 245px; }
+    .node::after, .node:nth-child(4)::after, .node:nth-child(5)::after { content: '↓'; top: auto; right: 50%; bottom: -14px; left: auto; transform: translateX(50%); }
+    .causal-test { grid-template-columns: 1fr; }
+  }
+</style>

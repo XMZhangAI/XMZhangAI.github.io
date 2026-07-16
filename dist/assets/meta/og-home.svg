@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#07141e"/><image href="../images/xuanming-zhang.webp" x="790" y="0" width="410" height="630" preserveAspectRatio="xMidYMid slice"/>
+  <defs><linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#07141e"/><stop offset="1" stop-color="#07141e" stop-opacity="0"/></linearGradient></defs>
+  <rect x="675" width="185" height="630" fill="url(#fade)"/>
+  <path d="M0 528h1200M690 0v630" stroke="#f4f1e9" stroke-opacity=".16"/>
+  <path d="M790 0v630" stroke="#50d7c8" stroke-opacity=".42"/>
+  
+  <rect x="56" y="46" width="46" height="46" rx="23" fill="none" stroke="#f4f1e9" stroke-opacity=".72"/>
+  <text x="79" y="75" text-anchor="middle" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="800">XZ</text>
+  <text x="119" y="76" fill="#f4f1e9" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700">Xuanming Zhang</text>
+  <text x="56" y="162" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.2">FRONTIER AI RESEARCH SCIENTIST · QWEN</text>
+  <text x="56" y="246" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="64">Mechanisms.</text>
+  <text x="56" y="316" fill="#f4f1e9" font-family="DejaVu Serif, Georgia, serif" font-size="64">Minds. <tspan fill="#50d7c8">Worlds.</tspan></text>
+  <text x="56" y="381" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="19">AI systems that reason beyond the next token.</text>
+  <g transform="translate(56 427)" font-family="DejaVu Sans, Arial, sans-serif">
+    <rect width="194" height="42" rx="21" fill="#50d7c8"/><text x="97" y="27" text-anchor="middle" fill="#07141e" font-size="12" font-weight="800">NEURIPS 2025 SPOTLIGHT</text>
+    <rect x="205" width="102" height="42" rx="21" fill="none" stroke="#f4f1e9" stroke-opacity=".35"/><text x="256" y="27" text-anchor="middle" fill="#f4f1e9" font-size="12" font-weight="700">ACL 2026</text>
+    <rect x="318" width="105" height="42" rx="21" fill="none" stroke="#f4f1e9" stroke-opacity=".35"/><text x="370" y="27" text-anchor="middle" fill="#f4f1e9" font-size="12" font-weight="700">ICLR 2026</text>
+  </g>
+  <text x="56" y="575" fill="#aebbc1" font-family="DejaVu Sans, Arial, sans-serif" font-size="16">Qwen · Stanford NLP · Amazon AGI</text>
+  <rect x="790" y="0" width="410" height="630" fill="#07141e" fill-opacity=".08"/>
+  <text x="1140" y="585" text-anchor="end" fill="#50d7c8" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2">XMZHANGAI.GITHUB.IO</text></svg>

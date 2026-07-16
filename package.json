@@ -8,6 +8,8 @@
     "build": "node scripts/clean-dist.mjs && cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "check:analytics-config": "node scripts/check-analytics-config.mjs",
+    "check:analytics-live": "node scripts/check-analytics-live.mjs",
     "social": "node scripts/generate-social-cards.mjs",
     "verify": "npm run build && node scripts/check-dist.mjs",
     "start:local": "node scripts/start-local.mjs",
@@ -16,7 +18,8 @@
   "dependencies": {
     "@fontsource-variable/manrope": "5.2.8",
     "@fontsource-variable/newsreader": "5.2.10",
-    "astro": "7.0.7"
+    "astro": "7.0.7",
+    "katex": "0.16.22"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.9",

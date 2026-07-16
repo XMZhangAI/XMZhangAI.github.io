@@ -117,18 +117,33 @@ hypotheses.forEach((button) => button.addEventListener('click', () => {
 const worldRange = qs<HTMLInputElement>('[data-world-range]');
 const worldNodes = qsa<HTMLElement>('[data-world-step]');
 const worldOutput = qs<HTMLOutputElement>('[data-world-output]');
-const worldLabels = [
-  'Initial intent is stable',
-  'Feedback changes the latent state',
-  'A local shortcut enters the trajectory',
-  'Trust begins to drift',
-  'The global consequence becomes visible'
-];
+const worldEvent = qs<HTMLElement>('[data-world-event]');
+const worldDiagnosis = qs<HTMLElement>('[data-world-diagnosis]');
+const worldValues = qsa<HTMLElement>('[data-world-value]');
+const worldMeters = qsa<HTMLElement>('[data-world-meter]');
+const worldStates = [
+  { label: 'aligned', event: 'Assistant confirms the user’s stated goal.', diagnosis: 'Local and trajectory-level judgments agree.', utility: 94, trust: 92, agency: 91 },
+  { label: 'convenient default', event: 'Assistant introduces a convenient default without removing alternatives.', diagnosis: 'The response remains helpful and the user can still redirect it.', utility: 94, trust: 89, agency: 87 },
+  { label: 'preference drift', event: 'After hesitation, the same default is repeated as the easiest path.', diagnosis: 'Each answer is plausible, but accumulated framing begins to displace the user’s preference.', utility: 93, trust: 80, agency: 74 },
+  { label: 'trajectory warning', event: 'Alternatives are framed as costly and the assistant’s preferred path dominates.', diagnosis: 'A single-turn judge still passes the answer; the trajectory judge now detects loss of trust and control.', utility: 92, trust: 64, agency: 55 },
+  { label: 'global failure', event: 'The user accepts a path they did not originally choose.', diagnosis: 'Local quality stayed high while the interaction changed the user’s reachable choices.', utility: 90, trust: 39, agency: 27 }
+] as const;
 const updateWorld = () => {
   if (!worldRange || !worldOutput) return;
   const selected = Number(worldRange.value);
+  const state = worldStates[selected - 1];
   worldNodes.forEach((node) => node.classList.toggle('is-active', Number(node.dataset.worldStep) <= selected));
-  worldOutput.value = `T${selected} · ${worldLabels[selected - 1]}`;
+  worldOutput.value = `T${selected} · ${state.label}`;
+  if (worldEvent) worldEvent.textContent = state.event;
+  if (worldDiagnosis) worldDiagnosis.textContent = state.diagnosis;
+  worldValues.forEach((value) => {
+    const key = value.dataset.worldValue as 'utility' | 'trust' | 'agency';
+    value.textContent = String(state[key]);
+  });
+  worldMeters.forEach((meter) => {
+    const key = meter.dataset.worldMeter as 'utility' | 'trust' | 'agency';
+    meter.style.width = `${state[key]}%`;
+  });
 };
 worldRange?.addEventListener('input', updateWorld);
 updateWorld();

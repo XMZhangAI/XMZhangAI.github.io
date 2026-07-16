@@ -8,7 +8,7 @@ database_name = "xmz-analytics"
 database_id = "52db45e8-ef0e-4583-9223-0545877b5974"
 
 [vars]
-# Comma-separated. Add the custom domain later without removing GitHub Pages.
+# Keep the GitHub Pages origin. Add future custom domains without removing it.
 ALLOWED_ORIGINS = "https://xmzhangai.github.io,http://127.0.0.1:4173,http://localhost:4321"
 STORE_RAW_IP = "true"
 RETENTION_DAYS = "90"
@@ -16,7 +16,7 @@ RETENTION_DAYS = "90"
 [triggers]
 crons = ["17 3 * * *"]
 
-# Add these with `npx wrangler secret put ...`; never commit their values:
+# Secrets remain stored in Cloudflare and are never committed:
 # IP_SALT
 # ADMIN_USER
 # ADMIN_PASSWORD

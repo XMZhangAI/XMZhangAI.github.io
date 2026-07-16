@@ -1,5 +1,34 @@
 # 第一方分析后台：从零部署与查看数据
 
+## 0. 本次“连续数日为 0”的已确认根因
+
+线上取证结果不是“访客太少”，而是前端根本没有启用采集：
+
+1. 已发布主页的 `<meta name="analytics-endpoint">` 内容为空；
+2. GitHub 主分支当时实际使用的 `.github/workflows/deploy.yml` 没有把 `PUBLIC_ANALYTICS_ENDPOINT` 传给 Astro 构建；
+3. 因而 `src/scripts/analytics.ts` 在入口判断时直接停止，浏览器不会发出 `/collect` 请求，后台必然始终为 0。
+
+本版已进行三层修复：
+
+- 部署工作流把仓库变量注入构建；
+- 生产构建在变量为空、不是 HTTPS、或不以 `/collect` 结尾时直接失败，避免再次“部署成功但统计静默关闭”；
+- 上报优先使用可验证的 `fetch + keepalive`，失败后才回退到 `sendBeacon`；请求改用 CORS 简单请求兼容的 `text/plain`，Worker 同时兼容解析。
+
+部署后只需按下面四步验收：
+
+1. 打开主页，右键“查看网页源代码”，搜索 `analytics-endpoint`。`content` 必须是完整的 `https://.../collect`，不能是空字符串。
+2. 打开浏览器开发者工具 Console，运行：
+
+   ```js
+   document.documentElement.dataset.analytics
+   ```
+
+   正常应返回 `active`。若返回 `privacy-disabled`，当前浏览器开启了 Do Not Track 或 Global Privacy Control；换一个未开启该信号的测试环境。若返回 `unconfigured`，说明发布包仍未注入端点。
+3. 在 Network 面板搜索 `collect`，刷新页面。应看到 `POST` 请求并返回 `202`。
+4. 打开 Worker 的 `/admin`，点击 `Refresh`；应出现 `page_view`。再滚动和点击链接，应继续出现 `scroll_depth` 与 `link_click`。
+
+这四个信号分别验证：构建注入、前端启用、跨域传输、D1 入库。不要只看最后一个数字判断故障位置。
+
 本仓库已经包含完整后台：`optional/analytics-worker/`。它适用于 GitHub Pages 静态站，不需要把主页迁移到动态服务器。
 
 启用后可查看：
@@ -15,7 +44,7 @@
 - 7 / 30 / 90 天切换和 CSV 导出；
 - 每日自动删除超过保留期限的数据。
 
-默认隐私模式记录：稳定加盐访客标识、每日加盐标识、IPv4 `/24` 或 IPv6 `/48` 粗网段；**不保存完整 IP**。代码支持显式开启完整 IP，见第 10 节。
+通用模板 `wrangler.toml.example` 默认只记录稳定加盐访客标识、每日加盐标识、IPv4 `/24` 或 IPv6 `/48` 粗网段。按照本项目对 IP 访问记录的要求，随包保留的现有 `wrangler.toml` 已设置 `STORE_RAW_IP = "true"`；公开隐私页也已同步说明，见第 10 节。
 
 ## 1. 需要准备什么
 
@@ -173,10 +202,10 @@ https://xmz-research-analytics.<your-subdomain>.workers.dev
 https://xmz-research-analytics.<your-subdomain>.workers.dev/health
 ```
 
-应返回：
+   应返回（`database: "ready"` 表示 Worker 与 D1 绑定都可用）：
 
 ```json
-{"ok":true,"service":"xmz-research-analytics"}
+{"ok":true,"service":"xmz-research-analytics","database":"ready"}
 ```
 
 采集地址是在末尾加 `/collect`：
@@ -202,7 +231,7 @@ Value: https://xmz-research-analytics.<your-subdomain>.workers.dev/collect
 5. 保存。
 6. 仓库 → **Actions → Deploy research website → Run workflow**。
 
-新版 workflow 会在构建时把地址写入页面。没有设置该变量时，分析始终关闭。
+新版 workflow 会在构建时把地址写入页面。没有设置该变量时，发布会明确失败并指出变量缺失，不再生成统计被静默关闭的线上版本。
 
 ### 本地测试
 
@@ -240,7 +269,7 @@ https://xmz-research-analytics.<your-subdomain>.workers.dev/admin
 - Recent event stream：精确时间、事件、页面、国家、网段/IP、来源和访客标识；
 - `Export CSV`：下载最多 50,000 条当前时间范围内的数据。
 
-默认 `Network / IP` 显示粗网段，例如：
+当 `STORE_RAW_IP = "false"` 时，`Network / IP` 显示粗网段，例如：
 
 ```text
 203.0.113.0/24
@@ -249,25 +278,25 @@ https://xmz-research-analytics.<your-subdomain>.workers.dev/admin
 
 同时保存不可逆的加盐访客标识，用于计算 7/30/90 天的近似独立访客，但后台不会显示真实 IP。
 
-### 显式开启完整 IP
+### 当前项目的完整 IP 配置
 
-只有在确认适用法律、隐私政策和保留期限后再开启。
+当前随包的现有配置已经开启完整 IP，并设定 90 天自动删除；若你希望恢复隐私优先模式，把该值改为 `false` 后重新部署 Worker。
 
-1. 打开 `wrangler.toml`。
-2. 修改：
+1. 打开 `wrangler.toml`，确认当前值：
 
 ```toml
 STORE_RAW_IP = "true"
+RETENTION_DAYS = "90"
 ```
 
-3. 确认主页 `/privacy/` 的说明与你的实际收集一致。
-4. 建议把：
+2. 主页 `/privacy/` 已说明会收集请求 IP；如果你修改配置，也要同步修改公开说明。
+3. 若要关闭完整 IP，改为：
 
 ```toml
-RETENTION_DAYS = "30"
+STORE_RAW_IP = "false"
 ```
 
-5. 重新部署：
+4. 修改后重新部署：
 
 ```bash
 npm run deploy

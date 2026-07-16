@@ -7,13 +7,13 @@ import SiteFooter from '../components/SiteFooter.astro';
   <main id="main">
     <section class="page-hero"><p class="index-label">Trust / Privacy</p><h1>A small data footprint<br />by design.</h1><p>The site is designed to learn which research is useful without constructing a profile of the person reading it.</p></section>
     <article class="privacy-body">
-      <p><strong>Last updated:</strong> July 13, 2026.</p>
+      <p><strong>Last updated:</strong> July 16, 2026.</p>
       <h2>Current configuration</h2>
-      <p>The downloadable release includes a first-party analytics backend, but tracking remains disabled until the owner deploys it and supplies an endpoint at build time. The site sets no advertising cookies, sells no data, and loads no advertising trackers. Infrastructure providers may process standard request metadata to deliver and secure the site.</p>
+      <p>The production site uses an owner-operated, first-party analytics backend when its collector endpoint is present in the published build. The site sets no advertising cookies, sells no data, and loads no advertising trackers. Infrastructure providers may process standard request metadata to deliver and secure the site.</p>
       <h2>First-party research analytics</h2>
-      <p>When enabled, the site can record page paths, referrer domains, campaign parameters, viewport and language, reading depth, engaged time, and deliberate interactions such as opening a paper or requesting a CV. It respects Do Not Track. By default, network identifiers are represented by a salted hash and a coarse network prefix; exact IP retention is an explicit, documented opt-in and should only be enabled with an appropriate notice and retention policy.</p>
+      <p>When enabled, the site can record page paths, referrer domains, campaign parameters, viewport and language, reading depth, engaged time, and deliberate interactions such as opening a paper or requesting a CV. The current analytics configuration can also retain the requesting IP address, a coarse network prefix, and salted visitor identifiers for traffic analysis and abuse prevention. Tracking is disabled when the browser sends Do Not Track or Global Privacy Control.</p>
       <h2>Retention and control</h2>
-      <p>The recommended configuration retains event-level data for 90 days and exposes it only through an authenticated owner dashboard. Visitors may request deletion of data reasonably associated with them by contacting the address below.</p>
+      <p>Event-level data is scheduled for deletion after 90 days and is exposed only through an authenticated owner dashboard. Visitors may request deletion of data reasonably associated with them by contacting the address below.</p>
       <h2>Contact</h2>
       <p>Questions can be sent to <a href="mailto:xuanmingdi.zxm@alibaba-inc.com">xuanmingdi.zxm@alibaba-inc.com</a>.</p>
     </article>

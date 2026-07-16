@@ -41,7 +41,7 @@ npm run preview:dist
 - `/notes/` — field-note index
 - `/blog/MetaMind/` — MetaMind dossier
 - `/blog/MetaMind/technical-contribution/` — evidence-led technical account
-- `/blog/MetaMind/cognitive-frontier/` — interpretive Cognitive AI agenda
+- `/blog/MetaMind/cognitive-frontier/` — cognitive architecture, self-evolvement, cognitive worlds, and super-world games
 - `/connect/` — private CV and opportunity contact route
 - `/privacy/` — privacy configuration
 

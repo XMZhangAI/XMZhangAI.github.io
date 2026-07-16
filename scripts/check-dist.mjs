@@ -44,6 +44,9 @@ for (const page of primaryPages) {
   if (!existsSync(file)) { failures.push(`${page} is missing.`); continue; }
   const html = readFileSync(file, 'utf8');
   if (!/property="og:image" content="https:\/\//.test(html)) failures.push(`${page} has no absolute Open Graph image.`);
+  if (process.env.PUBLIC_ANALYTICS_ENDPOINT && !html.includes(`name="analytics-endpoint" content="${process.env.PUBLIC_ANALYTICS_ENDPOINT}"`)) {
+    failures.push(`${page} does not contain the configured analytics endpoint.`);
+  }
 }
 
 for (const page of ['notes/index.html', 'blog/MetaMind/index.html', 'blog/MetaMind/technical-contribution/index.html', 'blog/MetaMind/cognitive-frontier/index.html']) {

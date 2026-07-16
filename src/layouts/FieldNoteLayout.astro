@@ -1,6 +1,7 @@
 ---
 import SiteLayout from './SiteLayout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import 'katex/dist/katex.min.css';
 import '../styles/field-note.css';
 
 interface SectionLink { id: string; label: string; }
@@ -24,6 +25,10 @@ const {
   title, description, kicker, headline, dek, image, imageAlt, tone,
   issue, readingTime, published, updated, sections
 } = Astro.props;
+
+const updatedLabel = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+}).format(new Date(`${updated}T00:00:00Z`));
 ---
 
 <SiteLayout
@@ -50,22 +55,19 @@ const {
           <div class="essay-meta">
             <span>By Xuanming Zhang</span>
             <span>{readingTime}</span>
-            <span>Updated 13 July 2026</span>
+            <span>Updated {updatedLabel}</span>
           </div>
         </div>
-        <div class="essay-signal" aria-hidden="true" data-reveal>
+        <div class="essay-signal" data-reveal>
           {tone === 'technical' ? (
             <>
-              <span>latent state</span>
-              <div class="signal-pipeline"><i></i><i></i><i></i></div>
-              <ol><li>infer</li><li>constrain</li><li>validate</li></ol>
-              <b>response</b>
+              <img src="/assets/images/metamind-technical-instrument-v2.webp" width="1920" height="1080" alt="Three connected stages for hypothesis generation, constraint-based selection, and response validation" />
+              <div class="signal-caption"><span>System trace / 01</span><strong>Infer → Constrain → Validate</strong><small>Memory closes the loop.</small></div>
             </>
           ) : (
             <>
-              <span>cognitive frontier</span>
-              <div class="signal-rings"><i></i><i></i><i></i><i></i></div>
-              <ol><li>scaffold</li><li>learn</li><li>interact</li><li>world</li></ol>
+              <img src="/assets/images/metamind-hypothesis-field-v2.webp" width="1920" height="1080" alt="Multiple cognitive hypotheses converging into an evolvable capability" />
+              <div class="signal-caption"><span>Cognitive frontier / 02</span><strong>Scaffold → Learn → World</strong><small>From explicit process to learned capability.</small></div>
             </>
           )}
         </div>
@@ -92,7 +94,7 @@ const {
 
     <nav class="essay-next" aria-label="Continue reading">
       {tone === 'technical' ? (
-        <a href="/blog/MetaMind/cognitive-frontier/"><span>Continue to field note 02</span><strong>What does MetaMind suggest<br />about the next cognitive frontier?</strong><i>→</i></a>
+        <a href="/blog/MetaMind/cognitive-frontier/"><span>Continue to field note 02</span><strong>From cognitive scaffolds<br />to evolvable capability.</strong><i>→</i></a>
       ) : (
         <a href="/blog/MetaMind/technical-contribution/"><span>Return to field note 01</span><strong>Read the verified technical<br />contribution behind the agenda.</strong><i>←</i></a>
       )}
