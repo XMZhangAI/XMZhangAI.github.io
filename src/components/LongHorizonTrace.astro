@@ -87,10 +87,10 @@ const points = (values: readonly number[]) => values.map(point).join(' ');
   footer strong { color: #edf7f5; font: 480 1.08rem/1.1 var(--serif); }
   footer p { margin: 0; color: #819ba1; font-size: .59rem; line-height: 1.55; }
   @media (max-width: 760px) {
-    .trajectory-audit { min-height: 620px; border-left: 0; border-top: 1px solid rgba(255,255,255,.14); }
+    .trajectory-audit { min-height: 620px; padding: 32px 18px; border-left: 0; border-top: 1px solid rgba(255,255,255,.14); }
     header, footer { grid-template-columns: 1fr; align-items: start; }
-    .trajectory-chart { overflow-x: auto; }
-    svg { min-width: 560px; }
+    .trajectory-chart { width: 100%; max-width: 100%; padding: 10px 8px; overflow: hidden; }
+    svg { width: 100%; min-width: 0; }
     .trajectory-legend { grid-template-columns: 1fr; }
   }
 </style>

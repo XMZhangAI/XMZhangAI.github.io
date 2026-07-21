@@ -90,9 +90,13 @@ const x = (value: number) => `${Math.max(0, Math.min(100, ((value - 30) / 65) * 
   footer strong { color: #50d7c8; font-size: .58rem; letter-spacing: .07em; text-transform: uppercase; }
   @media (max-width: 700px) {
     .visual-head, .panel-title, footer { align-items: start; flex-direction: column; }
-    .chart-panel { padding: 18px 14px; overflow-x: auto; }
-    .axis, .rows { min-width: 610px; }
-    .axis { margin-left: 148px; }
-    .model-row { grid-template-columns: 132px minmax(390px,1fr) 40px; gap: 12px; }
+    .chart-shell { padding: 20px 14px; }
+    .chart-panel { width: 100%; max-width: 100%; padding: 18px 12px; overflow: hidden; }
+    .axis, .rows { width: 100%; min-width: 0; }
+    .axis { margin-left: 96px; grid-template-columns: repeat(5,minmax(0,1fr)); }
+    .model-row { grid-template-columns: 82px minmax(0,1fr) 34px; gap: 8px; }
+    .model { font-size: .5rem; line-height: 1.25; overflow-wrap: anywhere; }
+    .bars b { display: none; }
+    .model-row > strong { font-size: .72rem; }
   }
 </style>

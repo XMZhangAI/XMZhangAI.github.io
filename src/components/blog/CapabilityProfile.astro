@@ -91,4 +91,12 @@ const position = (value: number) => `${Math.max(0, Math.min(100, (value - 50) * 
     .dimension-row { grid-template-columns: 1fr 46px; gap: 12px; }
     .dimension-track { grid-column: 1 / -1; min-width: 0; }
   }
+  @media (max-width: 520px) {
+    .profile-shell { padding: 20px 14px; }
+    .dimension-row { grid-template-columns: minmax(0,1fr) 40px; }
+    .dimension-row.is-highlight { margin-right: -6px; margin-left: -6px; padding-right: 6px; padding-left: 6px; }
+    .dimension-label p { font-size: .58rem; }
+    .dimension-track { margin-right: 8px; margin-left: 8px; }
+    .marker b { font-size: .46rem; }
+  }
 </style>

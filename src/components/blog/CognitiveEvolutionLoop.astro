@@ -64,4 +64,9 @@
     .node::after, .node:nth-child(4)::after, .node:nth-child(5)::after { content: '↓'; top: auto; right: 50%; bottom: -14px; left: auto; transform: translateX(50%); }
     .causal-test { grid-template-columns: 1fr; }
   }
+  @media (max-width: 520px) {
+    .loop-shell { padding: 20px 14px; }
+    .node { min-height: 220px; padding: 20px 18px; }
+    .causal-test { padding: 18px; }
+  }
 </style>
