@@ -136,3 +136,12 @@
 .cognitive-manifesto .manifest-flow{margin:0;font-size:clamp(1.28rem,1.75vw,1.55rem);font-weight:430;line-height:1.72;letter-spacing:-.008em}
 .cognitive-manifesto .manifest-flow strong{font-weight:760}
 @media(max-width:650px){.cognitive-manifesto{padding:46px 0 100px}.cognitive-manifesto .manifest-flow{font-size:1.17rem;line-height:1.67}}
+
+/* Reference cadence: compact prose, one thesis, no article chrome */
+.cognitive-manifesto{width:min(670px,calc(100vw - 40px));padding:62px 0 126px}
+.cognitive-manifesto>p,.cognitive-manifesto>p:first-child,.cognitive-manifesto>p:nth-child(2){margin:0 0 30px;padding:0;max-width:none;border:0;font-size:clamp(1.08rem,1.38vw,1.25rem);font-weight:430;line-height:1.58;letter-spacing:0}
+.cognitive-manifesto>p.manifest-lead{font-weight:650}
+.cognitive-manifesto>p.manifest-thesis{margin:50px 0;font-size:clamp(1.5rem,2.2vw,1.95rem);font-weight:680;line-height:1.3;letter-spacing:-.025em}
+.cognitive-manifesto>p strong{font-weight:720}
+.cognitive-manifesto>p.manifest-final{margin:58px 0 0;font-size:clamp(1.3rem,1.85vw,1.6rem);font-weight:680;line-height:1.4;letter-spacing:-.015em}
+@media(max-width:650px){.cognitive-manifesto{padding:46px 0 96px}.cognitive-manifesto>p,.cognitive-manifesto>p:first-child,.cognitive-manifesto>p:nth-child(2){font-size:1.08rem;line-height:1.58}.cognitive-manifesto>p.manifest-thesis{margin:42px 0;font-size:1.55rem}.cognitive-manifesto>p.manifest-final{margin-top:48px;font-size:1.38rem}}
