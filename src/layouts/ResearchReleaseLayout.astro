@@ -1,0 +1,68 @@
+---
+import SiteLayout from './SiteLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/research-release.css';
+
+interface SectionLink { id: string; label: string; }
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  headline: string;
+  dek: string;
+  image: string;
+  published: string;
+  updated: string;
+  sections: SectionLink[];
+}
+
+const { title, description, eyebrow, headline, dek, image, published, updated, sections } = Astro.props;
+---
+
+<SiteLayout {title} {description} {image} imageAlt="MetaMind — Social intelligence begins before the answer" type="article" active="notes" {published} {updated}>
+  <main id="main" class="release-page">
+    <header class="release-hero">
+      <div class="release-bar">
+        <a href="/blog/MetaMind/">MetaMind research</a>
+        <strong>NeurIPS 2025 Spotlight</strong>
+        <span>Technical report</span>
+      </div>
+      <div class="release-title">
+        <p>{eyebrow}</p>
+        <h1>{headline}</h1>
+        <div class="release-intro">
+          <p>{dek}</p>
+          <div>
+            <span>Updated 8 August 2026</span>
+          </div>
+        </div>
+      </div>
+      <slot name="hero-visual" />
+    </header>
+
+    <div class="release-frame">
+      <aside class="release-toc" aria-label="Article contents">
+        <span>Contents</span>
+        <ol>
+          {sections.map((section, index) => (
+            <li><a href={`#${section.id}`}><b>{String(index + 1).padStart(2, '0')}</b>{section.label}</a></li>
+          ))}
+        </ol>
+        <div class="release-links">
+          <a href="https://arxiv.org/abs/2505.18943">Paper ↗</a>
+          <a href="https://github.com/XMZhangAI/MetaMind">Code ↗</a>
+        </div>
+      </aside>
+      <article class="release-article"><slot /></article>
+    </div>
+
+    <nav class="release-next" aria-label="Continue reading">
+      <a href="/blog/MetaMind/cognitive-frontier/">
+        <span>Beyond this paper</span>
+        <strong>From social reasoning<br />to Cognitive AI.</strong>
+        <i>↗</i>
+      </a>
+    </nav>
+    <SiteFooter />
+  </main>
+</SiteLayout>

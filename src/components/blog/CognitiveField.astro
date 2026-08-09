@@ -1,0 +1,66 @@
+<figure class="cognitive-field flow-case" data-flow-case>
+  <canvas aria-hidden="true"></canvas>
+  <header class="field-header">
+    <div><span>Before the answer · one case</span><strong>From words to response.</strong></div>
+  </header>
+
+  <div class="case-path">
+    <article class="path-end path-input">
+      <span>01 · Input</span>
+      <blockquote>“I’d love more energy, but I don’t have time for exercise in the mornings.”</blockquote>
+    </article>
+
+    <nav class="agent-path" role="tablist" aria-label="Inspect each MetaMind agent">
+      <button type="button" role="tab" aria-selected="true" data-agent-tab="0"><b>02</b><span>ToM Agent</span><strong>Hypothesize</strong></button>
+      <button type="button" role="tab" aria-selected="false" data-agent-tab="1"><b>03</b><span>Moral Agent</span><strong>Refine</strong></button>
+      <button type="button" role="tab" aria-selected="false" data-agent-tab="2"><b>04</b><span>Response Agent</span><strong>Validate</strong></button>
+    </nav>
+
+    <article class="path-end path-output">
+      <span>Output</span>
+      <blockquote>“What if we start super small—like a ten-minute jog?”</blockquote>
+      <b>Validated · 0.84 &gt; 0.80 threshold</b>
+    </article>
+  </div>
+
+  <div class="agent-details">
+    <section data-agent-panel="0">
+      <span>02 · Hypothesize</span>
+      <div class="reasoning-transform">
+        <b class="reasoning-source">“no time”</b><i>→</i>
+        <div class="reasoning-cluster">
+          <b class="is-selected"><small>Belief</small>Exercise requires a long session.</b>
+          <b><small>Desire</small>More daily energy.</b>
+          <b><small>Emotion</small>Morning feels overloaded.</b>
+        </div>
+      </div>
+    </section>
+    <section data-agent-panel="1" hidden>
+      <span>03 · Refine</span>
+      <div class="reasoning-transform reasoning-refine">
+        <b class="reasoning-source">Long session</b><i>+</i>
+        <div class="constraint-chips"><b>≤ 10 min</b><b>Supportive</b><b>No pressure</b></div><i>→</i>
+        <b class="reasoning-result">Short, concrete suggestion</b>
+      </div>
+    </section>
+    <section data-agent-panel="2" hidden>
+      <span>04 · Validate</span>
+      <div class="reasoning-transform reasoning-validate">
+        <div class="validation-copy"><small>Candidate response</small><b>“Start with a ten-minute jog.”</b></div>
+        <div class="validation-score"><span><b>Empathy</b><i style="--score:86%"></i></span><span><b>Coherence</b><i style="--score:82%"></i></span></div>
+        <strong>0.84 <small>&gt; 0.80</small><em>Send</em></strong>
+      </div>
+    </section>
+  </div>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-flow-case]').forEach((root)=>{
+    const tabs=[...root.querySelectorAll<HTMLButtonElement>('[data-agent-tab]')],panels=[...root.querySelectorAll<HTMLElement>('[data-agent-panel]')];
+    tabs.forEach((tab,index)=>tab.addEventListener('click',()=>{tabs.forEach((el,i)=>el.setAttribute('aria-selected',String(i===index)));panels.forEach((panel,i)=>panel.hidden=i!==index)}));
+    const canvas=root.querySelector('canvas')!,ctx=canvas.getContext('2d')!;let frame=0,width=0,height=0;
+    const resize=()=>{const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);width=r.width;height=r.height;canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0)};
+    const draw=()=>{ctx.clearRect(0,0,width,height);for(let i=0;i<34;i++){const a=i*.93+frame*.0015*(i%3+1),cx=width*.5,cy=height*.53,r=44+(i%6)*39,x=cx+Math.cos(a)*r,y=cy+Math.sin(a*.7)*r*.27;ctx.beginPath();ctx.arc(x,y,i%8===0?2:1,0,Math.PI*2);ctx.fillStyle=i%8===0?'rgba(255,90,60,.46)':'rgba(28,48,55,.07)';ctx.fill()}frame++;requestAnimationFrame(draw)};
+    new ResizeObserver(resize).observe(canvas);resize();draw();
+  });
+</script>
