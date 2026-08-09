@@ -14,20 +14,18 @@ interface Props {
   noHeader?: boolean;
   published?: string;
   updated?: string;
-  headerTone?: 'dark' | 'paper';
 }
 
 const {
   title,
   description,
-  image = '/og.png',
-  imageAlt = 'Worldeology Lab — Cognitive AI from mind to cognition to world',
+  image = '/assets/meta/og-home-2026.png',
+  imageAlt = 'Xuanming Zhang — frontier AI research',
   type = 'website',
   active = '',
   noHeader = false,
   published,
-  updated,
-  headerTone = 'dark'
+  updated
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -51,7 +49,7 @@ const analyticsEndpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT || '';
     <link rel="manifest" href="/manifest.webmanifest" />
 
     <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="Worldeology Lab" />
+    <meta property="og:site_name" content="Xuanming Zhang — AI Research" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -90,7 +88,7 @@ const analyticsEndpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT || '';
       }
     </script>
   </head>
-  <body id="top" class:list={[headerTone === 'paper' && 'header-paper']}>
+  <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     {!noHeader && <SiteHeader active={active} />}
     <slot />

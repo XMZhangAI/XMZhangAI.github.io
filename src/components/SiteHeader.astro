@@ -4,9 +4,9 @@ const { active = '' } = Astro.props;
 
 <div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
 <header class="site-header" data-site-header>
-  <a class="brand" href="/" aria-label="Worldeology Lab — home">
-    <span class="brand-mark world-mark" aria-hidden="true">W</span>
-    <span class="brand-type"><strong>Worldeology Lab</strong><small>Cognitive AI Research</small></span>
+  <a class="brand" href="/" aria-label="Xuanming Zhang — home">
+    <span class="brand-mark" aria-hidden="true">XZ</span>
+    <span class="brand-type"><strong>Xuanming Zhang</strong><small>AI Research Scientist</small></span>
   </a>
 
   <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-button>
@@ -14,10 +14,10 @@ const { active = '' } = Astro.props;
   </button>
 
   <nav id="site-menu" class="site-menu" aria-label="Primary navigation" data-site-menu>
-    <a class:list={[active === 'research' && 'is-active']} href="/research/">Research</a>
-    <a class:list={[active === 'work' && 'is-active']} href="/#work">Work</a>
-    <a class:list={[active === 'people' && 'is-active']} href="/people/">People</a>
-    <a class:list={[active === 'about' && 'is-active']} href="/about/">About</a>
-    <a class="menu-cv" href="mailto:xuanmingdi.zxm@alibaba-inc.com?subject=Worldeology%20Lab">Contact <span aria-hidden="true">↗</span></a>
+    <a class:list={[active === 'research' && 'is-active']} href="/#research">Research</a>
+    <a class:list={[active === 'systems' && 'is-active']} href="/#systems">Systems</a>
+    <a class:list={[active === 'publications' && 'is-active']} href="/#publications">Publications</a>
+    <a class:list={[active === 'notes' && 'is-active']} href="/notes/">Field notes</a>
+    <a class="menu-cv" href="/connect/" data-analytics="cv_request">CV / Connect <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
