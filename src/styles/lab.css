@@ -130,3 +130,9 @@
 .cognitive-manifesto h3+p{padding-left:70px}
 .cognitive-manifesto .manifest-ending{margin-top:98px;padding:45px 0 0;font-size:clamp(2rem,3.6vw,3.15rem);font-weight:620;line-height:1.18;letter-spacing:-.035em}
 @media(max-width:650px){.cognitive-manifesto{padding-top:44px}.cognitive-manifesto p{font-size:1.16rem}.cognitive-manifesto>p:first-child{font-size:1.48rem}.cognitive-manifesto .manifest-emphasis{margin:58px 0;padding:32px 0;font-size:2.15rem}.cognitive-manifesto h3{margin-top:70px;grid-template-columns:38px 1fr;gap:10px;font-size:1.72rem}.cognitive-manifesto h3+p{padding-left:48px}.cognitive-manifesto .manifest-ending{font-size:2rem}}
+
+/* Continuous manifesto, following the restrained Thinking Machines cadence */
+.cognitive-manifesto{width:min(720px,calc(100vw - 40px));padding:64px 0 130px;counter-reset:none}
+.cognitive-manifesto .manifest-flow{margin:0;font-size:clamp(1.28rem,1.75vw,1.55rem);font-weight:430;line-height:1.72;letter-spacing:-.008em}
+.cognitive-manifesto .manifest-flow strong{font-weight:760}
+@media(max-width:650px){.cognitive-manifesto{padding:46px 0 100px}.cognitive-manifesto .manifest-flow{font-size:1.17rem;line-height:1.67}}
