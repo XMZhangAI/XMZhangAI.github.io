@@ -117,3 +117,16 @@
 .person-card.member p{font-size:.73rem;line-height:1.55}
 .person-card.member nav{padding-top:16px}
 @media(max-width:650px){.people-grid{width:min(420px,100%)}.person-card.member{grid-template-columns:112px minmax(0,1fr);min-height:210px}.person-card.member img{height:100%;max-height:none}.person-card.member>div{padding:20px}.person-card.member h3{margin-top:20px;font-size:1.8rem}}
+
+/* Editorial hierarchy for the Cognitive AI statement */
+.cognitive-manifesto{width:min(760px,calc(100vw - 40px));padding-top:62px;counter-reset:manifest-phase}
+.cognitive-manifesto p{margin-bottom:38px;font-size:clamp(1.22rem,1.65vw,1.48rem);line-height:1.64}
+.cognitive-manifesto>p:first-child{max-width:680px;margin-bottom:48px;font-size:clamp(1.55rem,2.3vw,2rem);font-weight:620;line-height:1.42;letter-spacing:-.018em}
+.cognitive-manifesto>p:nth-child(2){font-size:clamp(1.35rem,1.9vw,1.65rem);line-height:1.55}
+.cognitive-manifesto strong{font-weight:720}
+.cognitive-manifesto .manifest-emphasis{margin:76px 0;padding:42px 0;border-top:1px solid #1d1d1b;border-bottom:1px solid #1d1d1b;font-size:clamp(2.25rem,4.1vw,3.65rem);font-weight:650;line-height:1.08;letter-spacing:-.04em}
+.cognitive-manifesto h3{counter-increment:manifest-phase;margin:88px 0 24px;padding-top:27px;display:grid;grid-template-columns:52px 1fr;gap:18px;border-top:1px solid #bdbdb9;font-size:clamp(1.8rem,2.8vw,2.55rem);font-weight:650;line-height:1.16}
+.cognitive-manifesto h3::before{content:'0' counter(manifest-phase);padding-top:.34rem;color:var(--lab-red);font:800 .7rem/1 var(--sans);letter-spacing:.1em}
+.cognitive-manifesto h3+p{padding-left:70px}
+.cognitive-manifesto .manifest-ending{margin-top:98px;padding:45px 0 0;font-size:clamp(2rem,3.6vw,3.15rem);font-weight:620;line-height:1.18;letter-spacing:-.035em}
+@media(max-width:650px){.cognitive-manifesto{padding-top:44px}.cognitive-manifesto p{font-size:1.16rem}.cognitive-manifesto>p:first-child{font-size:1.48rem}.cognitive-manifesto .manifest-emphasis{margin:58px 0;padding:32px 0;font-size:2.15rem}.cognitive-manifesto h3{margin-top:70px;grid-template-columns:38px 1fr;gap:10px;font-size:1.72rem}.cognitive-manifesto h3+p{padding-left:48px}.cognitive-manifesto .manifest-ending{font-size:2rem}}
