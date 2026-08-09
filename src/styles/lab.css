@@ -107,3 +107,13 @@
 @media(max-width:900px){.people-grid{grid-template-columns:1fr}.person-card.member{max-width:720px}}
 @media(max-width:650px){.worldeology-kinetic{height:270px}.kinetic-mass{top:43px;left:22px;transform:scale(.82)}.kinetic-state-one{top:48px;right:44px}.kinetic-state-two{right:18px;bottom:48px}.kinetic-orbit-one{width:300px}.kinetic-orbit-two{width:210px;height:235px}.person-card.member{grid-template-columns:1fr}.person-card.member img{height:260px;max-height:260px}.person-card.member h3{margin-top:26px}}
 @media(prefers-reduced-motion:reduce){.worldeology-kinetic,.kinetic-orbit,.kinetic-mass,.kinetic-mass span,.kinetic-state,.kinetic-trace{animation:none}}
+
+/* Smaller, full-colour member cards */
+.people-grid{width:min(940px,100%);margin:56px auto 0;gap:18px}
+.person-card.member{min-height:245px;grid-template-columns:138px minmax(0,1fr)}
+.person-card.member img{filter:none;object-position:center top}
+.person-card.member>div{padding:24px}
+.person-card.member h3{margin:24px 0 12px;font-size:clamp(1.7rem,2.3vw,2.35rem)}
+.person-card.member p{font-size:.73rem;line-height:1.55}
+.person-card.member nav{padding-top:16px}
+@media(max-width:650px){.people-grid{width:min(420px,100%)}.person-card.member{grid-template-columns:112px minmax(0,1fr);min-height:210px}.person-card.member img{height:100%;max-height:none}.person-card.member>div{padding:20px}.person-card.member h3{margin-top:20px;font-size:1.8rem}}
