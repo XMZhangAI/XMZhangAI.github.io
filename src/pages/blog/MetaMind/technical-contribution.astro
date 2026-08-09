@@ -3,17 +3,17 @@ import ResearchReleaseLayout from '../../../layouts/ResearchReleaseLayout.astro'
 import CognitiveField from '../../../components/blog/CognitiveField.astro';
 
 const sections = [
-  { id: 'problem', label: 'The hidden state' },
-  { id: 'system', label: 'The MetaMind loop' },
-  { id: 'evidence', label: 'What changes' },
-  { id: 'diagnosis', label: 'Why it works' },
-  { id: 'trajectory', label: 'Open questions' }
+  { id: 'problem', label: 'The missing variable' },
+  { id: 'system', label: 'A metacognitive architecture' },
+  { id: 'evidence', label: 'What the evidence says' },
+  { id: 'diagnosis', label: 'Why every stage matters' },
+  { id: 'trajectory', label: 'Limits and next tests' }
 ];
 const site = Astro.site!;
 const schema = {
   '@context':'https://schema.org', '@type':'ScholarlyArticle',
   headline:'MetaMind: Social Intelligence Begins Before the Answer',
-  description:'A visual research release for MetaMind, a metacognitive multi-agent system for explicit, revisable social reasoning.',
+  description:'An evidence-led account of the NeurIPS 2025 Spotlight framework for explicit, revisable social reasoning in language models.',
   image:new URL('/blog/MetaMind/assets/metamind-social-2026.png',site).href,
   datePublished:'2026-07-13', dateModified:'2026-08-08',
   author:{'@type':'Person',name:'Xuanming Zhang',url:new URL('/',site).href},
@@ -23,10 +23,10 @@ const schema = {
 
 <ResearchReleaseLayout
   title="MetaMind — Social Intelligence Begins Before the Answer"
-  description="MetaMind turns latent social interpretation into an explicit, revisable cognitive trajectory: infer mental states, refine them under context and norms, then validate action."
+  description="An evidence-led account of MetaMind, the NeurIPS 2025 Spotlight framework that makes latent mental-state inference, norm-aware refinement, and response validation explicit."
   eyebrow="Cognitive AI / MetaMind"
   headline="Social intelligence begins before the answer."
-  dek="MetaMind treats social reasoning as inference over an unseen mind—not a single pass from language to response. The system keeps interpretations revisable until context, norms, memory, and action agree."
+  dek="MetaMind reframes socially intelligent language modeling as an explicit, revisable computation over latent mental states—not a single pass from words to response."
   image="/blog/MetaMind/assets/metamind-social-2026.png"
   published="2026-07-13"
   updated="2026-08-08"
@@ -35,31 +35,31 @@ const schema = {
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
   <CognitiveField slot="hero-visual" />
 
-  <p class="lead">We have spent years teaching machines to answer questions and execute instructions. The larger problem is only beginning to surface: <strong>what did the system understand before it answered, how did that understanding change while it reasoned, and what happens after its action enters the world?</strong></p>
+  <p class="lead">Language exposes what a person said. It does not directly expose what they <strong>believe, want, feel, or intend</strong>. MetaMind makes that hidden layer the object of computation.</p>
 
   <p class="section-label">01 / The hidden state</p>
-  <h2 id="problem">The utterance is visible. The mind is not.</h2>
+  <h2 id="problem">The utterance is observed. The mind is latent.</h2>
 
-  <p>Language is a partial observation of cognition. Beneath the sentence lie beliefs, desires, emotions, intentions, social roles, and uncertainty. “I don’t mind” can be permission, reluctance, or an attempt to repair tension. The words stay fixed while the appropriate action changes.</p>
-  <p>Most language-model pipelines compress this ambiguity into a direct mapping: context in, answer out. A fluent response can therefore conceal the decisive error—the system selected the wrong account of the person before generation even began. MetaMind makes that account explicit enough to inspect and revise.</p>
+  <p>“It is cold in here” may be an observation, a request to close the window, or a bid for care. The words remain constant; the intended social action changes. Humans resolve this underdetermination through Theory of Mind: we infer beliefs, desires, emotions, intentions, and thoughts that cannot be read directly from the sentence.</p>
+  <p>Most language-model pipelines collapse this problem into one prediction: context in, response out. Static role prompts, instruction tuning, and preference optimization can improve social style, yet they do not necessarily expose the intermediate interpretation that produced it. When that interpretation is wrong, there is no explicit object to inspect, constrain, or revise.</p>
 
   <section class="thesis-strip" aria-label="The MetaMind modeling shift">
-    <article><span>Stage 1 / Hypothesize</span><strong>Infer unspoken mental states</strong><p>The ToM Agent generates diverse candidates over belief, desire, intention, emotion, and thought.</p></article>
-    <article><span>Stage 2 / Refine</span><strong>Constrain interpretation</strong><p>The Moral Agent revises and selects candidates under cultural norms, ethics, and role expectations.</p></article>
-    <article><span>Stage 3 / Validate</span><strong>Test the response</strong><p>The Response Agent checks empathy and contextual coherence, then releases or regenerates.</p></article>
+    <article><span>Stage 1</span><strong>Mental-state hypothesis generation</strong><p>The Theory of Mind Agent constructs candidate interpretations over belief, desire, emotion, intention, and thought.</p></article>
+    <article><span>Stage 2</span><strong>Norm-aware refinement and selection</strong><p>The Moral Agent revises and selects candidates under cultural, ethical, situational, and role-based constraints.</p></article>
+    <article><span>Stage 3</span><strong>Response synthesis and reflective validation</strong><p>The Response Agent generates from the refined hypothesis, then checks empathy and contextual coherence.</p></article>
   </section>
 
   <p class="section-label">02 / The system</p>
-  <h2 id="system">Delay commitment. Make revision possible.</h2>
+  <h2 id="system">A staged loop for metacognitive control.</h2>
 
-  <p>MetaMind separates three operations that direct generation usually entangles. The separation is functional: each stage exposes a different object that can fail, be evaluated, and be corrected. Dynamic social memory carries validated state across turns without treating the transcript itself as understanding.</p>
+  <p>MetaMind decomposes social understanding into three specialized agents coordinated by a dynamic social memory. Each stage operates on a distinct failure mode: missing latent intent, implausible or inappropriate interpretation, and a response that does not remain faithful to the selected interpretation.</p>
 
   <figure class="pipeline">
     <div class="pipeline-head"><div><span>System architecture / one cognitive turn</span><strong>Infer → refine → validate</strong></div><span>Input: utterance + context + memory</span></div>
     <div class="pipeline-stages">
-      <article><span class="stage-number">01</span><b>THEORY OF MIND</b><h3>Infer</h3><h4>Generate mental-state hypotheses.</h4><p>Keep competing explanations over belief, desire, emotion, intention, knowledge, and pragmatic meaning.</p><output>OUTPUT · Hₜ = &#123;h₁ … hₖ&#125;</output></article>
-      <article><span class="stage-number">02</span><b>CONTEXTUAL REFINEMENT</b><h3>Refine</h3><h4>Revise under the situation.</h4><p>Use role, culture, history, ethical boundaries, and task constraints. Plausible is not always appropriate.</p><output>OUTPUT · h̃* = contextual fit</output></article>
-      <article><span class="stage-number">03</span><b>REFLECTIVE ACTION</b><h3>Validate</h3><h4>Inspect before release.</h4><p>Check whether the response preserves the selected state, remains coherent with memory, and respects agency.</p><output>DECISION · release or return</output></article>
+      <article><span class="stage-number">01</span><b>THEORY OF MIND AGENT</b><h3>Infer</h3><h4>Generate mental-state hypotheses.</h4><p>Represent ambiguity with candidate interpretations, each carrying a mental-state type and an explanation.</p><output>OUTPUT · Hₜ = &#123;h₁ … hₖ&#125;</output></article>
+      <article><span class="stage-number">02</span><b>MORAL AGENT</b><h3>Refine</h3><h4>Revise and select under social norms.</h4><p>Evaluate each candidate under role, culture, ethics, and situation before selecting a norm-aware interpretation.</p><output>OUTPUT · h̃* = contextual fit</output></article>
+      <article><span class="stage-number">03</span><b>RESPONSE AGENT</b><h3>Validate</h3><h4>Generate, audit, and regenerate.</h4><p>Combine affective alignment with contextual and inferential coherence; a low score triggers another pass.</p><output>DECISION · release or regenerate</output></article>
     </div>
     <div class="algorithm-band" aria-label="MetaMind algorithm at each stage">
       <div><span>Generate</span><strong>Hₜ = A<sub>ToM</sub>(uₜ, Cₜ, Mₜ)</strong></div>
@@ -74,12 +74,12 @@ const schema = {
     </div>
   </figure>
 
-  <p>The architecture does not claim privileged access to another mind. It does the opposite: it preserves uncertainty. A mental-state hypothesis is a revisable model, not a fact about a person. That distinction is necessary for both accuracy and autonomy.</p>
+  <p>Social reasoning is not merely response generation. It is structured hypothesis formation under partial observability, revision under social constraints, and action after reflective validation.</p>
 
   <p class="section-label">03 / Evidence</p>
-  <h2 id="evidence">The effect survives changes in task and model.</h2>
+  <h2 id="evidence">The gains survive changes in model and task.</h2>
 
-  <p>The evaluation moves from latent-state inference to norm-sensitive interpretation and then to open-ended social action. MetaMind improves GPT-4 from 74.8 to 81.0 on ToMBench, from 71.5 to 80.5 across eight social-cognition tasks, and from 39.4 to 73.9 on Social Tasks in Sandbox Simulation. The last result matters most: the gain grows when an interpretation must survive long enough to guide action.</p>
+  <p>The evaluation spans multiple-choice Theory-of-Mind reasoning, eight social-cognition tasks, Social Tasks in Sandbox Simulation (STSS), SocialIQA, and SOTOPIA. This matters because the three stages should not only improve one narrow benchmark: they should transfer from hidden-state inference to norm-sensitive interpretation and then to action. The full study covers more than 16 models.</p>
 
   <figure class="evidence-board">
     <div class="evidence-intro"><span>Reported results</span><strong>One scaffold.<br />Three levels of evidence.</strong><p>The farther the task moves from choosing an answer toward sustaining an interaction, the larger the observed gain.</p></div>
@@ -154,12 +154,14 @@ const schema = {
     </div>
   </figure>
 
-  <p>In a blinded study of 120 cases, experts ranked MetaMind first in 67.5% of comparisons, ahead of GPT-4.5 and DeepSeek-R1 as standalone systems. This does not prove general social intelligence. It does show that explicit cognitive organization remains useful even when the underlying model becomes stronger.</p>
+  <p>The evidence becomes stronger as it moves from benchmark accuracy to interaction and blinded judgment. The largest absolute gain appears in STSS, where a system must retain unstated social constraints across action. In 120 anonymized cases, experts ranked MetaMind first in 67.5% of comparisons, ahead of GPT-4.5 and DeepSeek-R1 as standalone systems.</p>
+
+  <p>The effect is not limited to older models. The paper reports gains for advanced reasoning systems as well: OpenAI o1 moves from 88.6 to 90.3 and o3 from 90.3 to 92.2 on its six-dimension Theory-of-Mind average. Stronger pretraining does not make explicit cognitive organization redundant.</p>
 
   <p class="section-label">04 / Diagnosis</p>
-  <h2 id="diagnosis">Each stage removes a different failure.</h2>
+  <h2 id="diagnosis">Every stage removes a different failure mode.</h2>
 
-  <p>The ablations reveal more than the headline score. Removing hypothesis generation restores premature commitment. Removing contextual refinement confuses surface plausibility with social appropriateness. Removing reflective validation creates the largest failure in open-ended interaction: a reasonable interpretation no longer guarantees a faithful action.</p>
+  <p>The ablations are more informative than the headline score. Removing Stage 1 lowers average social-cognition performance by 2.6 points. Removing norm-aware Stage 2 costs 3.8 points and produces the sharpest losses on pragmatic and norm-violation tasks. Removing Stage 3 validation costs 16.1 points on open-ended STSS, including a 22.1-point loss in conversation.</p>
   <figure class="ablation-chart" aria-label="Performance loss when each MetaMind stage is removed">
     <figcaption><span>Ablation / reported point loss</span><strong>What breaks when a stage disappears?</strong></figcaption>
     <div class="ablation-axis"><span>0</span><span>−4</span><span>−8</span><span>−12</span><span>−16</span></div>
@@ -176,30 +178,32 @@ const schema = {
     <article><span>Stage 3 removed</span><strong>Conversation −22.1</strong></article>
   </div>
 
-  <p class="section-label">05 / Findings and open questions</p>
-  <h2 id="trajectory">Where the framework holds—and where it still breaks.</h2>
+  <p>The human study probes the intermediate object itself. Among 120 revised hypotheses evaluated double-blind by experts, the paper reports 95% accuracy with near-perfect agreement on rationality. The result supports the intended interpretation of Stage 2: it is not only producing higher benchmark scores; its revisions are inspectable and broadly judged coherent.</p>
 
-  <p>The experiments support a narrow claim: organizing social reasoning into explicit, revisable stages improves performance across tasks and model families. The qualitative cases also show why the framework is not a finished account of social intelligence.</p>
+  <p class="section-label">05 / Limits and next tests</p>
+  <h2 id="trajectory">A strong result—and a map of what remains.</h2>
+
+  <p>The paper is explicit about its boundary conditions. Performance depends on the quality of domain knowledge, the coverage and correctness of social memory, and the backbone model. The evaluations are principally textual and constrained relative to real social life, where tone, expression, group dynamics, culture, and long relationships interact.</p>
 
   <section class="research-horizon" aria-label="MetaMind findings and open research questions">
     <div class="horizon-findings">
       <span>What the evidence supports</span>
-      <article><b>01</b><strong>Structured reasoning transfers.</strong><p>MetaMind improves models from Mistral–7B to OpenAI o3 rather than depending on one backbone.</p></article>
-      <article><b>02</b><strong>The gains are selective.</strong><p>Knowledge improves by 16.1 points, while intention remains nearly flat at −0.4.</p></article>
-      <article><b>03</b><strong>Validation matters most in action.</strong><p>Removing response validation produces the largest reported loss in open-ended interaction.</p></article>
+      <article><b>01</b><strong>Make ambiguity first-class.</strong><p>Generate typed mental-state explanations instead of collapsing immediately to a fluent response.</p></article>
+      <article><b>02</b><strong>Separate plausibility from appropriateness.</strong><p>Social and ethical constraints become a distinct revision operation that can be inspected.</p></article>
+      <article><b>03</b><strong>Validate action against interpretation.</strong><p>The final response is evaluated with respect to the inferred state and memory.</p></article>
     </div>
     <div class="horizon-questions">
       <span>Open questions</span>
       <ol>
-        <li><b>Memory</b><strong>How can updates avoid turning unsupported inferences into persistent state?</strong></li>
-        <li><b>Culture</b><strong>How should norms adapt across communities and changing expectations?</strong></li>
-        <li><b>Modality</b><strong>What changes when tone, expression, gesture, and physical context become observable?</strong></li>
-        <li><b>Time</b><strong>Can the system remain coherent across groups, relationships, and long interaction histories?</strong></li>
+        <li><b>Interaction</b><strong>Can the gains survive multimodal, cross-cultural, and longitudinal interaction?</strong></li>
+        <li><b>Norms</b><strong>Can norm refinement remain adaptive without hardening cultural assumptions into the system?</strong></li>
+        <li><b>Learning</b><strong>Can explicit cognitive traces be distilled into lower-cost, native model behavior?</strong></li>
+        <li><b>Memory</b><strong>Can memory remain useful while protecting autonomy, privacy, and the right to be misread less often?</strong></li>
       </ol>
     </div>
   </section>
 
-  <p>MetaMind makes another mind more explicit as a hypothesis—not more certain as a fact. Preserving that distinction is the next research problem, not a detail to solve after deployment.</p>
+  <p>Those questions lead beyond the paper. The next field note treats MetaMind as the first visible scaffold in a larger research program: externalize cognition, evaluate it, train it, and finally place it inside worlds where actions have durable consequences.</p>
 
   <script>
     document.querySelectorAll<HTMLElement>('[data-finding-pairs]').forEach((root)=>{
