@@ -1,6 +1,5 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/lab.css';
 
 const site = Astro.site!;
@@ -10,82 +9,72 @@ const organizationSchema = {
   name: 'Worldeology Lab',
   url: new URL('/', site).href,
   founder: { '@type': 'Person', name: 'Xuanming Zhang' },
-  description: 'Worldeology Lab studies Cognitive AI: systems that understand minds before action, inspect cognition during action, and model consequences after action.',
-  knowsAbout: ['Cognitive AI', 'Theory of Mind', 'Metacognition', 'Interactive world models', 'Long-horizon AI evaluation']
+  description: 'Worldeology Lab studies Cognitive AI: the trajectory from understanding minds to inspecting cognition and modeling consequences.'
 };
 ---
 
 <SiteLayout
   title="Worldeology Lab — Cognitive AI"
-  description="Worldeology Lab studies the full cognitive trajectory: understanding minds before action, inspecting cognition during action, and modeling consequences after action."
+  description="Worldeology Lab studies Cognitive AI: understanding minds before action, inspecting cognition during action, and modeling consequences after action."
   image="/og.png"
-  imageAlt="Worldeology Lab — Cognitive AI from mind to action to world"
+  imageAlt="Worldeology Lab — Cognitive AI from mind to cognition to world"
   headerTone="paper"
+  noHeader={true}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)}></script>
 
-  <main id="main" class="lab-site">
-    <section class="lab-hero" aria-labelledby="lab-title">
-      <div class="lab-hero-meta"><span>Independent research lab</span><span>London · Hangzhou · Everywhere cognition acts</span></div>
-      <div class="lab-hero-copy" data-reveal>
-        <p class="lab-kicker">Worldeology / Cognitive AI</p>
-        <h1 id="lab-title">The answer is a point.<br /><em>Cognition is a trajectory.</em></h1>
-        <p>We study AI systems that understand another mind before acting, inspect and revise their own cognition while acting, and model how their actions change the world afterward.</p>
-        <nav aria-label="Explore Worldeology Lab"><a href="/research/">Read the research agenda ↗</a><a href="#work">Explore the work ↓</a></nav>
-      </div>
+  <main id="main" class="manifest-home">
+    <nav class="manifest-nav" aria-label="Worldeology Lab"><a href="/research/">Research</a><a href="/#work-heading">Work</a><a href="/people/">People</a><a href="/about/">About</a><a href="#join-us">Join us</a></nav>
+    <header class="manifest-wordmark">
+      <h1><span>WORLDEOLOGY</span><span>LAB</span></h1>
+      <p>Cognitive AI</p>
+    </header>
 
-      <div class="cognitive-orbit" aria-label="Cognitive AI spans before, during, and after an answer" data-reveal>
-        <div class="orbit-ring orbit-ring-one"></div><div class="orbit-ring orbit-ring-two"></div>
-        <div class="orbit-center"><span>The answer</span><strong>·</strong><small>one observable point</small></div>
-        <article class="orbit-before"><b>01</b><span>Before action</span><strong>Understand minds</strong></article>
-        <article class="orbit-during"><b>02</b><span>During action</span><strong>Inspect cognition</strong></article>
-        <article class="orbit-after"><b>03</b><span>After action</span><strong>Model consequences</strong></article>
-        <i class="orbit-pulse" aria-hidden="true"></i>
-      </div>
+    <article class="cognitive-manifesto" aria-label="Cognitive AI research statement">
+      <p>我们花了很长时间教机器回答问题，亦或执行任务。</p>
+
+      <p>更大的问题刚刚浮现：在指令接受之时，机器理解了什么？在推理形成之中，它能否察觉自己的偏离？当输出离开屏幕、进入人的生活之后，它又把世界推向了哪里？</p>
+
+      <p>语言、场景只是认知短暂露出水面观测的部分。水面之下，有对他人意图的猜测，有权衡利弊的谋划，有无数推理路径在不确定性下收束。水面之外，行为参与现实。它改变一个决定、一段关系，甚至一条原本不会发生的未来路径。</p>
+
+      <p class="manifest-emphasis">Cognitive AI 研究的，是这整段过程。</p>
+
+      <p>它把智能的基本单位从一次输出扩展为一条认知轨迹：行动之前理解心智，行动之中测试认知，行动之后追踪并承担行动的后果，并在事件间持续学习泛化。</p>
+
+      <p>未来的 AI 不会永远停留在指令框里，被动等待问题，交出推理答案。它将进入持续的协作、教育、陪伴与决策。那时，单次回答的正确率已经不够。系统必须知道自己面对的是谁，判断正在怎样形成，以及自己的行动会在时间里留下什么。</p>
+
+      <h3>进入答案之前：理解另一个心智。</h3>
+      <p>人际交互从来不是透明的。人会暗示、保留、试探，也会让真正的意图藏在一个平常的行动后面。Cognitive AI 在开口之前先面对这些不可见的部分，从情境、关系与行为中推断对方可能相信什么、需要什么，又有哪些边界不能越过。</p>
+
+      <h3>进入答案之中：观察并测试自身认知。</h3>
+      <p>Cognitive AI 把生成过程从一条只能向前的直线，变成一条可以被看见、被检查、也可以折返的路径。当推理开始偏离，系统不必等到错误说完以后再解释，而能找到偏离发生的那个位置，回去，重新选择。</p>
+
+      <h3>进入答案之后：建模行动造成的世界变化。</h3>
+      <p>行动一旦进入现实，就不再只是物理交互。一次安慰可能改变他者的信念，一条建议可能开启新的大事件。每一步都显得合理，长期结果仍可能缓慢滑向相反的方向。Cognitive AI 关心的，是行动之后继续生长的世界。</p>
+
+      <p>我们意图指向一个全新领域：一条不只观察答案表面的 AI 研究路径，还要观察答案诞生的认知过程，以及它穿过现实之后留下的轨迹。理解、测试和后果由此成为可以建模、训练、评估与优化的对象。</p>
+
+      <p class="manifest-ending">答案是 AI 时代的一点。认知从这里开始，并继续向未来发生。</p>
+    </article>
+
+    <section class="manifest-links" aria-labelledby="work-heading">
+      <h2 id="work-heading">Research</h2>
+      <a href="/blog/MetaMind/technical-contribution/"><span>MetaMind</span><small>Before the answer · modeling unspoken minds</small><i>↗</i></a>
+      <a href="/blog/MetaMind/cognitive-frontier/"><span>Cognition-of-Thought</span><small>Inside the answer · reflective and revisable cognition</small><i>↗</i></a>
+      <a href="/projects/mariolm/"><span>MarioLM</span><small>Beyond the answer · consequential interactive worlds</small><i>↗</i></a>
+      <a href="/research/"><span>Research map</span><small>Core program, adjacent work, and publications</small><i>↗</i></a>
     </section>
 
-    <section class="lab-definition" aria-labelledby="definition-title">
-      <p class="lab-index">01 / Definition</p>
-      <div>
-        <h2 id="definition-title">Cognitive AI 研究的，<br />是答案发生的整段过程。</h2>
-        <div class="definition-copy">
-          <p>我们花了很长时间教机器回答问题，亦或执行任务。更大的问题刚刚浮现：在指令接受之时，机器理解了什么？在推理形成之中，它能否察觉自己的偏离？当输出离开屏幕、进入人的生活之后，它又把世界推向了哪里？</p>
-          <p>语言与场景只是认知短暂露出水面的部分。水面之下，有对他人意图的猜测、有权衡利弊的谋划、有无数推理路径在不确定性下收束。水面之外，行为参与现实，改变一个决定、一段关系，甚至一条原本不会发生的未来路径。</p>
-          <p class="definition-line">答案是 AI 时代的一点。认知从这里开始，并继续向未来发生。</p>
-        </div>
-      </div>
+    <section class="manifest-join" id="join-us">
+      <h2>Build the field with us.</h2>
+      <p>Worldeology Lab is forming a research community around social cognition, metacognitive systems, model mechanisms, and long-horizon interactive worlds.</p>
+      <a href="mailto:xuanmingdi.zxm@alibaba-inc.com?subject=Worldeology%20Lab">Start a conversation ↗</a>
     </section>
 
-    <section class="lab-program" id="research" aria-labelledby="program-title">
-      <header><p class="lab-index">02 / Research program</p><h2 id="program-title">Before. During. After.</h2><p>Cognitive AI expands the unit of intelligence from an output to a revisable, consequential trajectory.</p></header>
-      <div class="program-grid">
-        <article data-reveal><span>Before the answer</span><h3>Infer what is not said.</h3><p>Model beliefs, desires, intentions, emotions, roles, and boundaries without confusing a hypothesis with a fact.</p><a href="/blog/MetaMind/technical-contribution/">MetaMind ↗</a></article>
-        <article data-reveal><span>Inside the answer</span><h3>Find where thought diverges.</h3><p>Expose intermediate cognition, test it against context and values, then roll back to the point where another path remains possible.</p><a href="/research/#metacognition">Cognition-of-Thought ↗</a></article>
-        <article data-reveal><span>Beyond the answer</span><h3>Follow what action changes.</h3><p>Track latent state, event chains, relationships, institutions, and future choices across persistent interactive worlds.</p><a href="/projects/mariolm/">MarioLM ↗</a></article>
-      </div>
-    </section>
-
-    <section class="lab-work" id="work" aria-labelledby="work-title">
-      <header><p class="lab-index">03 / Selected work</p><h2 id="work-title">One agenda.<br />Different instruments.</h2></header>
-      <div class="work-list">
-        <a class="work-row" href="/blog/MetaMind/technical-contribution/" data-reveal><span>2025</span><div><b>MetaMind</b><h3>Model the unspoken mind before response.</h3></div><p>Social cognition · Multi-agent metacognition</p><i>↗</i></a>
-        <a class="work-row" href="/blog/MetaMind/cognitive-frontier/" data-reveal><span>2026</span><div><b>Cognition-of-Thought</b><h3>Make intermediate cognition inspectable and revisable.</h3></div><p>Process alignment · Reflective decoding</p><i>↗</i></a>
-        <a class="work-row" href="/projects/mariolm/" data-reveal><span>2026</span><div><b>MarioLM</b><h3>Evaluate the future path an action creates.</h3></div><p>World models · Long-horizon interaction</p><i>↗</i></a>
-        <a class="work-row" href="https://arxiv.org/abs/2510.03999" data-reveal><span>2026</span><div><b>Long-Horizon Deception</b><h3>Audit behavior across an event chain, not a confession.</h3></div><p>AI safety · Social simulation</p><i>↗</i></a>
-      </div>
-      <a class="lab-text-link" href="/research/">View the full research map ↗</a>
-    </section>
-
-    <section class="lab-world" aria-labelledby="world-title">
-      <div class="world-word" aria-hidden="true">WORLD·EOLOGY</div>
-      <div class="world-copy" data-reveal><p class="lab-index">04 / The name</p><h2 id="world-title">The study of worlds as cognition and action continually remake them.</h2><p>Worldeology begins from a simple claim: intelligence cannot be understood only inside a model. It must also be studied in the beliefs it changes, the relationships it enters, and the futures it makes reachable.</p><a href="/about/">Why Worldeology ↗</a></div>
-    </section>
-
-    <section class="lab-people-preview" aria-labelledby="people-title">
-      <div><p class="lab-index">05 / People</p><h2 id="people-title">A research lab built around a field, not a product category.</h2></div>
-      <article><img src="/assets/images/xuanming-zhang.webp" width="886" height="886" alt="Xuanming Zhang, founder of Worldeology Lab" loading="lazy" /><div><span>Founder</span><h3>Xuanming Zhang</h3><p>AI researcher working across metacognition, social intelligence, model mechanisms, and long-horizon interactive worlds.</p><a href="/people/">People and collaborators ↗</a></div></article>
-    </section>
-
-    <SiteFooter />
+    <footer class="manifest-footer">
+      <a class="manifest-footer-brand" href="/">Worldeology Lab</a>
+      <nav aria-label="Worldeology Lab"><a href="/research/">Research</a><a href="/people/">People</a><a href="/about/">About</a><a href="https://github.com/XMZhangAI">GitHub</a></nav>
+      <span>© 2026</span>
+    </footer>
   </main>
 </SiteLayout>
