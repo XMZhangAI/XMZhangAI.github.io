@@ -7,7 +7,7 @@ const sections = [
   { id: 'system', label: 'The MetaMind loop' },
   { id: 'evidence', label: 'What changes' },
   { id: 'diagnosis', label: 'Why it works' },
-  { id: 'trajectory', label: 'Beyond the answer' }
+  { id: 'trajectory', label: 'Open questions' }
 ];
 const site = Astro.site!;
 const schema = {
@@ -67,8 +67,10 @@ const schema = {
       <div><span>Validate</span><strong>U(oₜ) = βE + (1−β)C</strong></div>
     </div>
     <div class="pipeline-memory">
-      <div class="memory-copy"><strong>Dynamic social memory · Mₜ</strong><p>A structured record of validated patterns, relevant norms, and corrective feedback—not a dump of every hypothesis.</p></div>
-      <div class="memory-motion" aria-label="Memory retrieves context, receives validated updates, and carries state to the next turn"><i></i><span>Retrieve</span><span>Validated update</span><span>Turn t + 1</span></div>
+      <strong class="memory-title">Dynamic social memory · Mₜ</strong>
+      <div class="memory-static-flow" aria-label="Retrieve memory, add a validated update, and carry it to the next turn">
+        <span>Retrieve</span><i>→</i><span>Validated update</span><i>→</i><span>Mₜ₊₁</span>
+      </div>
     </div>
   </figure>
 
@@ -174,27 +176,30 @@ const schema = {
     <article><span>Stage 3 removed</span><strong>Conversation −22.1</strong></article>
   </div>
 
-  <p class="section-label">05 / Beyond the answer</p>
-  <h2 id="trajectory">A cognitive trajectory, not a terminal output.</h2>
+  <p class="section-label">05 / Findings and open questions</p>
+  <h2 id="trajectory">Where the framework holds—and where it still breaks.</h2>
 
-  <p>MetaMind addresses the first part of a broader research program. Cognitive AI expands the basic unit of intelligence from an answer to a trajectory: understand another mind before action, monitor and revise cognition during action, then model how that action changes the world over time.</p>
+  <p>The experiments support a narrow claim: organizing social reasoning into explicit, revisable stages improves performance across tasks and model families. The qualitative cases also show why the framework is not a finished account of social intelligence.</p>
 
-  <section class="cognitive-trajectory trajectory-map" aria-label="Cognitive AI research trajectory">
-    <canvas data-cognitive-trajectory aria-hidden="true"></canvas>
-    <header class="trajectory-heading"><span>Cognitive AI</span><strong>One answer. A longer trajectory.</strong><p>Before → during → after action</p></header>
-    <ol>
-      <li><span>Before action</span><strong>Infer minds.</strong><p>Reason over beliefs, desires, boundaries, roles, uncertainty, and what remains unobserved.</p></li>
-      <li><span>During action</span><strong>Monitor cognition.</strong><p>Expose where a reasoning path diverges, compare alternatives, and revise before the error becomes an intervention.</p></li>
-      <li><span>After action</span><strong>Model consequences.</strong><p>Track how advice, comfort, negotiation, or refusal changes decisions, relationships, and future possibilities.</p></li>
-    </ol>
-    <div class="trajectory-outcomes" aria-label="Three ways an action changes the world"><b>Action changes</b><div><span>Decision</span><span>Relationship</span><span>Future state</span></div></div>
+  <section class="research-horizon" aria-label="MetaMind findings and open research questions">
+    <div class="horizon-findings">
+      <span>What the evidence supports</span>
+      <article><b>01</b><strong>Structured reasoning transfers.</strong><p>MetaMind improves models from Mistral–7B to OpenAI o3 rather than depending on one backbone.</p></article>
+      <article><b>02</b><strong>The gains are selective.</strong><p>Knowledge improves by 16.1 points, while intention remains nearly flat at −0.4.</p></article>
+      <article><b>03</b><strong>Validation matters most in action.</strong><p>Removing response validation produces the largest reported loss in open-ended interaction.</p></article>
+    </div>
+    <div class="horizon-questions">
+      <span>Open questions</span>
+      <ol>
+        <li><b>Memory</b><strong>How can updates avoid turning unsupported inferences into persistent state?</strong></li>
+        <li><b>Culture</b><strong>How should norms adapt across communities and changing expectations?</strong></li>
+        <li><b>Modality</b><strong>What changes when tone, expression, gesture, and physical context become observable?</strong></li>
+        <li><b>Time</b><strong>Can the system remain coherent across groups, relationships, and long interaction histories?</strong></li>
+      </ol>
+    </div>
   </section>
 
-  <p>A language-only system can describe a world while failing to model how its own action changes that world. The next step is therefore not a better vocabulary for reasoning. It is a cognitive world model: physical state determines what can happen; mental and social state help determine which possibility an agent chooses, how others respond, and which future becomes reachable.</p>
-
-  <div class="limit-note"><p><strong>Boundary of the present work.</strong> MetaMind is evaluated mainly in constrained textual settings. Multimodal cues, cultural variation, group dynamics, durable relationships, privacy, and long-horizon causal effects remain open. The framework is evidence for explicit, revisable social inference—not a claim that those broader problems are solved.</p></div>
-
-  <p>The answer is a point in time. Cognition begins before it, remains active while it forms, and continues through the world it helps create.</p>
+  <p>MetaMind makes another mind more explicit as a hypothesis—not more certain as a fact. Preserving that distinction is the next research problem, not a detail to solve after deployment.</p>
 
   <script>
     document.querySelectorAll<HTMLElement>('[data-finding-pairs]').forEach((root)=>{
@@ -211,9 +216,6 @@ const schema = {
       let frame=0,w=0,h=0,lastActive=-1;const root=canvas.closest<HTMLElement>('.capability-shift')!,focus=root.querySelector<HTMLElement>('[data-shift-focus]')!,note=root.querySelector<HTMLElement>('[data-shift-note]')!,gains=[3,6.8,-.4,16.1,5.8,4.5],notes=['Emotion recognition improves modestly.','Desire inference becomes more reliable.','Intention remains essentially flat.','The largest repair in the six-dimensional profile.','Belief reasoning approaches the human reference.','Communication closes much of the remaining gap.'],sequence=[3,4,5,2,0,1];
       const resize=()=>{const rect=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);w=rect.width;h=rect.height;canvas.width=w*d;canvas.height=h*d;canvas.getContext('2d')!.setTransform(d,0,0,d,0,0)};
       const draw=()=>{const c=canvas.getContext('2d')!;c.clearRect(0,0,w,h);const left=Math.max(165,w*.29),right=Math.min(w-165,w*.71),top=66,bottom=h-58,slot=(rank:number)=>top+rank*(bottom-top)/5,leftOrder=[2,4,5,0,1,3],rightOrder=[4,5,2,0,1,3],leftRank=new Map(leftOrder.map((id,rank)=>[id,rank])),rightRank=new Map(rightOrder.map((id,rank)=>[id,rank])),colors=['#d9664f','#cc785f','#7d8985','#ff5a3c','#356b58','#8d5548'],active=sequence[Math.floor(frame/150)%sequence.length],travel=(frame%150)/150;c.font=`800 ${w<700?12:14}px sans-serif`;c.textBaseline='middle';labels.forEach((label,i)=>{const y1=slot(leftRank.get(i)!),y2=slot(rightRank.get(i)!),selected=i===active;c.strokeStyle=colors[i];c.globalAlpha=selected?1:.22;c.lineWidth=selected?4:1.5;c.beginPath();c.moveTo(left,y1);c.bezierCurveTo(w*.43,y1,w*.57,y2,right,y2);c.stroke();c.globalAlpha=1;c.fillStyle=colors[i];[ [left,y1],[right,y2] ].forEach(([x,y])=>{c.beginPath();c.arc(x,y,selected?6:4,0,Math.PI*2);c.fill()});c.fillStyle=selected?'#17221f':'#68736f';c.textAlign='right';c.fillText(`${label}  ${base[i].toFixed(1)}`,left-15,y1);c.textAlign='left';c.fillText(`${meta[i].toFixed(1)}  ${label}`,right+15,y2);if(selected){const x=left+(right-left)*travel,y=y1+(y2-y1)*(travel*travel*(3-2*travel));c.fillStyle=colors[i];c.beginPath();c.arc(x,y,7,0,Math.PI*2);c.fill();c.strokeStyle='rgba(255,90,60,.18)';c.lineWidth=12;c.stroke()}});if(active!==lastActive){const gain=gains[active];focus.textContent=`${labels[active]} · ${gain>0?'+':''}${gain.toFixed(1)}`;note.textContent=notes[active];lastActive=active}frame++;requestAnimationFrame(draw)};new ResizeObserver(resize).observe(canvas);resize();draw();
-    });
-    document.querySelectorAll<HTMLCanvasElement>('[data-cognitive-trajectory]').forEach((canvas)=>{
-      let t=0,w=0,h=0;const resize=()=>{const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);w=r.width;h=r.height;canvas.width=w*d;canvas.height=h*d;canvas.getContext('2d')!.setTransform(d,0,0,d,0,0)};const draw=()=>{const c=canvas.getContext('2d')!;c.clearRect(0,0,w,h);const p=[[w*.1,h*.45],[w*.43,h*.36],[w*.71,h*.48]];c.strokeStyle='#74807c';c.lineWidth=2.4;c.beginPath();c.moveTo(p[0][0],p[0][1]);c.bezierCurveTo(w*.23,h*.24,w*.31,h*.51,p[1][0],p[1][1]);c.bezierCurveTo(w*.54,h*.23,w*.61,h*.6,p[2][0],p[2][1]);c.stroke();const ends=[[w*.57,h*.89],[w*.73,h*.89],[w*.89,h*.89]];ends.forEach((e,i)=>{c.lineWidth=i===1?2.8:2;c.strokeStyle=i===1?'#ff765e':'#74807c';c.beginPath();c.moveTo(p[2][0],p[2][1]);c.quadraticCurveTo(w*(.64+i*.08),h*.69,e[0],e[1]);c.stroke();c.fillStyle=i===1?'#ff765e':'#a9b3af';c.beginPath();c.arc(e[0],e[1],6+Math.sin(t*.04+i)*2,0,Math.PI*2);c.fill()});const q=(t*.0026)%1;let a,b,u;if(q<.5){a=p[0];b=p[1];u=q*2}else{a=p[1];b=p[2];u=(q-.5)*2}const x=a[0]+(b[0]-a[0])*u,y=a[1]+(b[1]-a[1])*u;c.fillStyle='#ff765e';c.beginPath();c.arc(x,y,8,0,Math.PI*2);c.fill();c.strokeStyle='rgba(255,118,94,.25)';c.lineWidth=14;c.stroke();t++;requestAnimationFrame(draw)};new ResizeObserver(resize).observe(canvas);resize();draw();
     });
   </script>
 </ResearchReleaseLayout>
