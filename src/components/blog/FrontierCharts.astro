@@ -1,0 +1,149 @@
+<section class="frontier-charts" aria-label="Capability frontier and trajectory evaluation charts">
+  <article class="chart-panel">
+    <header><span>Capability frontier</span><strong>Structure changes the return on scale.</strong></header>
+    <div class="chart-wrap">
+      <canvas data-capability-chart aria-label="Chart comparing capability gained from scale alone with capability gained from scale plus cognitive structure"></canvas>
+      <div class="chart-legend"><i class="baseline"></i><span>Scale only</span><i class="structured"></i><span>Scale + structure</span></div>
+    </div>
+  </article>
+
+  <article class="chart-panel">
+    <header><span>Trajectory evaluation</span><strong>Process reveals what an endpoint hides.</strong></header>
+    <div class="chart-wrap">
+      <canvas data-trajectory-chart aria-label="Chart comparing endpoint-only evaluation with evaluation across a complete interaction trajectory"></canvas>
+      <div class="chart-legend"><i class="endpoint"></i><span>Endpoint only</span><i class="process"></i><span>Process reward</span></div>
+    </div>
+  </article>
+</section>
+
+<script>
+  // @ts-nocheck -- Canvas drawing helpers deliberately operate on generic DOM elements.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setupCanvas(canvas, draw) {
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    let frame = 0;
+    let start = performance.now();
+
+    const render = (now = performance.now()) => {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(1, Math.round(rect.width * ratio));
+      const height = Math.max(1, Math.round(rect.height * ratio));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      context.clearRect(0, 0, rect.width, rect.height);
+      draw(context, rect.width, rect.height, reduceMotion ? 1 : ((now - start) % 5200) / 5200);
+      if (!reduceMotion) frame = requestAnimationFrame(render);
+    };
+
+    const observer = new ResizeObserver(() => render());
+    observer.observe(canvas);
+    render();
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    }, { once: true });
+  }
+
+  const ink = '#17201f';
+  const muted = '#71807c';
+  const cyan = '#0d989c';
+  const gold = '#c88a2a';
+  const paper = '#f5f1e8';
+
+  function axes(ctx, width, height, xLabel, yLabel) {
+    const pad = { l: 54, r: 24, t: 24, b: 50 };
+    const chartW = width - pad.l - pad.r;
+    const chartH = height - pad.t - pad.b;
+    ctx.strokeStyle = 'rgba(23,32,31,.18)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = pad.t + chartH * i / 4;
+      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(width - pad.r, y); ctx.stroke();
+    }
+    ctx.strokeStyle = ink;
+    ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, height - pad.b); ctx.lineTo(width - pad.r, height - pad.b); ctx.stroke();
+    ctx.fillStyle = muted;
+    ctx.font = '700 10px ui-sans-serif, system-ui';
+    ctx.textAlign = 'right'; ctx.fillText(xLabel.toUpperCase(), width - pad.r, height - 17);
+    ctx.save(); ctx.translate(16, pad.t); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'right'; ctx.fillText(yLabel.toUpperCase(), 0, 0); ctx.restore();
+    return { ...pad, chartW, chartH };
+  }
+
+  document.querySelectorAll('[data-capability-chart]').forEach((canvas) => setupCanvas(canvas, (ctx, width, height, progress) => {
+    const a = axes(ctx, width, height, 'Model scale', 'Usable capability');
+    const point = (x, y) => [a.l + x * a.chartW, a.t + (1 - y) * a.chartH];
+    const base = [[0,.12],[.2,.23],[.4,.35],[.6,.47],[.8,.57],[1,.65]];
+    const structured = [[0,.14],[.2,.28],[.4,.48],[.6,.69],[.8,.84],[1,.94]];
+    const path = (points, color, dash = []) => {
+      ctx.beginPath();
+      points.forEach(([x,y], i) => { const [px,py] = point(x,y); i ? ctx.lineTo(px,py) : ctx.moveTo(px,py); });
+      ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.setLineDash(dash); ctx.stroke(); ctx.setLineDash([]);
+    };
+    const upper = structured.map(point);
+    const lower = [...base].reverse().map(point);
+    ctx.beginPath();
+    [...upper, ...lower].forEach(([x,y],i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
+    ctx.closePath();
+    const fill = ctx.createLinearGradient(0,a.t,0,height-a.b);
+    fill.addColorStop(0,'rgba(13,152,156,.22)'); fill.addColorStop(1,'rgba(13,152,156,.02)');
+    ctx.fillStyle = fill; ctx.fill();
+    path(base, muted, [5,5]); path(structured, cyan);
+    const p = Math.min(progress * 1.35, 1);
+    const index = Math.min(Math.floor(p * (structured.length - 1)), structured.length - 2);
+    const local = p * (structured.length - 1) - index;
+    const [x1,y1] = structured[index], [x2,y2] = structured[index + 1];
+    const [x,y] = point(x1 + (x2-x1)*local, y1 + (y2-y1)*local);
+    ctx.beginPath(); ctx.arc(x,y,5,0,Math.PI*2); ctx.fillStyle = gold; ctx.fill();
+    ctx.beginPath(); ctx.arc(x,y,10,0,Math.PI*2); ctx.strokeStyle = 'rgba(200,138,42,.32)'; ctx.stroke();
+    ctx.fillStyle = cyan; ctx.font = '700 11px ui-sans-serif, system-ui'; ctx.textAlign = 'right';
+    ctx.fillText('ORGANIZATION GAIN', width-a.r, a.t+15);
+  }));
+
+  document.querySelectorAll('[data-trajectory-chart]').forEach((canvas) => setupCanvas(canvas, (ctx, width, height, progress) => {
+    const a = axes(ctx, width, height, 'Interaction time', 'Trajectory quality');
+    const point = (x, y) => [a.l + x * a.chartW, a.t + (1 - y) * a.chartH];
+    const series = [[0,.42],[.16,.53],[.32,.3],[.48,.58],[.64,.48],[.8,.76],[1,.84]];
+    ctx.beginPath();
+    series.forEach(([x,y], i) => { const [px,py] = point(x,y); i ? ctx.lineTo(px,py) : ctx.moveTo(px,py); });
+    ctx.strokeStyle = cyan; ctx.lineWidth = 2.4; ctx.stroke();
+    series.forEach(([x,y], i) => {
+      const [px,py] = point(x,y);
+      ctx.beginPath(); ctx.arc(px,py,i === series.length-1 ? 5 : 3.2,0,Math.PI*2);
+      ctx.fillStyle = i === series.length-1 ? gold : paper; ctx.fill(); ctx.strokeStyle = cyan; ctx.stroke();
+    });
+    const [endX,endY] = point(1,.84);
+    ctx.strokeStyle = muted; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.moveTo(endX,a.t); ctx.lineTo(endX,height-a.b); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = muted; ctx.font = '700 10px ui-sans-serif, system-ui'; ctx.textAlign = 'right'; ctx.fillText('ENDPOINT', endX-7,a.t+13);
+    const p = Math.min(progress * 1.35, 1);
+    const index = Math.min(Math.floor(p * (series.length - 1)), series.length - 2);
+    const local = p * (series.length - 1) - index;
+    const [x1,y1] = series[index], [x2,y2] = series[index + 1];
+    const [x,y] = point(x1+(x2-x1)*local,y1+(y2-y1)*local);
+    ctx.beginPath(); ctx.arc(x,y,5,0,Math.PI*2); ctx.fillStyle = gold; ctx.fill();
+  }));
+</script>
+
+<style>
+  .frontier-charts { margin: 62px 0 76px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1px; color: #17201f; background: #17201f; border-top: 1px solid #17201f; border-bottom: 1px solid #17201f; font-family: var(--sans); }
+  .chart-panel { min-width: 0; padding: clamp(24px,3vw,38px); background: #f5f1e8; }
+  header { min-height: 98px; display: grid; align-content: start; gap: 13px; }
+  header span { color: #087d80; font-size: .58rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+  header strong { max-width: 420px; font: 460 clamp(1.45rem,2.5vw,2.3rem)/1.02 var(--serif); letter-spacing: -.018em; }
+  .chart-wrap { margin-top: 20px; }
+  canvas { width: 100%; height: 310px; display: block; }
+  .chart-legend { margin: 17px 0 0 54px; display: flex; align-items: center; gap: 8px; color: #53605d; font-size: .58rem; font-weight: 700; }
+  .chart-legend i { width: 24px; height: 2px; display: inline-block; background: #0d989c; }
+  .chart-legend i.baseline, .chart-legend i.endpoint { background: repeating-linear-gradient(90deg,#71807c 0 4px,transparent 4px 7px); }
+  .chart-legend i.process { background: #0d989c; }
+  @media (max-width: 760px) {
+    .frontier-charts { grid-template-columns: 1fr; }
+    canvas { height: 280px; }
+    header { min-height: auto; }
+  }
+</style>

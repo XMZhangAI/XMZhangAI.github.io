@@ -1,68 +1,42 @@
 <figure class="essay-figure native-figure full-bleed evolution-visual">
-  <div class="evolution-plate">
-    <header>
-      <span>Self-evolution</span>
-      <strong>Experience must change the system.</strong>
-    </header>
+  <div class="evolution-plate" data-evolution>
+    <header><span>Self-evolution / causal program</span><strong>Experience must change the system.</strong></header>
 
-    <div class="loop-orbit" aria-label="Six-stage closed loop from environment through interaction, state, learning, evidence, and evolved capability">
-      <details class="node environment"><summary><b>01</b><h3>Environment</h3></summary><p>People, agents, tools, institutions, and simulated worlds make consequences real.</p></details>
-      <details class="node interaction"><summary><b>02</b><h3>Interaction</h3></summary><p>Reciprocal action produces trajectories that neither participant fully controls.</p></details>
-      <details class="node state"><summary><b>03</b><h3>State</h3></summary><p>Explicit events and revisable latent state preserve what the interaction changed.</p></details>
-      <details class="node learning"><summary><b>04</b><h3>Learning</h3></summary><p>Prediction error and correction identify which persistent component must update.</p></details>
-      <details class="node gate"><summary><b>05</b><h3>Evidence gate</h3></summary><p>Held-out retesting asks whether the update caused improvement without reducing autonomy.</p></details>
-      <details class="node evolved"><summary><b>06</b><h3>Evolved capability</h3></summary><p>A genuine update changes later prediction, planning, recovery, and transfer.</p></details>
-
-      <div class="update-core" aria-hidden="true"><i></i><strong>Persistent<br />update</strong><span>verified change</span></div>
+    <div class="trace-stage">
+      <canvas data-loop-canvas aria-hidden="true"></canvas>
+      <button class="trace-node environment is-active" data-index="01" data-title="Environment" data-copy="People, agents, tools, institutions, and simulated worlds make consequences real." aria-pressed="true"><i></i><b>01</b><strong>Environment</strong></button>
+      <button class="trace-node interaction" data-index="02" data-title="Interaction" data-copy="Reciprocal action produces trajectories that neither participant fully controls." aria-pressed="false"><i></i><b>02</b><strong>Interaction</strong></button>
+      <button class="trace-node state" data-index="03" data-title="State" data-copy="Events and revisable latent state preserve what the interaction changed." aria-pressed="false"><i></i><b>03</b><strong>State</strong></button>
+      <button class="trace-node learning" data-index="04" data-title="Learning" data-copy="Prediction error identifies which persistent component must update." aria-pressed="false"><i></i><b>04</b><strong>Learning</strong></button>
+      <button class="trace-node gate" data-index="05" data-title="Evidence gate" data-copy="Held-out retesting asks whether the update caused durable improvement." aria-pressed="false"><i></i><b>05</b><strong>Evidence gate</strong></button>
+      <button class="trace-node evolved" data-index="06" data-title="Evolved capability" data-copy="A genuine update changes later prediction, planning, recovery, and transfer." aria-pressed="false"><i></i><b>06</b><strong>Evolved capability</strong></button>
+      <div class="update-badge"><span>Persistent update</span><b>Interaction is data.<br />Evolution is measured change.</b></div>
     </div>
 
-    <div class="causal-test"><strong>Interaction is data.</strong><span>Evolution is measured change.</span></div>
+    <div class="trace-readout" aria-live="polite">
+      <span data-trace-index>01</span><strong data-trace-title>Environment</strong><p data-trace-copy>People, agents, tools, institutions, and simulated worlds make consequences real.</p>
+    </div>
   </div>
 </figure>
 
+<script>
+  // @ts-nocheck -- Canvas connections use live button geometry.
+  document.querySelectorAll('[data-evolution]').forEach((root)=>{
+    const stage=root.querySelector('.trace-stage'),canvas=root.querySelector('[data-loop-canvas]'),nodes=[...root.querySelectorAll('.trace-node')];
+    if(!(stage instanceof HTMLElement)||!(canvas instanceof HTMLCanvasElement))return;
+    const ctx=canvas.getContext('2d');if(!ctx)return;let frame=0;const started=performance.now(),reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const draw=(now=performance.now())=>{const box=stage.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(box.width*ratio);canvas.height=Math.round(box.height*ratio);canvas.style.width=`${box.width}px`;canvas.style.height=`${box.height}px`;ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,box.width,box.height);const points=nodes.map(node=>{const dot=node.querySelector('i').getBoundingClientRect();return{x:dot.left-box.left+dot.width/2,y:dot.top-box.top+dot.height/2}});ctx.strokeStyle='rgba(13,144,148,.58)';ctx.lineWidth=2;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();const first=points[0],last=points.at(-1);ctx.strokeStyle='rgba(185,120,24,.58)';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.bezierCurveTo(last.x,box.height-18,first.x,box.height-18,first.x,first.y);ctx.stroke();ctx.fillStyle='#b97818';ctx.beginPath();ctx.moveTo(first.x-5,first.y+10);ctx.lineTo(first.x,first.y);ctx.lineTo(first.x+5,first.y+10);ctx.fill();const t=reduceMotion?1:((now-started)%5600)/5600*(points.length-1),idx=Math.min(Math.floor(t),points.length-2),local=t-idx,a=points[idx],b=points[idx+1],x=a.x+(b.x-a.x)*local,y=a.y+(b.y-a.y)*local;ctx.fillStyle='#b97818';ctx.shadowColor='rgba(185,120,24,.6)';ctx.shadowBlur=12;ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;if(!reduceMotion)frame=requestAnimationFrame(draw)};
+    const observer=new ResizeObserver(()=>draw());observer.observe(stage);draw();
+    const fields={index:root.querySelector('[data-trace-index]'),title:root.querySelector('[data-trace-title]'),copy:root.querySelector('[data-trace-copy]')};
+    nodes.forEach(button=>button.addEventListener('click',()=>{nodes.forEach(node=>{node.classList.remove('is-active');node.setAttribute('aria-pressed','false')});button.classList.add('is-active');button.setAttribute('aria-pressed','true');Object.entries(fields).forEach(([key,node])=>{if(node)node.textContent=button.dataset[key]||''})}));
+    document.addEventListener('astro:before-swap',()=>{cancelAnimationFrame(frame);observer.disconnect()},{once:true});
+  });
+</script>
+
 <style>
-  .evolution-visual { padding: 0 !important; background: transparent !important; border: 0 !important; }
-  .evolution-plate { --ink: #121716; --paper: #f3f0e8; --aqua: #16a7a7; --gold: #d69b3d; padding: clamp(28px,4vw,56px); color: var(--ink); background: #e9f0ed; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--sans); }
-  header { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
-  header span { color: #5f6b68; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  header strong { max-width: 800px; font-family: var(--serif); font-size: clamp(2rem,4.4vw,4.25rem); font-weight: 430; line-height: .95; letter-spacing: -.035em; }
-  .loop-orbit { position: relative; min-height: 690px; margin-top: clamp(42px,6vw,76px); display: grid; grid-template-columns: repeat(3,1fr); grid-template-areas: "environment interaction state" "evolved gate learning"; gap: 210px clamp(24px,5vw,72px); isolation: isolate; }
-  .loop-orbit::before { content: ''; position: absolute; z-index: -2; inset: 8% 4% 9%; border: 1px solid rgba(18,23,22,.35); border-radius: 48%; }
-  .loop-orbit::after { content: ''; position: absolute; z-index: -1; inset: 18% 12% 19%; background: linear-gradient(28deg,transparent 49.8%,rgba(22,167,167,.2) 49.9% 50.1%,transparent 50.2%),linear-gradient(-28deg,transparent 49.8%,rgba(22,167,167,.2) 49.9% 50.1%,transparent 50.2%),linear-gradient(90deg,transparent 49.8%,rgba(214,155,61,.18) 49.9% 50.1%,transparent 50.2%); }
-  .environment { grid-area: environment; }
-  .interaction { grid-area: interaction; }
-  .state { grid-area: state; }
-  .learning { grid-area: learning; }
-  .gate { grid-area: gate; }
-  .evolved { grid-area: evolved; }
-  .node { position: relative; align-self: center; min-height: 150px; padding: 0 0 18px 28px; border: 0; border-left: 1px solid rgba(18,23,22,.28); }
-  .node::before { content: ''; position: absolute; top: 0; left: -7px; width: 11px; height: 11px; background: #e9f0ed; border: 2px solid var(--aqua); border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.09); animation: evolution-node 3.7s ease-in-out infinite; }
-  .node:nth-child(2)::before, .node:nth-child(5)::before { animation-delay: -1.25s; }
-  .node:nth-child(3)::before, .node:nth-child(6)::before { border-color: var(--gold); animation-delay: -2.5s; }
-  .node summary { position: relative; min-height: 128px; display: flex; flex-direction: column; cursor: pointer; list-style: none; }
-  .node summary::-webkit-details-marker { display: none; }
-  .node summary::after { content: '+'; position: absolute; right: 0; bottom: 0; width: 24px; height: 24px; display: grid; place-items: center; border: 1px solid rgba(18,23,22,.28); border-radius: 50%; font: 500 .95rem/1 var(--sans); transition: transform .2s ease,background .2s ease,color .2s ease; }
-  .node[open] summary::after { color: #fff; background: var(--ink); transform: rotate(45deg); }
-  .node b { color: var(--aqua); font-size: .56rem; letter-spacing: .1em; }
-  .node h3 { margin: auto 34px 0 0; font-family: var(--serif); font-size: clamp(1.35rem,2.3vw,2rem); font-weight: 470; line-height: 1.02; }
-  .node p { margin: 16px 0 0; padding-top: 14px; color: #46514e; border-top: 1px solid rgba(18,23,22,.18); font-size: .68rem; line-height: 1.55; }
-  .update-core { position: absolute; z-index: 3; top: 50%; left: 50%; width: 170px; height: 170px; display: grid; place-items: center; align-content: center; gap: 9px; color: #fff; background: var(--ink); border-radius: 50%; transform: translate(-50%,-50%); text-align: center; }
-  .update-core::before { content: ''; position: absolute; inset: -20px; border: 1px solid rgba(18,23,22,.32); border-radius: 50%; animation: evolution-orbit 11s linear infinite; }
-  .update-core i { width: 9px; height: 9px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 9px rgba(214,155,61,.13); animation: evolution-core 2.8s ease-in-out infinite; }
-  .update-core strong { font: 470 1.25rem/1 var(--serif); }
-  .update-core span { color: #b9c7c3; font-size: .46rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .causal-test { padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--ink); }
-  .causal-test strong, .causal-test span { font: 470 clamp(1.1rem,2vw,1.55rem)/1.1 var(--serif); }
-  .causal-test span { color: #087a7d; }
-  @keyframes evolution-node { 50% { transform: scale(1.3); box-shadow: 0 0 0 13px rgba(22,167,167,.03); } }
-  @keyframes evolution-core { 50% { transform: scale(1.3); } }
-  @keyframes evolution-orbit { to { transform: rotate(360deg); } }
-  @media (max-width: 760px) {
-    header { grid-template-columns: 1fr; }
-    .loop-orbit { min-height: auto; padding-left: 18px; grid-template-columns: 1fr; grid-template-areas: "environment" "interaction" "state" "learning" "gate" "evolved"; gap: 24px; }
-    .loop-orbit::before { inset: 0 auto 0 23px; width: 1px; border: 0; border-left: 1px solid rgba(18,23,22,.3); border-radius: 0; }
-    .loop-orbit::after, .update-core { display: none; }
-    .node { min-height: 130px; }
-    .causal-test { flex-direction: column; }
-  }
+  .evolution-visual{padding:0!important;background:transparent!important;border:0!important}.evolution-plate{--ink:#151a19;--paper:#f4f1e9;--cyan:#0d9094;--gold:#b97818;padding:clamp(28px,4vw,56px);color:var(--ink);background:var(--paper);border-block:1px solid var(--ink);font-family:var(--sans)}header{display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:baseline}header span{color:var(--ink);font-size:.56rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}header strong{max-width:850px;font:430 clamp(2rem,4.4vw,4.15rem)/.95 var(--serif);letter-spacing:-.035em}
+  .trace-stage{position:relative;height:390px;margin-top:46px;overflow:hidden;background:linear-gradient(rgba(21,26,25,.08) 1px,transparent 1px);background-size:100% 78px;border-block:1px solid rgba(21,26,25,.22)}canvas{position:absolute;inset:0;z-index:0;pointer-events:none}.trace-node{position:absolute;z-index:2;width:134px;padding:0;display:grid;gap:7px;color:var(--ink);background:transparent;border:0;font:inherit;cursor:pointer;text-align:left}.trace-node i{width:13px;height:13px;background:var(--paper);border:2px solid var(--cyan);border-radius:50%;box-shadow:0 0 0 7px rgba(13,144,148,.07)}.trace-node b{color:#66736f;font-size:.48rem;letter-spacing:.1em}.trace-node strong{font:470 clamp(1rem,1.5vw,1.28rem)/1 var(--serif)}.trace-node:hover strong,.trace-node:focus-visible strong{color:var(--cyan)}.trace-node:focus-visible{outline:none}.trace-node.is-active i{background:var(--cyan);box-shadow:0 0 0 8px rgba(13,144,148,.1)}.environment{left:1%;top:61%}.interaction{left:18%;top:44%}.state{left:36%;top:54%}.learning{left:55%;top:30%}.gate{left:73%;top:39%}.evolved{right:0;top:15%}.evolved i{border-color:var(--gold)}.evolved.is-active i{background:var(--gold)}
+  .update-badge{position:absolute;z-index:3;right:1%;bottom:18px;padding:14px 18px;color:#fff;background:var(--ink)}.update-badge span{color:#d6a04c;font-size:.48rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.update-badge b{margin-top:6px;display:block;font:470 .92rem/1.15 var(--serif)}
+  .trace-readout{margin-top:22px;padding:20px 0;display:grid;grid-template-columns:55px 210px 1fr;gap:18px;align-items:baseline;border-top:1px solid rgba(21,26,25,.25)}.trace-readout span{color:var(--cyan);font-size:.55rem;font-weight:800}.trace-readout strong{font:470 1.35rem/1 var(--serif)}.trace-readout p{margin:0;color:#52605c;font-size:.68rem;line-height:1.5}
+  @media(max-width:760px){header{grid-template-columns:1fr}.trace-stage{height:auto;padding:28px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px}.trace-stage canvas,.update-badge{display:none}.trace-node{position:relative!important;inset:auto!important;width:auto}.trace-readout{grid-template-columns:45px 1fr}.trace-readout p{grid-column:2}}
 </style>

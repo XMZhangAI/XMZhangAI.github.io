@@ -4,6 +4,7 @@ import CognitiveArchitecture from '../../../components/blog/CognitiveArchitectur
 import CognitiveEvolutionLoop from '../../../components/blog/CognitiveEvolutionLoop.astro';
 import SuperWorldContinuum from '../../../components/blog/SuperWorldContinuum.astro';
 import OdysseyWorldModel from '../../../components/blog/OdysseyWorldModel.astro';
+import FrontierCharts from '../../../components/blog/FrontierCharts.astro';
 
 const sections = [
   { id: 'boundary', label: 'A disciplined proposition' },
@@ -59,12 +60,13 @@ const articleSchema = {
 
   <p>The fact that today's most capable frontier models continue to improve in agentic settings matters. It suggests that stronger models can remain <em>procedurally under-specified</em>: they may know more than the default inference path reliably uses. Scaling remains essential, but scale and cognitive organization are not substitutes. They are orthogonal levers.</p>
 
-  <section class="research-line" aria-label="Research program from scaffold to world">
+  <section class="research-line" aria-label="Research program from scaffold to world" data-research-line>
+    <i class="research-pulse" aria-hidden="true"></i>
     <ol>
-      <li><span>Externalize</span><strong>Scaffold</strong></li>
-      <li><span>Measure</span><strong>Instrument</strong></li>
-      <li><span>Internalize</span><strong>Learn</strong></li>
-      <li><span>Ground</span><strong>World</strong></li>
+      <li tabindex="0"><span>Externalize</span><strong>Scaffold</strong><em>make cognition visible</em></li>
+      <li tabindex="0"><span>Measure</span><strong>Instrument</strong><em>trace state and error</em></li>
+      <li tabindex="0"><span>Internalize</span><strong>Learn</strong><em>update persistent policy</em></li>
+      <li tabindex="0"><span>Ground</span><strong>World</strong><em>test causal consequence</em></li>
     </ol>
   </section>
 
@@ -87,11 +89,11 @@ const articleSchema = {
 
   <p>In current agent engineering, a <a href="https://openai.com/index/harness-engineering/">harness</a> is the surrounding system that supplies context, tools, state, constraints, and validation. Anthropic similarly describes an <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">agent harness or scaffold</a> as the system that turns a model into an acting agent. Cognition as scaffold belongs to that family, but asks for a stronger contract: the harness should not merely route tools. It should make the system's latent variables and cognitive operations explicit enough to inspect, teach, and eventually internalize.</p>
 
-  <div class="agenda-grid">
-    <article><b>01</b><span>Scaffold</span><h3>Constrain the shape, not the conclusion.</h3></article>
-    <article><b>02</b><span>Pattern</span><h3>Separate generation, critique, and action.</h3></article>
-    <article><b>03</b><span>State</span><h3>Remember events and what they changed.</h3></article>
-    <article><b>04</b><span>Policy</span><h3>Use the scaffold, then internalize it.</h3></article>
+  <div class="agenda-grid" data-agenda>
+    <article tabindex="0" class="family-scaffold"><b>01</b><span>Scaffold</span><h3>Constrain the shape, not the conclusion.</h3><em>Perception · Attention</em></article>
+    <article tabindex="0" class="family-pattern"><b>02</b><span>Pattern</span><h3>Separate generation, critique, and action.</h3><em>Reasoning · Social cognition</em></article>
+    <article tabindex="0" class="family-state"><b>03</b><span>State</span><h3>Remember events and what they changed.</h3><em>Memory</em></article>
+    <article tabindex="0" class="family-policy"><b>04</b><span>Policy</span><h3>Use the scaffold, then internalize it.</h3><em>Executive action · Metacognition</em></article>
   </div>
 
   <div class="reflection-block">
@@ -127,10 +129,7 @@ const articleSchema = {
     <article class="result-card"><span>Benchmarks → worlds</span><strong>Experience</strong><h3>Beyond static questions</h3></article>
   </div>
 
-  <div class="media-pair">
-    <figure><div class="odyssey-plate odyssey-plate--structure" role="img" aria-label="Scale and cognitive structure form separate axes, creating a new reachable capability frontier"><span>Capability</span><div><b>Scale</b><i></i><i></i><strong>Structure</strong></div></div></figure>
-    <figure><div class="odyssey-plate odyssey-plate--process" role="img" aria-label="A branching voyage rewards the quality of intermediate decisions rather than the endpoint alone"><span>Trajectory</span><div><i></i><i></i><i></i><i></i><i></i><strong>Process</strong></div></div></figure>
-  </div>
+  <FrontierCharts />
 
   <h3>Process reward where no single answer exists</h3>
 
@@ -280,6 +279,66 @@ const articleSchema = {
       .result-card::before { top: 20px; left: -15px; }
       .result-card::after { content: '↓'; top: auto; right: auto; bottom: -15px; left: -13px; }
       .odyssey-plate { min-height: 330px; }
+    }
+  </style>
+
+  <style>
+    .research-line { position: relative; padding: 36px 32px 32px; overflow: hidden; color: #edf6f3; background: radial-gradient(circle at 18% 50%,rgba(22,158,163,.2),transparent 27%),linear-gradient(110deg,#061821,#092832 58%,#071b25); border-block: 1px solid #173b49; }
+    .research-line::before { content: ''; position: absolute; top: 48%; right: 12.5%; left: 12.5%; height: 1px; background: linear-gradient(90deg,#66d3d6,#66d3d6 70%,#d2a14e); }
+    .research-line::after { content: ''; position: absolute; inset: 0; opacity: .22; pointer-events: none; background: radial-gradient(circle at 12% 30%,#66d3d6 0 1px,transparent 2px),radial-gradient(circle at 42% 76%,#66d3d6 0 1px,transparent 2px),radial-gradient(circle at 76% 22%,#d2a14e 0 1px,transparent 2px); background-size: 52px 52px,68px 68px,83px 83px; }
+    .research-line ol { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4,1fr); gap: 26px; }
+    .research-line li { position: relative; min-height: 145px; padding: 0 12px; display: grid; align-content: space-between; border: 0; outline: none; text-align: center; }
+    .research-line li::before { content: ''; position: absolute; top: calc(48% - 7px); left: 50%; width: 12px; height: 12px; background: #071b25; border: 2px solid #66d3d6; border-radius: 50%; box-shadow: 0 0 0 7px rgba(102,211,214,.08); transform: translateX(-50%); transition: background .2s,transform .2s; }
+    .research-line li:last-child::before { border-color: #d2a14e; }
+    .research-line li:hover::before,.research-line li:focus-visible::before { background: currentColor; transform: translateX(-50%) scale(1.25); }
+    .research-line span { color: #75dadd; font-size: .57rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    .research-line strong { align-self: end; color: #edf6f3; font: 470 clamp(1.35rem,2.3vw,2rem)/1 var(--serif); }
+    .research-line em { color: #9db4b1; font-size: .56rem; font-style: normal; font-weight: 650; }
+    .research-pulse { position: absolute; z-index: 3; top: calc(48% - 4px); left: 12.5%; width: 8px; height: 8px; background: #d2a14e; border-radius: 50%; box-shadow: 0 0 14px #d2a14e; animation: research-travel 6s ease-in-out infinite; }
+
+    .agenda-grid { position: relative; margin: 52px 0 78px; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: #17201f; border-block: 1px solid #17201f; }
+    .agenda-grid::before { display: none; }
+    .agenda-grid article { position: relative; min-height: 290px; padding: 28px 24px; display: grid; align-content: space-between; color: #17201f; background: #f5f1e8; border: 0; outline: none; transition: background .2s,transform .2s; }
+    .agenda-grid article::before { content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px; background: currentColor; }
+    .agenda-grid article:hover,.agenda-grid article:focus-visible { z-index: 2; background: #fffdf7; transform: translateY(-5px); box-shadow: 0 18px 35px rgba(18,23,22,.09); }
+    .agenda-grid article.family-scaffold { color: #0d9094; }.agenda-grid article.family-pattern { color: #6257a7; }.agenda-grid article.family-state { color: #b65a55; }.agenda-grid article.family-policy { color: #a56a0b; }
+    .agenda-grid b { color: color-mix(in srgb,currentColor 26%,transparent); font: 430 clamp(3rem,5vw,4.8rem)/.85 var(--serif); }
+    .agenda-grid span { margin: 0; color: currentColor; font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .agenda-grid h3 { margin: 24px 0; color: #17201f; font-size: clamp(1.12rem,1.8vw,1.45rem); line-height: 1.14; }
+    .agenda-grid em { padding-top: 13px; color: currentColor; border-top: 1px solid color-mix(in srgb,currentColor 38%,transparent); font-size: .56rem; font-style: normal; font-weight: 750; }
+
+    .result-grid { position: relative; margin: 52px 0 68px; padding: 62px 24px 32px; display: grid; grid-template-columns: repeat(4,1fr); gap: 0; overflow: hidden; color: #edf6f3; background: radial-gradient(circle at 50% -10%,rgba(13,152,156,.26),transparent 35%),linear-gradient(145deg,#061821,#092832 60%,#071b25); border-block: 1px solid #173b49; }
+    .result-grid::before { content: ''; position: absolute; top: 60px; right: 7%; left: 7%; height: 1px; background: linear-gradient(90deg,#66d3d6,#66d3d6 65%,#d2a14e); }
+    .result-grid::after { content: ''; position: absolute; inset: 0; display: block; opacity: .12; background: repeating-radial-gradient(circle at 50% 12%,transparent 0 53px,rgba(102,211,214,.35) 54px 55px,transparent 56px 91px); }
+    .result-card { position: relative; z-index: 1; min-height: 225px; padding: 42px 22px 24px 0; background: transparent; border: 0; transition: transform .2s; }
+    .result-card:hover { transform: translateY(-5px); }
+    .result-card::before { content: ''; position: absolute; top: -8px; left: 0; width: 12px; height: 12px; background: #071b25; border: 2px solid #66d3d6; border-radius: 50%; box-shadow: 0 0 0 7px rgba(102,211,214,.08); }
+    .result-card::after { content: '→'; position: absolute; top: -10px; right: 5px; color: #d2a14e; }
+    .result-card:last-child::after { display: none; }.result-card:last-child::before { border-color: #d2a14e; }
+    .result-card span { color: #75dadd; font-size: .56rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .result-card strong,.essay-frontier .result-card strong { margin: 32px 0 12px; color: #f1ede5; font-size: clamp(1.8rem,3vw,2.6rem); }
+    .result-card h3 { margin: 0; max-width: 175px; color: #a9bdb9; font-size: clamp(.9rem,1.4vw,1.08rem); line-height: 1.22; }
+    @keyframes research-travel { 0% { left: 12.5%; opacity: 0; } 10%,90% { opacity: 1; } 100% { left: 87.5%; opacity: 0; } }
+    @media(max-width:720px){
+      .research-line ol,.agenda-grid,.result-grid{grid-template-columns:1fr}.research-line::before{top:8%;right:auto;bottom:8%;left:37px;width:1px;height:auto}.research-line li{min-height:125px;padding-left:38px;text-align:left}.research-line li::before{top:50%;left:0;transform:none}.research-line li:hover::before,.research-line li:focus-visible::before{transform:scale(1.2)}.research-pulse{display:none}.agenda-grid article{min-height:240px}.result-grid{gap:20px;padding:34px 24px}.result-grid::before{top:5%;bottom:5%;left:29px;width:1px;height:auto}.result-card{min-height:150px;padding:18px 12px 18px 38px}.result-card::before{top:20px;left:-1px}.result-card::after{content:'↓';top:auto;right:auto;bottom:-14px;left:1px}
+    }
+  </style>
+
+  <style>
+    .research-line::before { top: 76px; }
+    .research-line li { min-height: 178px; display: block; }
+    .research-line li::before { top: 69px; }
+    .research-line strong { margin-top: 66px; display: block; }
+    .research-line em { margin-top: 20px; display: block; }
+    .research-pulse { top: 72px; }
+    .essay-frontier .reflection-block > span { font-size: .7rem; line-height: 1.45; }
+    .essay-frontier .reflection-block p { font-size: 1rem; line-height: 1.65; }
+    @media(max-width:720px){
+      .research-line::before { top: 8%; }
+      .research-line li { min-height: 132px; display: grid; align-content: center; }
+      .research-line li::before { top: 50%; }
+      .research-line strong { margin-top: 12px; }
+      .research-line em { margin-top: 10px; }
     }
   </style>
 </FieldNoteLayout>

@@ -1,77 +1,67 @@
 <figure class="essay-figure native-figure full-bleed cognition-architecture">
-  <div class="architecture-plate">
-    <header>
-      <span>Cognitive architecture</span>
-      <strong>Intelligence is coordination.</strong>
-    </header>
+  <div class="architecture-plate" data-architecture>
+    <header><span>Cognitive architecture</span><strong>Intelligence is coordination.</strong></header>
 
-    <div class="architecture-map" role="img" aria-label="World signals pass through six coordinated cognitive functions, then return as action to a changed world. Metacognition monitors and updates the whole system.">
-      <div class="world world--input"><i></i><strong>World</strong></div>
+    <div class="system-rail" aria-label="World to changed world">
+      <span><i></i>World</span><b>perceive → coordinate → act</b><span>Changed world<i></i></span>
+      <em aria-hidden="true"></em>
+    </div>
 
-      <div class="neural-field">
-        <div class="module module--perception"><b>01</b><strong>Perception</strong></div>
-        <div class="module module--attention"><b>02</b><strong>Attention</strong></div>
-        <div class="module module--memory"><b>03</b><strong>Memory</strong></div>
-        <div class="module module--reasoning"><b>04</b><strong>Reasoning</strong></div>
-        <div class="module module--social"><b>05</b><strong>Social cognition</strong></div>
-        <div class="module module--executive"><b>06</b><strong>Executive action</strong></div>
-        <div class="cognitive-core"><i></i><span>coordinate</span></div>
-      </div>
+    <div class="architecture-dashboard">
+      <section class="feature-panel" aria-label="Six coordinated cognitive functions">
+        <div class="panel-label"><span>Feature map</span><b>Click a function</b></div>
+        <div class="module-grid">
+          <button class="module family-scaffold is-active" data-index="01" data-title="Perception" data-family="Scaffold" data-copy="Encodes what changed in the world before interpretation begins." aria-pressed="true"><i></i><b>01</b><strong>Perception</strong><span>Scaffold</span></button>
+          <button class="module family-scaffold" data-index="02" data-title="Attention" data-family="Scaffold" data-copy="Allocates scarce computation to the signals that matter now." aria-pressed="false"><i></i><b>02</b><strong>Attention</strong><span>Scaffold</span></button>
+          <button class="module family-state" data-index="03" data-title="Memory" data-family="State" data-copy="Preserves events, relationships, and the latent state they changed." aria-pressed="false"><i></i><b>03</b><strong>Memory</strong><span>State</span></button>
+          <button class="module family-pattern" data-index="04" data-title="Reasoning" data-family="Pattern" data-copy="Selects and composes methods for inference under uncertainty." aria-pressed="false"><i></i><b>04</b><strong>Reasoning</strong><span>Pattern</span></button>
+          <button class="module family-pattern" data-index="05" data-title="Social cognition" data-family="Pattern" data-copy="Models minds, norms, relationships, and reciprocal interpretation." aria-pressed="false"><i></i><b>05</b><strong>Social cognition</strong><span>Pattern</span></button>
+          <button class="module family-policy" data-index="06" data-title="Executive action" data-family="Policy" data-copy="Turns the coordinated state into a plan, decision, and action." aria-pressed="false"><i></i><b>06</b><strong>Executive action</strong><span>Policy</span></button>
+        </div>
+      </section>
 
-      <div class="world world--output"><i></i><strong>Changed<br />world</strong></div>
-      <div class="meta-loop"><strong>Metacognition & learning</strong><span>monitor → revise → update → transfer</span></div>
+      <aside class="detail-stack" aria-live="polite">
+        <div class="stack-sheet"></div><div class="stack-sheet"></div>
+        <div class="detail-card">
+          <div class="detail-head"><span data-detail-family>Scaffold</span><b data-detail-index>01</b></div>
+          <strong data-detail-title>Perception</strong>
+          <p data-detail-copy>Encodes what changed in the world before interpretation begins.</p>
+          <div class="coordination-mark"><i></i><span>Coordinate</span><i></i></div>
+          <small>Metacognition monitors error, revises state, and transfers the update.</small>
+        </div>
+      </aside>
+    </div>
+
+    <div class="family-map">
+      <span class="family-scaffold"><b>Scaffold</b> Perception · Attention</span>
+      <span class="family-pattern"><b>Pattern</b> Reasoning · Social cognition</span>
+      <span class="family-state"><b>State</b> Memory</span>
+      <span class="family-policy"><b>Policy</b> Executive action · Metacognition</span>
     </div>
   </div>
 </figure>
 
+<script>
+  // @ts-nocheck -- Self-contained interactive feature explorer.
+  document.querySelectorAll('[data-architecture]').forEach((root) => {
+    const modules=[...root.querySelectorAll('.module')];
+    const fields={index:root.querySelector('[data-detail-index]'),family:root.querySelector('[data-detail-family]'),title:root.querySelector('[data-detail-title]'),copy:root.querySelector('[data-detail-copy]')};
+    modules.forEach(button=>button.addEventListener('click',()=>{
+      modules.forEach(node=>{node.classList.remove('is-active');node.setAttribute('aria-pressed','false')});
+      button.classList.add('is-active');button.setAttribute('aria-pressed','true');
+      Object.entries(fields).forEach(([key,node])=>{if(node)node.textContent=button.dataset[key]||''});
+    }));
+  });
+</script>
+
 <style>
-  .cognition-architecture { padding: 0 !important; background: transparent !important; border: 0 !important; }
-  .architecture-plate { --ink: #121716; --paper: #f3f0e8; --aqua: #16a7a7; --gold: #d69b3d; padding: clamp(28px,4vw,56px); color: var(--ink); background: var(--paper); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--sans); }
-  header { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
-  header span { color: #5f6b68; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  header strong { font-family: var(--serif); font-size: clamp(2rem,4.4vw,4.25rem); font-weight: 430; line-height: .95; letter-spacing: -.035em; }
-  .architecture-map { position: relative; margin-top: clamp(42px,6vw,76px); display: grid; grid-template-columns: 120px minmax(0,1fr) 140px; grid-template-rows: minmax(480px,54vw) auto; gap: 28px; align-items: center; isolation: isolate; }
-  .architecture-map::before { content: ''; position: absolute; z-index: -1; top: 48%; right: 70px; left: 60px; height: 1px; background: linear-gradient(90deg,var(--gold),var(--aqua) 23% 77%,var(--ink)); }
-  .architecture-map::after { content: ''; position: absolute; z-index: 3; top: calc(48% - 4px); left: 62px; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 8px rgba(214,155,61,.12); animation: architecture-signal 6.2s ease-in-out infinite; }
-  .world { position: relative; z-index: 2; display: grid; justify-items: center; gap: 14px; text-align: center; }
-  .world i { width: 52px; height: 52px; display: block; background: var(--paper); border: 1px solid currentColor; border-radius: 50%; box-shadow: inset 0 0 0 11px var(--paper),inset 0 0 0 12px currentColor; }
-  .world strong { font: 460 clamp(1.05rem,1.8vw,1.45rem)/1 var(--serif); }
-  .world--input { color: #a96812; }
-  .world--output { color: #087a7d; }
-  .neural-field { position: relative; height: 100%; min-height: 480px; background: radial-gradient(circle at center,rgba(22,167,167,.11) 0 3%,transparent 3.2% 15%,rgba(22,167,167,.12) 15.2% 15.5%,transparent 15.7% 31%,rgba(18,23,22,.11) 31.2% 31.45%,transparent 31.7%),linear-gradient(30deg,transparent 49.8%,rgba(18,23,22,.13) 49.9% 50.1%,transparent 50.2%),linear-gradient(-30deg,transparent 49.8%,rgba(18,23,22,.13) 49.9% 50.1%,transparent 50.2%),linear-gradient(90deg,transparent 49.85%,rgba(22,167,167,.16) 49.95% 50.05%,transparent 50.15%); }
-  .neural-field::before { content: ''; position: absolute; inset: 11% 7%; border: 1px solid rgba(18,23,22,.18); border-radius: 50%; }
-  .module { position: absolute; width: 150px; display: grid; justify-items: center; gap: 7px; text-align: center; }
-  .module::before { content: ''; width: 14px; height: 14px; background: var(--paper); border: 2px solid var(--aqua); border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.09); animation: architecture-node 3.6s ease-in-out infinite; }
-  .module b { color: #71807d; font-size: .5rem; letter-spacing: .1em; }
-  .module strong { max-width: 145px; font: 470 clamp(1rem,1.7vw,1.42rem)/1.04 var(--serif); }
-  .module--perception { top: 17%; left: 5%; }
-  .module--attention { top: 0; left: 50%; transform: translateX(-50%); }
-  .module--memory { top: 17%; right: 5%; }
-  .module--reasoning { bottom: 17%; left: 5%; }
-  .module--social { bottom: 0; left: 50%; transform: translateX(-50%); }
-  .module--executive { right: 5%; bottom: 17%; }
-  .module--attention::before, .module--social::before { animation-delay: -1.2s; }
-  .module--memory::before, .module--reasoning::before { animation-delay: -2.4s; }
-  .cognitive-core { position: absolute; top: 50%; left: 50%; width: 118px; height: 118px; display: grid; place-items: center; align-content: center; gap: 10px; background: var(--ink); border-radius: 50%; transform: translate(-50%,-50%); color: var(--paper); }
-  .cognitive-core i { width: 9px; height: 9px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 9px rgba(214,155,61,.12); animation: architecture-core 2.8s ease-in-out infinite; }
-  .cognitive-core span { font-size: .48rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  .meta-loop { grid-column: 2; padding: 20px 0 0; display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(18,23,22,.28); }
-  .meta-loop strong { color: var(--aqua); font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; }
-  .meta-loop span { font: 500 .72rem/1.4 var(--serif); }
-  @keyframes architecture-signal { 0% { left: 62px; opacity: 0; } 12%,88% { opacity: 1; } 100% { left: calc(100% - 76px); opacity: 0; } }
-  @keyframes architecture-node { 50% { transform: scale(1.28); box-shadow: 0 0 0 13px rgba(22,167,167,.03); } }
-  @keyframes architecture-core { 50% { transform: scale(1.28); } }
-  @media (max-width: 760px) {
-    header { grid-template-columns: 1fr; }
-    .architecture-map { grid-template-columns: 1fr; grid-template-rows: auto 470px auto auto; }
-    .architecture-map::before, .architecture-map::after { display: none; }
-    .world { grid-template-columns: auto 1fr; align-items: center; justify-items: start; text-align: left; }
-    .world i { width: 38px; height: 38px; }
-    .neural-field { grid-row: 2; min-height: 470px; }
-    .world--output { grid-row: 3; }
-    .meta-loop { grid-column: 1; flex-direction: column; }
-    .module { width: 112px; }
-    .module strong { font-size: .92rem; }
-    .cognitive-core { width: 92px; height: 92px; }
-  }
+  .cognition-architecture{padding:0!important;background:transparent!important;border:0!important}.architecture-plate{--ink:#151a19;--paper:#f3f0e8;--cyan:#0d9094;--gold:#b97818;--violet:#6257a7;--rose:#b65a55;padding:clamp(28px,4vw,56px);color:var(--ink);background:#f4f1e9;border-block:1px solid var(--ink);font-family:var(--sans)}
+  header{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:baseline}header span{color:#626d69;font-size:.56rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}header strong{font:430 clamp(2rem,4.4vw,4.15rem)/.95 var(--serif);letter-spacing:-.035em}
+  .system-rail{position:relative;margin-top:42px;padding:17px 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-block:1px solid rgba(21,26,25,.24);font-size:.62rem;font-weight:780;text-transform:uppercase}.system-rail>span{display:flex;align-items:center;gap:10px}.system-rail>span:last-of-type{justify-self:end}.system-rail span i{width:10px;height:10px;border:2px solid currentColor;border-radius:50%}.system-rail b{color:#66736f;font-size:.52rem;letter-spacing:.1em}.system-rail em{position:absolute;z-index:2;top:50%;left:10%;width:7px;height:7px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 6px rgba(185,120,24,.1);animation:rail-travel 5.5s ease-in-out infinite}
+  .architecture-dashboard{margin-top:34px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.8fr);gap:1px;background:var(--ink);border-block:1px solid var(--ink)}.feature-panel,.detail-stack{background:#f4f1e9}.feature-panel{padding:28px}.panel-label{display:flex;justify-content:space-between;color:#65716d;font-size:.53rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.panel-label span{color:var(--cyan)}
+  .module-grid{position:relative;margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(21,26,25,.18);border:1px solid rgba(21,26,25,.18)}.module{position:relative;min-height:108px;padding:18px 18px 16px 42px;display:grid;grid-template-columns:auto 1fr;align-content:center;gap:5px 12px;color:var(--ink);background:#f4f1e9;border:0;font:inherit;cursor:pointer;text-align:left;transition:background .18s,color .18s}.module i{position:absolute;top:50%;left:17px;width:11px;height:11px;border:2px solid currentColor;border-radius:50%;transform:translateY(-50%)}.module b{color:#75817d;font-size:.48rem;letter-spacing:.09em}.module strong{font:470 clamp(1.12rem,1.9vw,1.5rem)/1 var(--serif)}.module span{grid-column:2;color:currentColor;font-size:.47rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.module:hover,.module:focus-visible{z-index:2;background:#fffdf7;outline:1px solid currentColor}.module.is-active{z-index:3;color:#fff;background:var(--ink);outline:1px solid var(--ink)}.module.is-active i{background:currentColor;box-shadow:0 0 0 7px color-mix(in srgb,currentColor 12%,transparent)}.module.is-active b,.module.is-active span{color:#b8c5c1}.family-scaffold{color:var(--cyan)}.family-pattern{color:var(--violet)}.family-state{color:var(--rose)}.family-policy{color:var(--gold)}
+  .detail-stack{position:relative;min-height:410px;padding:48px 38px;display:grid;place-items:center;overflow:hidden}.stack-sheet,.detail-card{position:absolute;width:calc(100% - 92px);height:calc(100% - 112px);border:1px solid rgba(21,26,25,.2);background:#ebe9e1}.stack-sheet:first-child{transform:translate(16px,-16px)}.stack-sheet:nth-child(2){transform:translate(8px,-8px);background:#f0ede5}.detail-card{z-index:2;padding:30px;display:flex;flex-direction:column;background:#fffdf7;box-shadow:0 18px 38px rgba(21,26,25,.08)}.detail-head{display:flex;justify-content:space-between;color:var(--cyan);font-size:.55rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.detail-head b{color:#8a9490}.detail-card>strong{margin-top:auto;font:470 clamp(1.8rem,3vw,2.7rem)/.95 var(--serif)}.detail-card p{margin:14px 0 0;color:#52605c;font-size:.7rem;line-height:1.55}.coordination-mark{margin-top:auto;padding:13px 0;display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;color:#61706b;font-size:.5rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.coordination-mark i{height:1px;background:rgba(21,26,25,.24)}.detail-card small{color:#78827f;font-size:.54rem;line-height:1.45}
+  .family-map{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.family-map span{padding-top:11px;border-top:2px solid currentColor;font-size:.55rem;line-height:1.4}.family-map b{display:block;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase}
+  @keyframes rail-travel{0%{left:1%;opacity:0}12%,88%{opacity:1}100%{left:99%;opacity:0}}
+  @media(max-width:760px){header{grid-template-columns:1fr}.system-rail{grid-template-columns:1fr}.system-rail b{display:none}.system-rail>span:last-of-type{justify-self:start}.architecture-dashboard{grid-template-columns:1fr}.module-grid{grid-template-columns:1fr}.detail-stack{min-height:360px}.family-map{grid-template-columns:1fr 1fr}}
 </style>

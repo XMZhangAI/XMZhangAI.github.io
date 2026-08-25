@@ -1,68 +1,33 @@
 <figure class="essay-figure native-figure full-bleed superworld-visual">
-  <div class="world-plate">
+  <div class="world-plate" data-superworld>
     <header><span>Super-world games</span><strong>Worlds change function.</strong></header>
 
-    <div class="substrate" aria-label="Generative substrate">
-      <strong>Physical world</strong><i>×</i><strong>Cognitive cause</strong><i>×</i><strong>Adaptive engine</strong>
+    <div class="substrate"><strong>Physical world</strong><i>×</i><strong>Cognitive cause</strong><i>×</i><strong>Adaptive engine</strong></div>
+
+    <div class="function-flow">
+      <i class="flow-pulse" aria-hidden="true"></i>
+      <button class="function-stage is-active" data-index="Past" data-title="Observe" data-copy="Populate bounded sandboxes with agents and use emergent behavior as a scientific instrument." aria-pressed="true"><i></i><b>Past</b><strong>Observe</strong><span>Worlds as data engines.</span><small>simulate → measure → explain</small></button>
+      <button class="function-stage" data-index="Present" data-title="Calibrate" data-copy="Connect action to persistent state and compare predicted trajectories with real interaction." aria-pressed="false"><i></i><b>Present</b><strong>Calibrate</strong><span>Worlds as feedback systems.</span><small>act → observe → update → retest</small></button>
+      <button class="function-stage" data-index="Future" data-title="Invent" data-copy="Let rules, institutions, species, economies, and relationships evolve beyond today's priors." aria-pressed="false"><i></i><b>Future</b><strong>Invent</strong><span>Worlds as engines of new knowledge.</span><small>inherit → mutate → select → translate</small></button>
     </div>
 
-    <div class="time-line">
-      <details>
-        <summary><b>Past</b><h3>Observe</h3><strong>Worlds as data engines.</strong><span>simulate → measure → explain</span></summary>
-        <p>Populate bounded sandboxes with agents and use emergent behavior as a scientific instrument.</p>
-      </details>
-      <details>
-        <summary><b>Present</b><h3>Calibrate</h3><strong>Worlds as feedback systems.</strong><span>act → observe → update → retest</span></summary>
-        <p>Connect action to persistent state and compare predicted trajectories with real interaction.</p>
-      </details>
-      <details>
-        <summary><b>Future</b><h3>Invent</h3><strong>Worlds as engines of new knowledge.</strong><span>inherit → mutate → select → translate</span></summary>
-        <p>Let rules, institutions, species, economies, and relationships evolve beyond today's priors.</p>
-      </details>
-    </div>
-
+    <div class="function-readout" aria-live="polite"><span data-world-index>Past</span><strong data-world-title>Observe</strong><p data-world-copy>Populate bounded sandboxes with agents and use emergent behavior as a scientific instrument.</p></div>
     <div class="definition"><span>Super-world game</span><p>A causally coherent universe whose environment, rules, institutions, interactions, and ontology can be authored and evolved.</p></div>
   </div>
 </figure>
 
+<script>
+  // @ts-nocheck -- Small local stage selector.
+  document.querySelectorAll('[data-superworld]').forEach(root=>{
+    const stages=[...root.querySelectorAll('.function-stage')],fields={index:root.querySelector('[data-world-index]'),title:root.querySelector('[data-world-title]'),copy:root.querySelector('[data-world-copy]')};
+    stages.forEach(button=>button.addEventListener('click',()=>{stages.forEach(item=>{item.classList.remove('is-active');item.setAttribute('aria-pressed','false')});button.classList.add('is-active');button.setAttribute('aria-pressed','true');Object.entries(fields).forEach(([key,node])=>{if(node)node.textContent=button.dataset[key]||''})}));
+  });
+</script>
+
 <style>
-  .superworld-visual { padding: 0 !important; background: transparent !important; border: 0 !important; }
-  .world-plate { --ink: #121716; --paper: #f3f0e8; --aqua: #16a7a7; --gold: #d69b3d; padding: clamp(28px,4vw,56px); color: var(--ink); background: #f4eee4; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--sans); }
-  header { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
-  header span { color: #6c6e66; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  header strong { font-family: var(--serif); font-size: clamp(2rem,4.4vw,4.25rem); font-weight: 430; line-height: .95; letter-spacing: -.035em; }
-  .substrate { margin-top: clamp(38px,6vw,72px); padding: 17px 0; display: flex; align-items: center; justify-content: center; gap: clamp(12px,3vw,34px); border-top: 1px solid rgba(18,23,22,.25); border-bottom: 1px solid rgba(18,23,22,.25); }
-  .substrate strong { font: 470 clamp(.85rem,1.4vw,1.1rem)/1.2 var(--serif); }
-  .substrate i { color: var(--gold); font-style: normal; }
-  .time-line { position: relative; margin: 58px 0 72px; display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(28px,5vw,72px); isolation: isolate; }
-  .time-line::before { content: ''; position: absolute; z-index: -1; top: 42px; right: 8%; left: 8%; height: 1px; background: linear-gradient(90deg,var(--aqua),var(--aqua) 55%,var(--gold)); transform: rotate(-4deg); }
-  .time-line details { position: relative; padding-top: 22px; }
-  .time-line details:nth-child(1) { transform: translateY(38px); }
-  .time-line details:nth-child(2) { transform: translateY(19px); }
-  .time-line details::before { content: ''; position: absolute; top: 35px; left: 0; width: 12px; height: 12px; background: #f4eee4; border: 2px solid var(--aqua); border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.08); animation: world-node 3.7s ease-in-out infinite; }
-  .time-line details:nth-child(2)::before { animation-delay: -1.2s; }
-  .time-line details:nth-child(3)::before { border-color: var(--gold); animation-delay: -2.4s; }
-  .time-line summary { min-height: 245px; display: flex; flex-direction: column; padding: 68px 0 20px; cursor: pointer; list-style: none; border-bottom: 1px solid rgba(18,23,22,.25); }
-  .time-line summary::-webkit-details-marker { display: none; }
-  .time-line summary::after { content: '+'; position: absolute; right: 0; bottom: 20px; width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(18,23,22,.28); border-radius: 50%; transition: transform .2s ease,background .2s ease,color .2s ease; }
-  .time-line details[open] summary::after { color: #fff; background: var(--ink); transform: rotate(45deg); }
-  .time-line b { color: var(--aqua); font-size: .54rem; letter-spacing: .1em; text-transform: uppercase; }
-  .time-line h3 { margin: 9px 0 25px; font: 470 clamp(1.8rem,3vw,2.75rem)/.95 var(--serif); }
-  .time-line summary > strong { margin-top: auto; max-width: 240px; font: 470 clamp(1.1rem,1.8vw,1.45rem)/1.08 var(--serif); }
-  .time-line span { margin-top: 18px; color: #59635f; font-size: .52rem; font-weight: 820; letter-spacing: .06em; line-height: 1.5; text-transform: uppercase; }
-  .time-line p { margin: 16px 0 0; color: #47514e; font-size: .68rem; line-height: 1.55; }
-  .definition { padding: clamp(26px,4vw,48px); display: grid; grid-template-columns: 180px 1fr; gap: 30px; color: #fff; background: var(--ink); }
-  .definition span { color: #69d0d4; font-size: .56rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .definition p { max-width: 760px; margin: 0; font: 440 clamp(1.35rem,2.5vw,2.2rem)/1.18 var(--serif); }
-  @keyframes world-node { 50% { transform: scale(1.3); box-shadow: 0 0 0 13px rgba(22,167,167,.03); } }
-  @media (max-width: 760px) {
-    header { grid-template-columns: 1fr; }
-    .substrate { align-items: flex-start; flex-direction: column; }
-    .time-line { padding-left: 18px; grid-template-columns: 1fr; gap: 25px; }
-    .time-line::before { top: 0; bottom: 0; left: 23px; width: 1px; height: auto; transform: none; }
-    .time-line details, .time-line details:nth-child(1), .time-line details:nth-child(2) { padding-left: 30px; transform: none; }
-    .time-line details::before { top: 35px; left: -1px; }
-    .time-line summary { min-height: 220px; }
-    .definition { grid-template-columns: 1fr; }
-  }
+  .superworld-visual{padding:0!important;background:transparent!important;border:0!important}.world-plate{--ink:#151a19;--paper:#f4f1e9;--cyan:#0d9094;--gold:#b97818;padding:clamp(28px,4vw,56px);color:var(--ink);background:var(--paper);border-block:1px solid var(--ink);font-family:var(--sans)}header{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:baseline}header span{color:#626d69;font-size:.56rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}header strong{font:430 clamp(2rem,4.4vw,4.15rem)/.95 var(--serif);letter-spacing:-.035em}
+  .substrate{margin-top:40px;padding:17px 0;display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,34px);border-block:1px solid rgba(21,26,25,.24)}.substrate strong{font:470 clamp(.85rem,1.4vw,1.1rem)/1.2 var(--serif)}.substrate i{color:var(--gold);font-style:normal}
+  .function-flow{position:relative;margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,26,25,.2);border-block:1px solid var(--ink)}.function-flow::before{content:'';position:absolute;z-index:2;top:38px;right:16.66%;left:16.66%;height:1px;background:linear-gradient(90deg,var(--cyan),var(--cyan) 58%,var(--gold))}.function-stage{position:relative;min-height:300px;padding:74px 28px 24px;display:flex;flex-direction:column;color:var(--ink);background:var(--paper);border:0;font:inherit;cursor:pointer;text-align:left;transition:background .18s}.function-stage>i{position:absolute;z-index:3;top:31px;left:50%;width:13px;height:13px;background:var(--paper);border:2px solid var(--cyan);border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 7px rgba(13,144,148,.07)}.function-stage:nth-of-type(3)>i{border-color:var(--gold)}.function-stage b{color:var(--cyan);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase}.function-stage strong{margin-top:10px;font:470 clamp(1.9rem,3vw,2.75rem)/.95 var(--serif)}.function-stage span{margin-top:auto;max-width:230px;font:470 clamp(1.05rem,1.7vw,1.35rem)/1.08 var(--serif)}.function-stage small{margin-top:16px;color:#626e6a;font-size:.5rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.function-stage:hover,.function-stage:focus-visible{background:#fffdf7;outline:none}.function-stage.is-active{background:#ebe9e1}.function-stage.is-active>i{background:currentColor}.flow-pulse{position:absolute;z-index:4;top:34px;left:16.66%;width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 6px rgba(185,120,24,.1);animation:flow-travel 5.8s ease-in-out infinite}
+  .function-readout{padding:20px 0;display:grid;grid-template-columns:80px 190px 1fr;gap:20px;align-items:baseline;border-bottom:1px solid rgba(21,26,25,.24)}.function-readout span{color:var(--cyan);font-size:.54rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.function-readout strong{font:470 1.35rem/1 var(--serif)}.function-readout p{margin:0;color:#52605c;font-size:.68rem;line-height:1.5}.definition{margin-top:36px;padding:clamp(26px,4vw,44px);display:grid;grid-template-columns:180px 1fr;gap:30px;color:#fff;background:var(--ink)}.definition span{color:#69d0d4;font-size:.56rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.definition p{max-width:760px;margin:0;font:440 clamp(1.35rem,2.5vw,2.1rem)/1.18 var(--serif)}@keyframes flow-travel{0%{left:16.66%;opacity:0}12%,88%{opacity:1}100%{left:83.33%;opacity:0}}
+  @media(max-width:760px){header{grid-template-columns:1fr}.substrate{align-items:flex-start;flex-direction:column}.function-flow{grid-template-columns:1fr}.function-flow::before,.flow-pulse{display:none}.function-stage{min-height:240px;padding-top:28px}.function-stage>i{top:28px;left:auto;right:22px}.function-readout{grid-template-columns:1fr}.definition{grid-template-columns:1fr}}
 </style>
