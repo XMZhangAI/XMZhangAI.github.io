@@ -344,7 +344,7 @@ const connections = [
   .odyssey-node__icon--scylla { color: #ffcf9b; background: radial-gradient(circle at 50% 50%, rgba(108,55,49,.76), rgba(6,23,34,.98) 72%); }
   .odyssey-node__icon--helios { color: #ffe19a; background: radial-gradient(circle, rgba(154,101,38,.76), rgba(8,27,38,.98) 67%); }
   .odyssey-node__icon--calypso { color: #a7f4e4; background: radial-gradient(ellipse at 50% 72%, rgba(40,113,103,.88), rgba(8,28,39,.98) 68%); }
-  .odyssey-node strong { font-family: var(--serif); font-size: .76rem; font-weight: 500; line-height: 1; }
+  .odyssey-node strong { font-family: var(--serif); font-size: clamp(.9rem,1.05vw,1.06rem); font-weight: 540; line-height: 1.05; text-shadow: 0 2px 8px rgba(0,0,0,.9); }
   .odyssey-node > i { width: 4px; height: 4px; margin-top: 1px; background: currentColor; border-radius: 50%; }
   .odyssey-node.is-current .odyssey-node__icon { color: #fff6db; border-color: #fff0c8; box-shadow: 0 0 0 9px rgba(221,180,111,.14), 0 0 38px rgba(221,180,111,.72), inset 0 0 20px rgba(221,180,111,.3); }
   .odyssey-node.is-reached .odyssey-node__icon { color: #fff; border-color: var(--odyssey-gold); }
@@ -365,15 +365,15 @@ const connections = [
   .odyssey-story__icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
   .odyssey-story header div { display: grid; gap: 3px; }
   .odyssey-story h3 { margin: 0; font-family: var(--serif); font-size: 1.55rem; font-weight: 430; }
-  .odyssey-story > p { margin: 17px 0 14px; color: rgba(255,255,255,.78); font-family: var(--serif); font-size: .98rem; line-height: 1.35; }
+  .odyssey-story > p { margin: 19px 0 16px; color: rgba(255,255,255,.82); font-family: var(--serif); font-size: 1.16rem; line-height: 1.4; }
   .odyssey-story__choices { position: relative; padding-top: 26px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
   .odyssey-story__choices::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 15px; background: var(--odyssey-cyan); }
   .odyssey-story__choices::after { content: ''; position: absolute; top: 14px; right: 25%; left: 25%; height: 1px; background: linear-gradient(90deg,var(--odyssey-gold),var(--odyssey-cyan),var(--odyssey-gold)); }
-  .odyssey-story__choices :global(button) { position: relative; min-height: 70px; padding: 14px; display: grid; grid-template-columns: 28px 1fr; align-items: center; column-gap: 8px; color: #fff; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.17); cursor: pointer; text-align: left; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+  .odyssey-story__choices :global(button) { position: relative; min-height: 82px; padding: 17px 18px; display: grid; grid-template-columns: 32px 1fr; align-items: center; column-gap: 10px; color: #fff; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.17); cursor: pointer; text-align: left; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
   .odyssey-story__choices :global(button)::before { content: ''; position: absolute; top: -13px; left: 50%; width: 1px; height: 12px; background: var(--odyssey-gold); }
   .odyssey-story__choices :global(button:hover), .odyssey-story__choices :global(button:focus-visible) { background: rgba(98,212,218,.1); border-color: var(--odyssey-cyan); outline: none; transform: translateY(-2px); }
-  .odyssey-story__choices :global(button span) { color: var(--odyssey-gold); font: 820 .5rem/1 var(--sans); letter-spacing: .08em; }
-  .odyssey-story__choices :global(button strong) { font-family: var(--serif); font-size: .8rem; font-weight: 520; }
+  .odyssey-story__choices :global(button span) { color: var(--odyssey-gold); font: 820 .64rem/1 var(--sans); letter-spacing: .08em; }
+  .odyssey-story__choices :global(button strong) { font-family: var(--serif); font-size: 1.04rem; font-weight: 540; line-height: 1.22; }
 
   .odyssey-cognition--compact { min-height: 560px; }
   .odyssey-cognition--compact .odyssey-origin { left: 1.5%; transform: translateY(-50%) scale(.8); }
@@ -408,11 +408,12 @@ const connections = [
     .odyssey-origin, .odyssey-cognition--compact .odyssey-origin { left: 1%; top: 50%; width: 80px; transform: translateY(-50%) scale(.72); }
     .odyssey-node, .odyssey-cognition--compact .odyssey-node { width: 62px; }
     .odyssey-node__icon, .odyssey-cognition--compact .odyssey-node__icon { width: 42px; height: 42px; font-size: 1rem; }
-    .odyssey-node strong, .odyssey-cognition--compact .odyssey-node strong { font-size: .55rem; }
+    .odyssey-node strong, .odyssey-cognition--compact .odyssey-node strong { font-size: .72rem; }
     .odyssey-destination, .odyssey-cognition--compact .odyssey-destination { right: -2.5%; width: 92px; transform: translateY(-50%) scale(.72); }
     .odyssey-story, .odyssey-cognition--compact .odyssey-story { top: 50%; right: 12px; left: 12px; width: auto; padding: 17px; transform: translateY(-50%); }
-    .odyssey-story > p { font-size: .84rem; }
-    .odyssey-story__choices :global(button) { min-height: 62px; }
+    .odyssey-story > p { font-size: 1rem; }
+    .odyssey-story__choices :global(button) { min-height: 70px; padding: 14px; }
+    .odyssey-story__choices :global(button strong) { font-size: .92rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     .odyssey-cognition__sea, .odyssey-cognition__neural-field span::after, .odyssey-cognition__neural-field i, .odyssey-route::after, .odyssey-route::before, .odyssey-node__icon, .odyssey-node.is-current .odyssey-node__icon, .odyssey-destination.is-home .odyssey-destination__icon { animation: none; }
