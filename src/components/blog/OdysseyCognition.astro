@@ -1,0 +1,420 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+const encounters = [
+  {
+    id: 'cyclops', icon: '◉', label: 'The Cyclops', verb: 'Identity', caption: 'Name or silence?', x: 23, y: 50,
+    problem: 'You have escaped a stronger enemy. Do you protect your identity—or claim the victory?',
+    choices: [
+      { label: 'Leave as “Nobody”', result: 'The enemy cannot tell Poseidon whom to punish.', target: 'aeolus' },
+      { label: 'Shout your real name', result: 'Pride gives Poseidon the information needed to retaliate.', target: 'poseidon' }
+    ]
+  },
+  {
+    id: 'aeolus', icon: '≋', label: 'Aeolus', verb: 'Trust', caption: 'Explain or conceal?', x: 37, y: 24,
+    problem: 'A sealed bag contains every hostile wind. How much should the crew understand?',
+    choices: [
+      { label: 'Explain the hidden risk', result: 'Shared knowledge protects the constraint.', target: 'sirens' },
+      { label: 'Guard the secret alone', result: 'The crew mistakes the bag for treasure and releases the storm.', target: 'circe' }
+    ]
+  },
+  {
+    id: 'poseidon', icon: '♆', label: 'Poseidon', verb: 'Uncertainty', caption: 'Model or force?', x: 37, y: 74,
+    problem: 'The sea itself has become hostile. Do you force a route—or seek a better model?',
+    choices: [
+      { label: 'Seek counsel first', result: 'New knowledge reveals futures that were previously hidden.', target: 'circe' },
+      { label: 'Force the shortest route', result: 'Speed removes time to prepare for the next threat.', target: 'scylla' }
+    ]
+  },
+  {
+    id: 'sirens', icon: '♫', label: 'The Sirens', verb: 'Pre-commitment', caption: 'Bind or trust?', x: 52, y: 22,
+    problem: 'You know the song will rewrite your judgment. Can present agency constrain the future self?',
+    choices: [
+      { label: 'Wax, ropes, and a prior rule', result: 'The temptation is experienced without controlling the ship.', target: 'scylla' },
+      { label: 'Trust willpower in the moment', result: 'Knowledge alone is not enough; the voyage is pulled off course.', target: 'calypso' }
+    ]
+  },
+  {
+    id: 'circe', icon: '☾', label: 'Circe', verb: 'Memory', caption: 'Return or remain?', x: 52, y: 76,
+    problem: 'Safety is comfortable, but the mission is unfinished. Stay—or recover the reason for leaving?',
+    choices: [
+      { label: 'Take counsel and depart', result: 'Memory restores the long horizon of the voyage.', target: 'sirens' },
+      { label: 'Let comfort delay the mission', result: 'A temporary refuge becomes another form of captivity.', target: 'calypso' }
+    ]
+  },
+  {
+    id: 'scylla', icon: '⚔', label: 'Scylla', verb: 'Trade-off', caption: 'Which loss survives?', x: 66, y: 48,
+    problem: 'Every available route carries a loss. Which loss preserves the possibility of return?',
+    choices: [
+      { label: 'Accept the bounded loss', result: 'The ship survives because cognition chooses a survivable future, not a perfect one.', target: 'helios' },
+      { label: 'Fight every threat', result: 'Refusing all loss destroys the vessel needed for the mission.', target: 'calypso' }
+    ]
+  },
+  {
+    id: 'helios', icon: '☼', label: 'Helios', verb: 'Restraint', caption: 'Now or later?', x: 78, y: 25,
+    problem: 'Hunger makes the forbidden cattle look immediately useful. Does memory survive local reward?',
+    choices: [
+      { label: 'Protect the prohibition', result: 'Delayed consequence remains visible. The route to Ithaca opens.', target: 'home' },
+      { label: 'Take the immediate reward', result: 'The crew eats; the ship is destroyed when the hidden cost arrives.', target: 'calypso' }
+    ]
+  },
+  {
+    id: 'calypso', icon: '◇', label: 'Calypso', verb: 'Identity', caption: 'Forever or home?', x: 78, y: 73,
+    problem: 'Immortality is offered without home. Which future still belongs to Odysseus?',
+    choices: [
+      { label: 'Choose mortal return', result: 'Identity outweighs endless comfort. Ithaca becomes reachable again.', target: 'home' },
+      { label: 'Remain outside time', result: 'The traveler survives forever, but the homecoming never happens.', target: 'stranded' }
+    ]
+  }
+];
+
+const connections = [
+  ['odysseus', 'cyclops'],
+  ['cyclops', 'aeolus'], ['cyclops', 'poseidon'],
+  ['aeolus', 'sirens'], ['aeolus', 'circe'],
+  ['poseidon', 'circe'], ['poseidon', 'scylla'],
+  ['circe', 'sirens'], ['circe', 'calypso'],
+  ['sirens', 'scylla'], ['sirens', 'calypso'],
+  ['scylla', 'helios'], ['scylla', 'calypso'],
+  ['helios', 'home'], ['helios', 'calypso'],
+  ['calypso', 'home']
+];
+---
+
+<div
+  class:list={['odyssey-cognition', compact && 'odyssey-cognition--compact']}
+  data-odyssey-cognition
+  role="group"
+  aria-label="Interactive branching Odyssey. Begin with Odysseus, open each unlocked encounter, and choose a response to reveal a different future."
+>
+  <img class="odyssey-cognition__art" src="/assets/images/odyssey-cognition-hero.webp" alt="" width="1920" height="1080" />
+  <div class="odyssey-cognition__wash" aria-hidden="true"></div>
+  <div class="odyssey-cognition__sea" aria-hidden="true"></div>
+  <div class="odyssey-cognition__neural-field" aria-hidden="true">
+    <span style="--nx:4%;--ny:25%;--nw:45%;--nh:27%;--nr:8deg;--nd:8.2s"></span>
+    <span style="--nx:8%;--ny:50%;--nw:53%;--nh:31%;--nr:-7deg;--nd:10.4s"></span>
+    <span style="--nx:23%;--ny:14%;--nw:49%;--nh:26%;--nr:11deg;--nd:9.1s"></span>
+    <span style="--nx:37%;--ny:33%;--nw:48%;--nh:29%;--nr:-10deg;--nd:11.6s"></span>
+    <span style="--nx:43%;--ny:60%;--nw:48%;--nh:22%;--nr:6deg;--nd:7.8s"></span>
+    <span style="--nx:55%;--ny:19%;--nw:42%;--nh:40%;--nr:-5deg;--nd:12.3s"></span>
+    <i style="--px:12%;--py:35%;--pd:0s"></i><i style="--px:18%;--py:67%;--pd:-1.2s"></i>
+    <i style="--px:29%;--py:20%;--pd:-2.4s"></i><i style="--px:33%;--py:55%;--pd:-3.1s"></i>
+    <i style="--px:44%;--py:38%;--pd:-.8s"></i><i style="--px:48%;--py:82%;--pd:-2s"></i>
+    <i style="--px:58%;--py:17%;--pd:-3.7s"></i><i style="--px:61%;--py:58%;--pd:-1.6s"></i>
+    <i style="--px:71%;--py:42%;--pd:-2.8s"></i><i style="--px:76%;--py:77%;--pd:-.4s"></i>
+    <i style="--px:86%;--py:27%;--pd:-3.4s"></i><i style="--px:91%;--py:61%;--pd:-1s"></i>
+  </div>
+
+  <div class="odyssey-cognition__routes" aria-hidden="true">
+    {connections.map(([from, to]) => (
+      <i class="odyssey-route" data-route={`${from}-${to}`} data-from={from} data-to={to}></i>
+    ))}
+  </div>
+
+  <button class="odyssey-origin" type="button" data-graph-anchor="odysseus" data-odyssey-start aria-label="Begin or restart the Odyssey">
+    <span class="odyssey-origin__figure" aria-hidden="true">
+      <img src="/assets/images/odyssey-characters-v1/odysseus.webp" alt="" width="400" height="400" />
+    </span>
+    <strong>Odysseus</strong>
+  </button>
+
+  <div class="odyssey-cognition__nodes" aria-label="Odysseus's encounters">
+    {encounters.map((encounter) => (
+      <button
+        class="odyssey-node is-explorable"
+        type="button"
+        data-odyssey-node={encounter.id}
+        data-graph-anchor={encounter.id}
+        style={`--odyssey-x:${encounter.x}%;--odyssey-y:${encounter.y}%`}
+        aria-label={`${encounter.label}: open this encounter`}
+      >
+        <span class:list={['odyssey-node__icon', `odyssey-node__icon--${encounter.id}`]} aria-hidden="true">
+          <img src={`/assets/images/odyssey-characters-v1/${encounter.id}.webp`} alt="" width="320" height="320" />
+        </span>
+        <strong>{encounter.label}</strong>
+        <i aria-hidden="true"></i>
+      </button>
+    ))}
+  </div>
+
+  <div class="odyssey-destination" data-graph-anchor="home" data-odyssey-destination>
+    <span class="odyssey-destination__icon" aria-hidden="true">⌂</span>
+    <strong data-destination-title>Ithaca</strong>
+  </div>
+
+  <section class="odyssey-story" data-odyssey-story hidden aria-modal="true" role="dialog" aria-labelledby="odyssey-story-title">
+    <button class="odyssey-story__close" type="button" data-story-close aria-label="Close encounter">×</button>
+    <header>
+      <span class="odyssey-story__icon" aria-hidden="true"><img data-story-icon alt="" width="320" height="320" /></span>
+      <div>
+        <small data-story-verb></small>
+        <h3 id="odyssey-story-title" data-story-title></h3>
+      </div>
+    </header>
+    <p data-story-problem></p>
+    <div class="odyssey-story__choices" data-story-choices></div>
+  </section>
+</div>
+
+<script is:inline define:vars={{ encounters }}>
+  document.querySelectorAll('[data-odyssey-cognition]').forEach((root) => {
+    if (root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+
+    const encounterById = new Map(encounters.map((encounter) => [encounter.id, encounter]));
+    const nodeElements = new Map(
+      [...root.querySelectorAll('[data-odyssey-node]')].map((node) => [node.dataset.odysseyNode, node])
+    );
+    const routes = [...root.querySelectorAll('[data-route]')];
+    const story = root.querySelector('[data-odyssey-story]');
+    const start = root.querySelector('[data-odyssey-start]');
+    const destination = root.querySelector('[data-odyssey-destination]');
+    const destinationTitle = root.querySelector('[data-destination-title]');
+    const closeButton = root.querySelector('[data-story-close]');
+    const choices = root.querySelector('[data-story-choices]');
+    const canonicalPaths = {
+      cyclops: ['odysseus', 'cyclops'],
+      aeolus: ['odysseus', 'cyclops', 'aeolus'],
+      poseidon: ['odysseus', 'cyclops', 'poseidon'],
+      sirens: ['odysseus', 'cyclops', 'aeolus', 'sirens'],
+      circe: ['odysseus', 'cyclops', 'poseidon', 'circe'],
+      scylla: ['odysseus', 'cyclops', 'aeolus', 'sirens', 'scylla'],
+      helios: ['odysseus', 'cyclops', 'aeolus', 'sirens', 'scylla', 'helios'],
+      calypso: ['odysseus', 'cyclops', 'poseidon', 'circe', 'calypso']
+    };
+    let path = ['odysseus'];
+    let ending = null;
+
+    const positionRoutes = () => {
+      const rootRect = root.getBoundingClientRect();
+      routes.forEach((route) => {
+        const from = root.querySelector(`[data-graph-anchor="${route.dataset.from}"]`);
+        const to = root.querySelector(`[data-graph-anchor="${route.dataset.to}"]`);
+        if (!from || !to) return;
+        const a = from.getBoundingClientRect();
+        const b = to.getBoundingClientRect();
+        const ax = a.left + a.width / 2 - rootRect.left;
+        const ay = a.top + a.height / 2 - rootRect.top;
+        const bx = b.left + b.width / 2 - rootRect.left;
+        const by = b.top + b.height / 2 - rootRect.top;
+        const distance = Math.hypot(bx - ax, by - ay);
+        const angle = Math.atan2(by - ay, bx - ax) * 180 / Math.PI;
+        route.style.setProperty('--route-left', `${ax}px`);
+        route.style.setProperty('--route-top', `${ay}px`);
+        route.style.setProperty('--route-width', `${distance}px`);
+        route.style.setProperty('--route-angle', `${angle}deg`);
+      });
+    };
+
+    const closeStory = () => { story.hidden = true; };
+
+    const render = () => {
+      const activeId = path[path.length - 1];
+      const activeEdges = new Set(path.slice(1).map((id, index) => `${path[index]}-${id}`));
+      const currentEdge = path.length > 1 ? `${path[path.length - 2]}-${path[path.length - 1]}` : '';
+      nodeElements.forEach((node, id) => {
+        const isReached = path.includes(id);
+        const isCurrent = isReached && id === activeId && !ending;
+        node.disabled = false;
+        node.classList.toggle('is-reached', isReached && !isCurrent);
+        node.classList.toggle('is-current', isCurrent);
+        node.setAttribute('aria-label', `${encounterById.get(id).label}: open this encounter`);
+      });
+      routes.forEach((route) => {
+        route.classList.toggle('is-active', activeEdges.has(route.dataset.route));
+        route.classList.toggle('is-current-route', route.dataset.route === currentEdge && !ending);
+      });
+      start.classList.toggle('is-active', path.length === 1);
+      destination.classList.toggle('is-home', ending === 'home');
+      destination.classList.toggle('is-stranded', ending === 'stranded');
+      positionRoutes();
+    };
+
+    const showEncounter = (id) => {
+      const encounter = encounterById.get(id);
+      if (!encounter) return;
+      root.querySelector('[data-story-icon]').src = `/assets/images/odyssey-characters-v1/${encounter.id}.webp`;
+      root.querySelector('[data-story-verb]').textContent = encounter.verb;
+      root.querySelector('[data-story-title]').textContent = encounter.label;
+      root.querySelector('[data-story-problem]').textContent = encounter.problem;
+      choices.replaceChildren();
+      encounter.choices.forEach((choice, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.innerHTML = `<span>0${index + 1}</span><strong></strong>`;
+        button.querySelector('strong').textContent = choice.label;
+        button.addEventListener('click', () => choose(id, choice));
+        choices.append(button);
+      });
+      story.hidden = false;
+      requestAnimationFrame(() => closeButton.focus());
+    };
+
+    const choose = (id, choice) => {
+      const index = path.indexOf(id);
+      path = index === -1 ? [...canonicalPaths[id]] : path.slice(0, index + 1);
+      ending = null;
+      if (encounterById.has(choice.target)) {
+        path.push(choice.target);
+        destinationTitle.textContent = 'Ithaca';
+      } else {
+        ending = choice.target;
+        if (ending === 'home') {
+          destinationTitle.textContent = 'Homecoming';
+        } else {
+          destinationTitle.textContent = 'No return';
+        }
+      }
+      closeStory();
+      render();
+      if (!ending) nodeElements.get(path[path.length - 1])?.focus({ preventScroll: true });
+    };
+
+    const begin = () => {
+      path = ['odysseus', 'cyclops'];
+      ending = null;
+      destinationTitle.textContent = 'Ithaca';
+      closeStory();
+      render();
+      nodeElements.get('cyclops')?.focus({ preventScroll: true });
+    };
+
+    start.addEventListener('click', begin);
+    closeButton.addEventListener('click', closeStory);
+    story.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeStory(); });
+    nodeElements.forEach((node, id) => node.addEventListener('click', () => showEncounter(id)));
+    window.addEventListener('resize', positionRoutes, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(positionRoutes).observe(root);
+    render();
+  });
+</script>
+
+<style>
+  .odyssey-cognition {
+    --odyssey-gold: #ddb46f;
+    --odyssey-cyan: #62d4da;
+    position: relative;
+    width: 100%;
+    min-height: 680px;
+    overflow: hidden;
+    color: #f6f1e7;
+    background: #061522;
+    isolation: isolate;
+    font-family: var(--sans);
+  }
+  .odyssey-cognition__art, .odyssey-cognition__wash, .odyssey-cognition__sea, .odyssey-cognition__neural-field { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .odyssey-cognition__art { z-index: -4; object-fit: cover; opacity: .84; filter: saturate(1.08) contrast(1.04); }
+  .odyssey-cognition__wash { z-index: -3; background: linear-gradient(90deg, rgba(3,12,22,.02), rgba(3,12,22,.48) 20%, rgba(3,12,22,.34) 82%, rgba(3,12,22,.1)), linear-gradient(180deg, rgba(3,12,22,.04), rgba(3,12,22,.5)); }
+  .odyssey-cognition__sea { z-index: -2; top: auto; height: 33%; opacity: .22; background: repeating-radial-gradient(ellipse at 50% 130%, transparent 0 22px, rgba(98,212,218,.5) 23px, transparent 25px 47px); animation: odyssey-sea 12s linear infinite; }
+  .odyssey-cognition__neural-field { z-index: -1; overflow: hidden; pointer-events: none; mix-blend-mode: screen; }
+  .odyssey-cognition__neural-field::before { content: ''; position: absolute; inset: 0; opacity: .38; background: radial-gradient(circle at 19% 33%,rgba(114,224,231,.85) 0 1px,transparent 2px), radial-gradient(circle at 31% 61%,rgba(221,180,111,.8) 0 1px,transparent 3px), radial-gradient(circle at 47% 27%,rgba(114,224,231,.72) 0 1px,transparent 3px), radial-gradient(circle at 64% 69%,rgba(221,180,111,.72) 0 1px,transparent 3px), radial-gradient(circle at 82% 39%,rgba(114,224,231,.78) 0 1px,transparent 3px), radial-gradient(ellipse at 50% 50%,transparent 0 38%,rgba(98,212,218,.12) 38.2%,transparent 38.6%); filter: drop-shadow(0 0 7px rgba(98,212,218,.65)); }
+  .odyssey-cognition__neural-field span { position: absolute; left: var(--nx); top: var(--ny); width: var(--nw); height: var(--nh); opacity: .34; border-top: 1px solid rgba(112,224,230,.66); border-radius: 50%; transform: rotate(var(--nr)); filter: drop-shadow(0 0 4px rgba(98,212,218,.44)); }
+  .odyssey-cognition__neural-field span::before { content: ''; position: absolute; inset: 7px -3% auto 2%; height: 88%; border-top: 1px solid rgba(221,180,111,.28); border-radius: 50%; }
+  .odyssey-cognition__neural-field span::after { content: ''; position: absolute; top: -3px; left: 0; width: 5px; height: 5px; background: #dfffff; border-radius: 50%; box-shadow: 0 0 10px #72e0e7,0 0 20px rgba(114,224,231,.65); animation: odyssey-neural-travel var(--nd) ease-in-out infinite; }
+  .odyssey-cognition__neural-field i { position: absolute; left: var(--px); top: var(--py); width: 4px; height: 4px; opacity: .58; background: #c9ffff; border-radius: 50%; box-shadow: 0 0 0 5px rgba(98,212,218,.06),0 0 15px rgba(98,212,218,.9); animation: odyssey-synapse 4.3s ease-in-out var(--pd) infinite; }
+  .odyssey-story header small { color: var(--odyssey-cyan); font-size: .5rem; font-weight: 840; letter-spacing: .12em; text-transform: uppercase; }
+  .odyssey-cognition__routes { position: absolute; z-index: 0; inset: 0; pointer-events: none; }
+  .odyssey-route { position: absolute; left: var(--route-left); top: var(--route-top); width: var(--route-width); height: 1px; display: block; transform: rotate(var(--route-angle)); transform-origin: left center; opacity: .32; background: repeating-linear-gradient(90deg, rgba(133,215,221,.68) 0 3px, transparent 3px 8px); box-shadow: 0 0 5px rgba(98,212,218,.14); transition: height .25s ease, opacity .35s ease, filter .35s ease; }
+  .odyssey-route::after { content: ''; position: absolute; inset: -1px 0; opacity: 0; background: repeating-linear-gradient(90deg, transparent 0 6px, var(--odyssey-gold) 7px 12px, transparent 13px 20px); background-size: 40px 100%; animation: odyssey-flow 1.25s linear infinite; }
+  .odyssey-route::before { content: '◢'; position: absolute; z-index: 2; top: -9px; left: 0; opacity: 0; color: #ffe3a5; filter: drop-shadow(0 0 7px rgba(255,202,111,.9)); font: 14px/1 Georgia,serif; }
+  .odyssey-route.is-active { height: 2px; opacity: .92; filter: drop-shadow(0 0 6px rgba(98,212,218,.85)); background: rgba(98,212,218,.65); }
+  .odyssey-route.is-active::after { opacity: 1; }
+  .odyssey-route.is-current-route::before { opacity: 1; animation: odyssey-vessel 3.2s ease-in-out infinite; }
+  .odyssey-origin, .odyssey-node { position: absolute; z-index: 3; padding: 0; color: #fff; background: transparent; border: 0; cursor: pointer; text-align: center; }
+  .odyssey-origin { left: 3.5%; top: 50%; width: 128px; display: grid; justify-items: center; gap: 4px; transform: translateY(-50%); }
+  .odyssey-origin__figure { position: relative; width: 72px; height: 72px; display: block; overflow: hidden; background: #071724; border: 2px solid #ffe6b0; border-radius: 50%; box-shadow: 0 0 0 8px rgba(221,180,111,.11), 0 0 40px rgba(221,180,111,.34); transition: transform .25s ease, box-shadow .25s ease; }
+  .odyssey-origin__figure img { width: 100%; height: 100%; display: block; object-fit: cover; transform: scale(1.04); transition: transform .35s ease, filter .35s ease; }
+  .odyssey-origin strong { font-family: var(--serif); font-size: 1rem; font-weight: 520; }
+  .odyssey-origin:hover .odyssey-origin__figure, .odyssey-origin:focus-visible .odyssey-origin__figure, .odyssey-origin.is-active .odyssey-origin__figure { transform: translateY(-4px) scale(1.04); box-shadow: 0 0 0 12px rgba(221,180,111,.09), 0 0 54px rgba(221,180,111,.68); }
+  .odyssey-origin:hover .odyssey-origin__figure img, .odyssey-origin:focus-visible .odyssey-origin__figure img { transform: scale(1.11); filter: saturate(1.08); }
+  .odyssey-origin:focus-visible, .odyssey-node:focus-visible { outline: 1px solid var(--odyssey-gold); outline-offset: 7px; }
+  .odyssey-node { left: var(--odyssey-x); top: var(--odyssey-y); width: 116px; display: grid; justify-items: center; gap: 4px; transform: translate(-50%,-50%); transition: filter .3s ease, transform .25s ease; }
+  .odyssey-node__icon { position: relative; width: 62px; height: 62px; display: grid; place-items: center; overflow: hidden; color: #dffcff; background: radial-gradient(circle at 42% 38%, rgba(28,88,105,.97), rgba(4,18,29,.97) 72%); border: 1px solid rgba(98,212,218,.84); border-radius: 50%; box-shadow: 0 0 0 6px rgba(98,212,218,.07), inset 0 0 24px rgba(98,212,218,.19), 0 9px 28px rgba(0,0,0,.42); font: 1.65rem/1 Georgia, serif; text-shadow: 0 0 13px currentColor; transition: color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease; animation: odyssey-icon-float 4s ease-in-out infinite; }
+  .odyssey-node__icon > img { width: 100%; height: 100%; display: block; object-fit: cover; transform: scale(1.04); filter: saturate(.92) contrast(1.05); transition: transform .35s ease, filter .35s ease; }
+  .odyssey-node__icon::after { content: ''; position: absolute; inset: auto -12px -18px; height: 32px; opacity: .55; border: 1px solid rgba(152,231,232,.55); border-radius: 50%; animation: odyssey-icon-wave 3s linear infinite; }
+  .odyssey-node__icon--cyclops { color: #8fefff; background: radial-gradient(ellipse at 50% 50%, #08121b 0 11%, #63d7df 12% 19%, #d5a760 20% 25%, rgba(8,28,41,.97) 27%); }
+  .odyssey-node__icon--aeolus { color: #d7ffff; background: radial-gradient(circle at 38% 38%, rgba(56,128,142,.92), rgba(4,18,29,.97) 74%); }
+  .odyssey-node__icon--poseidon { color: #68e7ee; background: radial-gradient(circle at 50% 85%, #126378, #071d2c 58%, #05141f 75%); }
+  .odyssey-node__icon--sirens { color: #ffe0a0; background: radial-gradient(circle at 62% 35%, rgba(130,93,69,.8), rgba(6,27,40,.98) 70%); }
+  .odyssey-node__icon--circe { color: #e7ccff; background: radial-gradient(circle at 35% 34%, rgba(86,62,113,.9), rgba(7,24,37,.98) 70%); }
+  .odyssey-node__icon--scylla { color: #ffcf9b; background: radial-gradient(circle at 50% 50%, rgba(108,55,49,.76), rgba(6,23,34,.98) 72%); }
+  .odyssey-node__icon--helios { color: #ffe19a; background: radial-gradient(circle, rgba(154,101,38,.76), rgba(8,27,38,.98) 67%); }
+  .odyssey-node__icon--calypso { color: #a7f4e4; background: radial-gradient(ellipse at 50% 72%, rgba(40,113,103,.88), rgba(8,28,39,.98) 68%); }
+  .odyssey-node strong { font-family: var(--serif); font-size: .76rem; font-weight: 500; line-height: 1; }
+  .odyssey-node > i { width: 4px; height: 4px; margin-top: 1px; background: currentColor; border-radius: 50%; }
+  .odyssey-node.is-current .odyssey-node__icon { color: #fff6db; border-color: #fff0c8; box-shadow: 0 0 0 9px rgba(221,180,111,.14), 0 0 38px rgba(221,180,111,.72), inset 0 0 20px rgba(221,180,111,.3); }
+  .odyssey-node.is-reached .odyssey-node__icon { color: #fff; border-color: var(--odyssey-gold); }
+  .odyssey-node:hover, .odyssey-node:focus-visible { transform: translate(-50%,-55%); }
+  .odyssey-node:hover .odyssey-node__icon, .odyssey-node:focus-visible .odyssey-node__icon { border-color: #fff2c9; box-shadow: 0 0 0 9px rgba(98,212,218,.11), 0 0 38px rgba(98,212,218,.58), inset 0 0 22px rgba(98,212,218,.23); }
+  .odyssey-node:hover .odyssey-node__icon > img, .odyssey-node:focus-visible .odyssey-node__icon > img { transform: scale(1.11); filter: saturate(1.08) contrast(1.06); }
+  .odyssey-destination { position: absolute; z-index: 3; right: 2.5%; top: 50%; width: 132px; display: grid; justify-items: center; gap: 5px; text-align: center; transform: translateY(-50%); transition: filter .35s ease, transform .35s ease; }
+  .odyssey-destination__icon { width: 70px; height: 70px; display: grid; place-items: center; color: var(--odyssey-gold); background: rgba(4,18,29,.72); border: 1px solid rgba(221,180,111,.72); border-radius: 50%; box-shadow: 0 0 0 8px rgba(221,180,111,.07); font: 2rem/1 Georgia, serif; }
+  .odyssey-destination strong { font-family: var(--serif); font-size: 1rem; font-weight: 520; }
+  .odyssey-destination.is-home { transform: translateY(-50%) scale(1.06); filter: drop-shadow(0 0 24px rgba(255,197,102,.74)); }
+  .odyssey-destination.is-home .odyssey-destination__icon { color: #172738; background: #ffd58d; animation: odyssey-home 1.8s ease-in-out infinite; }
+  .odyssey-destination.is-stranded { filter: grayscale(.9); opacity: .6; }
+  .odyssey-story { position: absolute; z-index: 20; top: 50%; left: 50%; width: min(610px,65%); padding: 22px; color: #f8f2e7; background: rgba(3,18,30,.96); border: 1px solid rgba(98,212,218,.48); box-shadow: 0 24px 74px rgba(0,0,0,.55); transform: translate(-50%,-50%); backdrop-filter: blur(16px); }
+  .odyssey-story[hidden] { display: none; }
+  .odyssey-story__close { position: absolute; top: 10px; right: 12px; width: 28px; height: 28px; color: rgba(255,255,255,.62); background: transparent; border: 1px solid rgba(255,255,255,.18); cursor: pointer; font: 1rem/1 var(--sans); }
+  .odyssey-story header { display: flex; align-items: center; gap: 13px; }
+  .odyssey-story__icon { width: 48px; height: 48px; display: grid; flex: 0 0 auto; place-items: center; overflow: hidden; color: var(--odyssey-cyan); border: 1px solid rgba(98,212,218,.55); border-radius: 50%; }
+  .odyssey-story__icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .odyssey-story header div { display: grid; gap: 3px; }
+  .odyssey-story h3 { margin: 0; font-family: var(--serif); font-size: 1.55rem; font-weight: 430; }
+  .odyssey-story > p { margin: 17px 0 14px; color: rgba(255,255,255,.78); font-family: var(--serif); font-size: .98rem; line-height: 1.35; }
+  .odyssey-story__choices { position: relative; padding-top: 26px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  .odyssey-story__choices::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 15px; background: var(--odyssey-cyan); }
+  .odyssey-story__choices::after { content: ''; position: absolute; top: 14px; right: 25%; left: 25%; height: 1px; background: linear-gradient(90deg,var(--odyssey-gold),var(--odyssey-cyan),var(--odyssey-gold)); }
+  .odyssey-story__choices :global(button) { position: relative; min-height: 70px; padding: 14px; display: grid; grid-template-columns: 28px 1fr; align-items: center; column-gap: 8px; color: #fff; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.17); cursor: pointer; text-align: left; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+  .odyssey-story__choices :global(button)::before { content: ''; position: absolute; top: -13px; left: 50%; width: 1px; height: 12px; background: var(--odyssey-gold); }
+  .odyssey-story__choices :global(button:hover), .odyssey-story__choices :global(button:focus-visible) { background: rgba(98,212,218,.1); border-color: var(--odyssey-cyan); outline: none; transform: translateY(-2px); }
+  .odyssey-story__choices :global(button span) { color: var(--odyssey-gold); font: 820 .5rem/1 var(--sans); letter-spacing: .08em; }
+  .odyssey-story__choices :global(button strong) { font-family: var(--serif); font-size: .8rem; font-weight: 520; }
+
+  .odyssey-cognition--compact { min-height: 560px; }
+  .odyssey-cognition--compact .odyssey-origin { left: 1.5%; transform: translateY(-50%) scale(.8); }
+  .odyssey-cognition--compact .odyssey-node { width: 74px; }
+  .odyssey-cognition--compact .odyssey-node__icon { width: 48px; height: 48px; font-size: 1.2rem; }
+  .odyssey-cognition--compact .odyssey-node strong { font-size: .61rem; }
+  .odyssey-cognition--compact .odyssey-node small { display: none; }
+  .odyssey-cognition--compact .odyssey-destination { right: .5%; transform: translateY(-50%) scale(.82); }
+  .odyssey-cognition--compact .odyssey-story { width: min(570px,82%); }
+
+  @keyframes odyssey-flow { to { background-position: 40px 0; } }
+  @keyframes odyssey-vessel { 0% { left: 0; transform: translateX(-25%) scale(.8); } 50% { transform: translateX(-25%) scale(1.12); } 100% { left: 100%; transform: translateX(-75%) scale(.8); } }
+  @keyframes odyssey-sea { to { transform: translateX(48px); } }
+  @keyframes odyssey-neural-travel { 0%,100% { left: 0; opacity: 0; } 12%,88% { opacity: .92; } 50% { transform: translateY(7px) scale(1.35); } 100% { left: 100%; } }
+  @keyframes odyssey-synapse { 0%,100% { transform: scale(.55); opacity: .24; } 50% { transform: scale(1.7); opacity: .88; box-shadow: 0 0 0 9px rgba(98,212,218,.03),0 0 23px rgba(98,212,218,1); } }
+  @keyframes odyssey-node-pulse { 50% { transform: scale(1.08); box-shadow: 0 0 0 14px rgba(221,180,111,.04), 0 0 46px rgba(221,180,111,.86); } }
+  @keyframes odyssey-home { 50% { box-shadow: 0 0 0 14px rgba(255,213,141,.06), 0 0 38px rgba(255,213,141,.78); } }
+  @keyframes odyssey-icon-float { 50% { transform: translateY(-3px) rotate(1deg); } }
+  @keyframes odyssey-icon-wave { to { transform: translateX(12px); } }
+  @keyframes odyssey-eye-blink { 0%,42%,48%,100% { transform: scaleY(1); } 45% { transform: scaleY(.18); } }
+  @keyframes odyssey-wind-turn { 50% { transform: rotate(6deg) scale(1.04); text-shadow: -8px 0 14px currentColor; } }
+  @keyframes odyssey-trident-rise { 50% { transform: translateY(-4px); text-shadow: 0 8px 16px currentColor; } }
+  @keyframes odyssey-song-pulse { 50% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(255,224,160,.08), 0 0 32px rgba(255,224,160,.32); } }
+  @keyframes odyssey-moon-orbit { 50% { transform: rotate(-9deg) translateY(-2px); } }
+  @keyframes odyssey-blades-close { 50% { transform: scaleX(.86) scaleY(1.04); } }
+  @keyframes odyssey-sun-turn { to { transform: rotate(360deg); } }
+  @keyframes odyssey-island-drift { 50% { transform: translateY(3px) rotate(2deg); } }
+
+  @media (max-width: 760px) {
+    .odyssey-cognition, .odyssey-cognition--compact { min-height: 760px; }
+    .odyssey-cognition__art { object-position: 47% center; }
+    .odyssey-origin, .odyssey-cognition--compact .odyssey-origin { left: 1%; top: 50%; width: 80px; transform: translateY(-50%) scale(.72); }
+    .odyssey-node, .odyssey-cognition--compact .odyssey-node { width: 62px; }
+    .odyssey-node__icon, .odyssey-cognition--compact .odyssey-node__icon { width: 42px; height: 42px; font-size: 1rem; }
+    .odyssey-node strong, .odyssey-cognition--compact .odyssey-node strong { font-size: .55rem; }
+    .odyssey-destination, .odyssey-cognition--compact .odyssey-destination { right: -2.5%; width: 92px; transform: translateY(-50%) scale(.72); }
+    .odyssey-story, .odyssey-cognition--compact .odyssey-story { top: 50%; right: 12px; left: 12px; width: auto; padding: 17px; transform: translateY(-50%); }
+    .odyssey-story > p { font-size: .84rem; }
+    .odyssey-story__choices :global(button) { min-height: 62px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .odyssey-cognition__sea, .odyssey-cognition__neural-field span::after, .odyssey-cognition__neural-field i, .odyssey-route::after, .odyssey-route::before, .odyssey-node__icon, .odyssey-node.is-current .odyssey-node__icon, .odyssey-destination.is-home .odyssey-destination__icon { animation: none; }
+  }
+</style>

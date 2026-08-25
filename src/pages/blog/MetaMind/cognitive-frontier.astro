@@ -3,6 +3,7 @@ import FieldNoteLayout from '../../../layouts/FieldNoteLayout.astro';
 import CognitiveArchitecture from '../../../components/blog/CognitiveArchitecture.astro';
 import CognitiveEvolutionLoop from '../../../components/blog/CognitiveEvolutionLoop.astro';
 import SuperWorldContinuum from '../../../components/blog/SuperWorldContinuum.astro';
+import OdysseyWorldModel from '../../../components/blog/OdysseyWorldModel.astro';
 
 const sections = [
   { id: 'boundary', label: 'A disciplined proposition' },
@@ -19,7 +20,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Beyond MetaMind: From Cognitive Scaffolds to Evolvable Capability',
   description: 'A testable research agenda for cognitive architecture, agent harnesses, self-evolution, cognitive world models, and super-world games.',
-  image: new URL('/assets/meta/og-metamind-cognitive.png', site).href,
+  image: new URL('/assets/images/cognition-iceberg-hero-v2.webp', site).href,
   datePublished: '2026-07-13',
   dateModified: '2026-07-16',
   author: { '@type': 'Person', name: 'Xuanming Zhang', url: new URL('/', site).href },
@@ -32,9 +33,9 @@ const articleSchema = {
   description="A research agenda extending MetaMind toward cognitive architecture, process learning, self-evolving agents, cognitive world models, and super-world games."
   kicker="Cognitive frontier / Research agenda"
   headline="From cognitive scaffolds to evolvable capability."
-  dek="Scaling expands what a model can represent. Cognitive architecture determines what it can reliably retrieve, revise, coordinate, and become through experience."
-  image="/assets/meta/og-metamind-cognitive.png"
-  imageAlt="From cognitive scaffolds to evolvable capability — a research agenda by Xuanming Zhang"
+  dek="Cognitive AI infers what is hidden, updates what matters, and changes what happens next."
+  image="/assets/images/cognition-iceberg-hero-v2.webp"
+  imageAlt="An iceberg showing visible inputs above water and the hidden cognitive structure beneath"
   tone="frontier"
   issue="Field note 02 / 02"
   readingTime="24 minute read"
@@ -51,18 +52,6 @@ const articleSchema = {
 
   <p>MetaMind does not prove that parameter scaling has ended, that language models possess human cognition, or that one architecture generalizes to every cognitive domain. It does support a more disciplined proposition: <strong>how inference is organized remains a meaningful axis of capability, even after pretraining and post-training.</strong></p>
 
-  <section class="evidence-ribbon" aria-label="Evidence to research agenda">
-    <div><strong>Observed</strong><span>external cognitive structure improves social reasoning</span></div>
-    <div><strong>Inferred</strong><span>direct decoding can under-use latent capability</span></div>
-    <div><strong>Hypothesized</strong><span>useful cognitive patterns can be learned and internalized</span></div>
-    <div><strong>Tested next</strong><span>interaction, evolution, worlds, and long-horizon consequence</span></div>
-  </section>
-
-  <figure class="essay-figure">
-    <div class="aspect-media"><img src="/blog/MetaMind/assets/c_hero.webp" width="1664" height="928" alt="A luminous cognitive structure emerging above a field, representing organized inference beyond raw scale" loading="eager" /></div>
-    <figcaption><strong>The research wager.</strong> Capability is shaped not only by what a model stores, but by the computational structure through which that knowledge is elicited, revised, and turned into action.</figcaption>
-  </figure>
-
   <p class="section-kicker">02 / Thesis</p>
   <h2 id="thesis">Scale and structure are<br />orthogonal levers.</h2>
 
@@ -72,10 +61,10 @@ const articleSchema = {
 
   <section class="research-line" aria-label="Research program from scaffold to world">
     <ol>
-      <li><span>Externalize</span><strong>Scaffold</strong><p>Make the hidden cognitive loop explicit and inspectable.</p></li>
-      <li><span>Measure</span><strong>Instrument</strong><p>Evaluate process quality, not only terminal correctness.</p></li>
-      <li><span>Internalize</span><strong>Learn</strong><p>Distill successful operations into a lower-cost policy or latent state.</p></li>
-      <li><span>Ground</span><strong>World</strong><p>Test whether learned cognition survives interaction and consequence.</p></li>
+      <li><span>Externalize</span><strong>Scaffold</strong></li>
+      <li><span>Measure</span><strong>Instrument</strong></li>
+      <li><span>Internalize</span><strong>Learn</strong></li>
+      <li><span>Ground</span><strong>World</strong></li>
     </ol>
   </section>
 
@@ -99,10 +88,10 @@ const articleSchema = {
   <p>In current agent engineering, a <a href="https://openai.com/index/harness-engineering/">harness</a> is the surrounding system that supplies context, tools, state, constraints, and validation. Anthropic similarly describes an <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">agent harness or scaffold</a> as the system that turns a model into an acting agent. Cognition as scaffold belongs to that family, but asks for a stronger contract: the harness should not merely route tools. It should make the system's latent variables and cognitive operations explicit enough to inspect, teach, and eventually internalize.</p>
 
   <div class="agenda-grid">
-    <article><b>01</b><span>Cognition as scaffold / harness</span><h3>Constrain the shape, not the conclusion.</h3><p>Specify which latent variables deserve attention, which operations can revise them, and where uncertainty must be exposed—without hard-coding the final answer.</p></article>
-    <article><b>02</b><span>Cognition as pattern / protocol</span><h3>Separate generation, critique, and action.</h3><p>Reusable patterns such as infer → constrain → validate become selectable methods for partially observed problems, not one-off prompt chains.</p></article>
-    <article><b>03</b><span>Cognition as state</span><h3>Remember events and what they changed.</h3><p>Explicit memory preserves factual episodes. Implicit memory tracks revisable latent state—trust, goals, identity, role, and uncertainty—without reducing a person to an accumulated transcript.</p></article>
-    <article><b>04</b><span>Cognition as learned policy</span><h3>Use the scaffold, then internalize it.</h3><p>Supervise, distill, or reinforce successful transitions until the model can execute them efficiently while preserving enough trace structure for audit and correction.</p></article>
+    <article><b>01</b><span>Scaffold</span><h3>Constrain the shape, not the conclusion.</h3></article>
+    <article><b>02</b><span>Pattern</span><h3>Separate generation, critique, and action.</h3></article>
+    <article><b>03</b><span>State</span><h3>Remember events and what they changed.</h3></article>
+    <article><b>04</b><span>Policy</span><h3>Use the scaffold, then internalize it.</h3></article>
   </div>
 
   <div class="reflection-block">
@@ -132,15 +121,15 @@ const articleSchema = {
   <h2 id="frontier">Four transitions beyond<br />today's default pipeline.</h2>
 
   <div class="result-grid">
-    <article class="result-card"><span>Transition 01 / Scale → structure</span><strong>Organize</strong><h3>Beyond undifferentiated inference</h3><p>Ask which cognitive operation should occur at each stage, which state it changes, and how the system knows when to revise.</p></article>
-    <article class="result-card"><span>Transition 02 / Tokens → patterns</span><strong>Select</strong><h3>Beyond language as the only unit</h3><p>Predict and compose cognitive methodologies—planning, simulation, critique, repair—before committing to the local token path.</p></article>
-    <article class="result-card"><span>Transition 03 / Labels → process</span><strong>Evaluate</strong><h3>Beyond verifiable terminal reward</h3><p>Score calibration, reversibility, social consequence, recovery, and the quality of intermediate state transitions—not only the final answer.</p></article>
-    <article class="result-card"><span>Transition 04 / Benchmarks → worlds</span><strong>Experience</strong><h3>Beyond static question answering</h3><p>Measure intelligence by the world an action produces across turns, people, counterfactuals, and delayed consequences.</p></article>
+    <article class="result-card"><span>Scale → structure</span><strong>Organize</strong><h3>Beyond undifferentiated inference</h3></article>
+    <article class="result-card"><span>Tokens → patterns</span><strong>Select</strong><h3>Beyond language as the only unit</h3></article>
+    <article class="result-card"><span>Labels → process</span><strong>Evaluate</strong><h3>Beyond terminal reward</h3></article>
+    <article class="result-card"><span>Benchmarks → worlds</span><strong>Experience</strong><h3>Beyond static questions</h3></article>
   </div>
 
   <div class="media-pair">
-    <figure><img src="/blog/MetaMind/assets/c_scaling.webp" width="1328" height="1328" alt="A path rising beyond a curve, representing cognitive structure as an additional capability axis" loading="lazy" /><figcaption><strong>Structure is an additional axis.</strong> It complements rather than negates data, compute, and model scale.</figcaption></figure>
-    <figure><img src="/blog/MetaMind/assets/c_process_reward.webp" width="1328" height="1328" alt="A luminous branching trajectory, representing process-level reward" loading="lazy" /><figcaption><strong>Process is the optimization unit.</strong> In ambiguous domains, learning must evaluate trajectories of thought and action, not only terminal labels.</figcaption></figure>
+    <figure><div class="odyssey-plate odyssey-plate--structure" role="img" aria-label="Scale and cognitive structure form separate axes, creating a new reachable capability frontier"><span>Capability</span><div><b>Scale</b><i></i><i></i><strong>Structure</strong></div></div></figure>
+    <figure><div class="odyssey-plate odyssey-plate--process" role="img" aria-label="A branching voyage rewards the quality of intermediate decisions rather than the endpoint alone"><span>Trajectory</span><div><i></i><i></i><i></i><i></i><i></i><strong>Process</strong></div></div></figure>
   </div>
 
   <h3>Process reward where no single answer exists</h3>
@@ -157,8 +146,7 @@ const articleSchema = {
   <p>A physically faithful simulator can predict where a chair moves when pushed. A cognitive causal world model must also predict why a person refuses to sit, how trust changes after pressure, whether a promise alters future cooperation, and which action becomes available when a belief changes. The missing state is not another pixel. It is the latent cognitive cause of action.</p>
 
   <figure class="essay-figure">
-    <div class="aspect-media"><img src="/blog/MetaMind/assets/c_simulation.webp" width="1664" height="928" alt="A central cognitive model branching into multiple interactive scenes" loading="lazy" /></div>
-    <figcaption><strong>Two coupled futures.</strong> Physical state determines what can happen; cognitive state determines which possibility an agent chooses and how that choice changes the next mind.</figcaption>
+    <OdysseyWorldModel />
   </figure>
 
   <h3>Toward causal interaction worlds</h3>
@@ -179,11 +167,6 @@ const articleSchema = {
 
   <p>The concept has three horizons. In the past, agent worlds became data engines and scientific instruments for emergent behavior: 2025 <a href="https://arxiv.org/abs/2502.08691">AgentSociety</a> simulates more than 10,000 agents and five million interactions, while a 2025 <a href="https://www.science.org/doi/10.1126/sciadv.adu9368">Science Advances study</a> shows decentralized LLM populations forming shared conventions and collective bias. In the present, closed feedback systems can compare simulated people with real interaction and improve the causal model of humanity. In the future, evolving worlds may search for social knowledge outside current human cognition: new institutions, cooperation mechanisms, educational forms, collective memories, and civilizations that can be examined before they are attempted.</p>
 
-  <div class="margin-note">
-    <strong>Intellectual lineage</strong>
-    <p>This agenda sits near computational Theory of Mind and inverse planning associated with Joshua Tenenbaum; probabilistic cognition and pragmatic inference associated with Noah Goodman; and developmental accounts of social learning through interaction associated with Michael C. Frank. Our shared goal is to make AI system design answer to cognitive theories that can be tested.</p>
-  </div>
-
   <p class="section-kicker">06 / Tests</p>
   <h2 id="tests">A frontier becomes science<br />when it can fail.</h2>
 
@@ -202,4 +185,101 @@ const articleSchema = {
   <p>The immediate program is concrete: reproduce cognitive patterns across domains; expose and score intermediate state transitions; learn lower-cost policies from successful traces; place them in interaction worlds with delayed consequence; and require every claimed evolution to survive intervention, held-out generalization, and human-grounded evaluation.</p>
 
   <p>MetaMind is not the destination. It is a first instrument—one that makes a hidden process visible enough to study, criticize, train, inherit, and eventually evolve into something more capable.</p>
+
+  <style>
+    .result-grid { position: relative; margin: 52px 0 64px; padding: 48px 18px 22px; display: grid; grid-template-columns: repeat(4,1fr); gap: 0; overflow: hidden; color: #f4f0e7; background: radial-gradient(circle at 48% 15%,rgba(36,121,132,.23),transparent 27%),linear-gradient(145deg,rgba(6,21,34,.95),rgba(9,38,49,.9) 58%,rgba(6,23,34,.96)),url('/assets/images/odyssey-cognition-hero.webp') center/cover; background-blend-mode: screen,normal,soft-light; border: 1px solid #173b49; isolation: isolate; }
+    .result-grid::before { content: ''; position: absolute; z-index: -1; top: 47px; right: 9%; left: 9%; height: 1px; background: linear-gradient(90deg,#69d0d4,#69d0d4 62%,#d9ad68); box-shadow: 0 0 14px rgba(105,208,212,.55); }
+    .result-grid::after { content: ''; position: absolute; z-index: -2; inset: 0; opacity: .12; background: repeating-radial-gradient(circle at 50% 0,transparent 0 48px,rgba(105,208,212,.42) 49px 50px,transparent 51px 78px); }
+    .result-card { position: relative; min-height: 205px; padding: 34px 18px 22px; background: transparent; border: 0; }
+    .result-card::before { content: ''; position: absolute; top: -7px; left: 18px; width: 11px; height: 11px; background: #082631; border: 2px solid #69d0d4; border-radius: 50%; box-shadow: 0 0 0 7px rgba(105,208,212,.08),0 0 19px rgba(105,208,212,.65); animation: transition-node 3.5s ease-in-out infinite; }
+    .result-card::after { content: '→'; position: absolute; top: -8px; right: -3px; color: rgba(217,173,104,.78); font: 800 .68rem/1 var(--sans); }
+    .result-card:nth-child(2)::before { animation-delay: -.9s; }
+    .result-card:nth-child(3)::before { animation-delay: -1.8s; }
+    .result-card:nth-child(4)::before { border-color: #d9ad68; box-shadow: 0 0 0 7px rgba(217,173,104,.08),0 0 19px rgba(217,173,104,.65); animation-delay: -2.7s; }
+    .result-card:last-child::after { display: none; }
+    .result-card span { color: #7bcfd3; font-size: .48rem; }
+    .result-card strong, .essay-frontier .result-card strong { margin: 27px 0 10px; color: #d9ad68; font-size: clamp(1.8rem,3vw,2.55rem); }
+    .result-card h3 { margin: 0; color: rgba(239,247,246,.76); font-size: clamp(.92rem,1.45vw,1.2rem); line-height: 1.22; }
+    @keyframes transition-node { 50% { transform: scale(1.3); filter: brightness(1.5); } }
+    .odyssey-plate { position: relative; min-height: 390px; padding: 25px; overflow: hidden; color: #f5efe3; background: linear-gradient(145deg,rgba(5,21,34,.78),rgba(6,32,43,.9)), url('/assets/images/odyssey-cognition-hero.webp') center/cover; border: 1px solid #173b49; font-family: var(--sans); }
+    .odyssey-plate > span { color: #69d0d4; font-size: .52rem; font-weight: 820; letter-spacing: .1em; text-transform: uppercase; }
+    .odyssey-plate--structure > div { position: absolute; inset: 88px 32px 38px; border-bottom: 1px solid rgba(255,255,255,.32); border-left: 1px solid rgba(255,255,255,.32); }
+    .odyssey-plate--structure b, .odyssey-plate--structure strong, .odyssey-plate--structure em { position: absolute; font-style: normal; }
+    .odyssey-plate--structure b { right: 0; bottom: -22px; color: rgba(255,255,255,.55); font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+    .odyssey-plate--structure strong { top: -19px; left: -20px; color: rgba(255,255,255,.55); font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; transform: rotate(-90deg); transform-origin: left bottom; }
+    .odyssey-plate--structure i { position: absolute; left: 4%; bottom: 9%; width: 84%; height: 1px; display: block; background: linear-gradient(90deg,#69d0d4,#d9ad68); transform: rotate(-27deg); transform-origin: left center; }
+    .odyssey-plate--structure i:nth-of-type(2) { width: 63%; transform: rotate(-42deg); box-shadow: 0 0 20px rgba(217,173,104,.55); }
+    .odyssey-plate--structure i::after { content: ''; position: absolute; top: -7px; right: -7px; width: 14px; height: 14px; background: #d9ad68; border: 2px solid #ffe3b2; border-radius: 50%; box-shadow: 0 0 0 8px rgba(217,173,104,.12); }
+    .odyssey-plate--structure em { top: 20px; right: 0; max-width: 130px; color: #d9ad68; font-family: var(--serif); font-size: 1.4rem; line-height: 1; text-align: right; }
+    .odyssey-plate--process > div { position: absolute; inset: 94px 34px 40px; }
+    .odyssey-plate--process > div::before { content: ''; position: absolute; top: 51%; left: 5%; width: 88%; height: 1px; background: linear-gradient(90deg,#69d0d4,#d9ad68); transform: rotate(-10deg); box-shadow: 0 0 18px rgba(105,208,212,.45); }
+    .odyssey-plate--process i { position: absolute; width: 16px; height: 16px; background: #0b2732; border: 2px solid #69d0d4; border-radius: 50%; box-shadow: 0 0 0 7px rgba(105,208,212,.1); }
+    .odyssey-plate--process i:nth-child(1) { left: 7%; top: 63%; }
+    .odyssey-plate--process i:nth-child(2) { left: 27%; top: 53%; }
+    .odyssey-plate--process i:nth-child(3) { left: 48%; top: 44%; border-color: #d9ad68; }
+    .odyssey-plate--process i:nth-child(4) { left: 68%; top: 34%; }
+    .odyssey-plate--process i:nth-child(5) { right: 5%; top: 24%; background: #d9ad68; border-color: #ffe3b2; box-shadow: 0 0 0 9px rgba(217,173,104,.13),0 0 28px rgba(217,173,104,.6); }
+    .odyssey-plate--process strong { position: absolute; right: 0; bottom: 0; color: #d9ad68; font-family: var(--serif); font-size: 1.35rem; font-weight: 430; }
+
+    /* Editorial research figures: one idea, one path, very little annotation. */
+    .agenda-grid { position: relative; margin: 52px 0 78px; display: grid; grid-template-columns: repeat(4,1fr); gap: 0; background: transparent; border: 0; }
+    .agenda-grid::before { content: ''; position: absolute; top: 58px; right: 5%; left: 5%; height: 1px; background: linear-gradient(90deg,#16a7a7,#16a7a7 68%,#d69b3d); }
+    .agenda-grid article { position: relative; min-height: 245px; padding: 88px 24px 24px 0; background: transparent; border: 0; }
+    .agenda-grid article::before { content: ''; position: absolute; top: 51px; left: 0; width: 12px; height: 12px; background: #f1ede3; border: 2px solid #16a7a7; border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.08); animation: frontier-node 3.6s ease-in-out infinite; }
+    .agenda-grid article:nth-child(2)::before { animation-delay: -.9s; }
+    .agenda-grid article:nth-child(3)::before { animation-delay: -1.8s; }
+    .agenda-grid article:nth-child(4)::before { border-color: #d69b3d; animation-delay: -2.7s; }
+    .agenda-grid b { color: rgba(18,23,22,.16); font-family: var(--serif); font-size: clamp(3.6rem,6vw,5.5rem); font-weight: 430; line-height: .8; }
+    .agenda-grid span { margin-top: 22px; display: block; color: #087a7d; font-size: .64rem; }
+    .agenda-grid h3 { margin: 24px 20px 0 0; font-size: clamp(1.15rem,2vw,1.55rem); line-height: 1.12; }
+
+    .research-line { padding: 42px 32px; color: #121716; background: #e8efec; border-top: 1px solid #121716; border-bottom: 1px solid #121716; }
+    .research-line ol { position: relative; gap: 24px; }
+    .research-line li { padding: 38px 0 0; border-top-color: rgba(18,23,22,.28); }
+    .research-line li::before { background: #16a7a7; box-shadow: 0 0 0 7px rgba(22,167,167,.08); animation: frontier-node 3.6s ease-in-out infinite; }
+    .research-line li:last-child::before { background: #d69b3d; }
+    .research-line span { color: #087a7d; font-size: .62rem; font-weight: 800; }
+    .research-line strong { color: #121716; }
+
+    .result-grid { margin: 52px 0 68px; padding: 55px 22px 28px; color: #121716; background: #edf0e8; background-image: none; border: 0; border-top: 1px solid #121716; border-bottom: 1px solid #121716; }
+    .result-grid::before { top: 54px; background: linear-gradient(90deg,#16a7a7,#16a7a7 64%,#d69b3d); box-shadow: none; }
+    .result-grid::after { display: none; }
+    .result-card { min-height: 215px; padding: 40px 20px 22px 0; }
+    .result-card::before { top: -8px; left: 0; background: #edf0e8; border-color: #16a7a7; box-shadow: 0 0 0 8px rgba(22,167,167,.08); }
+    .result-card::after { top: -10px; color: #8e641f; }
+    .result-card:nth-child(4)::before { border-color: #d69b3d; box-shadow: 0 0 0 8px rgba(214,155,61,.08); }
+    .result-card span { color: #087a7d; font-size: .57rem; }
+    .result-card strong, .essay-frontier .result-card strong { margin: 32px 0 12px; color: #121716; font-size: clamp(1.8rem,3vw,2.6rem); }
+    .result-card h3 { color: #53605c; font-size: clamp(.9rem,1.4vw,1.12rem); }
+
+    .media-pair { gap: 1px; background: #121716; border-top: 1px solid #121716; border-bottom: 1px solid #121716; }
+    .odyssey-plate { min-height: 410px; color: #121716; background: #f4eee4; border: 0; }
+    .odyssey-plate > span { color: #087a7d; font-size: .58rem; }
+    .odyssey-plate--structure > div { border-color: rgba(18,23,22,.35); }
+    .odyssey-plate--structure b, .odyssey-plate--structure strong { color: #5d6864; }
+    .odyssey-plate--structure b, .odyssey-plate--structure strong { font-size: .62rem; }
+    .odyssey-plate--structure i { height: 2px; background: #121716; }
+    .odyssey-plate--structure i:nth-of-type(2) { background: #d69b3d; box-shadow: none; }
+    .odyssey-plate--structure i::after { background: #f4eee4; border-color: #16a7a7; box-shadow: 0 0 0 8px rgba(22,167,167,.08); animation: frontier-node 3.2s ease-in-out infinite; }
+    .odyssey-plate--process > div::before { height: 2px; background: linear-gradient(90deg,#121716,#16a7a7 60%,#d69b3d); box-shadow: none; }
+    .odyssey-plate--process i { background: #f4eee4; border-color: #16a7a7; box-shadow: 0 0 0 7px rgba(22,167,167,.08); animation: frontier-node 3.5s ease-in-out infinite; }
+    .odyssey-plate--process i:nth-child(2) { animation-delay: -.7s; }
+    .odyssey-plate--process i:nth-child(3) { border-color: #16a7a7; animation-delay: -1.4s; }
+    .odyssey-plate--process i:nth-child(4) { animation-delay: -2.1s; }
+    .odyssey-plate--process i:nth-child(5) { background: #121716; border-color: #d69b3d; box-shadow: 0 0 0 9px rgba(214,155,61,.1); animation-delay: -2.8s; }
+    .odyssey-plate--process strong { color: #121716; }
+    @keyframes frontier-node { 50% { transform: scale(1.28); filter: brightness(1.12); } }
+    @media (max-width: 720px) {
+      .agenda-grid { grid-template-columns: 1fr; }
+      .agenda-grid::before { top: 4%; bottom: 4%; left: 7px; width: 1px; height: auto; }
+      .agenda-grid article { min-height: 170px; padding: 30px 0 28px 34px; }
+      .agenda-grid article::before { top: 35px; left: 0; }
+      .result-grid { padding: 25px 18px; grid-template-columns: 1fr; gap: 22px; }
+      .result-grid::before { top: 7%; bottom: 7%; left: 27px; width: 1px; height: auto; }
+      .result-card { min-height: 150px; padding: 18px 15px 18px 38px; }
+      .result-card::before { top: 20px; left: -15px; }
+      .result-card::after { content: '↓'; top: auto; right: auto; bottom: -15px; left: -13px; }
+      .odyssey-plate { min-height: 330px; }
+    }
+  </style>
 </FieldNoteLayout>

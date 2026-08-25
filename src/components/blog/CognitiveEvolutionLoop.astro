@@ -1,72 +1,68 @@
 <figure class="essay-figure native-figure full-bleed evolution-visual">
-  <div class="loop-shell">
+  <div class="evolution-plate">
     <header>
-      <div><span>Self-evolution / causal program</span><strong>Experience becomes capability only through a closed, tested update loop.</strong></div>
-      <small>Interaction alone is data. Evolution requires measured change.</small>
+      <span>Self-evolution</span>
+      <strong>Experience must change the system.</strong>
     </header>
 
-    <div class="loop-grid">
-      <article class="node environment"><b>01 / Environment</b><h3>Make consequences real.</h3><p>People, agents, tools, institutions, and simulated worlds expose the system to goals it did not author and feedback it cannot fully predict.</p><span>intervention · uncertainty · delayed effect</span></article>
-      <article class="node interaction"><b>02 / Interaction</b><h3>Generate reciprocal trajectories.</h3><p>The agent acts from a model of another mind; the other participant responds to that action; the response becomes evidence about both models.</p><span>cooperation · conflict · negotiation · care</span></article>
-      <article class="node state"><b>03 / State</b><h3>Preserve two kinds of memory.</h3><p><em>Explicit memory</em> keeps event-level facts. <em>Implicit memory</em> tracks revisable latent state: trust, goals, role, uncertainty, and relation.</p><span>episodes + latent relational state</span></article>
-      <article class="node learning"><b>04 / Learning operator</b><h3>Convert surprise into an update.</h3><p>Prediction error, process reward, counterfactual replay, and human correction identify which skill, policy, or world-model assumption failed.</p><span>credit assignment · reflection · RL</span></article>
-      <article class="node gate"><b>05 / Evidence gate</b><h3>Prove that the update caused improvement.</h3><p>Retest on held-out people, roles, and worlds. Promote an update only if it persists across future trajectories without reducing autonomy or calibration.</p><span>ablation · generalization · safety · persistence</span></article>
-      <article class="node evolved"><b>06 / Evolved capability</b><h3>Change what happens next.</h3><p>A genuine evolution step alters future behavior, not merely the transcript: better prediction, planning, recovery, transfer, and relationship stewardship.</p><span>policy · memory · skills · cognitive pattern</span></article>
-      <div class="return-arrow"><span>new policy enters a changed world</span><i>↺</i></div>
+    <div class="loop-orbit" aria-label="Six-stage closed loop from environment through interaction, state, learning, evidence, and evolved capability">
+      <details class="node environment"><summary><b>01</b><h3>Environment</h3></summary><p>People, agents, tools, institutions, and simulated worlds make consequences real.</p></details>
+      <details class="node interaction"><summary><b>02</b><h3>Interaction</h3></summary><p>Reciprocal action produces trajectories that neither participant fully controls.</p></details>
+      <details class="node state"><summary><b>03</b><h3>State</h3></summary><p>Explicit events and revisable latent state preserve what the interaction changed.</p></details>
+      <details class="node learning"><summary><b>04</b><h3>Learning</h3></summary><p>Prediction error and correction identify which persistent component must update.</p></details>
+      <details class="node gate"><summary><b>05</b><h3>Evidence gate</h3></summary><p>Held-out retesting asks whether the update caused improvement without reducing autonomy.</p></details>
+      <details class="node evolved"><summary><b>06</b><h3>Evolved capability</h3></summary><p>A genuine update changes later prediction, planning, recovery, and transfer.</p></details>
+
+      <div class="update-core" aria-hidden="true"><i></i><strong>Persistent<br />update</strong><span>verified change</span></div>
     </div>
 
-    <div class="causal-test">
-      <strong>The causal claim</strong>
-      <p>Reciprocal modeling matters only if removing it reduces useful trajectory diversity or blind-spot discovery, and restoring it recovers those gains under human-grounded evaluation. Without that intervention, “recursive social learning” remains a story—not evidence.</p>
-    </div>
+    <div class="causal-test"><strong>Interaction is data.</strong><span>Evolution is measured change.</span></div>
   </div>
-  <figcaption><strong>A testable framework for self-evolution.</strong> Reciprocal modeling supplies socially meaningful prediction error; it becomes evolution only when that error changes a persistent component and controlled retesting shows that the update—not extra dialogue or extra tokens—improved later interaction.</figcaption>
 </figure>
 
 <style>
   .evolution-visual { padding: 0 !important; background: transparent !important; border: 0 !important; }
-  .loop-shell { padding: clamp(22px,3.2vw,42px); color: #f5f0e8; background: #11102a; border: 1px solid #34304d; box-shadow: 0 28px 70px rgba(17,16,42,.17); font-family: var(--sans); }
-  header { padding-bottom: 25px; display: flex; align-items: end; justify-content: space-between; gap: 30px; border-bottom: 1px solid rgba(255,255,255,.17); }
-  header > div { display: grid; gap: 8px; }
-  header span, header small { color: #948da8; font-size: .56rem; font-weight: 780; letter-spacing: .11em; line-height: 1.5; text-transform: uppercase; }
-  header strong { max-width: 760px; font-family: var(--serif); font-size: clamp(1.45rem,3vw,2.65rem); font-weight: 410; line-height: 1.06; letter-spacing: -.025em; }
-  header small { max-width: 245px; text-align: right; }
-  .loop-grid { position: relative; margin-top: 28px; display: grid; grid-template-columns: repeat(3,1fr); grid-template-areas: "environment interaction state" "evolved gate learning" "return return return"; gap: 9px; }
+  .evolution-plate { --ink: #121716; --paper: #f3f0e8; --aqua: #16a7a7; --gold: #d69b3d; padding: clamp(28px,4vw,56px); color: var(--ink); background: #e9f0ed; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--sans); }
+  header { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
+  header span { color: #5f6b68; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  header strong { max-width: 800px; font-family: var(--serif); font-size: clamp(2rem,4.4vw,4.25rem); font-weight: 430; line-height: .95; letter-spacing: -.035em; }
+  .loop-orbit { position: relative; min-height: 690px; margin-top: clamp(42px,6vw,76px); display: grid; grid-template-columns: repeat(3,1fr); grid-template-areas: "environment interaction state" "evolved gate learning"; gap: 210px clamp(24px,5vw,72px); isolation: isolate; }
+  .loop-orbit::before { content: ''; position: absolute; z-index: -2; inset: 8% 4% 9%; border: 1px solid rgba(18,23,22,.35); border-radius: 48%; }
+  .loop-orbit::after { content: ''; position: absolute; z-index: -1; inset: 18% 12% 19%; background: linear-gradient(28deg,transparent 49.8%,rgba(22,167,167,.2) 49.9% 50.1%,transparent 50.2%),linear-gradient(-28deg,transparent 49.8%,rgba(22,167,167,.2) 49.9% 50.1%,transparent 50.2%),linear-gradient(90deg,transparent 49.8%,rgba(214,155,61,.18) 49.9% 50.1%,transparent 50.2%); }
   .environment { grid-area: environment; }
   .interaction { grid-area: interaction; }
   .state { grid-area: state; }
   .learning { grid-area: learning; }
   .gate { grid-area: gate; }
   .evolved { grid-area: evolved; }
-  .node { position: relative; min-height: 300px; padding: 25px; display: flex; flex-direction: column; background: #191735; border: 1px solid #393551; }
-  .node::after { content: '→'; position: absolute; z-index: 2; top: 50%; right: -14px; color: #ffbe5c; font: 800 12px/1 var(--sans); transform: translateY(-50%); }
-  .node:nth-child(3)::after { content: '↓'; top: auto; right: 50%; bottom: -14px; transform: translateX(50%); }
-  .node:nth-child(4)::after, .node:nth-child(5)::after { content: '←'; right: auto; left: -14px; }
-  .node:nth-child(6)::after { display: none; }
-  .node b { color: #ffbe5c; font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
-  .node h3 { margin: auto 0 13px; color: #f5f0e8; font-family: var(--serif); font-size: clamp(1.35rem,2.2vw,1.9rem); font-weight: 430; line-height: 1.08; }
-  .node p { margin: 0; color: #a19aae; font-size: .62rem; line-height: 1.63; }
-  .node p em { color: #f1d39b; font-style: normal; }
-  .node > span { margin-top: 20px; padding-top: 14px; color: #756f8c; border-top: 1px solid rgba(255,255,255,.12); font-size: .51rem; letter-spacing: .05em; text-transform: uppercase; }
-  .environment, .evolved { background: #211d39; }
-  .gate { background: #25203b; border-color: #625470; }
-  .return-arrow { grid-area: return; padding: 16px 20px; display: flex; align-items: center; justify-content: center; gap: 18px; color: #8f88a3; border: 1px dashed #554e68; }
-  .return-arrow span { font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
-  .return-arrow i { color: #ffbe5c; font: 500 1.5rem/1 var(--serif); font-style: normal; }
-  .causal-test { margin-top: 18px; padding: 21px 24px; display: grid; grid-template-columns: 150px 1fr; gap: 20px; background: #ffbe5c; color: #181328; }
-  .causal-test strong { font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; }
-  .causal-test p { margin: 0; font-size: .62rem; line-height: 1.58; }
-  @media (max-width: 780px) {
-    header { align-items: start; flex-direction: column; }
-    header small { text-align: left; }
-    .loop-grid { grid-template-columns: 1fr; grid-template-areas: "environment" "interaction" "state" "learning" "gate" "evolved" "return"; }
-    .node { min-height: 245px; }
-    .node::after, .node:nth-child(4)::after, .node:nth-child(5)::after { content: '↓'; top: auto; right: 50%; bottom: -14px; left: auto; transform: translateX(50%); }
-    .causal-test { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 520px) {
-    .loop-shell { padding: 20px 14px; }
-    .node { min-height: 220px; padding: 20px 18px; }
-    .causal-test { padding: 18px; }
+  .node { position: relative; align-self: center; min-height: 150px; padding: 0 0 18px 28px; border: 0; border-left: 1px solid rgba(18,23,22,.28); }
+  .node::before { content: ''; position: absolute; top: 0; left: -7px; width: 11px; height: 11px; background: #e9f0ed; border: 2px solid var(--aqua); border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.09); animation: evolution-node 3.7s ease-in-out infinite; }
+  .node:nth-child(2)::before, .node:nth-child(5)::before { animation-delay: -1.25s; }
+  .node:nth-child(3)::before, .node:nth-child(6)::before { border-color: var(--gold); animation-delay: -2.5s; }
+  .node summary { position: relative; min-height: 128px; display: flex; flex-direction: column; cursor: pointer; list-style: none; }
+  .node summary::-webkit-details-marker { display: none; }
+  .node summary::after { content: '+'; position: absolute; right: 0; bottom: 0; width: 24px; height: 24px; display: grid; place-items: center; border: 1px solid rgba(18,23,22,.28); border-radius: 50%; font: 500 .95rem/1 var(--sans); transition: transform .2s ease,background .2s ease,color .2s ease; }
+  .node[open] summary::after { color: #fff; background: var(--ink); transform: rotate(45deg); }
+  .node b { color: var(--aqua); font-size: .56rem; letter-spacing: .1em; }
+  .node h3 { margin: auto 34px 0 0; font-family: var(--serif); font-size: clamp(1.35rem,2.3vw,2rem); font-weight: 470; line-height: 1.02; }
+  .node p { margin: 16px 0 0; padding-top: 14px; color: #46514e; border-top: 1px solid rgba(18,23,22,.18); font-size: .68rem; line-height: 1.55; }
+  .update-core { position: absolute; z-index: 3; top: 50%; left: 50%; width: 170px; height: 170px; display: grid; place-items: center; align-content: center; gap: 9px; color: #fff; background: var(--ink); border-radius: 50%; transform: translate(-50%,-50%); text-align: center; }
+  .update-core::before { content: ''; position: absolute; inset: -20px; border: 1px solid rgba(18,23,22,.32); border-radius: 50%; animation: evolution-orbit 11s linear infinite; }
+  .update-core i { width: 9px; height: 9px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 9px rgba(214,155,61,.13); animation: evolution-core 2.8s ease-in-out infinite; }
+  .update-core strong { font: 470 1.25rem/1 var(--serif); }
+  .update-core span { color: #b9c7c3; font-size: .46rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .causal-test { padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--ink); }
+  .causal-test strong, .causal-test span { font: 470 clamp(1.1rem,2vw,1.55rem)/1.1 var(--serif); }
+  .causal-test span { color: #087a7d; }
+  @keyframes evolution-node { 50% { transform: scale(1.3); box-shadow: 0 0 0 13px rgba(22,167,167,.03); } }
+  @keyframes evolution-core { 50% { transform: scale(1.3); } }
+  @keyframes evolution-orbit { to { transform: rotate(360deg); } }
+  @media (max-width: 760px) {
+    header { grid-template-columns: 1fr; }
+    .loop-orbit { min-height: auto; padding-left: 18px; grid-template-columns: 1fr; grid-template-areas: "environment" "interaction" "state" "learning" "gate" "evolved"; gap: 24px; }
+    .loop-orbit::before { inset: 0 auto 0 23px; width: 1px; border: 0; border-left: 1px solid rgba(18,23,22,.3); border-radius: 0; }
+    .loop-orbit::after, .update-core { display: none; }
+    .node { min-height: 130px; }
+    .causal-test { flex-direction: column; }
   }
 </style>

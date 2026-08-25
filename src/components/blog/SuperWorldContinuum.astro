@@ -1,84 +1,68 @@
 <figure class="essay-figure native-figure full-bleed superworld-visual">
-  <div class="world-shell">
-    <header>
-      <div><span>Super-world games / trajectory</span><strong>From simulated societies to player-authored universes.</strong></div>
-      <small>Past → present → future is a change in function, not merely scale.</small>
-    </header>
+  <div class="world-plate">
+    <header><span>Super-world games</span><strong>Worlds change function.</strong></header>
 
-    <div class="substrate">
-      <span>Generative substrate</span>
-      <strong>Physical world model</strong><i>×</i><strong>Cognitive causal model</strong><i>×</i><strong>Adaptive game engine</strong>
+    <div class="substrate" aria-label="Generative substrate">
+      <strong>Physical world</strong><i>×</i><strong>Cognitive cause</strong><i>×</i><strong>Adaptive engine</strong>
     </div>
 
-    <div class="time-grid">
-      <article>
-        <b>Past / observe</b><h3>Worlds as data engines.</h3>
-        <p>Populate bounded sandboxes with agents, run repeatable interventions, and use emergent behavior as a scientific instrument. The value is controlled generation: hypotheses about coordination, norms, conflict, or institutions can be tested at a scale unavailable to ordinary human-subject studies.</p>
-        <span>simulate → measure → explain</span>
-      </article>
-      <article>
-        <b>Present / calibrate</b><h3>Worlds as closed feedback systems.</h3>
-        <p>Connect agent action to persistent human-like state—trust, goals, identity, memory, role—and compare predicted trajectories with real interaction. The system no longer produces plausible characters only; it is trained to approximate how people change and why.</p>
-        <span>act → observe → update → retest</span>
-      </article>
-      <article>
-        <b>Future / invent</b><h3>Worlds as engines of new social knowledge.</h3>
-        <p>Let rules, institutions, species, economies, and forms of relationship evolve beyond today's priors, then translate useful discoveries back into human-auditable knowledge. The goal is not synthetic consensus, but safe exploration of social possibility outside the limits of one historical civilization.</p>
-        <span>inherit → mutate → select → translate</span>
-      </article>
+    <div class="time-line">
+      <details>
+        <summary><b>Past</b><h3>Observe</h3><strong>Worlds as data engines.</strong><span>simulate → measure → explain</span></summary>
+        <p>Populate bounded sandboxes with agents and use emergent behavior as a scientific instrument.</p>
+      </details>
+      <details>
+        <summary><b>Present</b><h3>Calibrate</h3><strong>Worlds as feedback systems.</strong><span>act → observe → update → retest</span></summary>
+        <p>Connect action to persistent state and compare predicted trajectories with real interaction.</p>
+      </details>
+      <details>
+        <summary><b>Future</b><h3>Invent</h3><strong>Worlds as engines of new knowledge.</strong><span>inherit → mutate → select → translate</span></summary>
+        <p>Let rules, institutions, species, economies, and relationships evolve beyond today's priors.</p>
+      </details>
     </div>
 
-    <div class="definition">
-      <span>Definition / super-world game</span>
-      <p>A continuously generated, causally coherent parallel universe in which the player can author not only a character's actions, but the environment, rules, institutions, interaction grammar, and even the ontology of what can exist.</p>
-      <ul><li>no fixed map</li><li>no final rulebook</li><li>no single physics</li><li>no predetermined social order</li></ul>
-    </div>
-
-    <footer>
-      <strong>The difference from an “open world”</strong>
-      <p>An open-world game offers freedom inside a finished engine. A super-world game models the player's demand, composes an engine around it, and allows the world itself to inherit, branch, and evolve.</p>
-    </footer>
+    <div class="definition"><span>Super-world game</span><p>A causally coherent universe whose environment, rules, institutions, interactions, and ontology can be authored and evolved.</p></div>
   </div>
-  <figcaption><strong>Super-world games as a new product and research category.</strong> Physical simulation supplies what can happen; cognitive causal modeling supplies why agents act; a generative engine lets players rewrite both. The same platform can support entertainment, social science, training, and the discovery of new institutional designs.</figcaption>
 </figure>
 
 <style>
   .superworld-visual { padding: 0 !important; background: transparent !important; border: 0 !important; }
-  .world-shell { padding: clamp(22px,3.2vw,42px); color: #f5f0e8; background: #11102a; border: 1px solid #34304d; box-shadow: 0 28px 70px rgba(17,16,42,.17); font-family: var(--sans); }
-  header { padding-bottom: 25px; display: flex; align-items: end; justify-content: space-between; gap: 30px; border-bottom: 1px solid rgba(255,255,255,.17); }
-  header > div { display: grid; gap: 8px; }
-  header span, header small { color: #948da8; font-size: .56rem; font-weight: 780; letter-spacing: .11em; line-height: 1.5; text-transform: uppercase; }
-  header strong { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.75rem); font-weight: 410; line-height: 1.05; letter-spacing: -.025em; }
-  header small { max-width: 260px; text-align: right; }
-  .substrate { margin-top: 28px; padding: 17px 20px; display: flex; align-items: center; gap: 14px; background: #211d39; border: 1px solid #49435f; }
-  .substrate span { margin-right: auto; color: #ffbe5c; font-size: .55rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-  .substrate strong { color: #c7c0d1; font-size: .58rem; font-weight: 650; }
-  .substrate i { color: #ffbe5c; font-style: normal; }
-  .time-grid { margin-top: 9px; display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
-  .time-grid article { min-height: 390px; padding: 26px; display: flex; flex-direction: column; background: #191735; border: 1px solid #393551; }
-  .time-grid b { color: #ffbe5c; font-size: .56rem; letter-spacing: .09em; text-transform: uppercase; }
-  .time-grid h3 { margin: 60px 0 16px; font-family: var(--serif); font-size: clamp(1.45rem,2.3vw,2.05rem); font-weight: 430; line-height: 1.07; }
-  .time-grid p { margin: 0; color: #a19aae; font-size: .62rem; line-height: 1.65; }
-  .time-grid span { margin-top: auto; padding-top: 20px; color: #756f8c; border-top: 1px solid rgba(255,255,255,.12); font-size: .52rem; letter-spacing: .06em; text-transform: uppercase; }
-  .definition { margin-top: 9px; padding: clamp(24px,3vw,38px); color: #171327; background: #ffbe5c; }
-  .definition > span { font-size: .56rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-  .definition p { max-width: 900px; margin: 24px 0; font-family: var(--serif); font-size: clamp(1.35rem,2.3vw,2rem); line-height: 1.28; letter-spacing: -.015em; }
-  .definition ul { margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; list-style: none; }
-  .definition li { padding: 7px 10px; border: 1px solid rgba(23,19,39,.35); font-size: .54rem; font-weight: 760; text-transform: uppercase; }
-  footer { margin-top: 22px; padding-top: 19px; display: grid; grid-template-columns: 210px 1fr; gap: 24px; border-top: 1px solid rgba(255,255,255,.17); }
-  footer strong { color: #ffbe5c; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
-  footer p { margin: 0; color: #9d97af; font-size: .6rem; line-height: 1.55; }
-  @media (max-width: 780px) {
-    header { align-items: start; flex-direction: column; }
-    header small { text-align: left; }
-    .substrate { align-items: start; flex-direction: column; }
-    .time-grid { grid-template-columns: 1fr; }
-    .time-grid article { min-height: 310px; }
-    footer { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 520px) {
-    .world-shell { padding: 20px 14px; }
-    .time-grid article { min-height: 275px; padding: 22px 18px; }
-    .definition { padding: 22px 18px; }
+  .world-plate { --ink: #121716; --paper: #f3f0e8; --aqua: #16a7a7; --gold: #d69b3d; padding: clamp(28px,4vw,56px); color: var(--ink); background: #f4eee4; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--sans); }
+  header { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
+  header span { color: #6c6e66; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  header strong { font-family: var(--serif); font-size: clamp(2rem,4.4vw,4.25rem); font-weight: 430; line-height: .95; letter-spacing: -.035em; }
+  .substrate { margin-top: clamp(38px,6vw,72px); padding: 17px 0; display: flex; align-items: center; justify-content: center; gap: clamp(12px,3vw,34px); border-top: 1px solid rgba(18,23,22,.25); border-bottom: 1px solid rgba(18,23,22,.25); }
+  .substrate strong { font: 470 clamp(.85rem,1.4vw,1.1rem)/1.2 var(--serif); }
+  .substrate i { color: var(--gold); font-style: normal; }
+  .time-line { position: relative; margin: 58px 0 72px; display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(28px,5vw,72px); isolation: isolate; }
+  .time-line::before { content: ''; position: absolute; z-index: -1; top: 42px; right: 8%; left: 8%; height: 1px; background: linear-gradient(90deg,var(--aqua),var(--aqua) 55%,var(--gold)); transform: rotate(-4deg); }
+  .time-line details { position: relative; padding-top: 22px; }
+  .time-line details:nth-child(1) { transform: translateY(38px); }
+  .time-line details:nth-child(2) { transform: translateY(19px); }
+  .time-line details::before { content: ''; position: absolute; top: 35px; left: 0; width: 12px; height: 12px; background: #f4eee4; border: 2px solid var(--aqua); border-radius: 50%; box-shadow: 0 0 0 8px rgba(22,167,167,.08); animation: world-node 3.7s ease-in-out infinite; }
+  .time-line details:nth-child(2)::before { animation-delay: -1.2s; }
+  .time-line details:nth-child(3)::before { border-color: var(--gold); animation-delay: -2.4s; }
+  .time-line summary { min-height: 245px; display: flex; flex-direction: column; padding: 68px 0 20px; cursor: pointer; list-style: none; border-bottom: 1px solid rgba(18,23,22,.25); }
+  .time-line summary::-webkit-details-marker { display: none; }
+  .time-line summary::after { content: '+'; position: absolute; right: 0; bottom: 20px; width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(18,23,22,.28); border-radius: 50%; transition: transform .2s ease,background .2s ease,color .2s ease; }
+  .time-line details[open] summary::after { color: #fff; background: var(--ink); transform: rotate(45deg); }
+  .time-line b { color: var(--aqua); font-size: .54rem; letter-spacing: .1em; text-transform: uppercase; }
+  .time-line h3 { margin: 9px 0 25px; font: 470 clamp(1.8rem,3vw,2.75rem)/.95 var(--serif); }
+  .time-line summary > strong { margin-top: auto; max-width: 240px; font: 470 clamp(1.1rem,1.8vw,1.45rem)/1.08 var(--serif); }
+  .time-line span { margin-top: 18px; color: #59635f; font-size: .52rem; font-weight: 820; letter-spacing: .06em; line-height: 1.5; text-transform: uppercase; }
+  .time-line p { margin: 16px 0 0; color: #47514e; font-size: .68rem; line-height: 1.55; }
+  .definition { padding: clamp(26px,4vw,48px); display: grid; grid-template-columns: 180px 1fr; gap: 30px; color: #fff; background: var(--ink); }
+  .definition span { color: #69d0d4; font-size: .56rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .definition p { max-width: 760px; margin: 0; font: 440 clamp(1.35rem,2.5vw,2.2rem)/1.18 var(--serif); }
+  @keyframes world-node { 50% { transform: scale(1.3); box-shadow: 0 0 0 13px rgba(22,167,167,.03); } }
+  @media (max-width: 760px) {
+    header { grid-template-columns: 1fr; }
+    .substrate { align-items: flex-start; flex-direction: column; }
+    .time-line { padding-left: 18px; grid-template-columns: 1fr; gap: 25px; }
+    .time-line::before { top: 0; bottom: 0; left: 23px; width: 1px; height: auto; transform: none; }
+    .time-line details, .time-line details:nth-child(1), .time-line details:nth-child(2) { padding-left: 30px; transform: none; }
+    .time-line details::before { top: 35px; left: -1px; }
+    .time-line summary { min-height: 220px; }
+    .definition { grid-template-columns: 1fr; }
   }
 </style>

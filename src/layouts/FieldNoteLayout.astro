@@ -1,6 +1,7 @@
 ---
 import SiteLayout from './SiteLayout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import CognitionIceberg from '../components/blog/CognitionIceberg.astro';
 import 'katex/dist/katex.min.css';
 import '../styles/field-note.css';
 
@@ -45,17 +46,17 @@ const updatedLabel = new Intl.DateTimeFormat('en-GB', {
     <header class="essay-hero">
       <div class="essay-identity">
         <a href="/blog/MetaMind/">MetaMind dossier</a>
-        <span>{issue}</span>
+        {tone === 'technical' && <span>{issue}</span>}
       </div>
       <div class="essay-hero-grid">
         <div class="essay-hero-copy" data-reveal>
-          <p class="essay-kicker">{kicker}</p>
+          {tone === 'technical' && <p class="essay-kicker">{kicker}</p>}
           <h1>{headline}</h1>
           <p class="essay-dek">{dek}</p>
           <div class="essay-meta">
             <span>By Xuanming Zhang</span>
-            <span>{readingTime}</span>
-            <span>Updated {updatedLabel}</span>
+            {tone === 'technical' && <span>{readingTime}</span>}
+            {tone === 'technical' && <span>Updated {updatedLabel}</span>}
           </div>
         </div>
         <div class="essay-signal" data-reveal>
@@ -65,17 +66,14 @@ const updatedLabel = new Intl.DateTimeFormat('en-GB', {
               <div class="signal-caption"><span>System trace / 01</span><strong>Infer → Constrain → Validate</strong><small>Memory closes the loop.</small></div>
             </>
           ) : (
-            <>
-              <img src="/assets/images/metamind-hypothesis-field-v2.webp" width="1920" height="1080" alt="Multiple cognitive hypotheses converging into an evolvable capability" />
-              <div class="signal-caption"><span>Cognitive frontier / 02</span><strong>Scaffold → Learn → World</strong><small>From explicit process to learned capability.</small></div>
-            </>
+            <CognitionIceberg />
           )}
         </div>
       </div>
     </header>
 
     <div class="essay-shell">
-      <aside class="essay-toc" aria-label="Article contents">
+      {tone === 'technical' && <aside class="essay-toc" aria-label="Article contents">
         <p>Inside this field note</p>
         <ol>
           {sections.map((section, index) => <li><a href={`#${section.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{section.label}</a></li>)}
@@ -85,7 +83,7 @@ const updatedLabel = new Intl.DateTimeFormat('en-GB', {
           <a href="https://arxiv.org/abs/2505.18943">Paper ↗</a>
           <a href="https://github.com/XMZhangAI/MetaMind">Code ↗</a>
         </div>
-      </aside>
+      </aside>}
 
       <article class="essay-content">
         <slot />

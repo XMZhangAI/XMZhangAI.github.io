@@ -15,7 +15,7 @@ const schema = {
   headline:'MetaMind: Social Intelligence Begins Before the Answer',
   description:'An evidence-led account of the NeurIPS 2025 Spotlight framework for explicit, revisable social reasoning in language models.',
   image:new URL('/blog/MetaMind/assets/metamind-social-2026.png',site).href,
-  datePublished:'2026-07-13', dateModified:'2026-08-08',
+  datePublished:'2026-07-13', dateModified:'2026-08-25',
   author:{'@type':'Person',name:'Xuanming Zhang',url:new URL('/',site).href},
   isBasedOn:'https://arxiv.org/abs/2505.18943'
 };
@@ -29,7 +29,7 @@ const schema = {
   dek="MetaMind reframes socially intelligent language modeling as an explicit, revisable computation over latent mental states—not a single pass from words to response."
   image="/blog/MetaMind/assets/metamind-social-2026.png"
   published="2026-07-13"
-  updated="2026-08-08"
+  updated="2026-08-25"
   {sections}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
@@ -56,22 +56,135 @@ const schema = {
 
   <figure class="pipeline">
     <div class="pipeline-head"><div><span>System architecture / one cognitive turn</span><strong>Infer → refine → validate</strong></div><span>Input: utterance + context + memory</span></div>
+    <p class="pipeline-reading-guide">The system does not jump from words to an answer. It keeps several explanations alive, filters them with social constraints, and tests whether the final response remains faithful to the selected explanation.</p>
     <div class="pipeline-stages">
-      <article><span class="stage-number">01</span><b>THEORY OF MIND AGENT</b><h3>Infer</h3><h4>Generate mental-state hypotheses.</h4><p>Represent ambiguity with candidate interpretations, each carrying a mental-state type and an explanation.</p><output>OUTPUT · Hₜ = &#123;h₁ … hₖ&#125;</output></article>
-      <article><span class="stage-number">02</span><b>MORAL AGENT</b><h3>Refine</h3><h4>Revise and select under social norms.</h4><p>Evaluate each candidate under role, culture, ethics, and situation before selecting a norm-aware interpretation.</p><output>OUTPUT · h̃* = contextual fit</output></article>
-      <article><span class="stage-number">03</span><b>RESPONSE AGENT</b><h3>Validate</h3><h4>Generate, audit, and regenerate.</h4><p>Combine affective alignment with contextual and inferential coherence; a low score triggers another pass.</p><output>DECISION · release or regenerate</output></article>
+      <article>
+        <span class="stage-number">01</span><b>THEORY OF MIND AGENT</b><h3>Infer</h3>
+        <h4>What might the user actually mean?</h4>
+        <ol class="stage-actions">
+          <li>Read the current utterance and dialogue context.</li>
+          <li>Retrieve relevant preferences and emotional patterns from memory.</li>
+          <li>Produce six distinct hypotheses, each typed as belief, desire, intention, emotion, or thought.</li>
+        </ol>
+        <output>6 TYPED HYPOTHESES · Hₜ = &#123;h₁ … h₆&#125;</output>
+      </article>
+      <article>
+        <span class="stage-number">02</span><b>MORAL AGENT</b><h3>Refine</h3>
+        <h4>Which interpretation fits this situation—not just any situation?</h4>
+        <ol class="stage-actions">
+          <li>Revise every candidate under cultural, ethical, situational, and role constraints.</li>
+          <li>Compare each revised hypothesis with the full context and a context-free baseline.</li>
+          <li>Reward contextual fit and information gain; keep the candidate with the highest composite score.</li>
+        </ol>
+        <output>SELECTED HYPOTHESIS · HIGHEST CONTEXT SCORE</output>
+      </article>
+      <article>
+        <span class="stage-number">03</span><b>RESPONSE AGENT</b><h3>Validate</h3>
+        <h4>Does the response act on the selected interpretation?</h4>
+        <ol class="stage-actions">
+          <li>Generate a response from h̃*, the current input, and memory.</li>
+          <li>Score two qualities: empathy with the user and coherence with the selected hypothesis.</li>
+          <li>Release at 0.90 or above; otherwise repair and retry, up to three revisions.</li>
+        </ol>
+        <output>VALID RESPONSE · SCORE ≥ 0.90</output>
+      </article>
     </div>
-    <div class="algorithm-band" aria-label="MetaMind algorithm at each stage">
-      <div><span>Generate</span><strong>Hₜ = A<sub>ToM</sub>(uₜ, Cₜ, Mₜ)</strong></div>
-      <div><span>Select</span><strong>h̃* = arg max contextual fit</strong></div>
-      <div><span>Validate</span><strong>U(oₜ) = βE + (1−β)C</strong></div>
-    </div>
-    <div class="pipeline-memory">
-      <strong class="memory-title">Dynamic social memory · Mₜ</strong>
-      <div class="memory-static-flow" aria-label="Retrieve memory, add a validated update, and carry it to the next turn">
-        <span>Retrieve</span><i>→</i><span>Validated update</span><i>→</i><span>Mₜ₊₁</span>
+    <section class="algorithm-explainer" aria-labelledby="algorithm-explainer-title">
+      <header>
+        <span>Method / expanded equations</span>
+        <strong id="algorithm-explainer-title">What each stage computes.</strong>
+        <p>The variables below make the hidden intermediate objects explicit: candidate minds, norm-aware scores, response utility, and persistent memory.</p>
+      </header>
+
+      <div class="algorithm-equations">
+        <article>
+          <div class="equation-heading"><b>01</b><span>Infer · construct alternatives</span></div>
+          <div class="math-line" role="math" aria-label="X sub t equals user utterance, social context, and social memory">
+            <var>X</var><sub>t</sub> = (<var>u</var><sub>t</sub>, <var>C</var><sub>t</sub>, <var>M</var><sub>t</sub>)
+          </div>
+          <div class="math-line" role="math" aria-label="H sub t equals the Theory of Mind agent applied to X sub t, producing k hypotheses">
+            <var>H</var><sub>t</sub> = <var>A</var><sub>ToM</sub>(<var>X</var><sub>t</sub>) = &#123;<var>h</var><sub>1</sub>, …, <var>h</var><sub>k</sub>&#125;
+          </div>
+          <p><var>u</var><sub>t</sub> is the current utterance; <var>C</var><sub>t</sub> is the dialogue and social setting; <var>M</var><sub>t</sub> stores prior preferences and emotional patterns. Each <var>h</var><sub>i</sub> has a type from belief, desire, intention, emotion, or thought, plus a natural-language explanation.</p>
+          <small>The released configuration uses <b>k = 6</b>: enough alternatives to preserve ambiguity without paying for an unnecessarily large candidate set.</small>
+        </article>
+
+        <article>
+          <div class="equation-heading"><b>02</b><span>Refine · reward contextual specificity</span></div>
+          <div class="math-line math-line--stack" role="math" aria-label="Conditional probability and prior probability for each revised hypothesis">
+            <span><var>P</var><sub>cond</sub> = <var>P</var>(h̃<sub>i</sub> | <var>u</var><sub>t</sub>, <var>C</var><sub>t</sub>, <var>M</var><sub>t</sub>)</span>
+            <span><var>P</var><sub>prior</sub> = <var>P</var>(h̃<sub>i</sub>)</span>
+          </div>
+          <div class="math-line" role="math" aria-label="Information gain equals log conditional probability minus log prior probability">
+            <var>IG</var><sub>i</sub> = log(<var>P</var><sub>cond</sub> + ε) − log(<var>P</var><sub>prior</sub> + ε)
+          </div>
+          <div class="math-line" role="math" aria-label="Composite score equals lambda times conditional probability plus one minus lambda times information gain">
+            <var>s</var><sub>i</sub> = λ<var>P</var><sub>cond</sub> + (1−λ)<var>IG</var><sub>i</sub>; &nbsp; h̃* = arg max<sub>i</sub> <var>s</var><sub>i</sub>
+          </div>
+          <p><var>P</var><sub>cond</sub> asks whether the revised interpretation fits this conversation. <var>IG</var><sub>i</sub> asks how much the context increases its probability over a generic prior. The second term penalizes hypotheses that sound plausible everywhere but explain little here.</p>
+          <small>λ balances plausibility and information gain. The experiments use <b>λ = 0.60</b>. If token logits are unavailable, high/mid/low evaluator ratings are mapped to numeric probabilities.</small>
+        </article>
+
+        <article>
+          <div class="equation-heading"><b>03</b><span>Generate · condition on the selected mind</span></div>
+          <div class="math-line math-line--response" role="math" aria-label="The response maximizes token likelihood conditioned on preceding tokens, selected hypothesis, memory, and current utterance">
+            <var>o</var><sub>t</sub> = arg max<sub>Y</sub> ∑<sub>ℓ=1</sub><sup>L</sup> <var>p</var>(<var>y</var><sub>ℓ</sub> | <var>y</var><sub>&lt;ℓ</sub>, h̃*, <var>M</var><sub>t</sub>, <var>u</var><sub>t</sub>)
+          </div>
+          <p>The decoder does not answer from the utterance alone. It conditions every token on the selected interpretation h̃*, the current user input, and the long-term social memory.</p>
+          <div class="equation-components">
+            <span><b>E</b> = 0.4<var>A</var><sub>1</sub> + 0.6<var>A</var><sub>2</sub><small>Affective alignment + cognitive resonance</small></span>
+            <span><b>C</b> = 0.5<var>B</var><sub>1</sub> + 0.5<var>B</var><sub>2</sub><small>Context continuity + hypothesis congruence</small></span>
+          </div>
+        </article>
+
+        <article>
+          <div class="equation-heading"><b>04</b><span>Validate · release, repair, or stop</span></div>
+          <div class="math-line math-line--utility" role="math" aria-label="Response utility equals beta times empathy plus one minus beta times coherence">
+            <var>U</var>(<var>o</var><sub>t</sub>) = β<var>E</var> + (1−β)<var>C</var>
+          </div>
+          <div class="validation-rule" aria-label="Release when utility reaches point nine; otherwise regenerate, up to three revisions">
+            <span><b><var>U</var> ≥ 0.90</b><small>Release response</small></span>
+            <i>otherwise</i>
+            <span><b>regenerate</b><small>At most three revisions</small></span>
+          </div>
+          <p><var>E</var> measures emotional alignment; <var>C</var> measures consistency with context and h̃*. β controls their trade-off. The final experiments set <b>β = 0.80</b>, emphasizing empathy while retaining a coherence check.</p>
+        </article>
+
+        <article class="memory-equation">
+          <div class="equation-heading"><b>M</b><span>Dynamic social memory · update only what should persist</span></div>
+          <div class="math-line math-line--memory" role="math" aria-label="Long-term hypothesis contains beliefs and desires plus emotions that intersect recurring emotion patterns">
+            <var>h</var>′ = &#123;Beliefs(<var>u</var><sub>t</sub>), Desires(<var>u</var><sub>t</sub>)&#125; ∪ &#123;Emotions(<var>u</var><sub>t</sub>) ∩ EmotionPatterns(<var>u</var><sub>1:t</sub>)&#125;
+          </div>
+          <div class="memory-update-flow" aria-label="Current memory plus a validated persistent hypothesis and evaluator feedback becomes next-turn memory">
+            <span><b><var>M</var><sub>t</sub></b><small>Current memory</small></span><i>+</i><span><b><var>h</var>′</b><small>Persistent state</small></span><i>+</i><span><b>feedback</b><small>Correction signal</small></span><i>→</i><span><b><var>M</var><sub>t+1</sub></b><small>Next turn</small></span>
+          </div>
+          <p>Transient emotion is not automatically written as identity. The update preserves beliefs and desires, retains emotions only when they match a recurring pattern, and lowers the weight of memories contradicted by later feedback.</p>
+        </article>
       </div>
-    </div>
+
+      <section class="algorithm-procedure" aria-label="Algorithm summary, one MetaMind cognitive turn in five steps">
+        <header><span>Algorithm summary</span><strong>One cognitive turn, five steps.</strong><p>The equations above define the scores. This summary shows only the execution order.</p></header>
+        <div class="algorithm-procedure__body">
+          <ol>
+            <li><b>01</b><code>READ · uₜ + Cₜ + Mₜ</code><span>Combine the utterance, social context, and relevant memory.</span></li>
+            <li><b>02</b><code>INFER · Hₜ</code><span>Generate six typed explanations of the user’s hidden state.</span></li>
+            <li><b>03</b><code>REFINE · h̃*</code><span>Apply social constraints, score the candidates, and select one interpretation.</span></li>
+            <li><b>04</b><code>GENERATE + VALIDATE</code><span>Draft a response; release it at 0.90 or repair it, up to three times.</span></li>
+            <li><b>05</b><code>UPDATE · Mₜ₊₁</code><span>Store only validated, persistent information for the next turn.</span></li>
+          </ol>
+          <aside class="algorithm-parameters">
+            <span>Key settings</span>
+            <div class="algorithm-config">
+              <p><b>k</b><strong>6</strong><small>hypotheses</small></p>
+              <p><b>λ</b><strong>0.60</strong><small>selection balance</small></p>
+              <p><b>β</b><strong>0.80</strong><small>empathy weight</small></p>
+              <p><b>τ</b><strong>0.90</strong><small>release threshold</small></p>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <p class="algorithm-source">Expanded from the paper’s Methodology §3.1–3.3 and implementation details in Appendix A.1–A.5.</p>
+    </section>
   </figure>
 
   <p>Social reasoning is not merely response generation. It is structured hypothesis formation under partial observability, revision under social constraints, and action after reflective validation.</p>

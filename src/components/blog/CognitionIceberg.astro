@@ -1,0 +1,248 @@
+<div
+  class="cognition-iceberg"
+  data-cognition-iceberg
+  role="group"
+  aria-label="Cognitive AI iceberg: dialogue, image, and video are the currently observable surface; scene, latent state, and event chain form the much larger hidden structure beneath it."
+>
+  <img
+    src="/assets/images/cognition-iceberg-hero-v2.webp"
+    alt=""
+    width="1536"
+    height="1024"
+  />
+  <div class="cognition-iceberg__shade" aria-hidden="true"></div>
+  <div class="cognition-iceberg__water-motion" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="cognition-iceberg__input-flow" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="cognition-iceberg__scene-scan" aria-hidden="true"></div>
+  <div class="cognition-iceberg__latent-flow" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="cognition-iceberg__event-flow" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <div class="cognition-iceberg__surface" aria-label="Currently observable signals">
+    <small>Current observable turn</small>
+    <button class="cognition-iceberg__signal cognition-iceberg__signal--dialogue" type="button" data-iceberg-layer="dialogue" aria-expanded="false"><i></i><strong>Dialogue</strong></button>
+    <button class="cognition-iceberg__signal cognition-iceberg__signal--image" type="button" data-iceberg-layer="image" aria-expanded="false"><i></i><strong>Image</strong></button>
+    <button class="cognition-iceberg__signal cognition-iceberg__signal--video" type="button" data-iceberg-layer="video" aria-expanded="false"><i></i><strong>Video</strong></button>
+  </div>
+
+  <button
+    class="cognition-iceberg__label cognition-iceberg__label--scene"
+    type="button"
+    data-iceberg-layer="scene"
+    aria-expanded="false"
+  >
+    <i></i><strong>Scene</strong>
+  </button>
+  <button
+    class="cognition-iceberg__label cognition-iceberg__label--latent"
+    type="button"
+    data-iceberg-layer="latent"
+    aria-expanded="false"
+  >
+    <i></i><strong>Latent state</strong>
+  </button>
+  <button
+    class="cognition-iceberg__label cognition-iceberg__label--event"
+    type="button"
+    data-iceberg-layer="event"
+    aria-expanded="false"
+  >
+    <i></i><strong>Event chain</strong>
+  </button>
+  <button
+    class="cognition-iceberg__core"
+    type="button"
+    data-iceberg-layer="cognitive"
+    aria-expanded="false"
+  >
+    <i></i><strong>Cognitive AI</strong>
+  </button>
+
+  <aside class="cognition-iceberg__card" data-iceberg-card hidden aria-live="polite">
+    <button class="cognition-iceberg__close" type="button" data-iceberg-close aria-label="Close explanation">×</button>
+    <span data-iceberg-kicker></span>
+    <h3 data-iceberg-title></h3>
+    <p data-iceberg-copy></p>
+  </aside>
+
+  <div class="cognition-iceberg__axis" aria-hidden="true">
+    <span>Observed</span><span>Hidden</span>
+  </div>
+</div>
+
+<style>
+  .cognition-iceberg {
+    --ice-cyan: #74dde1;
+    --ice-gold: #e1b66c;
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    overflow: hidden;
+    color: #f7f3e9;
+    background: #020c15;
+    isolation: isolate;
+  }
+  .cognition-iceberg > img { position: absolute; z-index: -3; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: scale(1.015); animation: iceberg-breathe 14s ease-in-out infinite alternate; }
+  .cognition-iceberg__shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg,rgba(2,12,21,.52),transparent 24% 76%,rgba(2,12,21,.42)), linear-gradient(180deg,rgba(2,12,21,.06) 0 28%,rgba(2,12,21,.08) 29% 76%,rgba(2,12,21,.52)); pointer-events: none; }
+  .cognition-iceberg__water-motion { position: absolute; z-index: 2; top: 29.5%; right: -5%; left: -5%; height: 24px; overflow: hidden; pointer-events: none; }
+  .cognition-iceberg__water-motion i { position: absolute; right: 0; left: 0; height: 14px; opacity: .36; border-top: 1px solid rgba(131,231,234,.7); border-radius: 50%; filter: drop-shadow(0 0 5px rgba(116,221,225,.65)); animation: iceberg-water-drift 7s ease-in-out infinite; }
+  .cognition-iceberg__water-motion i:nth-child(2) { top: 7px; opacity: .22; animation-delay: -2.3s; }
+  .cognition-iceberg__water-motion i:nth-child(3) { top: 14px; opacity: .16; animation-delay: -4.6s; }
+  .cognition-iceberg__input-flow { position: absolute; z-index: 3; top: 15%; left: 7%; width: 50%; height: 17%; pointer-events: none; }
+  .cognition-iceberg__input-flow i { position: absolute; top: 18%; left: 0; width: 5px; height: 5px; opacity: 0; background: #dffcff; border-radius: 50%; box-shadow: 0 0 11px var(--ice-cyan); animation: iceberg-input-travel 5.6s linear infinite; }
+  .cognition-iceberg__input-flow i:nth-child(2) { top: 38%; animation-delay: -1.4s; }
+  .cognition-iceberg__input-flow i:nth-child(3) { top: 58%; animation-delay: -2.8s; }
+  .cognition-iceberg__input-flow i:nth-child(4) { top: 76%; animation-delay: -4.2s; }
+  .cognition-iceberg__scene-scan { position: absolute; z-index: 3; top: 33%; left: 29%; width: 43%; height: 17%; overflow: hidden; opacity: .48; clip-path: polygon(7% 0,93% 0,100% 100%,0 100%); pointer-events: none; }
+  .cognition-iceberg__scene-scan::after { content: ''; position: absolute; right: 0; left: 0; height: 2px; background: linear-gradient(90deg,transparent,var(--ice-cyan),transparent); box-shadow: 0 0 14px rgba(116,221,225,.8); animation: iceberg-scan 4.8s ease-in-out infinite; }
+  .cognition-iceberg__latent-flow { position: absolute; z-index: 3; top: 48%; left: 31%; width: 38%; height: 19%; pointer-events: none; }
+  .cognition-iceberg__latent-flow i { position: absolute; width: 6px; height: 6px; opacity: .32; background: #baffff; border-radius: 50%; box-shadow: 0 0 12px var(--ice-cyan); animation: iceberg-latent-pulse 3.5s ease-in-out infinite; }
+  .cognition-iceberg__latent-flow i:nth-child(1) { top: 17%; left: 15%; }
+  .cognition-iceberg__latent-flow i:nth-child(2) { top: 56%; left: 30%; animation-delay: -.7s; }
+  .cognition-iceberg__latent-flow i:nth-child(3) { top: 30%; left: 51%; animation-delay: -1.4s; }
+  .cognition-iceberg__latent-flow i:nth-child(4) { top: 67%; left: 69%; animation-delay: -2.1s; }
+  .cognition-iceberg__latent-flow i:nth-child(5) { top: 21%; left: 86%; animation-delay: -2.8s; }
+  .cognition-iceberg__event-flow { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
+  .cognition-iceberg__event-flow i { position: absolute; bottom: 8.5%; left: 50%; width: 26%; height: 2px; opacity: .56; transform-origin: left center; background: repeating-linear-gradient(90deg,rgba(225,182,108,.15) 0 8px,#ffd58d 9px 13px,rgba(225,182,108,.15) 14px 23px); background-size: 46px 100%; filter: drop-shadow(0 0 6px rgba(225,182,108,.7)); animation: iceberg-future-flow 2.8s linear infinite; }
+  .cognition-iceberg__event-flow i:nth-child(1) { transform: rotate(-118deg); }
+  .cognition-iceberg__event-flow i:nth-child(2) { width: 31%; transform: rotate(-90deg); animation-delay: -.9s; }
+  .cognition-iceberg__event-flow i:nth-child(3) { transform: rotate(-62deg); animation-delay: -1.8s; }
+  .cognition-iceberg__surface { position: absolute; z-index: 6; top: 8.5%; left: 4.5%; width: 31%; height: 19%; color: rgba(223,249,249,.72); }
+  .cognition-iceberg__surface small { position: absolute; top: 0; left: 0; color: rgba(223,249,249,.46); font: 760 .43rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+  .cognition-iceberg__signal { position: absolute; display: flex; align-items: center; gap: 8px; padding: 5px 7px; color: inherit; background: transparent; border: 1px solid transparent; border-radius: 999px; appearance: none; font: 700 .46rem/1 var(--sans); letter-spacing: .1em; text-align: left; text-transform: uppercase; text-shadow: 0 2px 12px #00101c; cursor: pointer; transition: color .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease; }
+  .cognition-iceberg__signal:hover, .cognition-iceberg__signal[aria-expanded="true"] { color: #f3ffff; background: rgba(3,24,37,.62); border-color: rgba(116,221,225,.4); box-shadow: 0 0 22px rgba(35,159,169,.12); }
+  .cognition-iceberg__signal::after { content: ''; position: absolute; top: 50%; left: calc(100% + 9px); width: 78px; height: 1px; opacity: .42; background: linear-gradient(90deg,var(--ice-cyan),transparent); box-shadow: 0 0 8px rgba(116,221,225,.5); }
+  .cognition-iceberg__signal i { position: relative; display: block; width: 20px; height: 17px; flex: 0 0 auto; color: var(--ice-cyan); opacity: .84; }
+  .cognition-iceberg__signal strong { font: inherit; }
+  .cognition-iceberg__signal--dialogue { top: 24%; left: 0; }
+  .cognition-iceberg__signal--dialogue i { border: 1px solid currentColor; border-radius: 50%; }
+  .cognition-iceberg__signal--dialogue i::after { content: ''; position: absolute; right: 1px; bottom: -3px; width: 5px; height: 5px; border-right: 1px solid currentColor; transform: rotate(32deg); }
+  .cognition-iceberg__signal--image { top: 54%; left: 9%; }
+  .cognition-iceberg__signal--image i { border: 1px solid currentColor; background: radial-gradient(circle at 73% 28%,currentColor 0 1px,transparent 2px), linear-gradient(145deg,transparent 49%,currentColor 50% 53%,transparent 54%) 1px 3px/13px 12px no-repeat; }
+  .cognition-iceberg__signal--video { top: 82%; left: 20%; }
+  .cognition-iceberg__signal--video i { border: 1px solid currentColor; border-radius: 2px; }
+  .cognition-iceberg__signal--video i::after { content: ''; position: absolute; top: 5px; left: 8px; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 5px solid currentColor; }
+  .cognition-iceberg__label { position: absolute; z-index: 5; left: 50%; display: flex; align-items: center; gap: 10px; padding: 7px 10px; color: inherit; background: rgba(2,18,29,0); border: 1px solid transparent; border-radius: 999px; transform: translateX(-50%); text-shadow: 0 2px 16px #00101c; cursor: pointer; transition: color .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .cognition-iceberg__label:hover, .cognition-iceberg__label[aria-expanded="true"] { color: #fff; background: rgba(3,24,37,.58); border-color: rgba(116,221,225,.42); box-shadow: 0 0 24px rgba(35,159,169,.12); }
+  .cognition-iceberg__signal:focus-visible, .cognition-iceberg__label:focus-visible, .cognition-iceberg__core:focus-visible, .cognition-iceberg__close:focus-visible { outline: 2px solid #efffff; outline-offset: 3px; }
+  .cognition-iceberg__label i { width: 7px; height: 7px; flex: 0 0 auto; background: var(--ice-cyan); border: 1px solid #e8ffff; border-radius: 50%; box-shadow: 0 0 0 6px rgba(116,221,225,.09), 0 0 18px rgba(116,221,225,.8); animation: iceberg-marker 3.6s ease-in-out infinite; }
+  .cognition-iceberg__label strong { font-family: var(--serif); font-size: clamp(.92rem,1.65vw,1.35rem); font-weight: 430; letter-spacing: -.015em; }
+  .cognition-iceberg__label--scene { top: 42%; }
+  .cognition-iceberg__label--latent { top: 57%; }
+  .cognition-iceberg__label--latent i { animation-delay: -1.2s; }
+  .cognition-iceberg__label--event { top: 72%; }
+  .cognition-iceberg__label--event i { animation-delay: -2.4s; }
+  .cognition-iceberg__core { position: absolute; z-index: 5; bottom: 4.2%; left: 50%; display: grid; justify-items: center; gap: 5px; padding: 8px 12px; transform: translateX(-50%); color: #ffe4ae; background: transparent; border: 1px solid transparent; border-radius: 999px; text-shadow: 0 2px 16px #000; cursor: pointer; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .cognition-iceberg__core:hover, .cognition-iceberg__core[aria-expanded="true"] { background: rgba(30,21,10,.44); border-color: rgba(255,209,126,.4); box-shadow: 0 0 28px rgba(225,182,108,.11); }
+  .cognition-iceberg__core i { width: 10px; height: 10px; background: #ffe2a2; border-radius: 50%; box-shadow: 0 0 0 10px rgba(225,182,108,.08), 0 0 33px rgba(255,209,126,.92); animation: iceberg-core 3s ease-in-out infinite; }
+  .cognition-iceberg__core strong { font: 700 .52rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+  .cognition-iceberg__axis { position: absolute; z-index: 5; top: 24%; right: 16px; bottom: 8%; display: flex; flex-direction: column; justify-content: space-between; color: rgba(225,247,247,.5); font: 760 .43rem/1 var(--sans); letter-spacing: .11em; text-transform: uppercase; writing-mode: vertical-rl; }
+  .cognition-iceberg__axis::before { content: ''; position: absolute; top: 12%; bottom: 12%; left: 50%; width: 1px; opacity: .32; background: linear-gradient(transparent,var(--ice-cyan),var(--ice-gold),transparent); }
+  .cognition-iceberg__card { position: absolute; z-index: 10; top: 38%; right: 3.5%; width: min(280px,31%); padding: 22px 22px 20px; color: #effafa; background: rgba(2,16,27,.86); border: 1px solid rgba(129,222,225,.3); box-shadow: 0 18px 55px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.04); backdrop-filter: blur(16px); animation: iceberg-card-in .24s ease both; }
+  .cognition-iceberg__card[hidden] { display: none; }
+  .cognition-iceberg__card span { display: block; margin: 0 28px 8px 0; color: var(--ice-cyan); font: 760 .46rem/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; }
+  .cognition-iceberg__card h3 { margin: 0 28px 10px 0; color: #fffdf6; font: 450 clamp(1.2rem,2vw,1.65rem)/1.05 var(--serif); letter-spacing: -.02em; }
+  .cognition-iceberg__card p { margin: 0; color: rgba(224,237,238,.76); font: 450 .74rem/1.55 var(--sans); }
+  .cognition-iceberg__close { position: absolute; top: 10px; right: 11px; width: 28px; height: 28px; padding: 0; color: rgba(229,249,249,.72); background: transparent; border: 1px solid rgba(149,218,220,.2); font: 300 1rem/1 var(--sans); cursor: pointer; }
+  .cognition-iceberg__close:hover { color: #fff; border-color: rgba(149,218,220,.55); }
+
+  @keyframes iceberg-breathe { to { transform: scale(1.045) translateY(-3px); } }
+  @keyframes iceberg-water-drift { 50% { transform: translateX(40px) scaleY(.62); } }
+  @keyframes iceberg-input-travel { 0% { transform: translate(0,0) scale(.65); opacity: 0; } 12% { opacity: .9; } 85% { opacity: .8; } 100% { transform: translate(360px,72px) scale(1.15); opacity: 0; } }
+  @keyframes iceberg-scan { 0%,100% { top: 2%; opacity: 0; } 14%,86% { opacity: .9; } 50% { top: 96%; } }
+  @keyframes iceberg-latent-pulse { 0%,100% { transform: scale(.55); opacity: .18; } 50% { transform: scale(1.65); opacity: .9; } }
+  @keyframes iceberg-future-flow { to { background-position: 46px 0; } }
+  @keyframes iceberg-marker { 50% { transform: scale(1.22); box-shadow: 0 0 0 10px rgba(116,221,225,.04),0 0 27px rgba(116,221,225,.95); } }
+  @keyframes iceberg-core { 50% { transform: scale(1.2); box-shadow: 0 0 0 15px rgba(225,182,108,.04),0 0 42px rgba(255,209,126,1); } }
+  @keyframes iceberg-card-in { from { opacity: 0; transform: translateX(8px); } }
+
+  @media (max-width: 720px) {
+    .cognition-iceberg { min-height: 500px; }
+    .cognition-iceberg > img { object-position: 50% 50%; }
+    .cognition-iceberg__surface { top: 8%; left: 3%; width: 38%; }
+    .cognition-iceberg__signal { gap: 5px; font-size: .4rem; }
+    .cognition-iceberg__signal::after { width: 34px; }
+    .cognition-iceberg__label--scene { top: 43%; }
+    .cognition-iceberg__label--latent { top: 58%; }
+    .cognition-iceberg__label--event { top: 73%; }
+    .cognition-iceberg__card { top: auto; right: 12px; bottom: 12px; left: 12px; width: auto; padding: 18px; }
+    .cognition-iceberg__card p { font-size: .7rem; }
+    .cognition-iceberg__axis { display: none; }
+  }
+</style>
+
+<script>
+  const icebergLayers = {
+    dialogue: {
+      kicker: 'Observable signal',
+      title: 'Dialogue',
+      copy: 'What participants explicitly say in the current turn—the visible trace, not the belief or intent behind it.',
+    },
+    image: {
+      kicker: 'Observable signal',
+      title: 'Image',
+      copy: 'A still visual observation: objects, expressions, spatial relations, and other evidence available in the current moment.',
+    },
+    video: {
+      kicker: 'Observable signal',
+      title: 'Video',
+      copy: 'Time-based evidence: motion, timing, interaction, and change across frames before hidden causes are inferred.',
+    },
+    scene: {
+      kicker: 'World model',
+      title: 'Scene',
+      copy: 'Identity, world rules, goals, and boundaries. The scene changes only when interaction materially changes the world.',
+    },
+    latent: {
+      kicker: 'Internal state',
+      title: 'Latent state',
+      copy: 'Beliefs, relationships, emotion, and uncertainty—the hidden state that shifts before behavior changes.',
+    },
+    event: {
+      kicker: 'Temporal reasoning',
+      title: 'Event chain',
+      copy: 'Past events explain the present. The present branches into advance, maintain, degrade, or collapse.',
+    },
+    cognitive: {
+      kicker: 'Adaptive intelligence',
+      title: 'Cognitive AI',
+      copy: 'It infers missing structure, updates that model across time, and uses the result to change the next action.',
+    },
+  } as const;
+
+  document.querySelectorAll<HTMLElement>('[data-cognition-iceberg]').forEach((root) => {
+    const card = root.querySelector<HTMLElement>('[data-iceberg-card]');
+    const kicker = root.querySelector<HTMLElement>('[data-iceberg-kicker]');
+    const title = root.querySelector<HTMLElement>('[data-iceberg-title]');
+    const copy = root.querySelector<HTMLElement>('[data-iceberg-copy]');
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-iceberg-layer]')];
+    if (!card || !kicker || !title || !copy) return;
+
+    const closeCard = () => {
+      card.hidden = true;
+      buttons.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.icebergLayer as keyof typeof icebergLayers;
+        const layer = icebergLayers[key];
+        if (!layer) return;
+        const wasOpen = button.getAttribute('aria-expanded') === 'true';
+        closeCard();
+        if (wasOpen) return;
+        kicker.textContent = layer.kicker;
+        title.textContent = layer.title;
+        copy.textContent = layer.copy;
+        card.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+      });
+    });
+
+    root.querySelector('[data-iceberg-close]')?.addEventListener('click', closeCard);
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeCard();
+    });
+  });
+</script>

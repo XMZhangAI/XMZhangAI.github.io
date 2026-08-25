@@ -1,0 +1,57 @@
+<div class="voyage-wager" role="img" aria-label="A cognitive voyage turns a visible warning into latent future models, a constrained choice, and a changed outcome.">
+  <img src="/assets/images/odyssey-cognition-hero.webp" width="1920" height="1080" alt="" loading="lazy" />
+  <div class="voyage-wager__veil" aria-hidden="true"></div>
+  <header><span>Cognitive voyage / organized inference</span><strong>The visible signal is only the beginning.</strong></header>
+  <div class="voyage-wager__flow">
+    <article>
+      <b>01 / Observe</b>
+      <i aria-hidden="true"></i>
+      <strong>A warning arrives.</strong>
+      <small>surface evidence</small>
+    </article>
+    <section aria-label="Latent futures">
+      <b>02 / Model the hidden horizon</b>
+      <div><span>temptation</span><span>bounded loss</span><span>delayed cost</span></div>
+      <strong>Keep several futures alive.</strong>
+      <small>beliefs remain revisable until action</small>
+    </section>
+    <article>
+      <b>03 / Constrain</b>
+      <i aria-hidden="true"></i>
+      <strong>Bind the future self.</strong>
+      <small>choice changes trajectory</small>
+    </article>
+  </div>
+  <footer><span>Memory closes the loop</span><i></i><strong>outcome → reflection → revised policy</strong></footer>
+</div>
+
+<style>
+  .voyage-wager { position: relative; min-height: 520px; padding: clamp(24px,4vw,46px); overflow: hidden; color: #f5efe3; background: #061522; border: 1px solid #163747; isolation: isolate; font-family: var(--sans); }
+  .voyage-wager > img, .voyage-wager__veil { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .voyage-wager > img { opacity: .4; filter: saturate(.78) contrast(1.1); }
+  .voyage-wager__veil { z-index: -1; background: linear-gradient(90deg,rgba(3,15,25,.78),rgba(3,15,25,.58) 46%,rgba(3,15,25,.83)), linear-gradient(180deg,rgba(3,15,25,.18),rgba(3,15,25,.72)); }
+  header { display: grid; grid-template-columns: 190px 1fr; gap: 28px; align-items: baseline; }
+  header span, .voyage-wager b, footer span { color: #69d0d4; font-size: .54rem; font-weight: 820; letter-spacing: .11em; text-transform: uppercase; }
+  header strong { font-family: var(--serif); font-size: clamp(1.8rem,3.4vw,3.35rem); font-weight: 410; line-height: 1; }
+  .voyage-wager__flow { margin-top: clamp(50px,7vw,80px); display: grid; grid-template-columns: .8fr 1.4fr .8fr; align-items: stretch; }
+  .voyage-wager__flow > * { min-height: 250px; padding: 24px; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.33); border-bottom: 1px solid rgba(255,255,255,.2); }
+  .voyage-wager__flow article { background: rgba(4,20,31,.55); }
+  .voyage-wager__flow section { background: rgba(10,32,44,.76); border-right: 1px solid rgba(255,255,255,.2); border-left: 1px solid rgba(255,255,255,.2); }
+  .voyage-wager__flow article > i { width: 14px; height: 14px; margin: 54px 0 20px; background: #d9ad68; border: 2px solid #ffe1ad; border-radius: 50%; box-shadow: 0 0 0 9px rgba(217,173,104,.12), 0 0 30px rgba(217,173,104,.55); }
+  .voyage-wager__flow strong { margin-top: auto; font-family: var(--serif); font-size: clamp(1.15rem,2vw,1.7rem); font-weight: 440; line-height: 1.08; }
+  .voyage-wager__flow small { margin-top: 9px; color: rgba(255,255,255,.48); font-size: .49rem; letter-spacing: .06em; text-transform: uppercase; }
+  .voyage-wager__flow section > div { margin: 46px 0 35px; display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+  .voyage-wager__flow section > div span { min-height: 64px; padding: 10px; display: grid; place-items: center; color: #d9ad68; background: rgba(255,255,255,.04); border: 1px solid rgba(217,173,104,.36); font-size: .5rem; letter-spacing: .06em; text-align: center; text-transform: uppercase; }
+  footer { margin-top: 22px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
+  footer i { height: 1px; background: linear-gradient(90deg,#69d0d4,rgba(105,208,212,.08)); }
+  footer strong { color: rgba(255,255,255,.55); font-size: .53rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+  @media (max-width: 720px) {
+    .voyage-wager { min-height: 0; }
+    header { grid-template-columns: 1fr; }
+    .voyage-wager__flow { grid-template-columns: 1fr; }
+    .voyage-wager__flow > * { min-height: 210px; }
+    .voyage-wager__flow section { border: 1px solid rgba(255,255,255,.2); }
+    footer { grid-template-columns: 1fr; }
+    footer i { width: 1px; height: 20px; }
+  }
+</style>
