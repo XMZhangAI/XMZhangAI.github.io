@@ -28,7 +28,9 @@ const {
   updated
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const facultyBase = new URL('https://jewelina95.github.io/worldeology-lab/faculty/xuanming-zhang/');
+const canonicalPath = Astro.url.pathname === '/' ? '' : Astro.url.pathname.replace(/^\//, '');
+const canonical = new URL(canonicalPath, facultyBase);
 const socialImage = new URL(image, Astro.site);
 const analyticsEndpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT || '';
 ---
@@ -41,6 +43,7 @@ const analyticsEndpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT || '';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Xuanming Zhang" />
+    <meta name="robots" content="noindex,follow" />
     <meta name="theme-color" content="#07141e" />
     <meta name="analytics-endpoint" content={analyticsEndpoint} />
     <link rel="canonical" href={canonical} />
@@ -71,6 +74,12 @@ const analyticsEndpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT || '';
     {type === 'article' && <meta property="article:author" content="Xuanming Zhang" />}
 
     <script is:inline>
+      if (location.hostname === 'xmzhangai.github.io') {
+        const facultyBase = 'https://jewelina95.github.io/worldeology-lab/faculty/xuanming-zhang';
+        const path = location.pathname === '/' ? '/' : location.pathname;
+        location.replace(`${facultyBase}${path}${location.search}${location.hash}`);
+      }
+
       document.documentElement.classList.remove('no-js');
       document.documentElement.classList.add('js');
 
